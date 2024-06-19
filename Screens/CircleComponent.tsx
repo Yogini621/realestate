@@ -1,17 +1,21 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
-import { responsiveFontSize, responsiveHeight, responsiveWidth } from 'react-native-responsive-dimensions';
+import {StyleSheet, Text, View} from 'react-native';
+import React from 'react';
+import {
+  responsiveFontSize,
+  responsiveHeight,
+  responsiveWidth,
+} from 'react-native-responsive-dimensions';
 import Entypo from 'react-native-vector-icons/Entypo';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
-interface Props{
-  icon:any;
-  keyIcon:any;
-  propertyText:string;
-  descriptionText:string
+interface Props {
+  icon: any;
+  keyIcon: any;
+  propertyText: string;
+  descriptionText: string;
 }
 
-const CircleComponent= (props:Props) => {
+const CircleComponent = (props: Props) => {
   return (
     <View>
       <View style={styles.circlelayOut}>
@@ -24,15 +28,13 @@ const CircleComponent= (props:Props) => {
       </View>
       <Text style={styles.PropertyText}>{props.propertyText} </Text>
       <View style={styles.descriptionView1}>
-        <Text style={styles.descriptionText}>{props.descriptionText}
-         
-        </Text>
+        <Text style={styles.descriptionText}>{props.descriptionText}</Text>
       </View>
     </View>
   );
-}
+};
 
-export default CircleComponent
+export default CircleComponent;
 
 const styles = StyleSheet.create({
   circlelayOut: {

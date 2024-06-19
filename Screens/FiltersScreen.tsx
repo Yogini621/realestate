@@ -119,7 +119,6 @@ const FiltersScreen = () => {
     </SafeAreaView>
   );
 };
-
 export default FiltersScreen;
 
 const styles = StyleSheet.create({

@@ -11,7 +11,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import {
   responsiveHeight,
   responsiveWidth,
@@ -24,31 +24,29 @@ import Feather from 'react-native-vector-icons/Feather';
 import {data1} from './data1';
 import {Property} from '../redux/actions/actions';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import ViewComponent from './ViewComponent';
 import Entypo from 'react-native-vector-icons/Entypo';
-
 
 interface Props {
   navigation: any;
 }
 
 const LandingPage: React.FC<Props> = ({navigation}) => {
- const [selectButton, setSelectButton] = useState(false);
- const [selectButton1, setSelectButton1] = useState(false);
- const [modalVisible,setModalVisible] = useState(false)
- 
-    const toogleButton = () => {
-      setSelectButton(!selectButton);
-      setSelectButton1(false);
-      navigation.navigate("SignupPage")
-    };
+  const [selectButton, setSelectButton] = useState(false);
+  const [selectButton1, setSelectButton1] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
 
-    const toogleButton1 = () => {
-      setSelectButton1(!selectButton1);
-      setSelectButton(false);
-      navigation.navigate("SigninPage")
-    };
+  const toogleButton = () => {
+    setSelectButton(!selectButton);
+    setSelectButton1(false);
+    navigation.navigate('SignupPage');
+  };
+
+  const toogleButton1 = () => {
+    setSelectButton1(!selectButton1);
+    setSelectButton(false);
+    navigation.navigate('SigninPage');
+  };
 
   const renderItems = ({item}: {item: Property}) => {
     return (
@@ -873,5 +871,6 @@ const styles = StyleSheet.create({
   modalText: {
     fontSize: responsiveFontSize(1.9),
     fontFamily: 'PlusJakartaSans j',
+    color: '#9b9b9b',
   },
 });

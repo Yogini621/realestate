@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import {
   responsiveFontSize,
   responsiveHeight,
@@ -16,7 +16,6 @@ import {
 import * as Yup from 'yup';
 import {Formik} from 'formik';
 import Feather from 'react-native-vector-icons/Feather';
-
 
 interface Props {
   navigation: any;
@@ -55,10 +54,7 @@ const ForgotPassword2: React.FC<Props> = ({navigation}) => {
       .required('Password required'),
   });
 
-
-  const handleFormSubmit = (values:UserDetails) => {
-
-  }
+  const handleFormSubmit = (values: UserDetails) => {};
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.imageView}>

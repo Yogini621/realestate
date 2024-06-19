@@ -1,4 +1,6 @@
 export const FetchProperties = 'FetchProperties';
+export const AddToFavorites = 'AddToFavorites';
+export const RemoveAll = "RemoveAll"
 
 export interface Property {
   id: number;
@@ -13,10 +15,22 @@ export interface FetchPropertiesAction {
   payload:Property[]
 }
 
+export interface AddToFavoritesAction {
+  type: typeof AddToFavorites;
+  payload: Property;
+}
+export interface RemoveAllAction{
+  type:typeof RemoveAll
+  payload:Property
+}
+
 export type RealEstateAppActionTypes = 
 | FetchPropertiesAction
+| AddToFavoritesAction
+| RemoveAllAction
 
 
 export interface RealEstateAppState{
-  properties:Property[]
+  properties:Property[];
+  favorites:Property[]
 }

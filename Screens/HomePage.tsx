@@ -24,7 +24,7 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '../redux/reducers';
 import {data} from './data';
-import {fetchProperties} from '../redux/actions/actionTypes';
+import {addToFavorites, fetchProperties} from '../redux/actions/actionTypes';
 import {Property} from '../redux/actions/actions';
 import {FlatList} from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
@@ -43,6 +43,9 @@ interface Props {
 const HomePage: React.FC<Props> = ({navigation}) => {
   const Properties = useSelector(
     (state: RootState) => state.properties.properties,
+  );
+  const favorites = useSelector(
+    (state: RootState) => state.favorites.favorites,
   );
   const dispatch = useDispatch();
   const renderThumb = useCallback(() => <Thumb />, []);
@@ -69,6 +72,11 @@ const HomePage: React.FC<Props> = ({navigation}) => {
     dispatch(fetchProperties(response));
   };
 
+  const handleAddToFavorites = (item: Property) => {
+    dispatch(addToFavorites(item));
+    navigation.navigate('Favorites');
+  };
+
   const renderItems = ({item}: {item: Property}) => {
     return (
       <View
@@ -92,8 +100,20 @@ const HomePage: React.FC<Props> = ({navigation}) => {
               <Text style={styles.monthText}>/month</Text>
             </View>
             <View style={styles.circle}>
-              <TouchableOpacity>
-                <AntDesign name="hearto" color="#073762" size={22} />
+              <TouchableOpacity onPress={() => handleAddToFavorites(item)}>
+                <AntDesign
+                  name={
+                    favorites.find(favoriteItem => item.id === favoriteItem.id)
+                      ? 'heart'
+                      : 'hearto'
+                  }
+                  color={
+                    favorites.find(favoriteItem => item.id === favoriteItem.id)
+                      ? 'red'
+                      : '#073762'
+                  }
+                  size={22}
+                />
               </TouchableOpacity>
             </View>
             <Text style={styles.rentText1}>{item.rooms}</Text>
@@ -125,25 +145,35 @@ const HomePage: React.FC<Props> = ({navigation}) => {
       <StatusBar hidden={true} />
       <View style={styles.headerView}>
         <View style={styles.logoView}>
-          <Image source={require('../Images/Vector.png')} />
+          <Image source={require('../Images/Vector1.png')} />
           <View style={styles.iconView}>
             <TouchableOpacity>
-              <Ionicons name="notifications-outline" size={20} />
+              <Ionicons
+                name="notifications-outline"
+                size={20}
+                color="#073762"
+              />
             </TouchableOpacity>
             <TouchableOpacity onPress={() => navigation.navigate('MenuPage')}>
-              <FontAwesome5 name="grip-lines" size={20} />
+              <FontAwesome5 name="grip-lines" size={20} color="#073762" />
             </TouchableOpacity>
           </View>
         </View>
       </View>
       <Text style={styles.headerText}>Search Properties to rent</Text>
-      <TouchableOpacity style={styles.discoverButton}>
+      <TouchableOpacity
+        style={styles.discoverButton}
+        onPress={() => navigation.navigate('DiscoverMore')}>
         <Feather name="globe" color="white" size={20} />
         <Text style={styles.buttonText}>Discover More</Text>
       </TouchableOpacity>
       <View style={styles.searchBarView}>
         <View style={styles.passwordView}>
-          <TextInput placeholder="Search location" style={styles.input1} />
+          <TextInput
+            placeholder="Search location"
+            style={styles.input1}
+            placeholderTextColor="#9b9b9b"
+          />
           <TouchableOpacity style={styles.searchIconView}>
             <AntDesign name="search1" size={20} color="white" />
           </TouchableOpacity>
@@ -246,7 +276,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#f4faff',
   },
   headerView: {
-    height: responsiveHeight(8),
+    height: responsiveHeight(10),
     width: responsiveWidth(100),
     backgroundColor: '#ffffff',
     elevation: 1,
@@ -256,6 +286,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginHorizontal: responsiveWidth(4),
+    alignItems: 'center',
   },
   iconView: {
     width: responsiveWidth(14),

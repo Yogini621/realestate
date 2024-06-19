@@ -6,33 +6,36 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React, {useRef, useState} from 'react';
+import React, {useRef} from 'react';
 import Entypo from 'react-native-vector-icons/Entypo';
 import {
   responsiveFontSize,
   responsiveHeight,
   responsiveWidth,
 } from 'react-native-responsive-dimensions';
+import {Formik} from 'formik';
+import * as Yup from 'yup';
 
 interface Props {
   modalVisible: boolean;
   email: string;
-  closemodal: () => void
-  otp:string;
-  otpValdation:(otp:string) => void
+  closemodal: () => void;
+  otp: string;
+  otpValdation: (otp: string) => void;
 }
 
-const SgnupVerificationModal = (props: Props) => {
+const SignupVerificationModal = (props: Props) => {
   const input2Ref = useRef<TextInput>(null);
   const input3Ref = useRef<TextInput>(null);
   const input4Ref = useRef<TextInput>(null);
   const input5Ref = useRef<TextInput>(null);
   const input6Ref = useRef<TextInput>(null);
-  const [otp, setOtp] = useState('');
 
-  const handleOtpVerification = () => {
-
-  }
+  const ValidationSchema = Yup.object().shape({
+    otp: Yup.string()
+      .min(6, 'OTP must contain 6 characters')
+      .required('OTP is required'),
+  });
 
   return (
     <View style={styles.abcd}>
@@ -43,22 +46,27 @@ const SgnupVerificationModal = (props: Props) => {
         <View style={styles.modalView}>
           <View style={styles.crossIconView}>
             <Text style={styles.verifyText}>Verify Your Email</Text>
-            <TouchableOpacity onPress={() => props.closemodal()}>
+
+            <TouchableOpacity onPress={props.closemodal}>
               <Entypo name="cross" color="black" size={20} />
             </TouchableOpacity>
           </View>
+
           <View style={styles.line} />
           <View style={styles.emailTextView}>
             <Text style={styles.sendText}>
               We have sent a code to your mail
             </Text>
+
             <View style={styles.emailView}>
               <Text style={styles.emailText}>{props.email} </Text>
+
               <TouchableOpacity>
                 <Text style={styles.changeEmailText}>Change email</Text>
               </TouchableOpacity>
             </View>
           </View>
+
           <Text
             style={[
               styles.emailText,
@@ -66,100 +74,127 @@ const SgnupVerificationModal = (props: Props) => {
             ]}>
             Enter code received on your registered email
           </Text>
-          <View style={styles.inputView}>
-            <TextInput
-              style={styles.input}
-              placeholder=""
-              maxLength={1}
-              keyboardType="numeric"
-              onChangeText={text => {
-                setOtp(text);
-                if (text !== '') {
-                  input2Ref.current?.focus();
-                }
-              }}
-            />
-            <TextInput
-              style={styles.input}
-              placeholder=""
-              ref={input2Ref}
-              maxLength={1}
-              keyboardType="numeric"
-              onChangeText={text => {
-                setOtp(otp + text);
-                if (text !== '') {
-                  input3Ref.current?.focus();
-                }
-              }}
-            />
-            <TextInput
-              style={styles.input}
-              placeholder=""
-              ref={input3Ref}
-              maxLength={1}
-              keyboardType="numeric"
-              onChangeText={text => {
-                setOtp(otp + text);
-                if (text !== '') {
-                  input4Ref.current?.focus();
-                }
-              }}
-            />
-            <TextInput
-              style={styles.input}
-              placeholder=""
-              maxLength={1}
-              ref={input4Ref}
-              keyboardType="numeric"
-              onChangeText={text => {
-                setOtp(otp + text);
-                if (text !== '') {
-                  input5Ref.current?.focus();
-                }
-              }}
-            />
-            <TextInput
-              style={styles.input}
-              placeholder=""
-              maxLength={1}
-              ref={input5Ref}
-              keyboardType="numeric"
-              onChangeText={text => {
-                setOtp(otp + text);
-                if (text !== '') {
-                  input6Ref.current?.focus();
-                }
-              }}
-            />
-            <TextInput
-              style={styles.input}
-              placeholder=""
-              maxLength={1}
-              ref={input6Ref}
-              keyboardType="numeric"
-              onChangeText={text => setOtp(otp + text)}
-            />
-          </View>
-          <View style={styles.emailView1}>
-            <Text style={styles.sendText}>
-              Don't receive the verification code ?
-            </Text>
-            <TouchableOpacity>
-              <Text style={styles.changeEmailText}>Resend code</Text>
-            </TouchableOpacity>
-          </View>
 
-          <TouchableOpacity style={styles.verifyButton} onPress={() => props.otpValdation(props.otp)}>
-            <Text style={styles.buttonText}>Verify</Text>
-          </TouchableOpacity>
+          <Formik
+            initialValues={{otp: ''}}
+            validationSchema={ValidationSchema}
+            onSubmit={values => {
+              props.otpValdation(values.otp);
+            }}>
+            {({
+              handleChange,
+              handleBlur,
+              handleSubmit,
+              touched,
+              errors,
+              values,
+            }) => (
+              <>
+                <View style={styles.inputView}>
+                  <TextInput
+                    style={styles.input}
+                    placeholder=""
+                    maxLength={1}
+                    keyboardType="numeric"
+                    onChangeText={text => {
+                      handleChange('otp')(text);
+                      if (text !== '') input2Ref.current?.focus();
+                    }}
+                    onBlur={handleBlur('otp')}
+                    value={values.otp[0] || ''}
+                  />
+
+                  <TextInput
+                    style={styles.input}
+                    placeholder=""
+                    ref={input2Ref}
+                    maxLength={1}
+                    keyboardType="numeric"
+                    onChangeText={text => {
+                      handleChange('otp')(values.otp.slice(0, 1) + text);
+                      if (text !== '') input3Ref.current?.focus();
+                    }}
+                    onBlur={handleBlur('otp')}
+                    value={values.otp[1] || ''}
+                  />
+                  <TextInput
+                    style={styles.input}
+                    placeholder=""
+                    ref={input3Ref}
+                    maxLength={1}
+                    keyboardType="numeric"
+                    onChangeText={text => {
+                      handleChange('otp')(values.otp.slice(0, 2) + text);
+                      if (text !== '') input4Ref.current?.focus();
+                    }}
+                    onBlur={handleBlur('otp')}
+                    value={values.otp[2] || ''}
+                  />
+                  <TextInput
+                    style={styles.input}
+                    placeholder=""
+                    ref={input4Ref}
+                    maxLength={1}
+                    keyboardType="numeric"
+                    onChangeText={text => {
+                      handleChange('otp')(values.otp.slice(0, 3) + text);
+                      if (text !== '') input5Ref.current?.focus();
+                    }}
+                    onBlur={handleBlur('otp')}
+                    value={values.otp[3] || ''}
+                  />
+                  <TextInput
+                    style={styles.input}
+                    placeholder=""
+                    ref={input5Ref}
+                    maxLength={1}
+                    keyboardType="numeric"
+                    onChangeText={text => {
+                      handleChange('otp')(values.otp.slice(0, 4) + text);
+                      if (text !== '') input6Ref.current?.focus();
+                    }}
+                    onBlur={handleBlur('otp')}
+                    value={values.otp[4] || ''}
+                  />
+                  <TextInput
+                    style={styles.input}
+                    placeholder=""
+                    ref={input6Ref}
+                    maxLength={1}
+                    keyboardType="numeric"
+                    onChangeText={text =>
+                      handleChange('otp')(values.otp.slice(0, 5) + text)
+                    }
+                    onBlur={handleBlur('otp')}
+                    value={values.otp[5] || ''}
+                  />
+                </View>
+                {errors.otp && touched.otp ? (
+                  <Text style={styles.errorText}>{errors.otp}</Text>
+                ) : null}
+                <View style={styles.emailView1}>
+                  <Text style={styles.sendText}>
+                    Don't receive the verification code?
+                  </Text>
+                  <TouchableOpacity>
+                    <Text style={styles.changeEmailText}>Resend code</Text>
+                  </TouchableOpacity>
+                </View>
+                <Text>{props.otp} </Text>
+                <TouchableOpacity
+                  style={styles.verifyButton}
+                  onPress={() => handleSubmit()}>
+                  <Text style={styles.buttonText}>Verify</Text>
+                </TouchableOpacity>
+              </>
+            )}
+          </Formik>
         </View>
       </Modal>
     </View>
   );
 };
-
-export default SgnupVerificationModal;
-
+export default SignupVerificationModal;
 const styles = StyleSheet.create({
   abcd: {
     flex: 1,
@@ -246,9 +281,7 @@ const styles = StyleSheet.create({
     fontFamily: 'PlusJakartaSans j',
     fontSize: responsiveFontSize(1.6),
   },
-  emailView: {
-    flexDirection: 'row',
-  },
+  emailView: {flexDirection: 'row'},
   changeEmailText: {
     color: '#1859f5',
     fontFamily: 'PlusJakartaSans j',
@@ -258,6 +291,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: responsiveHeight(2),
   },
+  errorText: {},
 });
