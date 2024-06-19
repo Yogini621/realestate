@@ -10,7 +10,7 @@ import {Checkbox, Switch} from 'react-native-paper';
 const Notifications = () => {
   const [checked, setChecked] = useState(false);
   return (
-    <View style={styles.container}>
+    <View style={styles.container}> 
       <View style={styles.notificationView}>
         <Text style={styles.notificationsText}>Notifications</Text>
         <Text style={styles.generalText}>General</Text>
