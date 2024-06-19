@@ -41,7 +41,7 @@ const Filterscreen: React.FC<Props> = ({navigation}) => {
           <ScrollView>
             <View style={styles.line} />
             <View style={styles.closeIconView}>
-              <TouchableOpacity>
+              <TouchableOpacity onPress={() => setModalVisible(false)}>
                 <AntDesign name="close" size={28} color="#e5e6eb" />
               </TouchableOpacity>
               <Text style={styles.filtersText}>Filters</Text>
@@ -103,12 +103,22 @@ const Filterscreen: React.FC<Props> = ({navigation}) => {
                 <View style={styles.priceView}>
                   <View>
                     <Text style={styles.typeText}>Min Price</Text>
-                    <TextInput style={styles.priceInput} />
+                    <TextInput style={styles.priceInput} placeholder='2K' />
                   </View>
                   <View>
                     <Text style={styles.typeText}>Max Price</Text>
-                    <TextInput style={styles.priceInput} />
+                    <TextInput style={styles.priceInput} placeholder='2L' />
                   </View>
+                </View>
+              </View>
+              <View style={styles.buttonView1}>
+                <View style={styles.buttonDirectionView}>
+                  <TouchableOpacity style = {styles.resetButton}>
+                    <Text style = {styles.buttonTxt}>Reset</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity style = {styles.activeButton}>
+                    <Text style = {styles.activeButtonText}>Apply</Text>
+                  </TouchableOpacity>
                 </View>
               </View>
             </View>
@@ -246,5 +256,48 @@ const styles = StyleSheet.create({
     fontFamily: 'PlusJakartaSans j',
     borderWidth: 0.8,
     marginBottom: responsiveHeight(2),
+  },
+  buttonView1: {
+    backgroundColor: '#ffffff',
+    height: responsiveHeight(13),
+    elevation: 1,
+    marginTop: responsiveHeight(3.2),
+    width: responsiveWidth(90),
+    alignSelf: 'center',
+    // alignItems: 'center',
+    justifyContent: 'center',
+  },
+  buttonDirectionView: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    width: responsiveWidth(76),
+    alignSelf: 'center',
+  },
+  resetButton: {
+    backgroundColor: '#f7f7fd',
+    padding: 10,
+    width: responsiveWidth(36),
+    borderRadius: 8,
+    alignItems: 'center',
+    height: responsiveHeight(7.4),
+  },
+  buttonTxt: {
+    color: '#073762',
+    fontSize: responsiveFontSize(2),
+    fontFamily: 'PlusJakartaSans a',
+  },
+  activeButton: {
+    backgroundColor: '#073762',
+    padding: 10,
+    width: responsiveWidth(36),
+    borderRadius: 8,
+    alignItems: 'center',
+    height: responsiveHeight(7.4),
+  },
+  activeButtonText: {
+    color: '#f7f7fd',
+    fontSize: responsiveFontSize(2),
+    fontFamily: 'PlusJakartaSans a',
   },
 });

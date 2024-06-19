@@ -54,7 +54,6 @@ const DiscoverMore: React.FC<Props> = ({navigation}) => {
           console.log('Location permission granted');
           getCurrentLocation();
         } else {
-          // console.log('Location permission denied');
           setLocationError('Location permission denied');
         }
       } catch (error) {
@@ -212,7 +211,6 @@ const styles = StyleSheet.create({
     fontSize: responsiveFontSize(2),
     fontFamily: 'PlusJakartaSans m',
     fontWeight: '600',
-    // right: responsiveWidth(2),
   },
   searchText: {
     color: '#100a55',

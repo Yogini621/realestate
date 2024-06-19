@@ -25,6 +25,9 @@ import Favorites from './Screens/Favorites';
 import DiscoverMore from './Screens/DiscoverMore';
 import SwipeUp from './Screens/SwipeUp';
 import Filterscreen from './Screens/Filterscreen';
+import Profile from './Screens/Profile';
+import MyPurchasesPage from './Screens/MyPurchasesPage';
+import Settings from './Screens/Settings';
 
 const Stack = createNativeStackNavigator();
 
@@ -59,8 +62,8 @@ const App = () => {
             options={{headerShown: false}}
           />  */}
           <Stack.Screen
-            name="Filterscreen"
-            component={Filterscreen}
+            name="Settings"
+            component={Settings}
             options={{headerShown: false}}
           />
           <Stack.Screen
@@ -131,6 +134,21 @@ const App = () => {
           <Stack.Screen
             name="SwipeUp"
             component={SwipeUp}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="Filterscreen"
+            component={Filterscreen}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="Profile"
+            component={Profile}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="MyPurchasesPage"
+            component={MyPurchasesPage}
             options={{headerShown: false}}
           />
         </Stack.Navigator>
