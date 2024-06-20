@@ -41,7 +41,7 @@ const App = () => {
     <Provider store={store}>
       <NavigationContainer>
         <Stack.Navigator>
-          {/* <Stack.Screen
+          <Stack.Screen
             name="LandingPage"
             component={LandingPage}
             options={{headerShown: false}}
@@ -65,9 +65,9 @@ const App = () => {
             name="ForgotPassword2"
             component={ForgotPassword2}
             options={{headerShown: false}}
-          /> */}
+          />
 
-          {/* <Stack.Screen
+          <Stack.Screen
             name="HomePage"
             component={HomePage}
             options={{headerShown: false}}
@@ -116,7 +116,7 @@ const App = () => {
             name="PropertyListings3"
             component={PropertyListings3}
             options={{headerShown: false}}
-          /> */}
+          />
           <Stack.Screen
             name="Sell"
             component={Sell}
