@@ -22,12 +22,12 @@ export default OptionComponent;
 
 const styles = StyleSheet.create({
   optionText: {
-    color: '#33333380',
+    color: '#333333cc',
     fontSize: responsiveFontSize(1.8),
     fontFamily: 'PlusJakartaSans m',
   },
-  button:{
- alignSelf:'center',
- marginTop:responsiveHeight(4)
-  }
+  button: {
+    alignSelf: 'center',
+    marginTop: responsiveHeight(4),
+  },
 });

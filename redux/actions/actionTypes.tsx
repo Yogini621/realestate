@@ -1,4 +1,4 @@
-import { AddToFavorites, FetchProperties, Property } from "./actions";
+import { AddToFavorites, FetchProperties, Property, RemoveFavorires } from "./actions";
 
 export const fetchProperties = (properties:Property[]) => ({
   type:FetchProperties,
@@ -9,3 +9,8 @@ export const addToFavorites = (item: Property) => ({
   type: AddToFavorites,
   payload: item,
 });
+
+export const removeFavorites = (item:Property) => ({
+  type:RemoveFavorires,
+  payload:item
+})

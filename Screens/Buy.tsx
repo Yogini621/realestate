@@ -35,7 +35,7 @@ const Buy: React.FC<Props> = ({navigation}) => {
           <View style={styles.logoView}>
             <Image source={require('../Images/Vector1.png')} />
             <TouchableOpacity onPress={() => navigation.navigate('MenuPage')}>
-              <FontAwesome5 name="grip-lines" size={20} />
+              <FontAwesome5 name="grip-lines" size={20} color="#073762" />
             </TouchableOpacity>
           </View>
         </View>
@@ -55,7 +55,11 @@ const Buy: React.FC<Props> = ({navigation}) => {
           </TouchableOpacity>
         </View>
         <View style={styles.inputView1}>
-          <TextInput placeholder="Search location" style={styles.input1} />
+          <TextInput
+            placeholder="Search location"
+            style={styles.input1}
+            placeholderTextColor="#100a55"
+          />
           <TouchableOpacity style={styles.searchIconButton}>
             <AntDesign name="search1" color="white" size={20} />
           </TouchableOpacity>
@@ -159,7 +163,7 @@ const Buy: React.FC<Props> = ({navigation}) => {
                   styles.locationText,
                   {marginBottom: responsiveHeight(2)},
                 ]}>
-                {item.location}{' '}
+                {item.location}
               </Text>
             </View>
           </View>

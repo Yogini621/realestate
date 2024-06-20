@@ -180,7 +180,7 @@ const SignupVerificationModal = (props: Props) => {
                     <Text style={styles.changeEmailText}>Resend code</Text>
                   </TouchableOpacity>
                 </View>
-                <Text>{props.otp} </Text>
+                <Text style={styles.otp}>{props.otp} </Text>
                 <TouchableOpacity
                   style={styles.verifyButton}
                   onPress={() => handleSubmit()}>
@@ -209,14 +209,16 @@ const styles = StyleSheet.create({
     marginTop: responsiveHeight(2),
   },
   line: {
-    height: 0.2,
-    backgroundColor: '#6c727f',
+    height:responsiveHeight(0.2),
+    backgroundColor: '#666666',
     width: responsiveWidth(87),
     marginTop: responsiveHeight(2.8),
+    alignSelf:'center'
   },
   centeredView: {
-    position: 'absolute',
-    bottom: -20,
+    flex:1
+    // position: 'absolute',
+    // bottom: -20,
   },
   modalView: {
     backgroundColor: '#ffffff',
@@ -224,10 +226,9 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 4,
     elevation: 5,
-    height: 323,
-    width: 343,
     alignSelf: 'center',
     marginTop: responsiveHeight(28),
+    height:responsiveHeight(44)
   },
   verifyText: {
     fontFamily: 'PlusJakartaSans m',
@@ -261,6 +262,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginTop: responsiveHeight(3),
+    // marginBottom:responsiveHeight(4)
   },
   buttonText: {
     fontFamily: 'PlusJakartaSans j',
@@ -293,4 +295,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   errorText: {},
+  otp:{
+    color:'#333333'
+  }
 });

@@ -18,7 +18,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Feather from 'react-native-vector-icons/Feather';
-import { data7} from './data2';
+import {data7} from './data2';
 import {Property} from '../redux/actions/actions';
 import {addToFavorites} from '../redux/actions/actionTypes';
 import {useDispatch, useSelector} from 'react-redux';
@@ -38,7 +38,7 @@ const SwipeUp: React.FC<Props> = ({navigation}) => {
     dispatch(addToFavorites(item));
     navigation.navigate('Favorites');
   };
-  
+
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
@@ -89,7 +89,10 @@ const SwipeUp: React.FC<Props> = ({navigation}) => {
         <View>
           {data7.map(item => (
             <View style={styles.itemView} key={item.id}>
-              <Image source={item.image} />
+              <TouchableOpacity
+                onPress={() => navigation.navigate('PropertyDetails', {item})}>
+                <Image source={item.image} />
+              </TouchableOpacity>
               <View style={styles.descriptionView}>
                 <View style={styles.favoriteIconView}>
                   <View>

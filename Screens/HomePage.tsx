@@ -1,17 +1,14 @@
 import 'react-native-gesture-handler';
 import {
   Image,
-  Modal,
   SafeAreaView,
-  ScrollView,
-  StatusBar,
   StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
   View,
 } from 'react-native';
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   responsiveFontSize,
   responsiveHeight,
@@ -28,13 +25,7 @@ import {addToFavorites, fetchProperties} from '../redux/actions/actionTypes';
 import {Property} from '../redux/actions/actions';
 import {FlatList} from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import {RadioButton} from 'react-native-paper';
-import RangeSlider from 'rn-range-slider';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import RailSelected from './RailSelected';
-import Thumb from './Thumb';
-import Rail from './Rail';
+import FiltersScreen from './FiltersScreen';
 
 interface Props {
   navigation: any;
@@ -48,20 +39,7 @@ const HomePage: React.FC<Props> = ({navigation}) => {
     (state: RootState) => state.favorites.favorites,
   );
   const dispatch = useDispatch();
-  const renderThumb = useCallback(() => <Thumb />, []);
-  const renderRail = useCallback(() => <Rail />, []);
-  const renderRailSelected = useCallback(() => <RailSelected />, []);
   const [modalVisible, setModalVisible] = useState(false);
-  const [minPrice, setMinPrice] = useState(0);
-  const [maxPrice, setMaxPrice] = useState(0);
-
-  const handleValueChange = useCallback(
-    (low: React.SetStateAction<number>, high: React.SetStateAction<number>) => {
-      setMinPrice(low);
-      setMaxPrice(high);
-    },
-    [],
-  );
 
   useEffect(() => {
     handleFetchProperties();
@@ -74,7 +52,6 @@ const HomePage: React.FC<Props> = ({navigation}) => {
 
   const handleAddToFavorites = (item: Property) => {
     dispatch(addToFavorites(item));
-    navigation.navigate('Favorites');
   };
 
   const renderItems = ({item}: {item: Property}) => {
@@ -84,7 +61,8 @@ const HomePage: React.FC<Props> = ({navigation}) => {
         key={item.id}>
         <View>
           <View>
-            <TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => navigation.navigate('PropertyDetails', {item})}>
               <Image source={item.image} />
             </TouchableOpacity>
           </View>
@@ -142,7 +120,7 @@ const HomePage: React.FC<Props> = ({navigation}) => {
   };
   return (
     <SafeAreaView style={styles.container}>
-      <StatusBar hidden={true} />
+      {/* <StatusBar hidden={true} /> */}
       <View style={styles.headerView}>
         <View style={styles.logoView}>
           <Image source={require('../Images/Vector1.png')} />
@@ -184,86 +162,13 @@ const HomePage: React.FC<Props> = ({navigation}) => {
           <AntDesign name="filter" color="white" size={20} />
         </TouchableOpacity>
       </View>
-
+      {modalVisible && (
+        <FiltersScreen
+          modalVisible={true}
+          closeModal={() => setModalVisible(false)}
+        />
+      )}
       <FlatList data={Properties} renderItem={renderItems} />
-
-      <Modal visible={modalVisible} animationType="slide" transparent={true}>
-        <View style={styles.modalView}>
-          <ScrollView>
-            <View style={styles.headerView1}>
-              <TouchableOpacity onPress={() => setModalVisible(false)}>
-                <AntDesign name="close" size={22} />
-              </TouchableOpacity>
-              <Text style={styles.filterText}>Filters</Text>
-            </View>
-            <View style={styles.line} />
-            <Text style={styles.detectLocationText}>Detect my location</Text>
-            <View style={styles.locationIconView}>
-              <MaterialIcons name="my-location" color="#073762" size={28} />
-              <Text style={styles.myLocationText}>Pick My Location</Text>
-            </View>
-            <Text style={styles.detectLocationText}>Location</Text>
-            <TextInput
-              style={styles.input}
-              placeholder="Enter Location"
-              placeholderTextColor="#000000"
-            />
-            <Text style={styles.detectLocationText}>When</Text>
-            <View style={styles.inputView}>
-              <TextInput
-                style={styles.input1}
-                placeholder="Select Move-in Date"
-                placeholderTextColor="#000000"
-              />
-              <MaterialCommunityIcons
-                name="calendar-month"
-                color="#073762"
-                size={20}
-              />
-            </View>
-            <Text style={styles.priceRangeText}>Price Range</Text>
-            <Image
-              source={require('../Images/Range.png')}
-              style={styles.image}
-            />
-            <RangeSlider
-              max={1234567}
-              min={100}
-              step={1}
-              floatingLabel
-              renderThumb={renderThumb}
-              renderRail={renderRail}
-              renderRailSelected={renderRailSelected}
-              onValueChanged={handleValueChange}
-              style={styles.slider}
-            />
-            <View style={styles.priceDirectionView}>
-              <Text style={styles.maxPrice}>${minPrice}</Text>
-              <Text style={styles.minPrice}>${maxPrice}</Text>
-            </View>
-
-            <Text style={styles.priceRangeText}>Property Type</Text>
-            <View style={styles.radioButtonVew}>
-              <RadioButton value="" color="#073762" />
-              <Text style={styles.commercialText}>Commercial</Text>
-            </View>
-            <View style={styles.radioButtonVew}>
-              <RadioButton value="Commercial" color="#073762" />
-              <Text style={styles.commercialText}>Residential</Text>
-            </View>
-            <View style={styles.buttonView}>
-              <View style={styles.buttonDirectionView}>
-                <TouchableOpacity style={styles.button}>
-                  <Text style={styles.buttonText1}>Reset</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.activeButton}>
-                  <Text style={styles.activeButtonText}>Apply</Text>
-                </TouchableOpacity>
-              </View>
-            </View>
-          </ScrollView>
-        </View>
-      </Modal>
     </SafeAreaView>
   );
 };

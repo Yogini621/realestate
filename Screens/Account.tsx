@@ -9,6 +9,7 @@ import React from 'react';
 import {
   responsiveFontSize,
   responsiveHeight,
+  responsiveScreenHeight,
   responsiveWidth,
 } from 'react-native-responsive-dimensions';
 import AntDesign from 'react-native-vector-icons/AntDesign';
@@ -82,7 +83,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   settingsView: {
-    height: responsiveHeight(82),
+    height: responsiveScreenHeight(73),
     width: responsiveWidth(90),
     alignSelf: 'center',
     borderWidth: 1,
@@ -101,8 +102,8 @@ const styles = StyleSheet.create({
   },
   emailLabel: {
     color: '#000000',
-    marginTop: responsiveHeight(2),
-    left: responsiveWidth(4),
+    marginTop: responsiveHeight(2.8),
+    left: responsiveWidth(4.6),
     fontFamily: 'PlusJakartaSans j',
     fontSize: responsiveFontSize(1.8),
   },
@@ -110,7 +111,7 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: '#9fc5e9',
     alignSelf: 'center',
-    marginTop: responsiveHeight(2.8),
+    marginTop: responsiveHeight(1),
     borderRadius: 8,
     height: responsiveHeight(6.8),
     width: responsiveWidth(80),

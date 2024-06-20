@@ -1,20 +1,20 @@
 export const data2 = [
   {
-    id: 1,
+    id: 13,
     image: require('../Images/home4.png'),
     rent: '1.05 Cr',
     rooms: '2 BHK Independent ...',
     location: 'Southend Park ApartmentLB Nagar ...',
   },
   {
-    id: 2,
+    id: 14,
     image: require('../Images/home5.png'),
     rent: '1.05 Cr',
     rooms: '2 BHK Independent ...',
     location: 'Southend Park ApartmentLB Nagar ...',
   },
   {
-    id: 3,
+    id: 15,
     image: require('../Images/home6.png'),
     rent: '1.05 Cr',
     rooms: '2 BHK Independent ...',
@@ -24,21 +24,21 @@ export const data2 = [
 
 export const data3 = [
   {
-    id: 1,
+    id: 16,
     image: require('../Images/home7.png'),
     rent: '43.65 - 60.03Lac',
     rooms: 'Modi  Paradise',
     location: '2,3 BHK Apartment in Hayathnagar ...',
   },
   {
-    id: 2,
+    id: 17,
     image: require('../Images/home8.png'),
     rent: '43.65 - 60.03Lac',
     rooms: 'Modi  Paradise',
     location: '2,3 BHK Apartment in Hayathnagar ...',
   },
   {
-    id: 3,
+    id: 18,
     image: require('../Images/home9.png'),
     rent: '43.65 - 60.03Lac',
     rooms: 'Modi  Paradise',
@@ -48,21 +48,21 @@ export const data3 = [
 
 export const data4 = [
   {
-    id: 1,
+    id: 19,
     image: require('../Images/Property5.png'),
     rent: '1.05 Cr',
     rooms: '2 BHK Independent ...',
     location: 'Southend Park ApartmentLB Nagar',
   },
   {
-    id: 2,
+    id: 20,
     image: require('../Images/home5.png'),
     rent: '1.05 Cr',
     rooms: '2 BHK Independent ...',
     location: 'Southend Park ApartmentLB Nagar',
   },
   {
-    id: 3,
+    id: 21,
     image: require('../Images/Property4.png'),
     rent: '1.05 Cr',
     rooms: '2 BHK Independent ...',
@@ -72,56 +72,56 @@ export const data4 = [
 
 export const data5 = [
   {
-    id: 1,
+    id: 22,
     image: require('../Images/home4.png'),
     rent: '1.05 Cr',
     rooms: '2 BHK Independent ...',
     location: 'Southend Park ApartmentLB Nagar ...',
   },
   {
-    id: 2,
+    id: 23,
     image: require('../Images/home4.png'),
     rent: '1.05 Cr',
     rooms: '2 BHK Independent ...',
     location: 'Southend Park ApartmentLB Nagar ...',
   },
   {
-    id: 3,
+    id: 24,
     image: require('../Images/home4.png'),
     rent: '1.05 Cr',
     rooms: '2 BHK Independent ...',
     location: 'Southend Park ApartmentLB Nagar ...',
   },
   {
-    id: 4,
+    id: 25,
     image: require('../Images/home4.png'),
     rent: '1.05 Cr',
     rooms: '2 BHK Independent ...',
     location: 'Southend Park ApartmentLB Nagar ...',
   },
   {
-    id: 5,
+    id: 26,
     image: require('../Images/home4.png'),
     rent: '1.05 Cr',
     rooms: '2 BHK Independent ...',
     location: 'Southend Park ApartmentLB Nagar ...',
   },
   {
-    id: 6,
+    id: 27,
     image: require('../Images/home4.png'),
     rent: '1.05 Cr',
     rooms: '2 BHK Independent ...',
     location: 'Southend Park ApartmentLB Nagar ...',
   },
   {
-    id: 7,
+    id: 28,
     image: require('../Images/home4.png'),
     rent: '1.05 Cr',
     rooms: '2 BHK Independent ...',
     location: 'Southend Park ApartmentLB Nagar ...',
   },
   {
-    id: 8,
+    id: 29,
     image: require('../Images/home4.png'),
     rent: '1.05 Cr',
     rooms: '2 BHK Independent ...',
@@ -131,56 +131,56 @@ export const data5 = [
 
 export const data6 = [
   {
-    id: 1,
+    id: 30,
     image: require('../Images/home7.png'),
     rent: '43.65 - 60.03Lac',
     rooms: 'Modi  Paradise',
     location: '2,3 BHK Apartment in Hayathnagar ...',
   },
   {
-    id: 2,
+    id: 31,
     image: require('../Images/home7.png'),
     rent: '43.65 - 60.03Lac',
     rooms: 'Modi  Paradise',
     location: '2,3 BHK Apartment in Hayathnagar ...',
   },
   {
-    id: 3,
+    id: 32,
     image: require('../Images/home7.png'),
     rent: '43.65 - 60.03Lac',
     rooms: 'Modi  Paradise',
     location: '2,3 BHK Apartment in Hayathnagar ...',
   },
   {
-    id: 4,
+    id: 33,
     image: require('../Images/home7.png'),
     rent: '43.65 - 60.03Lac',
     rooms: 'Modi  Paradise',
     location: '2,3 BHK Apartment in Hayathnagar ...',
   },
   {
-    id: 5,
+    id: 34,
     image: require('../Images/home7.png'),
     rent: '43.65 - 60.03Lac',
     rooms: 'Modi  Paradise',
     location: '2,3 BHK Apartment in Hayathnagar ...',
   },
   {
-    id: 6,
+    id: 35,
     image: require('../Images/home7.png'),
     rent: '43.65 - 60.03Lac',
     rooms: 'Modi  Paradise',
     location: '2,3 BHK Apartment in Hayathnagar ...',
   },
   {
-    id: 7,
+    id: 36,
     image: require('../Images/home7.png'),
     rent: '43.65 - 60.03Lac',
     rooms: 'Modi  Paradise',
     location: '2,3 BHK Apartment in Hayathnagar ...',
   },
   {
-    id: 8,
+    id: 37,
     image: require('../Images/home7.png'),
     rent: '43.65 - 60.03Lac',
     rooms: 'Modi  Paradise',
@@ -190,21 +190,21 @@ export const data6 = [
 
 export const data7 = [
   {
-    id: 1,
+    id: 38,
     image: require('../Images/Image.png'),
     rent: '4,550',
     rooms: 'Faulkner Ave',
     location: '520 Wines Lane,Houston,TX',
   },
   {
-    id: 2,
+    id: 39,
     image: require('../Images/Image1.png'),
     rent: '2,450',
     rooms: 'St. Crystal',
     location: '2016 Poe Road,Houston,TX',
   },
   {
-    id: 3,
+    id: 40,
     image: require('../Images/Image2.png'),
     rent: '2,095',
     rooms: 'Palm Harbor',

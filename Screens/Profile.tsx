@@ -82,34 +82,42 @@ const Profile: React.FC<Props> = ({navigation}) => {
           <OptionComponent
             optionText="My Favorites"
             onPress={() => navigation.navigate('Favorites')}
+            color="#33333380"
           />
           <OptionComponent
             optionText="My Purchases"
             onPress={() => navigation.navigate('MyPurchases')}
+            color="#33333380"
           />
           <OptionComponent
             optionText="Settings"
             onPress={() => navigation.navigate('Settings')}
+            color="#33333380"
           />
           <OptionComponent
             optionText="Contact Us"
-            onPress={() => navigation.navigate('Favorites')}
+            onPress={() => navigation.navigate('ContactUs')}
+            color="#33333380"
           />
           <OptionComponent
             optionText="Privacy Policy"
-            onPress={() => navigation.navigate('Favorites')}
+            onPress={() => navigation.navigate('PrivacyPolicy')}
+            color="#33333380"
           />
           <OptionComponent
             optionText="Terms & Conditions"
-            onPress={() => navigation.navigate('Favorites')}
+            onPress={() => navigation.navigate('TermsAndConditions')}
+            color="#33333380"
           />
           <OptionComponent
             optionText="About Us"
-            onPress={() => navigation.navigate('Favorites')}
+            onPress={() => navigation.navigate('Aboutus')}
+            color="#33333380"
           />
           <OptionComponent
             optionText="Change Password"
             onPress={() => navigation.navigate('Favorites')}
+            color="#33333380"
           />
           <TouchableOpacity style={styles.logOutButton}>
             <Text style={styles.logOutButtonText}>Logout</Text>

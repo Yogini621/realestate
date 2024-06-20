@@ -2,42 +2,42 @@ import { Property } from "../redux/actions/actions";
 
 export const data1:Property[] = [
  {
-    id: 1,
+    id: 7,
     image: require('../Images/Building.png'),
     rent: "11,095",
     rooms: 'Swarna Vally',
     location: 'HMT Colony,Miyapur,Hyderabad',
   },
   {
-    id: 2,
+    id: 8,
     image: require('../Images/Building.png'),
     rent: "11,095",
     rooms: 'Swarna Vally',
     location: 'HMT Colony,Miyapur,Hyderabad',
   },
   {
-    id: 3,
+    id: 9,
     image: require('../Images/Building.png'),
     rent: "11,095",
     rooms: 'Swarna Vally',
     location: 'HMT Colony,Miyapur,Hyderabad',
   },
   {
-    id: 4,
+    id: 10,
     image: require('../Images/Building.png'),
     rent: "11,095",
     rooms: 'Swarna Vally',
     location: 'HMT Colony,Miyapur,Hyderabad',
   },
   {
-    id: 5,
+    id: 11,
     image: require('../Images/Building.png'),
     rent: "11,095",
     rooms: 'Swarna Vally',
     location: 'HMT Colony,Miyapur,Hyderabad',
   },
   {
-    id: 6,
+    id: 12,
     image: require('../Images/Building.png'),
     rent: "11,095",
     rooms: 'Swarna Vally',

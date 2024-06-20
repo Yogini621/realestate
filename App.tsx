@@ -28,6 +28,11 @@ import Filterscreen from './Screens/Filterscreen';
 import Profile from './Screens/Profile';
 import MyPurchasesPage from './Screens/MyPurchasesPage';
 import Settings from './Screens/Settings';
+import ContactUs from './Screens/ContactUs';
+import PrivacyPolicy from './Screens/PrivacyPolicy';
+import TermsAndConditions from './Screens/TermsAndConditions';
+import AboutUs from './Screens/AboutUs';
+import PropertyDetails from './Screens/PropertyDeatils';
 
 const Stack = createNativeStackNavigator();
 
@@ -60,25 +65,21 @@ const App = () => {
             name="ForgotPassword2"
             component={ForgotPassword2}
             options={{headerShown: false}}
-          />  */}
-          <Stack.Screen
-            name="Settings"
-            component={Settings}
-            options={{headerShown: false}}
-          />
-          <Stack.Screen
+          /> */}
+
+          {/* <Stack.Screen
             name="HomePage"
             component={HomePage}
             options={{headerShown: false}}
           />
           <Stack.Screen
-            name="MenuPage"
-            component={MenuPage}
+            name="PropertyDetails"
+            component={PropertyDetails}
             options={{headerShown: false}}
           />
           <Stack.Screen
-            name="FiltersScreen"
-            component={FiltersScreen}
+            name="MenuPage"
+            component={MenuPage}
             options={{headerShown: false}}
           />
           <Stack.Screen
@@ -115,7 +116,7 @@ const App = () => {
             name="PropertyListings3"
             component={PropertyListings3}
             options={{headerShown: false}}
-          />
+          /> */}
           <Stack.Screen
             name="Sell"
             component={Sell}
@@ -149,6 +150,31 @@ const App = () => {
           <Stack.Screen
             name="MyPurchasesPage"
             component={MyPurchasesPage}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="ContactUs"
+            component={ContactUs}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="Settings"
+            component={Settings}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="PrivacyPolicy"
+            component={PrivacyPolicy}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="TermsAndConditions"
+            component={TermsAndConditions}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="AboutUs"
+            component={AboutUs}
             options={{headerShown: false}}
           />
         </Stack.Navigator>

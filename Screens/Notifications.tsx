@@ -3,9 +3,10 @@ import React, {useState} from 'react';
 import {
   responsiveFontSize,
   responsiveHeight,
+  responsiveScreenHeight,
   responsiveWidth,
 } from 'react-native-responsive-dimensions';
-import {Checkbox, Switch} from 'react-native-paper';
+import {Checkbox, RadioButton, Switch} from 'react-native-paper';
 
 const Notifications = () => {
   const [checked, setChecked] = useState(false);
@@ -36,7 +37,7 @@ const Notifications = () => {
             </Text>
           </View>
         </View>
-        <View style={styles.seperator} />
+        <View style={styles.seperator1} />
         <Text style={styles.generalText}>Payments</Text>
         <View style={styles.switchIconView1}>
           <Checkbox
@@ -64,6 +65,17 @@ const Notifications = () => {
         </View>
         <View style={styles.seperator} />
         <Text style={styles.generalText}>Email Newsletter</Text>
+         <View style={styles.radioButtonDirectionView}>
+              <View style={styles.radioButtonView}>
+                <RadioButton value="" color="#073762" />
+                <Text style={styles.customerText}>on</Text>
+              </View>
+              <View style={styles.radioButtonView}>
+                <RadioButton value="" color="#073762" />
+                <Text style={styles.customerText}>Off</Text>
+              </View>
+            </View>
+          {/* </View> */}
         <View style={styles.seperator} />
         <TouchableOpacity style={styles.saveChangesButton}>
           <Text style={styles.saveChangesButtonText}>Save changes</Text>
@@ -80,7 +92,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   notificationView: {
-    height: responsiveHeight(86),
+    height: responsiveHeight(90),
     width: responsiveWidth(90),
     alignSelf: 'center',
     borderWidth: 1,
@@ -110,6 +122,7 @@ const styles = StyleSheet.create({
     width: responsiveWidth(80),
     alignSelf: 'center',
     marginTop: responsiveHeight(2),
+    marginBottom: responsiveHeight(2.8),
   },
   swichIconTextView: {
     width: responsiveWidth(70),
@@ -124,7 +137,6 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     width: responsiveWidth(80),
     backgroundColor: '#9fc5e9',
-    marginTop: responsiveHeight(2.8),
   },
   switchIconView1: {
     flexDirection: 'row',
@@ -150,5 +162,37 @@ const styles = StyleSheet.create({
     color: 'white',
     fontFamily: 'PlusJakartaSans m',
     fontSize: responsiveFontSize(1.8),
+  },
+  selectUserText: {
+    color: '#000000',
+    fontFamily: 'PlusJakartaSans m',
+    fontSize: responsiveFontSize(2.2),
+    marginTop: responsiveHeight(1),
+    marginLeft: responsiveWidth(7.8),
+  },
+  radioButtonView: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: responsiveHeight(2),
+  },
+  customerText: {
+    color: '#000000',
+    fontFamily: 'PlusJakartaSans j',
+    fontSize: responsiveFontSize(2),
+  },
+  radioButtonDirectionView: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: responsiveWidth(36),
+    marginTop: responsiveHeight(2),
+    left: responsiveWidth(4.8),
+    alignItems: 'center',
+  },
+  seperator1: {
+    height: responsiveHeight(0.2),
+    alignSelf: 'center',
+    width: responsiveWidth(80),
+    backgroundColor: '#9fc5e9',
+    marginBottom:responsiveHeight(2)
   },
 });

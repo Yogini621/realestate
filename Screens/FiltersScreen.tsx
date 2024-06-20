@@ -25,11 +25,15 @@ import Rail from './Rail';
 import RailSelected from './RailSelected';
 import {RadioButton} from 'react-native-paper';
 
-const FiltersScreen = () => {
+interface Props{
+  modalVisible:boolean;
+  closeModal:() => void
+}
+
+const FiltersScreen = (props:Props) => {
   const renderThumb = useCallback(() => <Thumb />, []);
   const renderRail = useCallback(() => <Rail />, []);
   const renderRailSelected = useCallback(() => <RailSelected />, []);
-  const [modalVisible, setModalVisible] = useState(true);
   const [minPrice, setMinPrice] = useState(0);
   const [maxPrice, setMaxPrice] = useState(0);
 
@@ -42,81 +46,88 @@ const FiltersScreen = () => {
   );
 
   return (
-    <SafeAreaView style={styles.container}>
-      <StatusBar hidden={true} />
-      <Modal visible={modalVisible} animationType="slide" transparent={true}>
-        <ScrollView>
-          <View style={styles.headerView}>
-            <TouchableOpacity onPress={() => setModalVisible(false)}>
-              <AntDesign name="close" size={22} />
-            </TouchableOpacity>
-            <Text style={styles.filterText}>Filters</Text>
-          </View>
-          <View style={styles.line} />
-          <Text style={styles.detectLocationText}>Detect my location</Text>
-          <View style={styles.locationIconView}>
-            <MaterialIcons name="my-location" color="#073762" size={28} />
-            <Text style={styles.myLocationText}>Pick My Location</Text>
-          </View>
-          <Text style={styles.detectLocationText}>Location</Text>
-          <TextInput
-            style={styles.input}
-            placeholder="Enter Location"
-            placeholderTextColor="#000000"
-          />
-          <Text style={styles.detectLocationText}>When</Text>
-          <View style={styles.inputView}>
+    <View style={styles.container}>
+      <Modal
+        visible={props.modalVisible}
+        animationType="slide"
+        transparent={true}>
+        <View style={styles.modalView}>
+          <ScrollView>
+            <View style={styles.headerView}>
+              <TouchableOpacity onPress={() => props.closeModal()}>
+                <AntDesign name="close" size={22} />
+              </TouchableOpacity>
+              <Text style={styles.filterText}>Filters</Text>
+            </View>
+            <View style={styles.line} />
+            <Text style={styles.detectLocationText}>Detect my location</Text>
+            <View style={styles.locationIconView}>
+              <MaterialIcons name="my-location" color="#073762" size={28} />
+              <Text style={styles.myLocationText}>Pick My Location</Text>
+            </View>
+            <Text style={styles.detectLocationText}>Location</Text>
             <TextInput
-              style={styles.input1}
-              placeholder="Select Move-in Date"
+              style={styles.input}
+              placeholder="Enter Location"
               placeholderTextColor="#000000"
             />
-            <MaterialCommunityIcons
-              name="calendar-month"
-              color="#073762"
-              size={20}
-            />
-          </View>
-          <Text style={styles.priceRangeText}>Price Range</Text>
-          <Image source={require('../Images/Range.png')} style={styles.image} />
-          <RangeSlider
-            max={1234567}
-            min={100}
-            step={1}
-            floatingLabel
-            renderThumb={renderThumb}
-            renderRail={renderRail}
-            renderRailSelected={renderRailSelected}
-            onValueChanged={handleValueChange}
-            style={styles.slider}
-          />
-          <View style={styles.priceDirectionView}>
-            <Text style={styles.maxPrice}>${minPrice}</Text>
-            <Text style={styles.minPrice}>${maxPrice}</Text>
-          </View>
-
-          <Text style={styles.priceRangeText}>Property Type</Text>
-          <View style={styles.radioButtonVew}>
-            <RadioButton value="" color="#073762" />
-            <Text style={styles.commercialText}>Commercial</Text>
-          </View>
-          <View style={styles.radioButtonVew}>
-            <RadioButton value="Commercial" color="#073762" />
-            <Text style={styles.commercialText}>Residential</Text>
-          </View>
-          <View style={styles.buttonView}>
-            <View style={styles.buttonDirectionView}>
-              <TouchableOpacity style={styles.button}>
-                <Text style={styles.buttonText}>Reset</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.activeButton}>
-                <Text style={styles.activeButtonText}>Apply</Text>
-              </TouchableOpacity>
+            <Text style={styles.detectLocationText}>When</Text>
+            <View style={styles.inputView}>
+              <TextInput
+                style={styles.input1}
+                placeholder="Select Move-in Date"
+                placeholderTextColor="#000000"
+              />
+              <MaterialCommunityIcons
+                name="calendar-month"
+                color="#073762"
+                size={20}
+              />
             </View>
-          </View>
-        </ScrollView>
+            <Text style={styles.priceRangeText}>Price Range</Text>
+            <Image
+              source={require('../Images/Range.png')}
+              style={styles.image}
+            />
+            <RangeSlider
+              max={1234567}
+              min={100}
+              step={1}
+              floatingLabel
+              renderThumb={renderThumb}
+              renderRail={renderRail}
+              renderRailSelected={renderRailSelected}
+              onValueChanged={handleValueChange}
+              style={styles.slider}
+            />
+            <View style={styles.priceDirectionView}>
+              <Text style={styles.maxPrice}>${minPrice}</Text>
+              <Text style={styles.minPrice}>${maxPrice}</Text>
+            </View>
+
+            <Text style={styles.priceRangeText}>Property Type</Text>
+            <View style={styles.radioButtonVew}>
+              <RadioButton value="" color="#073762" />
+              <Text style={styles.commercialText}>Commercial</Text>
+            </View>
+            <View style={styles.radioButtonVew}>
+              <RadioButton value="Commercial" color="#073762" />
+              <Text style={styles.commercialText}>Residential</Text>
+            </View>
+            <View style={styles.buttonView}>
+              <View style={styles.buttonDirectionView}>
+                <TouchableOpacity style={styles.button}>
+                  <Text style={styles.buttonText}>Reset</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.activeButton}>
+                  <Text style={styles.activeButtonText}>Apply</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+          </ScrollView>
+        </View>
       </Modal>
-    </SafeAreaView>
+    </View>
   );
 };
 export default FiltersScreen;
@@ -276,5 +287,14 @@ const styles = StyleSheet.create({
   buttonText: {
     color: '#073762',
     fontFamily: 'PlusJakartaSans a',
+  },
+  modalView: {
+    backgroundColor: '#ffffff',
+    height: responsiveHeight(72),
+    position: 'absolute',
+    bottom: 0,
+    width: responsiveWidth(100),
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
   },
 });
