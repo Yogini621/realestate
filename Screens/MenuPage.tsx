@@ -176,8 +176,8 @@ const styles = StyleSheet.create({
   },
   userDirectionView: {
     flexDirection: 'row',
-    left:responsiveWidth(4),
-    marginTop:responsiveHeight(2)
+    left: responsiveWidth(4),
+    marginTop: responsiveHeight(2),
   },
   userName: {
     color: '#000000',
@@ -213,7 +213,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#9fc5e9',
     width: responsiveWidth(62),
     alignSelf: 'center',
-    marginTop:responsiveHeight(1)
+    marginTop: responsiveHeight(1),
   },
   userView: {},
   selectUserText: {

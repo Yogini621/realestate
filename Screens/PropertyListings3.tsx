@@ -20,12 +20,24 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Entypo from 'react-native-vector-icons/Entypo';
 import {data6} from './data2';
+import {useDispatch, useSelector} from 'react-redux';
+import {RootState} from '../redux/reducers';
+import {Property} from '../redux/actions/actions';
+import {addToFavorites} from '../redux/actions/actionTypes';
 
 interface Props {
   navigation: any;
 }
 
 const PropertyListings3: React.FC<Props> = ({navigation}) => {
+  const favorites = useSelector(
+    (state: RootState) => state.favorites.favorites,
+  );
+  const dispatch = useDispatch();
+
+  const handleAddToFavorites = (item: Property) => {
+    dispatch(addToFavorites(item));
+  };
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar hidden={true} />
@@ -63,8 +75,24 @@ const PropertyListings3: React.FC<Props> = ({navigation}) => {
                   <Text style={styles.roomsText}>{item.rooms}</Text>
                 </View>
                 <View style={styles.circle1}>
-                  <TouchableOpacity>
-                    <Entypo name="heart-outlined" size={20} color="#073762" />
+                  <TouchableOpacity onPress={() => handleAddToFavorites(item)}>
+                    <AntDesign
+                      name={
+                        favorites.find(
+                          favoriteItem => item.id === favoriteItem.id,
+                        )
+                          ? 'heart'
+                          : 'hearto'
+                      }
+                      color={
+                        favorites.find(
+                          favoriteItem => item.id === favoriteItem.id,
+                        )
+                          ? 'red'
+                          : '#073762'
+                      }
+                      size={22}
+                    />{' '}
                   </TouchableOpacity>
                 </View>
               </View>

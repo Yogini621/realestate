@@ -209,14 +209,14 @@ const styles = StyleSheet.create({
     marginTop: responsiveHeight(2),
   },
   line: {
-    height:responsiveHeight(0.2),
+    height: responsiveHeight(0.2),
     backgroundColor: '#666666',
     width: responsiveWidth(87),
     marginTop: responsiveHeight(2.8),
-    alignSelf:'center'
+    alignSelf: 'center',
   },
   centeredView: {
-    flex:1
+    flex: 1,
     // position: 'absolute',
     // bottom: -20,
   },
@@ -228,7 +228,7 @@ const styles = StyleSheet.create({
     elevation: 5,
     alignSelf: 'center',
     marginTop: responsiveHeight(28),
-    height:responsiveHeight(44)
+    height: responsiveHeight(44),
   },
   verifyText: {
     fontFamily: 'PlusJakartaSans m',
@@ -295,7 +295,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   errorText: {},
-  otp:{
-    color:'#333333'
-  }
+  otp: {
+    color: '#333333',
+  },
 });

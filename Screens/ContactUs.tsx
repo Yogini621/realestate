@@ -19,7 +19,7 @@ import {
   responsiveScreenWidth,
   responsiveWidth,
 } from 'react-native-responsive-dimensions';
-import AntDesign from 'react-native-vector-icons/AntDesign'
+import AntDesign from 'react-native-vector-icons/AntDesign';
 
 interface Props {
   navigation: any;
@@ -109,14 +109,13 @@ const ContactUs: React.FC<Props> = ({navigation}) => {
           placeholderTextColor="#7b7f8f"
         />
         <Text style={styles.labelText}>Your Subject</Text>
-        <View style = {styles.inputView}>
-        <TextInput
-          placeholder="Question"
-          style={styles.input1}
-          placeholderTextColor="#7b7f8f"
-        />
-        <AntDesign name='caretdown' size={10} color="#666666" />
-
+        <View style={styles.inputView}>
+          <TextInput
+            placeholder="Question"
+            style={styles.input1}
+            placeholderTextColor="#7b7f8f"
+          />
+          <AntDesign name="caretdown" size={10} color="#666666" />
         </View>
         <Text style={styles.labelText}>Your Message</Text>
         <TextInput
@@ -125,7 +124,7 @@ const ContactUs: React.FC<Props> = ({navigation}) => {
           placeholderTextColor="#7b7f8f"
         />
         <TouchableOpacity style={styles.sendMsgButton}>
-          <Text style = {styles.sendMsgText}>Send Message</Text>
+          <Text style={styles.sendMsgText}>Send Message</Text>
         </TouchableOpacity>
       </ScrollView>
     </SafeAreaView>
@@ -298,7 +297,7 @@ const styles = StyleSheet.create({
     borderRadius: 6,
     padding: 10,
     marginBottom: responsiveHeight(2.8),
-    alignItems:'center'
+    alignItems: 'center',
   },
   input1: {
     color: '#666666',

@@ -25,12 +25,12 @@ import Rail from './Rail';
 import RailSelected from './RailSelected';
 import {RadioButton} from 'react-native-paper';
 
-interface Props{
-  modalVisible:boolean;
-  closeModal:() => void
+interface Props {
+  modalVisible: boolean;
+  closeModal: () => void;
 }
 
-const FiltersScreen = (props:Props) => {
+const FiltersScreen = (props: Props) => {
   const renderThumb = useCallback(() => <Thumb />, []);
   const renderRail = useCallback(() => <Rail />, []);
   const renderRailSelected = useCallback(() => <RailSelected />, []);

@@ -16,14 +16,14 @@ import {
   responsiveHeight,
   responsiveWidth,
 } from 'react-native-responsive-dimensions';
-import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import Account from './Account';
 import Notifications from './Notifications';
 interface Props {
   navigation: any;
 }
 
-const Tab = createMaterialTopTabNavigator()
+const Tab = createMaterialTopTabNavigator();
 
 const Settings: React.FC<Props> = ({navigation}) => {
   return (
@@ -132,9 +132,9 @@ const styles = StyleSheet.create({
   homeAndSearchView: {
     flexDirection: 'row',
     alignItems: 'center',
-    left:responsiveWidth(4.8),
-    marginTop:responsiveHeight(2.4),
-    marginBottom:responsiveHeight(2.8)
+    left: responsiveWidth(4.8),
+    marginTop: responsiveHeight(2.4),
+    marginBottom: responsiveHeight(2.8),
   },
   icon2: {
     marginLeft: responsiveWidth(2),

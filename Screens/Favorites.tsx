@@ -23,21 +23,21 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import Octicons from 'react-native-vector-icons/Octicons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Entypo from 'react-native-vector-icons/Entypo';
-import { removeFavorites } from '../redux/actions/actionTypes';
+import {removeFavorites} from '../redux/actions/actionTypes';
 
 interface Props {
   navigation: any;
 }
 
 const Favorites: React.FC<Props> = ({navigation}) => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const favorites = useSelector(
     (state: RootState) => state.favorites.favorites,
   );
 
-  const handleRemoveFromFavorites =( item:Property) => {
-     dispatch(removeFavorites(item))
-  }
+  const handleRemoveFromFavorites = (item: Property) => {
+    dispatch(removeFavorites(item));
+  };
 
   const renderItems = ({item}: {item: Property}) => {
     return (
@@ -59,7 +59,8 @@ const Favorites: React.FC<Props> = ({navigation}) => {
                 <Text style={styles.roomsText}>{item.rooms}</Text>
               </View>
               <View style={styles.circle1}>
-                <TouchableOpacity onPress={() => handleRemoveFromFavorites(item)}>
+                <TouchableOpacity
+                  onPress={() => handleRemoveFromFavorites(item)}>
                   <AntDesign
                     name={
                       favorites.find(
@@ -187,7 +188,7 @@ const styles = StyleSheet.create({
   image: {
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
-    width:responsiveWidth(90)
+    width: responsiveWidth(90),
   },
   descriptionView: {
     borderWidth: 2,

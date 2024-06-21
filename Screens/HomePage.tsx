@@ -2,6 +2,7 @@ import 'react-native-gesture-handler';
 import {
   Image,
   SafeAreaView,
+  StatusBar,
   StyleSheet,
   Text,
   TextInput,
@@ -21,7 +22,7 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '../redux/reducers';
 import {data} from './data';
-import {addToFavorites, fetchProperties} from '../redux/actions/actionTypes';
+import {addToFavorites, fetchProperties, removeFavorites} from '../redux/actions/actionTypes';
 import {Property} from '../redux/actions/actions';
 import {FlatList} from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
@@ -51,7 +52,7 @@ const HomePage: React.FC<Props> = ({navigation}) => {
   };
 
   const handleAddToFavorites = (item: Property) => {
-    dispatch(addToFavorites(item));
+      dispatch(addToFavorites(item));
   };
 
   const renderItems = ({item}: {item: Property}) => {
@@ -120,7 +121,7 @@ const HomePage: React.FC<Props> = ({navigation}) => {
   };
   return (
     <SafeAreaView style={styles.container}>
-      {/* <StatusBar hidden={true} /> */}
+      <StatusBar hidden={true} />
       <View style={styles.headerView}>
         <View style={styles.logoView}>
           <Image source={require('../Images/Vector1.png')} />
@@ -202,13 +203,13 @@ const styles = StyleSheet.create({
     color: '#073762',
     fontSize: responsiveFontSize(3.2),
     fontFamily: 'PlusJakartaSans a',
-    marginTop: responsiveHeight(1),
+    marginTop: responsiveHeight(3.4),
     textAlign: 'center',
   },
   discoverButton: {
     backgroundColor: '#073762',
-    width: responsiveWidth(60),
-    height: responsiveHeight(6),
+    width: responsiveWidth(50),
+    height: responsiveHeight(7.4),
     borderRadius: 8,
     alignSelf: 'center',
     alignItems: 'center',
@@ -217,9 +218,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   buttonText: {
-    fontFamily: 'PlusJakartaSans j',
+    fontFamily: 'PlusJakartaSans a',
     color: 'white',
-    fontSize: responsiveFontSize(1.6),
+    fontSize: responsiveFontSize(2),
     left: responsiveWidth(2),
   },
   passwordView: {
@@ -250,7 +251,8 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     marginHorizontal: responsiveWidth(4),
     alignItems: 'center',
-    marginTop: responsiveHeight(2),
+    marginTop: responsiveHeight(2.4),
+    marginBottom:responsiveHeight(4)
   },
   filterIconView: {
     backgroundColor: '#073762',
@@ -283,7 +285,7 @@ const styles = StyleSheet.create({
   },
   monthText: {
     color: '#9fc5e9',
-    fontSize: responsiveFontSize(2.2),
+    fontSize: responsiveFontSize(2),
     fontFamily: 'PlusJakartaSans j',
   },
   icon: {
@@ -300,7 +302,7 @@ const styles = StyleSheet.create({
     borderColor: '#9fc5e9',
   },
   directionView: {
-    borderWidth: 1,
+    borderWidth: 2,
     borderRadius: 8,
     borderTopWidth: 0,
     borderColor: '#9fc5e9',
@@ -339,7 +341,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   circle: {
-    height: responsiveHeight(6.8),
+    height: responsiveHeight(7),
     width: responsiveWidth(14),
     borderRadius: 38,
     borderWidth: 2,

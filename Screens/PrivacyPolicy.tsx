@@ -13,12 +13,12 @@ import React from 'react';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {
-                  responsiveFontSize,
+  responsiveFontSize,
   responsiveHeight,
   responsiveScreenWidth,
   responsiveWidth,
 } from 'react-native-responsive-dimensions';
-import FontAwesome from 'react-native-vector-icons/FontAwesome'
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 interface Props {
   navigation: any;
@@ -273,7 +273,7 @@ const styles = StyleSheet.create({
     marginBottom: responsiveHeight(4.8),
     alignItems: 'center',
     backgroundColor: '#f7f7fd',
-    marginTop:responsiveHeight(4.8)
+    marginTop: responsiveHeight(4.8),
   },
   input1: {
     color: '#666666',

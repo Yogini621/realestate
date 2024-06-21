@@ -21,12 +21,23 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Entypo from 'react-native-vector-icons/Entypo';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../redux/reducers';
+import { Property } from '../redux/actions/actions';
+import { addToFavorites } from '../redux/actions/actionTypes';
 
 interface Props {
   navigation: any;
 }
 
 const PropertyListings1: React.FC<Props> = ({navigation}) => {
+  const favorites = useSelector((state:RootState) => state.favorites.favorites)
+  const dispatch = useDispatch()
+
+  const handleAddToFavorites = (item: Property) => {
+    dispatch(addToFavorites(item));
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar hidden={true} />
@@ -35,7 +46,7 @@ const PropertyListings1: React.FC<Props> = ({navigation}) => {
           <View style={styles.logoView}>
             <Image source={require('../Images/Vector1.png')} />
             <TouchableOpacity onPress={() => navigation.navigate('MenuPage')}>
-              <FontAwesome5 name="grip-lines" size={20} />
+              <FontAwesome5 name="grip-lines" size={20} color="#073762" />
             </TouchableOpacity>
           </View>
         </View>
@@ -65,8 +76,24 @@ const PropertyListings1: React.FC<Props> = ({navigation}) => {
                     <Text style={styles.roomsText}>{item.rooms}</Text>
                   </View>
                   <View style={styles.circle1}>
-                    <TouchableOpacity>
-                      <Entypo name="heart-outlined" size={20} color="#073762" />
+                    <TouchableOpacity onPress={() => handleAddToFavorites(item)}>
+                      <AntDesign
+                        name={
+                          favorites.find(
+                            favoriteItem => item.id === favoriteItem.id,
+                          )
+                            ? 'heart'
+                            : 'hearto'
+                        }
+                        color={
+                          favorites.find(
+                            favoriteItem => item.id === favoriteItem.id,
+                          )
+                            ? 'red'
+                            : '#073762'
+                        }
+                        size={22}
+                      />
                     </TouchableOpacity>
                   </View>
                 </View>
@@ -78,15 +105,15 @@ const PropertyListings1: React.FC<Props> = ({navigation}) => {
                 <View style={styles.line} />
                 <View style={styles.iconView}>
                   <View style={styles.roomView}>
-                    <Ionicons name="bed-outline" size={20} />
+                    <Ionicons name="bed-outline" size={20} color="#073762" />
                     <Text style={styles.bedText}>3 Beds</Text>
                   </View>
                   <View style={styles.roomView}>
-                    <Ionicons name="bed-outline" size={20} />
+                    <Ionicons name="bed-outline" size={20} color="#073762" />
                     <Text style={styles.bedText}>2Bathrooms</Text>
                   </View>
                   <View style={styles.roomView}>
-                    <Ionicons name="bed-outline" size={20} />
+                    <Ionicons name="bed-outline" size={20} color="#073762" />
                     <Text style={styles.bedText}>5x7 m²</Text>
                   </View>
                 </View>

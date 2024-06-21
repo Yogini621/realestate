@@ -1,6 +1,9 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
-import { responsiveFontSize, responsiveHeight } from 'react-native-responsive-dimensions';
+import {StyleSheet, Text, View} from 'react-native';
+import React from 'react';
+import {
+  responsiveFontSize,
+  responsiveHeight,
+} from 'react-native-responsive-dimensions';
 
 interface Props {
   headerText: string;
@@ -8,10 +11,9 @@ interface Props {
   feature2: string;
   feature3?: string;
   feature4?: string;
-
 }
 
-const TermsComponents = (props:Props) => {
+const TermsComponents = (props: Props) => {
   return (
     <View>
       <Text style={styles.headerText}>{props.headerText} </Text>
@@ -21,9 +23,9 @@ const TermsComponents = (props:Props) => {
       <Text style={styles.featureText}>{props.feature4} </Text>
     </View>
   );
-}
+};
 
-export default TermsComponents
+export default TermsComponents;
 
 const styles = StyleSheet.create({
   headerText: {

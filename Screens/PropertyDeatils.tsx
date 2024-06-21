@@ -26,9 +26,10 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import ListComponent from './ListComponent';
 import {Property} from '../redux/actions/actions';
 import {data} from './data';
-import {fetchProperties} from '../redux/actions/actionTypes';
+import {addToFavorites, fetchProperties} from '../redux/actions/actionTypes';
 import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '../redux/reducers';
+import Octicons from 'react-native-vector-icons/Octicons';
 
 interface Props {
   navigation: any;
@@ -39,7 +40,13 @@ const PropertyDetails: React.FC<Props> = ({navigation, route}) => {
   const favorites = useSelector(
     (state: RootState) => state.favorites.favorites,
   );
+  const dispatch = useDispatch();
   const {item} = route.params;
+
+  const handleAddToFavorites = (item: Property) => {
+    dispatch(addToFavorites(item));
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
@@ -70,7 +77,9 @@ const PropertyDetails: React.FC<Props> = ({navigation, route}) => {
             <EvilIcons name="share-google" size={24} color="#073762" />
             <Text style={styles.shareText}>Share</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.shareButton}>
+          <TouchableOpacity
+            style={styles.shareButton}
+            onPress={() => handleAddToFavorites(item)}>
             <AntDesign
               name={
                 favorites.find(favoriteItem => item.id === favoriteItem.id)
@@ -100,15 +109,20 @@ const PropertyDetails: React.FC<Props> = ({navigation, route}) => {
           </View>
           <View style={styles.iconView1}>
             <View style={styles.numberView}>
-              <Ionicons name="bed-outline" size={22} />
+              <Ionicons name="bed-outline" size={22} color="#073762" />
               <Text style={styles.numberText}>4</Text>
             </View>
             <View style={styles.numberView}>
-              <FontAwesome5 name="bath" size={18} />
+              <FontAwesome5 name="bath" size={18} color="#073762" />
               <Text style={styles.numberText}>4</Text>
             </View>
             <View style={styles.numberView}>
-              <FontAwesome5 name="bath" size={18} style={styles.icon} />
+              <FontAwesome5
+                name="bath"
+                size={18}
+                style={styles.icon}
+                color="#073762"
+              />
               <Text style={[styles.numberText, {left: responsiveWidth(4.8)}]}>
                 6x8 m²
               </Text>
@@ -120,11 +134,11 @@ const PropertyDetails: React.FC<Props> = ({navigation, route}) => {
           </View>
           <View style={styles.iconView2}>
             <View style={styles.numberView1}>
-              <FontAwesome5 name="brush" size={18} />
+              <FontAwesome5 name="brush" size={18} color="#666666" />
               <Text style={styles.numberText}>Modern Loft</Text>
             </View>
             <View style={styles.numberView1}>
-              <SimpleLineIcons name="clock" size={20} />
+              <SimpleLineIcons name="clock" size={20} color="#666666" />
               <Text style={styles.numberText}>Active</Text>
             </View>
           </View>
@@ -144,7 +158,7 @@ const PropertyDetails: React.FC<Props> = ({navigation, route}) => {
           </View>
         </View>
         <View style={styles.priceView}>
-          <Text style={styles.rentedPriceText}>Rented price </Text>
+          <Text style={styles.rentedPriceText}>Rented price</Text>
           <Text style={styles.priceText}>{item.rent} </Text>
           <View style={styles.userAndAddressView}>
             <Image source={require('../Images/user.png')} />
@@ -172,7 +186,11 @@ const PropertyDetails: React.FC<Props> = ({navigation, route}) => {
                 $2,400<Text style={styles.monthText}>/month</Text>
               </Text>
             </View>
-            <TouchableOpacity style={styles.applyButton}>
+            <TouchableOpacity
+              style={styles.applyButton}
+              onPress={() =>
+                navigation.navigate('TenentApplicationForm', {item})
+              }>
               <Ionicons name="document-text-outline" color="white" size={22} />
               <Text style={styles.applyText}>Apply now</Text>
             </TouchableOpacity>
@@ -183,17 +201,21 @@ const PropertyDetails: React.FC<Props> = ({navigation, route}) => {
             <Text style={styles.homeTourText}>Request a home tour</Text>
             <View style={styles.buttonDirectionView}>
               <TouchableOpacity style={styles.personButton}>
-                <Text>In Person</Text>
+                <Entypo name="arrow-up" size={24} color="#666666" />
+                <Text style={styles.selectText}>In Person</Text>
               </TouchableOpacity>
               <TouchableOpacity style={styles.personButton}>
-                <Text>In Person</Text>
+                <Octicons name="video" size={24} color="#666666" />
+                <Text style={styles.selectText}>Virtual</Text>
               </TouchableOpacity>
             </View>
             <View style={styles.inputView}>
               <View style={styles.inputDirectionView}>
-                <AntDesign name="calendar" size={18} />
-                <Text>Select tour date</Text>
-                <AntDesign name="circledown" color="#9fc5e9" />
+                <View style={styles.calenderView}>
+                  <AntDesign name="calendar" size={18} color="#666666" />
+                  <Text style={styles.selectText}>Select tour date</Text>
+                </View>
+                <AntDesign name="circledown" color="#9fc5e9" size={20} />
               </View>
             </View>
             <TouchableOpacity style={styles.requestButton}>
@@ -496,7 +518,7 @@ const styles = StyleSheet.create({
   rentedPrice: {
     color: '#6c727f',
     fontSize: responsiveFontSize(1.9),
-    fontFamily: 'PlusJakartaSans j',
+    fontFamily: 'PlusJakartaSans m',
     left: responsiveWidth(8),
     marginTop: responsiveHeight(2),
   },
@@ -509,13 +531,13 @@ const styles = StyleSheet.create({
   monthText: {
     color: '#6c727f',
     fontSize: responsiveFontSize(1.9),
-    fontFamily: 'PlusJakartaSans j',
+    fontFamily: 'PlusJakartaSans m',
   },
   directionView: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    width: responsiveWidth(80),
+    width: responsiveWidth(81),
   },
   applyButton: {
     backgroundColor: '#073762',
@@ -559,6 +581,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     alignItems: 'center',
     justifyContent: 'center',
+    flexDirection: 'row',
   },
   buttonDirectionView: {
     flexDirection: 'row',
@@ -579,6 +602,11 @@ const styles = StyleSheet.create({
   inputDirectionView: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    width: responsiveWidth(62),
+    alignItems: 'center',
+  },
+  calenderView: {
+    flexDirection: 'row',
   },
   requestButton: {
     backgroundColor: '#100a55',
@@ -636,5 +664,10 @@ const styles = StyleSheet.create({
     fontSize: responsiveFontSize(1.6),
     fontFamily: 'PlusJakartaSans j',
     lineHeight: 20,
+  },
+  selectText: {
+    fontSize: responsiveFontSize(1.8),
+    fontFamily: 'PlusJakartaSans j',
+    left: responsiveWidth(2),
   },
 });

@@ -1,15 +1,30 @@
-import { Image, SafeAreaView, ScrollView, StatusBar, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
-import React from 'react'
+import {
+  Image,
+  SafeAreaView,
+  ScrollView,
+  StatusBar,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from 'react-native';
+import React from 'react';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import { responsiveFontSize, responsiveHeight, responsiveScreenWidth, responsiveWidth } from 'react-native-responsive-dimensions';
+import {
+  responsiveFontSize,
+  responsiveHeight,
+  responsiveScreenWidth,
+  responsiveWidth,
+} from 'react-native-responsive-dimensions';
 
-interface Props{
- navigation:any;
+interface Props {
+  navigation: any;
 }
 
-const TermsAndConditions:React.FC<Props> = ({navigation}) => {
+const TermsAndConditions: React.FC<Props> = ({navigation}) => {
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar hidden={true} />
@@ -118,9 +133,7 @@ const TermsAndConditions:React.FC<Props> = ({navigation}) => {
             congue malesuada. Integer eget justo sit amet do
           </Text>
         </View>
-        <Text style={styles.anyQuestionText}>
-          Consectetur asipiscing elit
-        </Text>
+        <Text style={styles.anyQuestionText}>Consectetur asipiscing elit</Text>
         <View style={styles.conatctTextView}>
           <Text style={styles.loremText}>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -138,9 +151,9 @@ const TermsAndConditions:React.FC<Props> = ({navigation}) => {
       </ScrollView>
     </SafeAreaView>
   );
-}
+};
 
-export default TermsAndConditions
+export default TermsAndConditions;
 
 const styles = StyleSheet.create({
   container: {

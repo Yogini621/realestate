@@ -1,6 +1,10 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
-import { responsiveFontSize, responsiveHeight, responsiveWidth } from 'react-native-responsive-dimensions';
+import {
+  responsiveFontSize,
+  responsiveHeight,
+  responsiveWidth,
+} from 'react-native-responsive-dimensions';
 
 interface Props {
   propertyType: string;
@@ -12,9 +16,11 @@ const PropertyPropsComponent = (props: Props) => {
   return (
     <View>
       <View style={styles.propertiesView}>
-        <Text style = {styles.propertyTypeText}>{props.propertyType} </Text>
+        <Text style={styles.propertyTypeText}>{props.propertyType} </Text>
         <View style={styles.placeView}>
-          <Text style = {[styles.propertyText,{color:props.color}]}>{props.propertyText} </Text>
+          <Text style={[styles.propertyText, {color: props.color}]}>
+            {props.propertyText}{' '}
+          </Text>
         </View>
       </View>
     </View>
@@ -25,14 +31,14 @@ export default PropertyPropsComponent;
 
 const styles = StyleSheet.create({
   propertiesView: {
-   flexDirection: 'row',
+    flexDirection: 'row',
     justifyContent: 'space-between',
-    width:responsiveWidth(80),
-    alignSelf:'center',
-    marginTop:responsiveHeight(4)
+    width: responsiveWidth(80),
+    alignSelf: 'center',
+    marginTop: responsiveHeight(4),
   },
-  placeView:{
-    width:responsiveWidth(40)
+  placeView: {
+    width: responsiveWidth(40),
   },
   propertyTypeText: {
     color: '#333333',

@@ -11,7 +11,7 @@ import {Checkbox, RadioButton, Switch} from 'react-native-paper';
 const Notifications = () => {
   const [checked, setChecked] = useState(false);
   return (
-    <View style={styles.container}> 
+    <View style={styles.container}>
       <View style={styles.notificationView}>
         <Text style={styles.notificationsText}>Notifications</Text>
         <Text style={styles.generalText}>General</Text>
@@ -65,17 +65,17 @@ const Notifications = () => {
         </View>
         <View style={styles.seperator} />
         <Text style={styles.generalText}>Email Newsletter</Text>
-         <View style={styles.radioButtonDirectionView}>
-              <View style={styles.radioButtonView}>
-                <RadioButton value="" color="#073762" />
-                <Text style={styles.customerText}>on</Text>
-              </View>
-              <View style={styles.radioButtonView}>
-                <RadioButton value="" color="#073762" />
-                <Text style={styles.customerText}>Off</Text>
-              </View>
-            </View>
-          {/* </View> */}
+        <View style={styles.radioButtonDirectionView}>
+          <View style={styles.radioButtonView}>
+            <RadioButton value="" color="#073762" />
+            <Text style={styles.customerText}>on</Text>
+          </View>
+          <View style={styles.radioButtonView}>
+            <RadioButton value="" color="#073762" />
+            <Text style={styles.customerText}>Off</Text>
+          </View>
+        </View>
+        {/* </View> */}
         <View style={styles.seperator} />
         <TouchableOpacity style={styles.saveChangesButton}>
           <Text style={styles.saveChangesButtonText}>Save changes</Text>
@@ -193,6 +193,6 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     width: responsiveWidth(80),
     backgroundColor: '#9fc5e9',
-    marginBottom:responsiveHeight(2)
+    marginBottom: responsiveHeight(2),
   },
 });

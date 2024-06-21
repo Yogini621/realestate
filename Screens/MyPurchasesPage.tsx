@@ -16,7 +16,7 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Fontisto from 'react-native-vector-icons/Fontisto';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import EvilIcons from 'react-native-vector-icons/EvilIcons'
+import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import {
   responsiveFontSize,
   responsiveHeight,
@@ -172,11 +172,7 @@ const MyPurchasesPage: React.FC<Props> = ({navigation}) => {
           <EvilIcons name="sc-facebook" color="#07376299" size={36} />
           <AntDesign name="instagram" color="#07376299" size={24} />
           <AntDesign name="twitter" color="#07376299" size={24} />
-          <AntDesign
-            name="linkedin-square"
-            color="#07376299"
-            size={24}
-          />
+          <AntDesign name="linkedin-square" color="#07376299" size={24} />
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -302,13 +298,13 @@ const styles = StyleSheet.create({
     fontFamily: 'PlusJakartaSans m',
     alignItems: 'center',
   },
-  socialMediaIconView:{
-    flexDirection:'row',
-    justifyContent:'space-between',
-    alignSelf:'center',
-    width:responsiveWidth(54),
-    alignItems:'center',
-    marginTop:responsiveHeight(2.8),
-    marginBottom:responsiveHeight(2)
-  }
+  socialMediaIconView: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignSelf: 'center',
+    width: responsiveWidth(54),
+    alignItems: 'center',
+    marginTop: responsiveHeight(2.8),
+    marginBottom: responsiveHeight(2),
+  },
 });

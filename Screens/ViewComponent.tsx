@@ -36,7 +36,7 @@ const ViewComponent = (props: Props) => {
           </View>
           <View>
             <Text style={[styles.homeTourText, {color: props.headerTextColor}]}>
-              {props.headerText}{' '}
+              {props.headerText}
             </Text>
             <View style={styles.detailsView}>
               <Text style={[styles.detailsText, {color: props.textColor}]}>

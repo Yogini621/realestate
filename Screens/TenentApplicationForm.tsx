@@ -9,11 +9,11 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-import Feather from 'react-native-vector-icons/Feather';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 import {
   responsiveFontSize,
   responsiveHeight,
@@ -25,6 +25,7 @@ import * as Yup from 'yup';
 
 interface Props {
   navigation: any;
+  route: any;
 }
 
 interface Details {
@@ -37,10 +38,34 @@ interface Details {
   moveDate: string;
 }
 
-const TenentApplicationForm: React.FC<Props> = ({navigation}) => {
-  const ValidationSchema = Yup.object().shape({});
+const TenentApplicationForm: React.FC<Props> = ({navigation, route}) => {
+  const {item} = route.params;
+  console.log(item);
 
+  const [step1Data, setStep1Data] = useState({
+    name: '',
+    dateOfBirth: '',
+    email: '',
+    contact: '',
+    income: '',
+    occupants: '',
+    moveInDate: '',
+  });
+  const [step2Data, setStep2Data] = useState({
+    address: '',
+    city: '',
+    state: '',
+    pincode: '',
+    country: '',
+  });
+  const [step3Data, setStep3Data] = useState({
+    vahicleName: '',
+  });
+  const [step4Data, setStep4Data] = useState({aadhar: ''});
+
+  const ValidationSchema = Yup.object().shape({});
   const handleFormSubmit = (values: Details) => {};
+
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar hidden={true} />
@@ -49,11 +74,16 @@ const TenentApplicationForm: React.FC<Props> = ({navigation}) => {
           <View style={styles.logoView}>
             <Image source={require('../Images/Vector1.png')} />
             <View style={styles.iconView}>
-              <TouchableOpacity>
-                <Ionicons name="notifications-outline" size={20} />
+              <TouchableOpacity
+                onPress={() => navigation.navigate('NotificatonList')}>
+                <Ionicons
+                  name="notifications-outline"
+                  size={20}
+                  color="#073762"
+                />
               </TouchableOpacity>
               <TouchableOpacity onPress={() => navigation.navigate('MenuPage')}>
-                <FontAwesome5 name="grip-lines" size={20} />
+                <FontAwesome5 name="grip-lines" size={20} color="#073762" />
               </TouchableOpacity>
             </View>
           </View>
@@ -75,40 +105,36 @@ const TenentApplicationForm: React.FC<Props> = ({navigation}) => {
             completely
           </Text>
         </View>
-        <Text style={styles.stepText}>STEP 1 OF 4</Text>
-        <View style={styles.stepView}>
-          <View style={styles.squareView}>
-            <TouchableOpacity>
-              <Feather name="square" size={28} color="#073762" />
-            </TouchableOpacity>
-            <View style={styles.lineView}>
-              <FontAwesome name="minus" size={13} color="#073762" />
-              <FontAwesome name="minus" size={13} color="#073762" />
-              <FontAwesome name="minus" size={13} color="#073762" />
-              <FontAwesome name="minus" size={13} color="#073762" />
-              <FontAwesome name="minus" size={13} color="#073762" />
-              <FontAwesome name="minus" size={13} color="#073762" />
-              <FontAwesome name="minus" size={13} color="#073762" />
+        <View style={styles.propertyView}>
+          <View style={styles.propertyDirectionView}>
+            <Image source={item.image} style={styles.image} />
+            <View style={styles.descriptionView}>
+              <Text style={styles.rentText}>
+                ${item.rent} <Text style={styles.monthText}>/month</Text>{' '}
+              </Text>
+              <Text style={styles.roomsText}>{item.rooms}</Text>
+              <Text style={styles.locationText}>{item.location} </Text>
+              <View style={styles.seperator} />
+              <View style={styles.iconsView}>
+                <View style={styles.carIconView}>
+                  <AntDesign name="car" color="#073762" size={13} />
+                  <Text style={styles.numberText}>3 Beds</Text>
+                </View>
+                <View style={styles.carIconView}>
+                  <FontAwesome name="bathtub" color="#073762" size={13} />
+                  <Text style={styles.numberText}>2 Bathroms</Text>
+                </View>
+                <View style={styles.carIconView}>
+                  <FontAwesome name="bathtub" color="#073762" size={13} />
+                  <Text style={styles.numberText}>6x7.5 m²</Text>
+                </View>
+              </View>
             </View>
-            <TouchableOpacity>
-              <Feather name="square" size={28} color="#073762" />
-            </TouchableOpacity>
-            <View style={styles.lineView1}>
-              <FontAwesome name="minus" size={13} color="#073762" />
-              <FontAwesome name="minus" size={13} color="#073762" />
-            </View>
-            <TouchableOpacity>
-              <Feather name="square" size={28} color="#073762" />
-            </TouchableOpacity>
-            <View style={styles.lineView1}>
-              <FontAwesome name="minus" size={13} color="#073762" />
-              <FontAwesome name="minus" size={13} color="#073762" />
-            </View>
-            <TouchableOpacity>
-              <Feather name="square" size={28} color="#073762" />
-            </TouchableOpacity>
           </View>
         </View>
+        <Text style={styles.stepText}>STEP 1 OF 4</Text>
+
+        <View style={styles.stepView}></View>
         <Text style={styles.fillText}>Fill The Application</Text>
         <View style={styles.informationView}>
           <Text style={styles.informationText}>
@@ -116,7 +142,6 @@ const TenentApplicationForm: React.FC<Props> = ({navigation}) => {
             information
           </Text>
         </View>
-
         <Formik
           initialValues={{
             name: '',
@@ -286,14 +311,14 @@ const styles = StyleSheet.create({
   backToView: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    width: responsiveWidth(72),
+    width: responsiveWidth(68.8),
     alignItems: 'center',
     left: responsiveWidth(4),
-    marginTop: responsiveHeight(2),
+    marginTop: responsiveHeight(2.8),
   },
   backText: {
     color: '#073762',
-    fontSize: responsiveFontSize(2.4),
+    fontSize: responsiveFontSize(2.3),
     fontFamily: 'PlusJakartaSans a',
   },
   tenantApplicationText: {
@@ -323,13 +348,14 @@ const styles = StyleSheet.create({
     marginTop: responsiveHeight(4),
   },
   stepView: {
-    backgroundColor: '#f4faff',
+    backgroundColor: '#e8f2fa',
     height: responsiveHeight(13),
     width: responsiveWidth(90),
     alignSelf: 'center',
-    marginTop: responsiveHeight(3),
+    marginTop: responsiveHeight(2.4),
     justifyContent: 'center',
     alignItems: 'center',
+    borderRadius: 14,
   },
   fillText: {
     color: '#000000',
@@ -341,13 +367,13 @@ const styles = StyleSheet.create({
   informationView: {
     width: responsiveWidth(90),
     alignSelf: 'center',
-    marginTop: responsiveHeight(2),
+    marginTop: responsiveHeight(1),
   },
   informationText: {
-    color: '#9b9b9b',
+    color: '#6c727f',
     fontSize: responsiveFontSize(1.9),
     fontFamily: 'PlusJakartaSans j',
-    lineHeight: responsiveHeight(3),
+    lineHeight: responsiveHeight(3.4),
   },
   personalDetailsText: {
     color: '#000000',
@@ -368,7 +394,7 @@ const styles = StyleSheet.create({
     marginBottom: responsiveHeight(2),
   },
   labelText: {
-    color: '#000000',
+    color: '#000929',
     left: responsiveWidth(4),
     fontFamily: 'PlusJakartaSans j',
     fontSize: responsiveFontSize(1.9),
@@ -425,7 +451,6 @@ const styles = StyleSheet.create({
     borderRadius: 1,
     backgroundColor: '#9b9b9b',
   },
-
   termsText: {
     color: '#9b9b9b',
     fontFamily: 'PlusJakartaSans a',
@@ -445,12 +470,11 @@ const styles = StyleSheet.create({
   },
   input1: {
     width: responsiveWidth(64),
-    marginTop: responsiveHeight(1),
     color: '#9b9b9b',
     fontFamily: 'PlusJakartaSans j',
     fontSize: responsiveFontSize(2),
-    alignSelf: 'center',
     padding: 10,
+    // backgroundColor: 'green',
   },
   icon: {
     right: responsiveWidth(4),
@@ -481,5 +505,87 @@ const styles = StyleSheet.create({
     width: responsiveWidth(6.8),
     marginLeft: responsiveWidth(2),
     marginRight: responsiveWidth(2),
+  },
+  propertyView: {
+    height: responsiveHeight(20),
+    width: responsiveWidth(90),
+    alignSelf: 'center',
+    marginTop: responsiveHeight(4.8),
+    borderColor: '#9fc5e9',
+  },
+  image: {
+    height: responsiveHeight(20),
+    width: responsiveWidth(40),
+    borderTopLeftRadius: 10,
+    borderBottomLeftRadius: 10,
+  },
+  descriptionView: {
+    borderWidth: 1,
+    width: responsiveWidth(50),
+    borderRadius: 10,
+    borderLeftWidth: 0,
+    borderBottomLeftRadius: 0,
+    borderTopLeftRadius: 0,
+    height: responsiveWidth(36.6),
+    borderColor: '#9fc5e9',
+  },
+  propertyDirectionView: {
+    flexDirection: 'row',
+  },
+  rentText: {
+    color: '#073762',
+    fontFamily: 'PlusJakartaSans a',
+    fontSize: responsiveFontSize(1.8),
+    left: responsiveWidth(4),
+    marginTop: responsiveHeight(1),
+  },
+  monthText: {
+    color: '#00092980',
+    fontFamily: 'PlusJakartaSans j',
+    fontSize: responsiveFontSize(1.6),
+  },
+  rentPriceView: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  roomsText: {
+    color: '#000000',
+    fontFamily: 'PlusJakartaSans a',
+    fontSize: responsiveFontSize(2.2),
+    left: responsiveWidth(4),
+    marginTop: responsiveHeight(1),
+  },
+  locationText: {
+    color: '#666666',
+    fontFamily: 'PlusJakartaSans j',
+    fontSize: responsiveFontSize(1.1),
+    left: responsiveWidth(4),
+    marginTop: responsiveHeight(1.4),
+  },
+  seperator: {
+    height: responsiveHeight(0.2),
+    width: responsiveWidth(42),
+    backgroundColor: '#e0def7',
+    alignSelf: 'center',
+    marginTop: responsiveHeight(1.8),
+  },
+  carIconView: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  numberText: {
+    fontFamily: 'PlusJakartaSans j',
+    left: responsiveWidth(1),
+    fontSize: responsiveFontSize(1),
+    color: '#394150',
+  },
+  iconsView: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: responsiveWidth(42),
+    // left: responsiveWidth(3.2),
+    marginTop: responsiveHeight(1.4),
+    alignSelf: 'center',
   },
 });

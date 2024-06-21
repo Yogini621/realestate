@@ -12,7 +12,6 @@ import {Provider} from 'react-redux';
 import store from './redux/store';
 import ForgotPassword2 from './Screens/ForgotPassword2';
 import MenuPage from './Screens/MenuPage';
-import FiltersScreen from './Screens/FiltersScreen';
 import Faqs from './Screens/Faqs';
 import Rent from './Screens/Rent';
 import Buy from './Screens/Buy';
@@ -33,6 +32,7 @@ import PrivacyPolicy from './Screens/PrivacyPolicy';
 import TermsAndConditions from './Screens/TermsAndConditions';
 import AboutUs from './Screens/AboutUs';
 import PropertyDetails from './Screens/PropertyDeatils';
+import NotificatonList from './Screens/NotificatonList';
 
 const Stack = createNativeStackNavigator();
 
@@ -66,7 +66,6 @@ const App = () => {
             component={ForgotPassword2}
             options={{headerShown: false}}
           />
-
           <Stack.Screen
             name="HomePage"
             component={HomePage}
@@ -175,6 +174,11 @@ const App = () => {
           <Stack.Screen
             name="AboutUs"
             component={AboutUs}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="NotificatonList"
+            component={NotificatonList}
             options={{headerShown: false}}
           />
         </Stack.Navigator>

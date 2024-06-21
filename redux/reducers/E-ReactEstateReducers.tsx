@@ -27,12 +27,13 @@ export const RealEstateAppReducers = (
         favorites: [...state.favorites, action.payload],
       };
     case RemoveFavorires:
-      const updatedItems = state.favorites.filter(item => item.id !== action.payload.id)
+      const updatedItems = state.favorites.filter(
+        item => item !== action.payload,
+      );
       return {
         ...state,
-        favorites:updatedItems
-
-      }
+        favorites: updatedItems,
+      };
     default:
       return state;
   }

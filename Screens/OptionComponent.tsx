@@ -1,6 +1,9 @@
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
-import { responsiveFontSize, responsiveHeight } from 'react-native-responsive-dimensions';
+import {
+  responsiveFontSize,
+  responsiveHeight,
+} from 'react-native-responsive-dimensions';
 
 interface Props {
   optionText: string;
@@ -11,8 +14,10 @@ interface Props {
 const OptionComponent = (props: Props) => {
   return (
     <View>
-      <TouchableOpacity onPress={props.onPress} style = {styles.button}>
-        <Text style = {[styles.optionText,{color:props.color}]}>{props.optionText}</Text>
+      <TouchableOpacity onPress={props.onPress} style={styles.button}>
+        <Text style={[styles.optionText, {color: props.color}]}>
+          {props.optionText}
+        </Text>
       </TouchableOpacity>
     </View>
   );

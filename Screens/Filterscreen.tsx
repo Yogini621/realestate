@@ -103,21 +103,21 @@ const Filterscreen: React.FC<Props> = ({navigation}) => {
                 <View style={styles.priceView}>
                   <View>
                     <Text style={styles.typeText}>Min Price</Text>
-                    <TextInput style={styles.priceInput} placeholder='2K' />
+                    <TextInput style={styles.priceInput} placeholder="2K" />
                   </View>
                   <View>
                     <Text style={styles.typeText}>Max Price</Text>
-                    <TextInput style={styles.priceInput} placeholder='2L' />
+                    <TextInput style={styles.priceInput} placeholder="2L" />
                   </View>
                 </View>
               </View>
               <View style={styles.buttonView1}>
                 <View style={styles.buttonDirectionView}>
-                  <TouchableOpacity style = {styles.resetButton}>
-                    <Text style = {styles.buttonTxt}>Reset</Text>
+                  <TouchableOpacity style={styles.resetButton}>
+                    <Text style={styles.buttonTxt}>Reset</Text>
                   </TouchableOpacity>
-                  <TouchableOpacity style = {styles.activeButton}>
-                    <Text style = {styles.activeButtonText}>Apply</Text>
+                  <TouchableOpacity style={styles.activeButton}>
+                    <Text style={styles.activeButtonText}>Apply</Text>
                   </TouchableOpacity>
                 </View>
               </View>

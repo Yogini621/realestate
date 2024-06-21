@@ -17,12 +17,12 @@ import {
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import Entypo from 'react-native-vector-icons/Entypo';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import AntDesign from 'react-native-vector-icons/AntDesign'
+import AntDesign from 'react-native-vector-icons/AntDesign';
 interface Props {
   navigation: any;
 }
 
-const Sell:React.FC<Props> = ({navigation}) => {
+const Sell: React.FC<Props> = ({navigation}) => {
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar hidden={true} />
@@ -57,7 +57,7 @@ const Sell:React.FC<Props> = ({navigation}) => {
           <View style={styles.sellTextView}>
             <Text style={styles.sellText}>Rent</Text>
             <Text style={styles.lookStraightText}>
-             Proof Of Your Residaency Via Passport / ID Card
+              Proof Of Your Residaency Via Passport / ID Card
             </Text>
           </View>
         </View>
