@@ -38,10 +38,14 @@ const Faqs: React.FC<Props> = ({navigation}) => {
             <Image source={require('../Images/Vector1.png')} />
             <View style={styles.iconView}>
               <TouchableOpacity>
-                <Ionicons name="notifications-outline" size={20} />
+                <Ionicons
+                  name="notifications-outline"
+                  size={20}
+                  color="#073762"
+                />
               </TouchableOpacity>
               <TouchableOpacity onPress={() => navigation.navigate('MenuPage')}>
-                <FontAwesome5 name="grip-lines" size={20} />
+                <FontAwesome5 name="grip-lines" size={20} color="#073762" />
               </TouchableOpacity>
             </View>
           </View>

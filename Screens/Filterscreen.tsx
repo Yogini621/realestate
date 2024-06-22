@@ -22,26 +22,19 @@ import CheckBoxComponent from './CheckBoxComponent';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 interface Props {
-  navigation: any;
+  modalVisible:boolean;
+  colseModal:() => void
 }
 
-const Filterscreen: React.FC<Props> = ({navigation}) => {
-  const [modalVisible, setModalVisible] = useState(false);
-
+const Filterscreen: React.FC<Props> = (props:Props) => {
   return (
-    <SafeAreaView style={styles.container}>
-      <StatusBar hidden={true} />
-      <View style={styles.buttonView}>
-        <TouchableOpacity onPress={() => setModalVisible(true)}>
-          <Text>Filterscreen</Text>
-        </TouchableOpacity>
-      </View>
-      <Modal animationType="slide" transparent={true} visible={modalVisible}>
+    <View>
+      <Modal animationType="slide" transparent={true} visible={props.modalVisible}>
         <View style={styles.modalView}>
           <ScrollView>
             <View style={styles.line} />
             <View style={styles.closeIconView}>
-              <TouchableOpacity onPress={() => setModalVisible(false)}>
+              <TouchableOpacity onPress={() => props.colseModal()}>
                 <AntDesign name="close" size={28} color="#e5e6eb" />
               </TouchableOpacity>
               <Text style={styles.filtersText}>Filters</Text>
@@ -125,7 +118,7 @@ const Filterscreen: React.FC<Props> = ({navigation}) => {
           </ScrollView>
         </View>
       </Modal>
-    </SafeAreaView>
+    </View>
   );
 };
 

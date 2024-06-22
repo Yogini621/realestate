@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React from 'react';
+import React, { useState } from 'react';
 import {
   responsiveFontSize,
   responsiveHeight,
@@ -23,6 +23,7 @@ import {Property} from '../redux/actions/actions';
 import {addToFavorites} from '../redux/actions/actionTypes';
 import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '../redux/reducers';
+import Filterscreen from './Filterscreen';
 
 interface Props {
   navigation: any;
@@ -33,10 +34,10 @@ const SwipeUp: React.FC<Props> = ({navigation}) => {
   const favorites = useSelector(
     (state: RootState) => state.favorites.favorites,
   );
+  const [modalVisible,setModalVisible] = useState(false)
 
   const handleAddToFavorites = (item: Property) => {
     dispatch(addToFavorites(item));
-    navigation.navigate('Favorites');
   };
 
   return (
@@ -72,7 +73,7 @@ const SwipeUp: React.FC<Props> = ({navigation}) => {
               <Text style={styles.searchText}>Search</Text>
             </View>
             <View style={styles.sortIconView}>
-              <TouchableOpacity>
+              <TouchableOpacity onPress={() => setModalVisible(true)}>
                 <AntDesign name="right" color="#9b9b9b" size={18} />
               </TouchableOpacity>
             </View>
@@ -154,6 +155,11 @@ const SwipeUp: React.FC<Props> = ({navigation}) => {
           <Text style={styles.mapsText}>Open Maps</Text>
         </TouchableOpacity>
       </ScrollView>
+      {
+        modalVisible && (
+          <Filterscreen modalVisible={true} colseModal={() => setModalVisible(false)} />
+        )
+      }
     </SafeAreaView>
   );
 };

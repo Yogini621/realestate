@@ -1,5 +1,6 @@
 import {
   Image,
+  Modal,
   SafeAreaView,
   ScrollView,
   StatusBar,
@@ -9,12 +10,13 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Fontisto from 'react-native-vector-icons/Fontisto';
 import Feather from 'react-native-vector-icons/Feather';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {
   responsiveFontSize,
   responsiveHeight,
@@ -23,11 +25,53 @@ import {
 import OptionComponent from './OptionComponent';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import PropertyPropsComponent from './PropertyPropsComponent';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 interface Props {
   navigation: any;
 }
 
 const Profile: React.FC<Props> = ({navigation}) => {
+  const [editModal, setEditModal] = useState(false);
+  const [changePasswordModal, setChangePasswordModal] = useState(false);
+  const [logoutModal, setLogoutModal] = useState(false);
+  const [selectButton, setSelectButton] = useState(false);
+  const [selectButton1, setSelectButton1] = useState(false);
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [contact, setContact] = useState('');
+  const [oldPassword,setOldPassword] = useState('')
+  const [newPassword,setNewPassword]  =useState('')
+  const [confirmPassword,setConfirmPassword] = useState('')
+
+  const toogleButton = () => {
+    setSelectButton(!selectButton);
+    setSelectButton1(false);
+  };
+
+  const toogleButton1 = () => {
+    setSelectButton1(!selectButton1);
+    setSelectButton(false);
+  };
+
+  useEffect(() => {
+    handleRetrieveCredentials();
+  }, []);
+
+  const handleRetrieveCredentials = async () => {
+    const userDetails = await AsyncStorage.getItem('userData');
+    if (userDetails !== null) {
+      const userData = JSON.parse(userDetails);
+      console.log(userData.name);
+      setName(userData.name);
+      setContact(userData.contact);
+      setEmail(userData.email);
+    }
+  };
+
+  const handleEditChanges = () => {
+
+  }
+
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar hidden={true} />
@@ -55,30 +99,26 @@ const Profile: React.FC<Props> = ({navigation}) => {
             <View>
               <View style={styles.profileView}>
                 <FontAwesome name="user-circle" color="white" size={24} />
-                <Text style={styles.userName}>Joseph K</Text>
+                <Text style={styles.userName}>{name} </Text>
               </View>
               <View style={styles.profileView}>
                 <Ionicons name="call-outline" color="white" size={24} />
-                <Text style={styles.userName}>Call: +91900459209</Text>
+                <Text style={styles.userName}>Call: +91{contact}</Text>
               </View>
               <View style={styles.profileView}>
                 <Fontisto name="email" color="white" size={24} />
-                <Text style={styles.userName}>
-                  Mail:josephexample@gmail.com
-                </Text>
+                <Text style={styles.userName}>Mail:{email}</Text>
               </View>
             </View>
-            <TouchableOpacity style={styles.editIcon}>
+            <TouchableOpacity
+              style={styles.editIcon}
+              onPress={() => setEditModal(true)}>
               <Feather name="edit" color="white" size={18} />
             </TouchableOpacity>
           </View>
         </View>
         <View style={styles.optionView}>
-          <OptionComponent
-            optionText="My requests"
-            onPress={() => ''}
-            color="#222222"
-          />
+          <OptionComponent optionText="My requests" color="#222222" />
           <OptionComponent
             optionText="My Favorites"
             onPress={() => navigation.navigate('Favorites')}
@@ -86,7 +126,7 @@ const Profile: React.FC<Props> = ({navigation}) => {
           />
           <OptionComponent
             optionText="My Purchases"
-            onPress={() => navigation.navigate('MyPurchases')}
+            onPress={() => navigation.navigate('MyPurchasesPage')}
             color="#33333380"
           />
           <OptionComponent
@@ -116,10 +156,12 @@ const Profile: React.FC<Props> = ({navigation}) => {
           />
           <OptionComponent
             optionText="Change Password"
-            onPress={() => navigation.navigate('Favorites')}
+            onPress={() => setChangePasswordModal(true)}
             color="#33333380"
           />
-          <TouchableOpacity style={styles.logOutButton}>
+          <TouchableOpacity
+            style={styles.logOutButton}
+            onPress={() => setLogoutModal(true)}>
             <Text style={styles.logOutButtonText}>Logout</Text>
           </TouchableOpacity>
         </View>
@@ -208,6 +250,169 @@ const Profile: React.FC<Props> = ({navigation}) => {
           </View>
         </View>
       </ScrollView>
+
+      <Modal visible={editModal} animationType="slide" transparent={true}>
+        <View style={styles.centeredView}>
+          <View style={styles.editModalView}>
+            <View style={styles.crossIconView}>
+              <Text style={styles.verifyText}>Profile Details</Text>
+
+              <TouchableOpacity onPress={() => setEditModal(false)}>
+                <AntDesign name="close" color="#666666" size={24} />
+              </TouchableOpacity>
+            </View>
+            <View style={styles.seperator} />
+            <View style={styles.image}>
+              <Image source={require('../Images/Profileimage.png')} />
+              <TouchableOpacity style={styles.editIconView}>
+                <MaterialIcons name="edit" color="#073762" size={14} />
+              </TouchableOpacity>
+            </View>
+
+            <View style={styles.iputView}>
+              <Text style={styles.labelText}>Full Name</Text>
+              <TextInput
+                placeholder="Joseph K"
+                style={styles.input1}
+                value={name}
+                placeholderTextColor="#666666"
+              />
+            </View>
+            <View style={styles.iputView}>
+              <Text style={styles.labelText}>Phone Number</Text>
+              <TextInput
+                placeholder="9000459209"
+                placeholderTextColor="#666666"
+                style={styles.input1}
+                value={contact}
+              />
+            </View>
+            <View style={styles.iputView}>
+              <Text style={styles.labelText}>Email ID</Text>
+              <TextInput
+                placeholder="Josephexample@gmail.com"
+                style={styles.input1}
+                value={email}
+                placeholderTextColor="#666666"
+              />
+            </View>
+            <View style={styles.buttonView}>
+              <TouchableOpacity style={styles.activeButton}>
+                <Text style={styles.activeButtonText}>Save</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => setEditModal(false)}
+                style={styles.inActiveButon}>
+                <Text style={styles.inActiveButtonText}>Cancel</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </View>
+      </Modal>
+
+      <Modal visible={logoutModal} animationType="slide" transparent={true}>
+        <View style={styles.centeredView}>
+          <View style={styles.logoutMdal}>
+            <View style={styles.crossIconView}>
+              <Text style={styles.verifyText}>Logout</Text>
+
+              <TouchableOpacity onPress={() => setLogoutModal(false)}>
+                <AntDesign name="close" color="#666666" size={24} />
+              </TouchableOpacity>
+            </View>
+            <View style={styles.seperator} />
+            <Text style={styles.logoutText}>
+              Are you sure you want to logout?
+            </Text>
+            <TouchableOpacity style={styles.logOutButton1}>
+              <Text style={styles.activeButtonText}>Yes,I want to</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.inActiveLogoutBtn}
+              onPress={() => setLogoutModal(false)}>
+              <Text style={styles.inActiveButtonText}>Close</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
+
+      <Modal
+        visible={changePasswordModal}
+        animationType="slide"
+        transparent={true}>
+        <View style={styles.centeredView}>
+          <View style={styles.changePasswordModal}>
+            <View style={styles.crossIconView}>
+              <Text style={styles.verifyText}>Change Password</Text>
+
+              <TouchableOpacity onPress={() => setChangePasswordModal(false)}>
+                <AntDesign name="close" color="#666666" size={24} />
+              </TouchableOpacity>
+            </View>
+            <View style={styles.seperator1} />
+            <View style={styles.iputView}>
+              <Text style={styles.labelText}>
+                Old Password <Text style={styles.star}>*</Text>
+              </Text>
+              <TextInput
+                style={styles.input1}
+                placeholder="Old Password"
+                placeholderTextColor="#666666"
+              />
+            </View>
+            <View style={styles.iputView}>
+              <Text style={styles.labelText}>
+                New Password <Text style={styles.star}>*</Text>
+              </Text>
+              <TextInput
+                style={styles.input1}
+                placeholder="New Password"
+                placeholderTextColor="#666666"
+              />
+            </View>
+            <View style={styles.iputView}>
+              <Text style={styles.labelText}>
+                Confirm Password <Text style={styles.star}>*</Text>
+              </Text>
+              <TextInput
+                style={styles.input1}
+                placeholder="Re-Enter Password"
+                placeholderTextColor="#666666"
+              />
+            </View>
+            <View style={styles.buttonView}>
+              <TouchableOpacity
+                style={
+                  selectButton ? styles.activeButton : styles.inActiveButon
+                }
+                onPress={toogleButton}>
+                <Text
+                  style={
+                    selectButton
+                      ? styles.activeButtonText
+                      : styles.inActiveButtonText
+                  }>
+                  Save Password
+                </Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={
+                  selectButton1 ? styles.activeButton : styles.inActiveButon
+                }
+                onPress={toogleButton1}>
+                <Text
+                  style={
+                    selectButton1
+                      ? styles.activeButtonText
+                      : styles.inActiveButtonText
+                  }>
+                  Cancel
+                </Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </View>
+      </Modal>
     </SafeAreaView>
   );
 };
@@ -440,5 +645,169 @@ const styles = StyleSheet.create({
     width: responsiveWidth(58),
     alignSelf: 'center',
     marginTop: responsiveHeight(2.8),
+  },
+  editModalView: {
+    backgroundColor: '#ffffff',
+    height: responsiveHeight(68.8),
+    width: responsiveWidth(90),
+    alignSelf: 'center',
+    borderRadius: 10,
+    elevation: 3,
+  },
+  centeredView: {
+    flex: 1,
+    justifyContent: 'center',
+  },
+  crossIconView: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginHorizontal: responsiveWidth(6),
+    marginTop: responsiveHeight(2.8),
+  },
+  verifyText: {
+    fontFamily: 'PlusJakartaSans a',
+    fontSize: responsiveFontSize(2.4),
+    color: '#073762',
+  },
+  seperator: {
+    backgroundColor: '#e1e1e3',
+    height: responsiveHeight(0.1),
+    marginTop: responsiveHeight(2),
+    width: responsiveWidth(80),
+    alignSelf: 'center',
+  },
+  image: {
+    alignSelf: 'center',
+    marginTop: responsiveHeight(2.8),
+    marginBottom: responsiveHeight(4),
+  },
+  iputView: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: responsiveWidth(80),
+    alignSelf: 'center',
+    margin: 8,
+    alignItems: 'center',
+  },
+  labelText: {
+    color: '#333333',
+    fontSize: responsiveFontSize(1.8),
+    fontFamily: 'PlusJakartaSans m',
+    width: responsiveWidth(30),
+  },
+  input1: {
+    height: responsiveHeight(6.8),
+    width: responsiveWidth(50),
+    borderRadius: 6,
+    borderWidth: 1,
+    borderColor: '#9fc5e9',
+    backgroundColor: '#f4faff',
+    padding: 10,
+    fontSize: responsiveFontSize(1.8),
+    fontFamily: 'PlusJakartaSans j',
+    color: '#333333',
+  },
+  buttonView: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: responsiveWidth(80),
+    alignSelf: 'center',
+    marginTop: responsiveHeight(2.8),
+  },
+  activeButton: {
+    backgroundColor: '#073762',
+    borderRadius: 8,
+    height: responsiveHeight(6.8),
+    width: responsiveWidth(36.8),
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  inActiveButon: {
+    borderRadius: 8,
+    height: responsiveHeight(7.2),
+    width: responsiveWidth(38.4),
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 2,
+    borderColor: '#9fc5e9',
+  },
+  activeButtonText: {
+    color: 'white',
+    fontSize: responsiveFontSize(2),
+    fontFamily: 'PlusJakartaSans a',
+  },
+  inActiveButtonText: {
+    color: '#073762',
+    fontSize: responsiveFontSize(2),
+    fontFamily: 'PlusJakartaSans a',
+  },
+  editIconView: {
+    backgroundColor: '#ffffff',
+    height: responsiveHeight(3),
+    width: responsiveWidth(4.8),
+    borderRadius: 10,
+    position: 'absolute',
+    bottom: 0,
+    right: 0,
+    marginBottom: responsiveHeight(1),
+    alignItems: 'center',
+    justifyContent: 'center',
+    elevation: 1,
+  },
+  logoutMdal: {
+    backgroundColor: '#ffffff',
+    width: responsiveWidth(90),
+    alignSelf: 'center',
+    borderRadius: 10,
+    elevation: 3,
+  },
+  logoutText: {
+    color: '#333333',
+    fontSize: responsiveFontSize(2),
+    fontFamily: 'PlusJakartaSans m',
+    marginBottom: responsiveHeight(3.6),
+    marginTop: responsiveHeight(2),
+    left: responsiveWidth(6),
+  },
+  logOutButton1: {
+    backgroundColor: '#073762',
+    borderRadius: 8,
+    height: responsiveHeight(6.8),
+    width: responsiveWidth(80),
+    alignItems: 'center',
+    justifyContent: 'center',
+    alignSelf: 'center',
+    margin: 5,
+  },
+  inActiveLogoutBtn: {
+    borderRadius: 8,
+    height: responsiveHeight(7.2),
+    width: responsiveWidth(80),
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 2,
+    borderColor: '#9fc5e9',
+    alignSelf: 'center',
+    marginBottom: responsiveHeight(4),
+    marginTop: responsiveHeight(1),
+  },
+  changePasswordModal: {
+    backgroundColor: '#ffffff',
+    height: responsiveHeight(50),
+    width: responsiveWidth(90),
+    alignSelf: 'center',
+    borderRadius: 10,
+    elevation: 3,
+  },
+  seperator1: {
+    backgroundColor: '#e1e1e3',
+    height: responsiveHeight(0.1),
+    marginTop: responsiveHeight(2),
+    width: responsiveWidth(80),
+    alignSelf: 'center',
+    marginBottom: responsiveHeight(2),
+  },
+  star: {
+    color: 'red',
   },
 });

@@ -22,7 +22,7 @@ export interface AddToFavoritesAction {
 }
 export interface RemoveAllAction {
   type: typeof RemoveAll;
-  payload: Property;
+  // payload: Property[];
 }
 
 export interface RemoveFavoriresAction {

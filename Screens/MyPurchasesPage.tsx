@@ -9,7 +9,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
@@ -24,12 +24,32 @@ import {
 } from 'react-native-responsive-dimensions';
 import PropertyPropsComponent from './PropertyPropsComponent';
 import TermsComponents from './TermsComponents';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 interface Props {
   navigation: any;
 }
 
 const MyPurchasesPage: React.FC<Props> = ({navigation}) => {
+const [name,setName] = useState('')
+const [email,setEmail] = useState('')
+const [contact,setContact] = useState('')
+
+  useEffect(() => {
+    handleRetrieveCredentials();
+  }, []);
+
+  const handleRetrieveCredentials = async () => {
+    const userDetails = await AsyncStorage.getItem('userData');
+    if (userDetails !== null) {
+      const userData = JSON.parse(userDetails);
+      console.log(userData.name);
+      setName(userData.name);
+      setContact(userData.contact);
+      setEmail(userData.email);
+    }
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar hidden={true} />
@@ -57,16 +77,16 @@ const MyPurchasesPage: React.FC<Props> = ({navigation}) => {
             <View>
               <View style={styles.profileView}>
                 <FontAwesome name="user-circle" color="white" size={24} />
-                <Text style={styles.userName}>Joseph K</Text>
+                <Text style={styles.userName}>{name}</Text>
               </View>
               <View style={styles.profileView}>
                 <Ionicons name="call-outline" color="white" size={24} />
-                <Text style={styles.userName}>Call: +91900459209</Text>
+                <Text style={styles.userName}>Call: +91{contact}</Text>
               </View>
               <View style={styles.profileView}>
                 <Fontisto name="email" color="white" size={24} />
                 <Text style={styles.userName}>
-                  Mail:josephexample@gmail.com
+                  Mail:{email}
                 </Text>
               </View>
             </View>

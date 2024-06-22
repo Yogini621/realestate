@@ -2,6 +2,7 @@ import 'react-native-gesture-handler';
 import {
   Image,
   SafeAreaView,
+  ScrollView,
   StatusBar,
   StyleSheet,
   Text,
@@ -9,7 +10,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React, {useEffect, useState} from 'react';
+import React,{useEffect,useState} from 'react';
 import {
   responsiveFontSize,
   responsiveHeight,
@@ -22,10 +23,8 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '../redux/reducers';
 import {data} from './data';
-import {addToFavorites, fetchProperties, removeFavorites} from '../redux/actions/actionTypes';
+import {addToFavorites, fetchProperties} from '../redux/actions/actionTypes';
 import {Property} from '../redux/actions/actions';
-import {FlatList} from 'react-native';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import FiltersScreen from './FiltersScreen';
 
 interface Props {
@@ -52,124 +51,129 @@ const HomePage: React.FC<Props> = ({navigation}) => {
   };
 
   const handleAddToFavorites = (item: Property) => {
-      dispatch(addToFavorites(item));
-  };
-
-  const renderItems = ({item}: {item: Property}) => {
-    return (
-      <View
-        style={[styles.bestSellerView, {backgroundColor: 'white'}]}
-        key={item.id}>
-        <View>
-          <View>
-            <TouchableOpacity
-              onPress={() => navigation.navigate('PropertyDetails', {item})}>
-              <Image source={item.image} />
-            </TouchableOpacity>
-          </View>
-          <View style={styles.directionView}>
-            <View style={styles.priceView}>
-              <FontAwesome
-                name="rupee"
-                size={22}
-                color="#073762"
-                style={styles.icon}
-              />
-              <Text style={styles.rentText}>{item.rent}</Text>
-              <Text style={styles.monthText}>/month</Text>
-            </View>
-            <View style={styles.circle}>
-              <TouchableOpacity onPress={() => handleAddToFavorites(item)}>
-                <AntDesign
-                  name={
-                    favorites.find(favoriteItem => item.id === favoriteItem.id)
-                      ? 'heart'
-                      : 'hearto'
-                  }
-                  color={
-                    favorites.find(favoriteItem => item.id === favoriteItem.id)
-                      ? 'red'
-                      : '#073762'
-                  }
-                  size={22}
-                />
-              </TouchableOpacity>
-            </View>
-            <Text style={styles.rentText1}>{item.rooms}</Text>
-            <Text style={[styles.monthText, {left: responsiveWidth(4)}]}>
-              {item.location}
-            </Text>
-            <View style={styles.line} />
-            <View style={styles.iconsView}>
-              <View style={styles.carIconView}>
-                <AntDesign name="car" color="#073762" size={20} />
-                <Text style={styles.numberText}>3</Text>
-              </View>
-              <View style={styles.carIconView}>
-                <FontAwesome name="bathtub" color="#073762" size={20} />
-                <Text style={styles.numberText}>2</Text>
-              </View>
-              <View style={styles.carIconView}>
-                <Image source={require('../Images/SquareMeters.png')} />
-                <Text style={styles.numberText}>5x7 m²</Text>
-              </View>
-            </View>
-          </View>
-        </View>
-      </View>
-    );
+    dispatch(addToFavorites(item));
   };
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar hidden={true} />
-      <View style={styles.headerView}>
-        <View style={styles.logoView}>
-          <Image source={require('../Images/Vector1.png')} />
-          <View style={styles.iconView}>
-            <TouchableOpacity>
-              <Ionicons
-                name="notifications-outline"
-                size={20}
-                color="#073762"
-              />
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigation.navigate('MenuPage')}>
-              <FontAwesome5 name="grip-lines" size={20} color="#073762" />
-            </TouchableOpacity>
+      <ScrollView>
+        <View style={styles.headerView}>
+          <View style={styles.logoView}>
+            <Image source={require('../Images/Vector1.png')} />
+            <View style={styles.iconView}>
+              <TouchableOpacity>
+                <Ionicons
+                  name="notifications-outline"
+                  size={20}
+                  color="#073762" 
+                />
+              </TouchableOpacity>
+              <TouchableOpacity onPress={() => navigation.navigate('MenuPage')}>
+                <FontAwesome5 name="grip-lines" size={20} color="#073762" />
+              </TouchableOpacity>
+            </View>
           </View>
         </View>
-      </View>
-      <Text style={styles.headerText}>Search Properties to rent</Text>
-      <TouchableOpacity
-        style={styles.discoverButton}
-        onPress={() => navigation.navigate('DiscoverMore')}>
-        <Feather name="globe" color="white" size={20} />
-        <Text style={styles.buttonText}>Discover More</Text>
-      </TouchableOpacity>
-      <View style={styles.searchBarView}>
-        <View style={styles.passwordView}>
-          <TextInput
-            placeholder="Search location"
-            style={styles.input1}
-            placeholderTextColor="#9b9b9b"
-          />
-          <TouchableOpacity style={styles.searchIconView}>
-            <AntDesign name="search1" size={20} color="white" />
+        <Text style={styles.headerText}>Search Properties to rent</Text>
+        <TouchableOpacity
+          style={styles.discoverButton} 
+          onPress={() => navigation.navigate('DiscoverMore')}>
+          <Feather name="globe" color="white" size={20} />
+          <Text style={styles.buttonText}>Discover More</Text>
+        </TouchableOpacity>
+        <View style={styles.searchBarView}>
+          <View style={styles.passwordView}>
+            <TextInput
+              placeholder="Search location"
+              style={styles.input1}
+              placeholderTextColor="#9b9b9b"
+            />
+            <TouchableOpacity style={styles.searchIconView}>
+              <AntDesign name="search1" size={20} color="white" />
+            </TouchableOpacity>
+          </View>
+          <TouchableOpacity
+            style={styles.filterIconView}
+            onPress={() => setModalVisible(true)}>
+            <AntDesign name="filter" color="white" size={20} />
           </TouchableOpacity>
         </View>
-        <TouchableOpacity
-          style={styles.filterIconView}
-          onPress={() => setModalVisible(true)}>
-          <AntDesign name="filter" color="white" size={20} />
-        </TouchableOpacity>
-      </View>
-      {modalVisible && (
-        <FiltersScreen
-          modalVisible={true}
-          closeModal={() => setModalVisible(false)}
-        />
-      )}
-      <FlatList data={Properties} renderItem={renderItems} />
+        {modalVisible && (
+          <FiltersScreen
+            modalVisible={true}
+            closeModal={() => setModalVisible(false)}
+          />
+        )}
+        {Properties.map(item => {
+          return (
+            <View style={styles.itemView} key={item.id}>
+              <TouchableOpacity onPress={() => navigation.navigate("PropertyDetails",{item})}>
+                <Image source={item.image} style={styles.image} />
+              </TouchableOpacity>
+              <View style={styles.descriptionView}>
+                <View style={styles.popularTextView}>
+                  <View style={styles.popularTextDirectionView}>
+                    <Ionicons name="sparkles" color="white" size={16} />
+                    <Text style={styles.popularText}>POPULAR</Text>
+                  </View>
+                </View>
+                <View style={styles.favoriteIconView}>
+                  <View>
+                    <View style={styles.rupeeView}>
+                      <FontAwesome5
+                        name="rupee-sign"
+                        color="#073762"
+                        size={20}
+                        style={styles.icon}
+                      />
+                      <Text style={styles.rentText}>{item.rent}</Text>
+                    </View>
+                    <Text style={styles.roomsText}>{item.rooms}</Text>
+                  </View>
+                  <View style={styles.circle1}>
+                    <TouchableOpacity
+                      onPress={() => handleAddToFavorites(item)}>
+                      <AntDesign
+                        name={
+                          favorites.find(
+                            favoriteItem => item.id === favoriteItem.id,
+                          )
+                            ? 'heart'
+                            : 'hearto'
+                        }
+                        color={
+                          favorites.find(
+                            favoriteItem => item.id === favoriteItem.id,
+                          )
+                            ? 'red'
+                            : '#073762'
+                        }
+                        size={22}
+                      />
+                    </TouchableOpacity>
+                  </View>
+                </View>
+                <Text style={styles.locationText}>{item.location} </Text>
+                <View style={styles.line} />
+                <View style={styles.iconView1}>
+                  <View style={styles.roomView}>
+                    <Ionicons name="bed-outline" size={20} color="#073762" />
+                    <Text style={styles.bedText}>3</Text>
+                  </View>
+                  <View style={styles.roomView}>
+                    <Ionicons name="bed-outline" size={20} color="#073762" />
+                    <Text style={styles.bedText}>2</Text>
+                  </View>
+                  <View style={styles.roomView}>
+                    <Ionicons name="bed-outline" size={20} color="#073762" />
+                    <Text style={styles.bedText}>5x7 m²</Text>
+                  </View>
+                </View>
+              </View>
+            </View>
+          );
+        })}
+      </ScrollView>
     </SafeAreaView>
   );
 };
@@ -238,6 +242,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#ffffff',
     alignSelf: 'center',
     fontFamily: 'PlusJakartaSans j',
+    padding:10
   },
   searchIconView: {
     backgroundColor: '#073762',
@@ -252,7 +257,7 @@ const styles = StyleSheet.create({
     marginHorizontal: responsiveWidth(4),
     alignItems: 'center',
     marginTop: responsiveHeight(2.4),
-    marginBottom:responsiveHeight(4)
+    marginBottom: responsiveHeight(4),
   },
   filterIconView: {
     backgroundColor: '#073762',
@@ -262,40 +267,6 @@ const styles = StyleSheet.create({
     width: responsiveWidth(10),
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  image: {
-    alignSelf: 'center',
-  },
-  priceView: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginTop: responsiveHeight(4.8),
-    marginLeft: responsiveWidth(4),
-  },
-  rentText: {
-    color: '#073762',
-    fontSize: responsiveFontSize(3),
-    fontFamily: 'PlusJakartaSans c',
-  },
-  rentText1: {
-    color: '#073762',
-    fontSize: responsiveFontSize(3),
-    fontFamily: 'PlusJakartaSans c',
-    marginLeft: responsiveWidth(4),
-  },
-  monthText: {
-    color: '#9fc5e9',
-    fontSize: responsiveFontSize(2),
-    fontFamily: 'PlusJakartaSans j',
-  },
-  icon: {
-    marginTop: responsiveHeight(1.2),
-  },
-  bestSellerView: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    margin: 10,
   },
   imgView: {
     borderRadius: 10,
@@ -363,28 +334,6 @@ const styles = StyleSheet.create({
     left: responsiveWidth(28),
     fontSize: responsiveFontSize(1.8),
   },
-  line1: {
-    height: responsiveHeight(0.1),
-    width: responsiveWidth(90),
-    backgroundColor: '#9fc5e9',
-    alignSelf: 'center',
-    marginTop: responsiveHeight(2),
-  },
-  detectLocationText: {
-    color: '#718096',
-    fontFamily: 'PlusJakartaSans a',
-    fontSize: responsiveFontSize(1.9),
-    marginTop: responsiveHeight(1.8),
-    left: responsiveWidth(5.2),
-  },
-  locationIconView: {
-    flexDirection: 'row',
-    width: responsiveWidth(42),
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    left: responsiveWidth(8),
-    marginTop: responsiveHeight(1),
-  },
   myLocationText: {
     color: '#000000',
     fontSize: responsiveFontSize(1.9),
@@ -422,94 +371,126 @@ const styles = StyleSheet.create({
     fontFamily: 'PlusJakartaSans j',
     width: responsiveWidth(60),
   },
-  priceRangeText: {
-    color: '#000000',
-    fontSize: responsiveFontSize(2.2),
-    fontFamily: 'PlusJakartaSans a',
-    left: responsiveWidth(5.8),
-    marginTop: responsiveHeight(2.2),
-  },
-  priceDirectionView: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    width: responsiveWidth(80),
-    alignSelf: 'center',
-  },
-  slider: {
-    width: responsiveWidth(94),
-    alignSelf: 'center',
-    marginTop: responsiveHeight(10),
-  },
-  image1: {
-    alignSelf: 'center',
-    marginTop: responsiveHeight(60),
+  popularTextView: {
+    backgroundColor: '#073762',
+    width: responsiveWidth(40),
+    borderRadius: 12,
+    height: responsiveHeight(5),
+    alignItems: 'center',
+    justifyContent: 'center',
     position: 'absolute',
+    top: responsiveHeight(-2.8),
+    left: responsiveWidth(-3.2),
   },
-  maxPrice: {
-    color: '#000000',
+  popularText: {
+    color: 'white',
+    fontSize: responsiveFontSize(1.6),
     fontFamily: 'PlusJakartaSans a',
-    fontSize: responsiveFontSize(2.6),
   },
-  minPrice: {
-    color: '#000000',
+  itemView: {
+    flex: 1,
+    alignSelf: 'center',
+    margin: 8,
+  },
+  image: {
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
+  },
+  descriptionView: {
+    borderWidth: 2,
+    borderRadius: 10,
+    borderColor: '#9fc5e9',
+    borderTopWidth: 0,
+    borderTopLeftRadius: 0,
+    borderTopRightRadius: 0,
+  },
+  rentText: {
+    color: '#073762',
+    fontSize: responsiveFontSize(3),
     fontFamily: 'PlusJakartaSans a',
-    fontSize: responsiveFontSize(2.6),
   },
-  radioButtonVew: {
+  rupeeView: {
     flexDirection: 'row',
     alignItems: 'center',
     left: responsiveWidth(4),
   },
-  commercialText: {
-    fontFamily: 'PlusJakartaSans j',
-    color: '#000000',
-    textAlign: 'center',
+  roomsText: {
+    color: '#073762',
+    fontSize: responsiveFontSize(3),
+    fontFamily: 'PlusJakartaSans a',
+    left: responsiveWidth(4),
   },
-  buttonView: {
-    backgroundColor: '#ffffff',
-    height: responsiveHeight(12),
-    marginBottom: responsiveHeight(6),
-    marginTop: responsiveHeight(8),
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  buttonDirectionView: {
+  favoriteIconView: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    width: responsiveWidth(78),
     alignItems: 'center',
+    width: responsiveWidth(84),
+    alignSelf: 'center',
+    marginTop: responsiveHeight(4),
+    marginBottom: responsiveHeight(1),
   },
-  button: {
-    height: responsiveHeight(7.2),
-    backgroundColor: '#f7f7fd',
-    width: responsiveWidth(36),
-    borderRadius: 8,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  activeButton: {
-    height: responsiveHeight(7.2),
-    backgroundColor: '#073762',
-    width: responsiveWidth(36),
-    borderRadius: 8,
+  circle1: {
+    height: 50,
+    width: 50,
+    borderRadius: 25,
+    borderWidth: 1,
+    borderColor: '#9fc5e9',
     alignItems: 'center',
     justifyContent: 'center',
   },
-  activeButtonText: {
-    color: 'white',
-    fontFamily: 'PlusJakartaSans a',
+  icon: {
+    marginTop: responsiveHeight(1),
   },
-  buttonText1: {
-    color: '#073762',
-    fontFamily: 'PlusJakartaSans a',
+  locationText: {
+    color: '#9b9b9b',
+    left: responsiveWidth(8),
+    fontSize: responsiveFontSize(2),
+    fontFamily: 'PlusJakartaSans j',
+    marginBottom: responsiveHeight(1),
   },
-  modalView: {
-    backgroundColor: '#f4faff',
-    height: responsiveHeight(72),
-    position: 'absolute',
-    bottom: 0,
-    width: responsiveWidth(100),
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
+  locationText1: {
+    color: '#9b9b9b',
+    fontSize: responsiveFontSize(1.8),
+    fontFamily: 'PlusJakartaSans j',
+  },
+  ownerview: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: responsiveWidth(90),
+  },
+  line2: {
+    height: responsiveHeight(0.2),
+    width: responsiveWidth(84),
+    backgroundColor: '#9fc5e9',
+    marginBottom: responsiveWidth(2.8),
+    alignSelf: 'center',
+  },
+  iconView1: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: responsiveWidth(44),
+    marginBottom: responsiveHeight(2.8),
+    alignItems: 'center',
+    left: responsiveWidth(6),
+  },
+  roomView: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  bedText: {
+    color: '#9b9b9b',
+    fontSize: responsiveFontSize(1.8),
+    fontFamily: 'PlusJakartaSans j',
+    left: responsiveWidth(2),
+  },
+  bottomview: {
+    marginBottom: responsiveHeight(10),
+  },
+  popularTextDirectionView: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: responsiveWidth(22),
+    alignItems: 'center',
   },
 });

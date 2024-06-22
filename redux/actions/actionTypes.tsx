@@ -2,6 +2,7 @@ import {
   AddToFavorites,
   FetchProperties,
   Property,
+  RemoveAll,
   RemoveFavorires,
 } from './actions';
 
@@ -19,3 +20,8 @@ export const removeFavorites = (item: Property) => ({
   type: RemoveFavorires,
   payload: item,
 });
+
+export const removeAllFromFavorites = () => ({
+  type:RemoveAll,
+  // payload:items
+})

@@ -133,7 +133,6 @@ const AboutUs: React.FC<Props> = ({navigation}) => {
             eiusmod tempor incididunt ut labore et dolore magna aliqua.
           </Text>
         </View>
-
         <Image source={require('../Images/image2.png')} style={styles.image1} />
       </ScrollView>
     </SafeAreaView>

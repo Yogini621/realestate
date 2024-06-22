@@ -172,7 +172,12 @@ const LandingPage: React.FC<Props> = ({navigation}) => {
               </Text>
             </View>
           </View>
-          <Image source={require('../Images/house.png')} style={styles.image} />
+          <Image source={require('../Images/house.png')} 
+          style={styles.image} 
+          />
+          <View style = {{backgroundColor:'green'}}>
+
+          </View>
         </View>
         <View style={styles.newWayView}>
           <View style={styles.textView}>
@@ -415,7 +420,8 @@ const styles = StyleSheet.create({
     fontSize: responsiveFontSize(1.5),
   },
   propertiesView: {
-    height: responsiveHeight(96),
+    height: responsiveHeight(92.6),
+    // flex: 1,
     backgroundColor: '#9fc5e9',
   },
   marketView: {
@@ -446,7 +452,7 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     alignItems: 'center',
     justifyContent: 'center',
-    left: responsiveWidth(2),
+    left: responsiveWidth(4),
     marginTop: responsiveHeight(2),
   },
   circle: {
@@ -474,18 +480,18 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     width: responsiveWidth(44),
-    left: responsiveWidth(2),
-    marginTop: responsiveHeight(4),
+    left: responsiveWidth(6.2),
+    marginTop: responsiveHeight(2.8),
   },
   rentersText: {
     color: '#073762',
-    fontSize: responsiveFontSize(2.2),
+    fontSize: responsiveFontSize(2),
     fontFamily: 'PlusJakartaSans a',
   },
   believeText: {
     fontFamily: 'PlusJakrtaSans a',
     color: 'black',
-    fontSize: responsiveFontSize(1.5),
+    fontSize: responsiveFontSize(1.4),
     lineHeight: 26,
   },
   rentersText1: {
@@ -500,13 +506,16 @@ const styles = StyleSheet.create({
     fontSize: responsiveFontSize(1.5),
     lineHeight: 26,
     left: responsiveWidth(4.2),
+    width: responsiveWidth(48),
   },
   image: {
-    height: '70%',
-    width: '96%',
-    bottom: 136,
-    alignSelf: 'flex-end',
-    resizeMode: 'cover',
+    resizeMode: 'contain',
+    left: responsiveWidth(6),
+    height: responsiveHeight(70),
+    width: responsiveWidth(94),
+    top:responsiveHeight(-20),
+    zIndex:-1,
+    // backgroundColor:'green'
   },
   newWayView: {
     backgroundColor: '#9fc5e9',

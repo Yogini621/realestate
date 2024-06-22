@@ -1,6 +1,6 @@
 import 'react-native-gesture-handler';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import Rent from './Rent';
 import Buy from './Buy';
@@ -14,9 +14,9 @@ import {
   responsiveWidth,
 } from 'react-native-responsive-dimensions';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import FontAwesome6Icon from 'react-native-vector-icons/FontAwesome6';
 import MatetialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Drawer = createDrawerNavigator();
 
@@ -25,6 +25,25 @@ interface Props {
 }
 
 const MenuPage: React.FC<Props> = ({navigation}) => {
+  const [name, setName] = useState('');
+  const [contact, setContact] = useState('');
+  const [email, setEmail] = useState('');
+
+  useEffect(() => {
+    handleRetrieveCredentials()
+  },[])
+
+  const handleRetrieveCredentials = async () => {
+    const userDetails = await AsyncStorage.getItem('userData');
+    if (userDetails !== null) {
+      const userData = JSON.parse(userDetails);
+      console.log(userData.name)
+      setName(userData.name)
+      setContact(userData.contact)
+      setEmail(userData.email)
+    }
+  };
+
   return (
     <Drawer.Navigator
       defaultStatus="open"
@@ -35,8 +54,8 @@ const MenuPage: React.FC<Props> = ({navigation}) => {
             <View style={styles.userDirectionView}>
               <Image source={require('../Images/Profileimage.png')} />
               <View style={styles.detailsView}>
-                <Text style={styles.userName}>Joseph Kishore</Text>
-                <Text style={styles.userContact}>+91 9824254322</Text>
+                <Text style={styles.userName}>{name}</Text>
+                <Text style={styles.userContact}>{contact}</Text>
                 <TouchableOpacity style={styles.editButton}>
                   <MaterialIcons name="edit" color="white" size={16} />
                   <Text style={styles.buttonText}>Edit Profile</Text>

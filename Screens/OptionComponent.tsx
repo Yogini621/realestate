@@ -7,14 +7,15 @@ import {
 
 interface Props {
   optionText: string;
-  onPress: () => void;
+  onPress?: () => void;
   color?: string;
+  modalVisible?:() => void
 }
 
 const OptionComponent = (props: Props) => {
   return (
     <View>
-      <TouchableOpacity onPress={props.onPress} style={styles.button}>
+      <TouchableOpacity onPress={props.onPress || props.modalVisible} style={styles.button}>
         <Text style={[styles.optionText, {color: props.color}]}>
           {props.optionText}
         </Text>

@@ -22,6 +22,7 @@ import {
 } from 'react-native-responsive-dimensions';
 import {Formik} from 'formik';
 import * as Yup from 'yup';
+// import {ProgressSteps, ProgressStep} from 'react-native-progress-steps';
 
 interface Props {
   navigation: any;
@@ -133,8 +134,11 @@ const TenentApplicationForm: React.FC<Props> = ({navigation, route}) => {
           </View>
         </View>
         <Text style={styles.stepText}>STEP 1 OF 4</Text>
+         {/* <View>
+          <ProgressSteps> */}
 
-        <View style={styles.stepView}></View>
+        <View style={styles.stepView}>
+        </View>
         <Text style={styles.fillText}>Fill The Application</Text>
         <View style={styles.informationView}>
           <Text style={styles.informationText}>
@@ -169,108 +173,113 @@ const TenentApplicationForm: React.FC<Props> = ({navigation, route}) => {
             isSubmitting,
           }) => (
             <View>
-              <View style={styles.detailsView}>
-                <Text style={styles.personalDetailsText}>Personal Details</Text>
-                <Text style={styles.labelText}>Full name</Text>
-                <TextInput
-                  style={styles.input}
-                  placeholder="Enter full name"
-                  placeholderTextColor="#9b9b9b"
-                  onChangeText={handleChange('name')}
-                  onBlur={handleBlur('name')}
-                />
-                {touched.name && errors.name && <Text>{errors.name}</Text>}
-                <Text style={styles.labelText}>Date of Birth</Text>
-                <View style={styles.inputView}>
+                <View style={styles.detailsView}>
+                  <Text style={styles.personalDetailsText}>
+                    Personal Details
+                  </Text>
+                  <Text style={styles.labelText}>Full name</Text>
                   <TextInput
-                    style={styles.input1}
-                    placeholder="DD/MM/YYYY"
+                    style={styles.input}
+                    placeholder="Enter full name"
                     placeholderTextColor="#9b9b9b"
-                    onChangeText={handleChange('dateOfBirth')}
-                    onBlur={handleBlur('dateOfBirth')}
+                    onChangeText={handleChange('name')}
+                    onBlur={handleBlur('name')}
                   />
-                  <Ionicons
-                    name="calendar-outline"
-                    size={20}
-                    color="#9b9b9b"
-                    style={styles.icon}
-                  />
-                </View>
+                  {touched.name && errors.name && <Text>{errors.name}</Text>}
+                  <Text style={styles.labelText}>Date of Birth</Text>
+                  <View style={styles.inputView}>
+                    <TextInput
+                      style={styles.input1}
+                      placeholder="DD/MM/YYYY"
+                      placeholderTextColor="#9b9b9b"
+                      onChangeText={handleChange('dateOfBirth')}
+                      onBlur={handleBlur('dateOfBirth')}
+                    />
+                    <Ionicons
+                      name="calendar-outline"
+                      size={20}
+                      color="#9b9b9b"
+                      style={styles.icon}
+                    />
+                  </View>
 
-                {touched.dateOfBirth && errors.dateOfBirth && (
-                  <Text>{errors.dateOfBirth}</Text>
-                )}
-                <Text style={styles.labelText}>Email</Text>
-                <TextInput
-                  style={styles.input}
-                  placeholder="hi@example.com"
-                  placeholderTextColor="#9b9b9b"
-                  onChangeText={handleChange('email')}
-                  onBlur={handleBlur('email')}
-                />
-                {touched.email && errors.email && <Text>{errors.email}</Text>}
-                <Text style={styles.labelText}>Phone Number</Text>
-                <TextInput
-                  style={styles.input}
-                  placeholder="+91 XXXX XXX XXX "
-                  placeholderTextColor="#9b9b9b"
-                  onChangeText={handleChange('contact')}
-                  onBlur={handleBlur('contact')}
-                />
-                {touched.contact && errors.contact && (
-                  <Text>{errors.contact}</Text>
-                )}
-                <Text style={styles.labelText}>
-                  Gross Annual Employment Income
-                </Text>
-                <TextInput
-                  style={styles.input}
-                  placeholder="e.g.50000"
-                  placeholderTextColor="#9b9b9b"
-                  onChangeText={handleChange('income')}
-                  onBlur={handleBlur('income')}
-                />
-                {touched.income && errors.income && (
-                  <Text>{errors.income}</Text>
-                )}
-                <Text style={styles.labelText}>Occupants</Text>
-                <TextInput
-                  style={styles.input}
-                  placeholder="Enter Occupants"
-                  placeholderTextColor="#9b9b9b"
-                  onChangeText={handleChange('occupation')}
-                  onBlur={handleBlur('occupation')}
-                />
-                {touched.occupation && errors.occupation && (
-                  <Text>{errors.occupation}</Text>
-                )}
-                <Text style={styles.labelText}>Move in Date</Text>
-                <View style={styles.inputView}>
+                  {touched.dateOfBirth && errors.dateOfBirth && (
+                    <Text>{errors.dateOfBirth}</Text>
+                  )}
+                  <Text style={styles.labelText}>Email</Text>
                   <TextInput
-                    style={styles.input1}
-                    placeholder="DD/MM/YYYY"
+                    style={styles.input}
+                    placeholder="hi@example.com"
                     placeholderTextColor="#9b9b9b"
-                    onChangeText={handleChange('moveDate')}
-                    onBlur={handleBlur('moveDate')}
+                    onChangeText={handleChange('email')}
+                    onBlur={handleBlur('email')}
                   />
-                  <Ionicons
-                    name="calendar-outline"
-                    size={20}
-                    color="#9b9b9b"
-                    style={styles.icon}
+                  {touched.email && errors.email && <Text>{errors.email}</Text>}
+                  <Text style={styles.labelText}>Phone Number</Text>
+                  <TextInput
+                    style={styles.input}
+                    placeholder="+91 XXXX XXX XXX "
+                    placeholderTextColor="#9b9b9b"
+                    onChangeText={handleChange('contact')}
+                    onBlur={handleBlur('contact')}
                   />
+                  {touched.contact && errors.contact && (
+                    <Text>{errors.contact}</Text>
+                  )}
+                  <Text style={styles.labelText}>
+                    Gross Annual Employment Income
+                  </Text>
+                  <TextInput
+                    style={styles.input}
+                    placeholder="e.g.50000"
+                    placeholderTextColor="#9b9b9b"
+                    onChangeText={handleChange('income')}
+                    onBlur={handleBlur('income')}
+                  />
+                  {touched.income && errors.income && (
+                    <Text>{errors.income}</Text>
+                  )}
+                  <Text style={styles.labelText}>Occupants</Text>
+                  <TextInput
+                    style={styles.input}
+                    placeholder="Enter Occupants"
+                    placeholderTextColor="#9b9b9b"
+                    onChangeText={handleChange('occupation')}
+                    onBlur={handleBlur('occupation')}
+                  />
+                  {touched.occupation && errors.occupation && (
+                    <Text>{errors.occupation}</Text>
+                  )}
+                  <Text style={styles.labelText}>Move in Date</Text>
+                  <View style={styles.inputView}>
+                    <TextInput
+                      style={styles.input1}
+                      placeholder="DD/MM/YYYY"
+                      placeholderTextColor="#9b9b9b"
+                      onChangeText={handleChange('moveDate')}
+                      onBlur={handleBlur('moveDate')}
+                    />
+                    <Ionicons
+                      name="calendar-outline"
+                      size={20}
+                      color="#9b9b9b"
+                      style={styles.icon}
+                    />
+                  </View>
+                  {touched.moveDate && errors.moveDate && (
+                    <Text>{errors.moveDate}</Text>
+                  )}
                 </View>
-                {touched.moveDate && errors.moveDate && (
-                  <Text>{errors.moveDate}</Text>
-                )}
-              </View>
-              <View style={styles.line} />
-              <TouchableOpacity style={styles.continueButton}>
-                <Text style={styles.continueButtonText}>Continue</Text>
-              </TouchableOpacity>
+                <View style={styles.line} />
+                <TouchableOpacity style={styles.continueButton}>
+                  <Text style={styles.continueButtonText}>Continue</Text>
+                </TouchableOpacity>
             </View>
           )}
         </Formik>
+        {/* </ProgressSteps>
+        </View> */}
+
         <View style={styles.privacyView}>
           <Image source={require('../Images/Vector1.png')} />
           <View style={styles.dot} />

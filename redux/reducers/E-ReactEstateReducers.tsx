@@ -4,6 +4,7 @@ import {
   FetchProperties,
   AddToFavorites,
   RemoveFavorires,
+  RemoveAll,
 } from '../actions/actions';
 
 const initialState: RealEstateAppState = {
@@ -34,6 +35,11 @@ export const RealEstateAppReducers = (
         ...state,
         favorites: updatedItems,
       };
+    case RemoveAll:
+      return {
+        ...state,
+        favorites:[]
+      }
     default:
       return state;
   }
