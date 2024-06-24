@@ -1,15 +1,14 @@
 import 'react-native-gesture-handler';
-import {StyleSheet} from 'react-native';
 import React from 'react';
-import LandingPage from './Screens/LandingPage';
-import SignupPage from './Screens/SignupPage';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import SigninPage from './Screens/SigninPage';
 import HomePage from './Screens/HomePage';
-import ForgotPasswordPage from './Screens/ForgotPasswordPage';
 import {Provider} from 'react-redux';
 import store from './redux/store';
+import LandingPage from './Screens/LandingPage';
+import SignupPage from './Screens/SignupPage';
+import SigninPage from './Screens/SigninPage';
+import ForgotPasswordPage from './Screens/ForgotPasswordPage';
 import ForgotPassword2 from './Screens/ForgotPassword2';
 import MenuPage from './Screens/MenuPage';
 import Faqs from './Screens/Faqs';
@@ -23,7 +22,6 @@ import Sell from './Screens/Sell';
 import Favorites from './Screens/Favorites';
 import DiscoverMore from './Screens/DiscoverMore';
 import SwipeUp from './Screens/SwipeUp';
-import Filterscreen from './Screens/Filterscreen';
 import Profile from './Screens/Profile';
 import MyPurchasesPage from './Screens/MyPurchasesPage';
 import Settings from './Screens/Settings';
@@ -41,7 +39,7 @@ const App = () => {
     <Provider store={store}>
       <NavigationContainer>
         <Stack.Navigator>
-          {/* <Stack.Screen
+        <Stack.Screen
             name="LandingPage"
             component={LandingPage}
             options={{headerShown: false}}
@@ -65,7 +63,7 @@ const App = () => {
             name="ForgotPassword2"
             component={ForgotPassword2}
             options={{headerShown: false}}
-          /> */}
+          /> 
           <Stack.Screen
             name="HomePage"
             component={HomePage}
@@ -182,3 +180,4 @@ const App = () => {
   );
 };
 export default App;
+

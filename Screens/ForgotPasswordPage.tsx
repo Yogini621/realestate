@@ -54,7 +54,7 @@ const ForgotPasswordPage: React.FC<Props> = ({navigation}) => {
 
   const ValidateOtp = (enteredOtp: string) => {
     if (otp === enteredOtp) {
-      navigation.navigate('ForgotPassword2');
+      navigation.navigate('ForgotPassword2',{});
     }
   };
 

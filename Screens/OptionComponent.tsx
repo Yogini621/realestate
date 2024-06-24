@@ -1,5 +1,5 @@
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import React from 'react';
+import React, { useState } from 'react';
 import {
   responsiveFontSize,
   responsiveHeight,
@@ -13,10 +13,18 @@ interface Props {
 }
 
 const OptionComponent = (props: Props) => {
+
+const [clicked,setClicked] = useState(false)
+
+const handlePress = () => {
+  setClicked(!clicked)
+ props.onPress
+}
+
   return (
     <View>
       <TouchableOpacity onPress={props.onPress || props.modalVisible} style={styles.button}>
-        <Text style={[styles.optionText, {color: props.color}]}>
+        <Text style={[styles.optionText, clicked && styles.seletText]}>
           {props.optionText}
         </Text>
       </TouchableOpacity>
@@ -35,5 +43,10 @@ const styles = StyleSheet.create({
   button: {
     alignSelf: 'center',
     marginTop: responsiveHeight(4),
+  },
+  seletText: {
+    color: '#222222',
+    fontSize: responsiveFontSize(1.8),
+    fontFamily: 'PlusJakartaSans m',
   },
 });

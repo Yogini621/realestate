@@ -1,4 +1,5 @@
 import {
+  Alert,
   Image,
   Modal,
   SafeAreaView,
@@ -26,6 +27,7 @@ import OptionComponent from './OptionComponent';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import PropertyPropsComponent from './PropertyPropsComponent';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+
 interface Props {
   navigation: any;
 }
@@ -39,9 +41,10 @@ const Profile: React.FC<Props> = ({navigation}) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [contact, setContact] = useState('');
-  const [oldPassword,setOldPassword] = useState('')
-  const [newPassword,setNewPassword]  =useState('')
-  const [confirmPassword,setConfirmPassword] = useState('')
+  const [oldPassword, setOldPassword] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [clicked, setClicked] = useState(false);
 
   const toogleButton = () => {
     setSelectButton(!selectButton);
@@ -68,9 +71,48 @@ const Profile: React.FC<Props> = ({navigation}) => {
     }
   };
 
-  const handleEditChanges = () => {
+  const handleEditChanges = async () => {
+    const userData = {name, email, contact};
+    await AsyncStorage.setItem('userData', JSON.stringify(userData));
+    setEditModal(false);
+  };
 
-  }
+  const handleChangePassword = async () => {
+    const userDetails = await AsyncStorage.getItem('userDta');
+    if (userDetails !== null) {
+      const userData = JSON.parse(userDetails);
+
+      if (oldPassword === userData.password) {
+        if (newPassword === confirmPassword) {
+          userData.password = newPassword;
+          await AsyncStorage.setItem('userData', JSON.stringify(userData));
+          Alert.alert('Password Changed Successfully');
+        } else {
+          Alert.alert('NewPassword and Confirm password don not match');
+        }
+      } else {
+        Alert.alert('Old Password is not matched');
+      }
+    }
+
+    if (newPassword === confirmPassword) {
+      setChangePasswordModal(false);
+    } else {
+      Alert.alert('New Password and confirm Password do not match');
+    }
+    setSelectButton(!selectButton);
+    setSelectButton1(false);
+  };
+
+  const handleLogout = async () => {
+    const storedUserDetails = await AsyncStorage.getItem('userData');
+    if (storedUserDetails !== null) {
+      let userDetails = JSON.parse(storedUserDetails);
+    }
+    const removeData = await AsyncStorage.removeItem('userData');
+    console.log(removeData, 'removedata');
+    navigation.navigate('SigninPage');
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -122,17 +164,17 @@ const Profile: React.FC<Props> = ({navigation}) => {
           <OptionComponent
             optionText="My Favorites"
             onPress={() => navigation.navigate('Favorites')}
-            color="#33333380"
+            // color="#33333380"
           />
           <OptionComponent
             optionText="My Purchases"
             onPress={() => navigation.navigate('MyPurchasesPage')}
-            color="#33333380"
+            // color="#33333380"
           />
           <OptionComponent
             optionText="Settings"
             onPress={() => navigation.navigate('Settings')}
-            color="#33333380"
+            // color="#33333380"
           />
           <OptionComponent
             optionText="Contact Us"
@@ -272,32 +314,37 @@ const Profile: React.FC<Props> = ({navigation}) => {
             <View style={styles.iputView}>
               <Text style={styles.labelText}>Full Name</Text>
               <TextInput
-                placeholder="Joseph K"
+                // placeholder="Joseph K"
                 style={styles.input1}
                 value={name}
                 placeholderTextColor="#666666"
+                onChangeText={setName}
               />
             </View>
             <View style={styles.iputView}>
               <Text style={styles.labelText}>Phone Number</Text>
               <TextInput
-                placeholder="9000459209"
+                // placeholder="9000459209"
                 placeholderTextColor="#666666"
                 style={styles.input1}
                 value={contact}
+                onChangeText={setContact}
               />
             </View>
             <View style={styles.iputView}>
               <Text style={styles.labelText}>Email ID</Text>
               <TextInput
-                placeholder="Josephexample@gmail.com"
+                // placeholder="Josephexample@gmail.com"
                 style={styles.input1}
                 value={email}
                 placeholderTextColor="#666666"
+                onChangeText={setEmail}
               />
             </View>
             <View style={styles.buttonView}>
-              <TouchableOpacity style={styles.activeButton}>
+              <TouchableOpacity
+                style={styles.activeButton}
+                onPress={handleEditChanges}>
                 <Text style={styles.activeButtonText}>Save</Text>
               </TouchableOpacity>
               <TouchableOpacity
@@ -324,7 +371,9 @@ const Profile: React.FC<Props> = ({navigation}) => {
             <Text style={styles.logoutText}>
               Are you sure you want to logout?
             </Text>
-            <TouchableOpacity style={styles.logOutButton1}>
+            <TouchableOpacity
+              style={styles.logOutButton1}
+              onPress={handleLogout}>
               <Text style={styles.activeButtonText}>Yes,I want to</Text>
             </TouchableOpacity>
             <TouchableOpacity
@@ -385,7 +434,7 @@ const Profile: React.FC<Props> = ({navigation}) => {
                 style={
                   selectButton ? styles.activeButton : styles.inActiveButon
                 }
-                onPress={toogleButton}>
+                onPress={handleChangePassword}>
                 <Text
                   style={
                     selectButton

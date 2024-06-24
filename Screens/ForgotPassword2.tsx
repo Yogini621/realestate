@@ -1,4 +1,5 @@
 import {
+  Alert,
   Image,
   SafeAreaView,
   StyleSheet,
@@ -16,6 +17,7 @@ import {
 import * as Yup from 'yup';
 import {Formik} from 'formik';
 import Feather from 'react-native-vector-icons/Feather';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 interface Props {
   navigation: any;
@@ -29,6 +31,9 @@ interface UserDetails {
 const ForgotPassword2: React.FC<Props> = ({navigation}) => {
   const [isconfirmPasswordsecure, setIsConfirmPasswordSecure] =
     useState<boolean>(false);
+  const [email, setEmail] = useState('');
+  // const [password, setPassword] = useState('');
+  // const [confirmPassword, setConfirmPassword] = useState('');
 
   const handleConfirmPAssword = () => {
     setIsConfirmPasswordSecure(!isconfirmPasswordsecure);
@@ -54,7 +59,26 @@ const ForgotPassword2: React.FC<Props> = ({navigation}) => {
       .required('Password required'),
   });
 
-  const handleFormSubmit = (values: UserDetails) => {};
+  const handleChangePassword = async (values:UserDetails) => {
+    const userDetails = await AsyncStorage.getItem('userDta');
+    if (userDetails !== null) {
+      const userData = JSON.parse(userDetails);
+
+      if (email === userData.email) {
+        if (values.password === values.confirmPassword) {
+          userData.password = values.password;
+          await AsyncStorage.setItem('userData', JSON.stringify(userData));
+          Alert.alert('Password Changed Successfully');
+          navigation.navigate('SigninPage')
+        } else {
+          Alert.alert('NewPassword and Confirm password don not match');
+        }
+      } else {
+        Alert.alert('Old Password is not matched');
+      }
+    }
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.imageView}>
@@ -74,7 +98,7 @@ const ForgotPassword2: React.FC<Props> = ({navigation}) => {
         validateOnChange={true}
         validateOnBlur={true}
         onSubmit={(values: UserDetails) => {
-          handleFormSubmit(values);
+          handleChangePassword(values);
         }}>
         {({
           handleChange,
@@ -133,7 +157,9 @@ const ForgotPassword2: React.FC<Props> = ({navigation}) => {
             {touched.password && errors.password && (
               <Text style={styles.errorText}>{errors.password} </Text>
             )}
-            <TouchableOpacity style={styles.signupButton}>
+            <TouchableOpacity
+              style={styles.signupButton}
+              onPress={() => handleSubmit()}>
               <Text style={styles.signUpButtonText}>Reset Password</Text>
             </TouchableOpacity>
           </View>

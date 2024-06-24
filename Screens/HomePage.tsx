@@ -10,7 +10,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React,{useEffect,useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   responsiveFontSize,
   responsiveHeight,
@@ -23,7 +23,11 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '../redux/reducers';
 import {data} from './data';
-import {addToFavorites, fetchProperties} from '../redux/actions/actionTypes';
+import {
+  addToFavorites,
+  fetchProperties,
+  removeFavorites,
+} from '../redux/actions/actionTypes';
 import {Property} from '../redux/actions/actions';
 import FiltersScreen from './FiltersScreen';
 
@@ -50,9 +54,21 @@ const HomePage: React.FC<Props> = ({navigation}) => {
     dispatch(fetchProperties(response));
   };
 
+  // const handleAddToFavorites = (item: Property) => {
+  //   dispatch(addToFavorites(item));
+  // };
+
   const handleAddToFavorites = (item: Property) => {
-    dispatch(addToFavorites(item));
+    console.log(item);
+    if (favorites.includes(item)) {
+      console.log('item Removed');
+      dispatch(removeFavorites(item));
+    } else {
+      console.log('item Added');
+      dispatch(addToFavorites(item));
+    }
   };
+
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar hidden={true} />
@@ -65,7 +81,7 @@ const HomePage: React.FC<Props> = ({navigation}) => {
                 <Ionicons
                   name="notifications-outline"
                   size={20}
-                  color="#073762" 
+                  color="#073762"
                 />
               </TouchableOpacity>
               <TouchableOpacity onPress={() => navigation.navigate('MenuPage')}>
@@ -76,7 +92,7 @@ const HomePage: React.FC<Props> = ({navigation}) => {
         </View>
         <Text style={styles.headerText}>Search Properties to rent</Text>
         <TouchableOpacity
-          style={styles.discoverButton} 
+          style={styles.discoverButton}
           onPress={() => navigation.navigate('DiscoverMore')}>
           <Feather name="globe" color="white" size={20} />
           <Text style={styles.buttonText}>Discover More</Text>
@@ -107,7 +123,8 @@ const HomePage: React.FC<Props> = ({navigation}) => {
         {Properties.map(item => {
           return (
             <View style={styles.itemView} key={item.id}>
-              <TouchableOpacity onPress={() => navigation.navigate("PropertyDetails",{item})}>
+              <TouchableOpacity
+                onPress={() => navigation.navigate('PropertyDetails', {item})}>
                 <Image source={item.image} style={styles.image} />
               </TouchableOpacity>
               <View style={styles.descriptionView}>
@@ -153,7 +170,7 @@ const HomePage: React.FC<Props> = ({navigation}) => {
                     </TouchableOpacity>
                   </View>
                 </View>
-                <Text style={styles.locationText}>{item.location} </Text>
+                <Text style={styles.locationText}>{item.location}</Text>
                 <View style={styles.line} />
                 <View style={styles.iconView1}>
                   <View style={styles.roomView}>
@@ -242,7 +259,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#ffffff',
     alignSelf: 'center',
     fontFamily: 'PlusJakartaSans j',
-    padding:10
+    padding: 10,
   },
   searchIconView: {
     backgroundColor: '#073762',
@@ -381,6 +398,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: responsiveHeight(-2.8),
     left: responsiveWidth(-3.2),
+    // borderTopLeftRadius:20
   },
   popularText: {
     color: 'white',

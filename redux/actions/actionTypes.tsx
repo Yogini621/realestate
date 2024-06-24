@@ -11,12 +11,12 @@ export const fetchProperties = (properties: Property[]) => ({
   payload: properties,
 });
 
-export const addToFavorites = (item: Property) => ({
+export const addToFavorites = (item:Property) => ({
   type: AddToFavorites,
   payload: item,
 });
 
-export const removeFavorites = (item: Property) => ({
+export const removeFavorites = (item:Property) => ({
   type: RemoveFavorires,
   payload: item,
 });

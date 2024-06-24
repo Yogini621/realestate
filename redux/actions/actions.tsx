@@ -18,7 +18,7 @@ export interface FetchPropertiesAction {
 
 export interface AddToFavoritesAction {
   type: typeof AddToFavorites;
-  payload: Property;
+  payload:Property;
 }
 export interface RemoveAllAction {
   type: typeof RemoveAll;
