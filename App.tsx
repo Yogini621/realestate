@@ -31,6 +31,9 @@ import TermsAndConditions from './Screens/TermsAndConditions';
 import AboutUs from './Screens/AboutUs';
 import PropertyDetails from './Screens/PropertyDeatils';
 import NotificatonList from './Screens/NotificatonList';
+import SellerDashBoard from './SellerScreens/SellerDashBoard';
+import Property from './SellerScreens/Property';
+import AddProperty from './SellerScreens/AddProperty';
 
 const Stack = createNativeStackNavigator();
 
@@ -39,7 +42,7 @@ const App = () => {
     <Provider store={store}>
       <NavigationContainer>
         <Stack.Navigator>
-        <Stack.Screen
+          {/* <Stack.Screen
             name="LandingPage"
             component={LandingPage}
             options={{headerShown: false}}
@@ -172,6 +175,21 @@ const App = () => {
           <Stack.Screen
             name="NotificatonList"
             component={NotificatonList}
+            options={{headerShown: false}}
+          /> */}
+          {/* <Stack.Screen
+            name="Property"
+            component={Property}
+            options={{headerShown: false}}
+          /> */}
+          <Stack.Screen
+            name="AddProperty"
+            component={AddProperty}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="Sell"
+            component={Sell}
             options={{headerShown: false}}
           />
         </Stack.Navigator>
