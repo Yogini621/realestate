@@ -1,4 +1,5 @@
 import {
+  AddDraft,
   AddToFavorites,
   FetchProperties,
   Property,
@@ -23,5 +24,8 @@ export const removeFavorites = (item:Property) => ({
 
 export const removeAllFromFavorites = () => ({
   type:RemoveAll,
-  // payload:items
+})
+export const addDraft = (item:Property) => ({
+  type:AddDraft,
+  payload:item
 })

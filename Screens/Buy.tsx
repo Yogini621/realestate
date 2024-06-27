@@ -22,6 +22,7 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import Entypo from 'react-native-vector-icons/Entypo';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {data2, data3, data4} from './data2';
+
 interface Props {
   navigation: any;
 }
@@ -136,7 +137,7 @@ const Buy: React.FC<Props> = ({navigation}) => {
           </TouchableOpacity>
         </View>
         {data3.map(item => (
-          <View style={styles.itemView}>
+          <View style={styles.itemView} key={item.id}>
             <Image source={item.image} style={styles.image} />
             <View style={styles.descriptionView}>
               <View style={styles.favoriteIconView}>

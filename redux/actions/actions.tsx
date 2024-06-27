@@ -2,6 +2,7 @@ export const FetchProperties = 'FetchProperties';
 export const AddToFavorites = 'AddToFavorites';
 export const RemoveAll = 'RemoveAll';
 export const RemoveFavorires = 'RemoveFavorires';
+export const AddDraft = "AddDraft"
 
 export interface Property {
   id: number;
@@ -30,13 +31,20 @@ export interface RemoveFavoriresAction {
   payload: Property;
 }
 
+export interface AddDraftAction{
+type:typeof AddDraft;
+payload:Property
+}
+
 export type RealEstateAppActionTypes =
   | FetchPropertiesAction
   | AddToFavoritesAction
   | RemoveAllAction
-  | RemoveFavoriresAction;
+  | RemoveFavoriresAction
+  | AddDraftAction
 
 export interface RealEstateAppState {
   properties: Property[];
   favorites: Property[];
+  drafts:Property[];
 }

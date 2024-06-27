@@ -34,6 +34,7 @@ import NotificatonList from './Screens/NotificatonList';
 import SellerDashBoard from './SellerScreens/SellerDashBoard';
 import Property from './SellerScreens/Property';
 import AddProperty from './SellerScreens/AddProperty';
+import RentProperty from './SellerScreens/RentProperty';
 
 const Stack = createNativeStackNavigator();
 
@@ -66,8 +67,8 @@ const App = () => {
             name="ForgotPassword2"
             component={ForgotPassword2}
             options={{headerShown: false}}
-          /> 
-          <Stack.Screen
+          />  */}
+          {/* <Stack.Screen
             name="HomePage"
             component={HomePage}
             options={{headerShown: false}}
@@ -181,7 +182,7 @@ const App = () => {
             name="Property"
             component={Property}
             options={{headerShown: false}}
-          /> */}
+          />
           <Stack.Screen
             name="AddProperty"
             component={AddProperty}
@@ -190,6 +191,11 @@ const App = () => {
           <Stack.Screen
             name="Sell"
             component={Sell}
+            options={{headerShown: false}} */}
+          {/* /> */}
+          <Stack.Screen
+            name="RentProperty"
+            component={RentProperty}
             options={{headerShown: false}}
           />
         </Stack.Navigator>
@@ -198,4 +204,5 @@ const App = () => {
   );
 };
 export default App;
+
 

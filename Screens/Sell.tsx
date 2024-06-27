@@ -31,6 +31,7 @@ const Sell: React.FC<Props> = ({navigation}) => {
   const [rentPropertyState, setRentPropertyState] = useState(false);
   const [residential, setResidential] = useState(false);
   const [commercial, setCommercial] = useState(false);
+  const [propertyType,setPropertyType] = useState("residential")
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar hidden={true} />
@@ -67,7 +68,7 @@ const Sell: React.FC<Props> = ({navigation}) => {
             <Entypo name="home" size={24} color="#073762" />
           </View>
           <View style={styles.sellTextView}>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => setSellPropertyState(true)}>
               <Text style={styles.sellText}>Rent</Text>
               <Text style={styles.lookStraightText}>
                 Proof Of Your Residaency Via Passport / ID Card
@@ -78,7 +79,7 @@ const Sell: React.FC<Props> = ({navigation}) => {
         <View style={styles.getHelpTextView}>
           <Text style={styles.lostText}>Lost or have trouble?</Text>
           <TouchableOpacity style={styles.getHelpView}>
-            <Text style={styles.getHelpText}>{"     "}Get help</Text>
+            <Text style={styles.getHelpText}>{'     '}Get help</Text>
             <MaterialIcons name="arrow-right-alt" size={26} color="#073762" />
           </TouchableOpacity>
         </View>
@@ -98,17 +99,23 @@ const Sell: React.FC<Props> = ({navigation}) => {
             <View style={styles.residentialAndCommercialButtonView}>
               <View style={styles.residentialButtonView}>
                 <RadioButton
-                  status={residential ? 'checked' : 'unchecked'}
+                  status={
+                    propertyType === 'residential' ? 'checked' : 'unchecked'
+                  }
                   value="residential"
                   color="#073762"
+                  onPress={() => setPropertyType('residential')}
                 />
                 <Text style={styles.residentialText}>Residential</Text>
               </View>
               <View style={styles.residentialButtonView}>
                 <RadioButton
-                  status={commercial ? 'checked' : 'unchecked'}
+                  status={
+                    propertyType === 'commercial' ? 'checked' : 'unchecked'
+                  }
                   value="commercial"
                   color="#073762"
+                  onPress={() => setPropertyType('commercial')}
                 />
                 <Text style={styles.residentialText}>Commercial</Text>
               </View>
@@ -157,7 +164,7 @@ const Sell: React.FC<Props> = ({navigation}) => {
               </TouchableOpacity>
               <TouchableOpacity
                 style={styles.nextStepButton}
-                onPress={() => navigation.navigate('AddProperty')}>
+                onPress={() => navigation.navigate('RentProperty')}>
                 <Text style={styles.nextStepText}>Next step</Text>
                 <MaterialIcons name="arrow-right-alt" size={26} color="white" />
               </TouchableOpacity>
@@ -203,41 +210,11 @@ const Sell: React.FC<Props> = ({navigation}) => {
               <Text style={styles.privacyText}>Copyright 2023</Text>
             </View>
           </View>
-        )}
-
-        {/* <View style={styles.rentPropertyView}>
-          <View style={styles.sellTextView1}>
-            <Text style={styles.sellText1}>
-              Sell or Rent Your Property{' '}
-              <Text style={styles.fasterText}>Faster </Text>with E-Property.com
-            </Text>
-          </View>
-          <View style={styles.advertiseView}>
-            <AntDesign name="checkcircleo" color="#003fc3" size={18} />
-            <Text style={styles.advertiseText}>Advertise for FREE</Text>
-          </View>
-          <View style={styles.advertiseView}>
-            <AntDesign name="checkcircleo" color="#003fc3" size={18} />
-            <Text style={styles.advertiseText}>Get unlimited enquires</Text>
-          </View>
-          <View style={styles.advertiseView}>
-            <AntDesign name="checkcircleo" color="#003fc3" size={18} />
-            <Text style={styles.advertiseText}>
-              Get shortlisted buyers and tenants*
-            </Text>
-          </View>
-          <View style={styles.advertiseView}>
-            <AntDesign name="checkcircleo" color="#003fc3" size={18} />
-            <Text style={styles.advertiseText}>
-              Assistance in coordinating site visits*
-            </Text>
-          </View>
-          <Image source={require('../Images/home.png')} style={styles.image} />
-        </View>
+        )} 
         <View style={styles.footerView}>
           <Text style={styles.privacyText}>Privacy Policy</Text>
           <Text style={styles.privacyText}>Copyright 2023</Text>
-        </View>  */}
+        </View>
       </ScrollView>
     </SafeAreaView>
   );
@@ -390,14 +367,15 @@ const styles = StyleSheet.create({
   },
   // ===================================================================================
   sellProprtyOptionsView: {
-    height: responsiveHeight(72),
+    // height: responsiveHeight(72),
     width: responsiveWidth(90),
     borderRadius: 6,
     backgroundColor: '#ffffff',
     elevation: 3,
     alignSelf: 'center',
     marginTop: responsiveHeight(2.8),
-    marginBottom: responsiveHeight(4),
+    marginBottom: responsiveHeight(2),
+    padding:10
   },
   backButton: {
     flexDirection: 'row',
@@ -449,6 +427,7 @@ const styles = StyleSheet.create({
     width: responsiveWidth(84),
     alignSelf: 'center',
     justifyContent: 'space-between',
+    marginBottom:responsiveHeight(2)
   },
   residentialText: {
     color: '#0b1d2e',

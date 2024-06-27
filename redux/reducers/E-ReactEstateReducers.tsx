@@ -5,11 +5,13 @@ import {
   AddToFavorites,
   RemoveFavorires,
   RemoveAll,
+  AddDraft,
 } from '../actions/actions';
 
 const initialState: RealEstateAppState = {
   properties: [],
   favorites: [],
+  drafts:[]
 };
 
 export const RealEstateAppReducers = (
@@ -39,6 +41,11 @@ export const RealEstateAppReducers = (
       return {
         ...state,
         favorites:[]
+      }
+    case AddDraft:
+      return {
+        ...state,
+        drafts:[...state.drafts,action.payload]
       }
     default:
       return state;

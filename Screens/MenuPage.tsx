@@ -17,6 +17,8 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import MatetialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import Feather from 'react-native-vector-icons/Feather';
+import SellerComponent from '../SellerScreens/SellerComponent';
 
 const Drawer = createDrawerNavigator();
 
@@ -28,19 +30,25 @@ const MenuPage: React.FC<Props> = ({navigation}) => {
   const [name, setName] = useState('');
   const [contact, setContact] = useState('');
   const [email, setEmail] = useState('');
+  const [customer, setCustomer] = useState(false);
+  const [seller, setSeller] = useState(false);
+  const [user, setUser] = useState('customer');
 
   useEffect(() => {
-    handleRetrieveCredentials()
-  },[])
+    handleRetrieveCredentials();
+  }, []);
+
+  // const toogleUserSelection = () => {
+  //   setUser(!customer)
+  // }
 
   const handleRetrieveCredentials = async () => {
     const userDetails = await AsyncStorage.getItem('userData');
     if (userDetails !== null) {
       const userData = JSON.parse(userDetails);
-      console.log(userData.name)
-      setName(userData.name)
-      setContact(userData.contact)
-      setEmail(userData.email)
+      setName(userData.name);
+      setContact(userData.contact);
+      setEmail(userData.email);
     }
   };
 
@@ -55,7 +63,7 @@ const MenuPage: React.FC<Props> = ({navigation}) => {
               <Image source={require('../Images/Profileimage.png')} />
               <View style={styles.detailsView}>
                 <Text style={styles.userName}>{name}</Text>
-                <Text style={styles.userContact}>{contact}</Text>
+                <Text style={styles.userContact}>+91 {contact}</Text>
                 <TouchableOpacity style={styles.editButton}>
                   <MaterialIcons name="edit" color="white" size={16} />
                   <Text style={styles.buttonText}>Edit Profile</Text>
@@ -68,90 +76,223 @@ const MenuPage: React.FC<Props> = ({navigation}) => {
             <Text style={styles.selectUserText}>Select User </Text>
             <View style={styles.radioButtonDirectionView}>
               <View style={styles.radioButtonView}>
-                <RadioButton value="" color="#073762" />
+                <RadioButton
+                  value="customer"
+                  color="#073762"
+                  onPress={() => setUser('customer')}
+                  status={user === 'customer' ? 'checked' : 'unchecked'}
+                />
                 <Text style={styles.customerText}>Customer</Text>
               </View>
               <View style={styles.radioButtonView}>
-                <RadioButton value="" color="#073762" />
+                <RadioButton
+                  value="seller"
+                  color="#073762"
+                  onPress={() => setUser('seller')}
+                  status={user === 'seller' ? 'checked' : 'unchecked'}
+                />
                 <Text style={styles.customerText}>Seller</Text>
               </View>
             </View>
           </View>
           <Divider style={styles.seperator} />
-          <TouchableOpacity
-            style={styles.screenComponentButton}
-            onPress={() => navigation.navigate('Rent')}>
-            <MatetialCommunityIcons
-              name="hand-extended"
-              color="white"
-              size={30}
-              style={styles.icn2}
-            />
-            <MatetialCommunityIcons
-              name="key-chain-variant"
-              color="white"
-              size={18}
-              style={styles.icon}
-            />
-            <Text style={styles.rentText}>Rent</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.screenComponentButton1}
-            onPress={() => navigation.navigate('Buy')}>
-            <MatetialCommunityIcons
-              name="hand-extended"
-              color="#073762"
-              size={30}
-              style={styles.icn2}
-            />
-            <MatetialCommunityIcons
-              name="key-chain-variant"
-              color="#1ea1d6"
-              size={18}
-              style={styles.icon}
-            />
-            <Text style={styles.rentText1}>Buy</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.screenComponentButton1}
-            onPress={() => navigation.navigate('Sell')}>
-            <MatetialCommunityIcons
-              name="hand-extended"
-              color="#073762"
-              size={30}
-              style={styles.icn2}
-            />
-            <MatetialCommunityIcons
-              name="home-variant"
-              color="#1ea1d6"
-              size={20}
-              style={styles.icon}
-            />
-            <Text style={styles.rentText1}>Sell</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.screenComponentButton1}
-            onPress={() => navigation.navigate('Faqs')}>
-            <MaterialCommunityIcons
-              name="message"
-              color="#073762"
-              size={30}
-              style={styles.icn2}
-            />
-            <Text style={styles.faqTxt}>FAQ</Text>
-            <Text style={styles.rentText1}>FAQ's</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.screenComponentButton1}
-            onPress={() => navigation.navigate('Profile')}>
-            <MaterialCommunityIcons
-              name="clock-time-eight"
-              color="#073762"
-              size={30}
-              style={styles.icn2}
-            />
-            <Text style={[styles.rentText1, {color: '#073762'}]}>Profile</Text>
-          </TouchableOpacity>
+
+          {user === 'customer' ? (
+            <View>
+              <TouchableOpacity
+                style={styles.screenComponentButton}
+                onPress={() => navigation.navigate('Rent')}>
+                <MatetialCommunityIcons
+                  name="hand-extended"
+                  color="white"
+                  size={30}
+                  style={styles.icn2}
+                />
+                <MatetialCommunityIcons
+                  name="key-chain-variant"
+                  color="white"
+                  size={18}
+                  style={styles.icon}
+                />
+                <Text style={styles.rentText}>Rent</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.screenComponentButton1}
+                onPress={() => navigation.navigate('Buy')}>
+                <MatetialCommunityIcons
+                  name="hand-extended"
+                  color="#073762"
+                  size={30}
+                  style={styles.icn2}
+                />
+                <MatetialCommunityIcons
+                  name="key-chain-variant"
+                  color="#1ea1d6"
+                  size={18}
+                  style={styles.icon}
+                />
+                <Text style={styles.rentText1}>Buy</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.screenComponentButton1}
+                onPress={() => navigation.navigate('Sell')}>
+                <MatetialCommunityIcons
+                  name="hand-extended"
+                  color="#073762"
+                  size={30}
+                  style={styles.icn2}
+                />
+                <MatetialCommunityIcons
+                  name="home-variant"
+                  color="#1ea1d6"
+                  size={20}
+                  style={styles.icon}
+                />
+                <Text style={styles.rentText1}>Sell</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.screenComponentButton1}
+                onPress={() => navigation.navigate('Faqs')}>
+                <MaterialCommunityIcons
+                  name="message"
+                  color="#073762"
+                  size={30}
+                  style={styles.icn2}
+                />
+                <Text style={styles.faqTxt}>FAQ</Text>
+                <Text style={styles.rentText1}>FAQ's</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.screenComponentButton1}
+                onPress={() => navigation.navigate('Profile')}>
+                <MaterialCommunityIcons
+                  name="clock-time-eight"
+                  color="#073762"
+                  size={30}
+                  style={styles.icn2}
+                />
+                <Text style={[styles.rentText1, {color: '#073762'}]}>
+                  Profile
+                </Text>
+              </TouchableOpacity>
+            </View>
+          ) : (
+            <View>
+              <SellerComponent
+                componentText="Property"
+                icon="compass"
+                onPress={() => navigation.navigate('Property')}
+              />
+              <SellerComponent
+                componentText="Tenants"
+                icon="compass"
+                onPress={() => navigation.navigate('')}
+              />
+              <SellerComponent
+                componentText="Sales"
+                icon="compass"
+                onPress={() => navigation.navigate('')}
+              />
+              <SellerComponent
+                componentText="Messages"
+                icon="compass"
+                onPress={() => navigation.navigate('')}
+              />
+              <SellerComponent
+                componentText="Profile"
+                icon="compass"
+                onPress={() => navigation.navigate('')}
+              />
+              <SellerComponent
+                componentText="Get Help"
+                icon="compass"
+                onPress={() => navigation.navigate('')}
+              />
+              <SellerComponent
+                componentText="Settings"
+                icon="compass"
+                onPress={() => navigation.navigate('')}
+              />
+            </View>
+          )}
+          {/* <>
+            <TouchableOpacity
+              style={styles.screenComponentButton}
+              onPress={() => navigation.navigate('Rent')}>
+              <MatetialCommunityIcons
+                name="hand-extended"
+                color="white"
+                size={30}
+                style={styles.icn2}
+              />
+              <MatetialCommunityIcons
+                name="key-chain-variant"
+                color="white"
+                size={18}
+                style={styles.icon}
+              />
+              <Text style={styles.rentText}>Rent</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.screenComponentButton1}
+              onPress={() => navigation.navigate('Buy')}>
+              <MatetialCommunityIcons
+                name="hand-extended"
+                color="#073762"
+                size={30}
+                style={styles.icn2}
+              />
+              <MatetialCommunityIcons
+                name="key-chain-variant"
+                color="#1ea1d6"
+                size={18}
+                style={styles.icon}
+              />
+              <Text style={styles.rentText1}>Buy</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.screenComponentButton1}
+              onPress={() => navigation.navigate('Sell')}>
+              <MatetialCommunityIcons
+                name="hand-extended"
+                color="#073762"
+                size={30}
+                style={styles.icn2}
+              />
+              <MatetialCommunityIcons
+                name="home-variant"
+                color="#1ea1d6"
+                size={20}
+                style={styles.icon}
+              />
+              <Text style={styles.rentText1}>Sell</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.screenComponentButton1}
+              onPress={() => navigation.navigate('Faqs')}>
+              <MaterialCommunityIcons
+                name="message"
+                color="#073762"
+                size={30}
+                style={styles.icn2}
+              />
+              <Text style={styles.faqTxt}>FAQ</Text>
+              <Text style={styles.rentText1}>FAQ's</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.screenComponentButton1}
+              onPress={() => navigation.navigate('Profile')}>
+              <MaterialCommunityIcons
+                name="clock-time-eight"
+                color="#073762"
+                size={30}
+                style={styles.icn2}
+              />
+              <Text style={[styles.rentText1, {color: '#073762'}]}>
+                Profile
+              </Text>
+            </TouchableOpacity>
+          </> */}
         </View>
       )}>
       <Drawer.Screen
@@ -196,7 +337,7 @@ const styles = StyleSheet.create({
   userDirectionView: {
     flexDirection: 'row',
     left: responsiveWidth(4),
-    marginTop: responsiveHeight(2),
+    // marginTop: responsiveHeight(2),
   },
   userName: {
     color: '#000000',
@@ -232,7 +373,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#9fc5e9',
     width: responsiveWidth(62),
     alignSelf: 'center',
-    marginTop: responsiveHeight(1),
   },
   userView: {},
   selectUserText: {
