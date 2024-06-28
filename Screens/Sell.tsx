@@ -27,11 +27,13 @@ interface Props {
 }
 
 const Sell: React.FC<Props> = ({navigation}) => {
+  
   const [sellPropertyState, setSellPropertyState] = useState(false);
   const [rentPropertyState, setRentPropertyState] = useState(false);
   const [residential, setResidential] = useState(false);
   const [commercial, setCommercial] = useState(false);
-  const [propertyType,setPropertyType] = useState("residential")
+  const [propertyType, setPropertyType] = useState('residential');
+
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar hidden={true} />
@@ -176,7 +178,7 @@ const Sell: React.FC<Props> = ({navigation}) => {
               <View style={styles.sellTextView1}>
                 <Text style={styles.sellText1}>
                   Sell or Rent Your Property{' '}
-                  <Text style={styles.fasterText}>Faster </Text>with
+                  <Text style={styles.fasterText}>Faster</Text>with
                   E-Property.com
                 </Text>
               </View>
@@ -210,7 +212,7 @@ const Sell: React.FC<Props> = ({navigation}) => {
               <Text style={styles.privacyText}>Copyright 2023</Text>
             </View>
           </View>
-        )} 
+        )}
         <View style={styles.footerView}>
           <Text style={styles.privacyText}>Privacy Policy</Text>
           <Text style={styles.privacyText}>Copyright 2023</Text>
@@ -375,7 +377,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     marginTop: responsiveHeight(2.8),
     marginBottom: responsiveHeight(2),
-    padding:10
+    padding: 10,
   },
   backButton: {
     flexDirection: 'row',
@@ -427,7 +429,7 @@ const styles = StyleSheet.create({
     width: responsiveWidth(84),
     alignSelf: 'center',
     justifyContent: 'space-between',
-    marginBottom:responsiveHeight(2)
+    marginBottom: responsiveHeight(2),
   },
   residentialText: {
     color: '#0b1d2e',

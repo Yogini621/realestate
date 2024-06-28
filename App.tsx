@@ -35,6 +35,9 @@ import SellerDashBoard from './SellerScreens/SellerDashBoard';
 import Property from './SellerScreens/Property';
 import AddProperty from './SellerScreens/AddProperty';
 import RentProperty from './SellerScreens/RentProperty';
+import PreviewProperty from './SellerScreens/PreviewProperty';
+import Sales from './SellerScreens/Sales';
+import TenancyApplicationDetails from './SellerScreens/TenancyApplicationDetails';
 
 const Stack = createNativeStackNavigator();
 
@@ -177,25 +180,35 @@ const App = () => {
             name="NotificatonList"
             component={NotificatonList}
             options={{headerShown: false}}
-          /> */}
-          {/* <Stack.Screen
-            name="Property"
-            component={Property}
-            options={{headerShown: false}}
           />
           <Stack.Screen
             name="AddProperty"
             component={AddProperty}
             options={{headerShown: false}}
-          />
-          <Stack.Screen
-            name="Sell"
-            component={Sell}
-            options={{headerShown: false}} */}
-          {/* /> */}
-          <Stack.Screen
+          /> */}
+          {/* <Stack.Screen
+            name="Property"
+            component={Property}
+            options={{headerShown: false}}
+          /> */}
+          {/* <Stack.Screen
             name="RentProperty"
             component={RentProperty}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="PreviewProperty"
+            component={PreviewProperty}
+            options={{headerShown: false}}
+          /> */}
+          <Stack.Screen
+            name="TenancyApplicationDetails"
+            component={TenancyApplicationDetails}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="Sales"
+            component={Sales}
             options={{headerShown: false}}
           />
         </Stack.Navigator>

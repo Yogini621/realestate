@@ -191,7 +191,7 @@ const MenuPage: React.FC<Props> = ({navigation}) => {
               <SellerComponent
                 componentText="Sales"
                 icon="compass"
-                onPress={() => navigation.navigate('')}
+                onPress={() => navigation.navigate('Sales')}
               />
               <SellerComponent
                 componentText="Messages"
