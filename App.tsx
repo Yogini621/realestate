@@ -38,6 +38,9 @@ import RentProperty from './SellerScreens/RentProperty';
 import PreviewProperty from './SellerScreens/PreviewProperty';
 import Sales from './SellerScreens/Sales';
 import TenancyApplicationDetails from './SellerScreens/TenancyApplicationDetails';
+import Message from './SellerScreens/Message';
+import MessageDetails from './SellerScreens/MessageDetails';
+import ProfileSeller from './SellerScreens/ProfiieSeller';
 
 const Stack = createNativeStackNavigator();
 
@@ -46,7 +49,7 @@ const App = () => {
     <Provider store={store}>
       <NavigationContainer>
         <Stack.Navigator>
-          {/* <Stack.Screen
+          <Stack.Screen
             name="LandingPage"
             component={LandingPage}
             options={{headerShown: false}}
@@ -70,8 +73,8 @@ const App = () => {
             name="ForgotPassword2"
             component={ForgotPassword2}
             options={{headerShown: false}}
-          />  */}
-          {/* <Stack.Screen
+          /> 
+          <Stack.Screen
             name="HomePage"
             component={HomePage}
             options={{headerShown: false}}
@@ -185,13 +188,13 @@ const App = () => {
             name="AddProperty"
             component={AddProperty}
             options={{headerShown: false}}
-          /> */}
-          {/* <Stack.Screen
+          />
+          <Stack.Screen
             name="Property"
             component={Property}
             options={{headerShown: false}}
-          /> */}
-          {/* <Stack.Screen
+          />
+          <Stack.Screen
             name="RentProperty"
             component={RentProperty}
             options={{headerShown: false}}
@@ -200,7 +203,17 @@ const App = () => {
             name="PreviewProperty"
             component={PreviewProperty}
             options={{headerShown: false}}
-          /> */}
+          />
+          <Stack.Screen
+            name="ProfileSeller"
+            component={ProfileSeller}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="Message"
+            component={Message}
+            options={{headerShown: false}}
+          />
           <Stack.Screen
             name="TenancyApplicationDetails"
             component={TenancyApplicationDetails}
