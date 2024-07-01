@@ -41,6 +41,8 @@ import TenancyApplicationDetails from './SellerScreens/TenancyApplicationDetails
 import Message from './SellerScreens/Message';
 import MessageDetails from './SellerScreens/MessageDetails';
 import ProfileSeller from './SellerScreens/ProfiieSeller';
+import GetHelp from './SellerScreens/GetHelp';
+import SettingsSeller from './SellerScreens/SettingsSeller';
 
 const Stack = createNativeStackNavigator();
 
@@ -73,7 +75,7 @@ const App = () => {
             name="ForgotPassword2"
             component={ForgotPassword2}
             options={{headerShown: false}}
-          /> 
+          />
           <Stack.Screen
             name="HomePage"
             component={HomePage}
@@ -205,8 +207,8 @@ const App = () => {
             options={{headerShown: false}}
           />
           <Stack.Screen
-            name="ProfileSeller"
-            component={ProfileSeller}
+            name="SettingsSeller"
+            component={SettingsSeller}
             options={{headerShown: false}}
           />
           <Stack.Screen
@@ -230,5 +232,3 @@ const App = () => {
   );
 };
 export default App;
-
-

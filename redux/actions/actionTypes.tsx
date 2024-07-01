@@ -5,6 +5,8 @@ import {
   Property,
   RemoveAll,
   RemoveFavorires,
+  Address,
+  AddAddress
 } from './actions';
 
 export const fetchProperties = (properties: Property[]) => ({
@@ -28,4 +30,8 @@ export const removeAllFromFavorites = () => ({
 export const addDraft = (item:Property) => ({
   type:AddDraft,
   payload:item
+})
+export const addAddress = (address:Address) => ({
+  type:AddAddress,
+  payload:address
 })

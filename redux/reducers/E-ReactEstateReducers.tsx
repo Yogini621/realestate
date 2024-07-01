@@ -6,12 +6,14 @@ import {
   RemoveFavorires,
   RemoveAll,
   AddDraft,
+  AddAddress,
 } from '../actions/actions';
 
 const initialState: RealEstateAppState = {
   properties: [],
   favorites: [],
-  drafts:[]
+  drafts:[],
+  address:[]
 };
 
 export const RealEstateAppReducers = (
@@ -47,6 +49,12 @@ export const RealEstateAppReducers = (
         ...state,
         drafts:[...state.drafts,action.payload]
       }
+    case AddAddress:
+      return {
+        ...state,
+        address:[...state.address,action.payload]
+      }
+      
     default:
       return state;
   }

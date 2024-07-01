@@ -19,10 +19,17 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import CircularProgress from 'react-native-circular-progress-indicator';
 import Feather from 'react-native-vector-icons/Feather';
+import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
+import ProfileInformation from './ProfileInformation';
+import ChangePassword from './ChangePassword';
+import MyLocations from './MyLocations';
+
 
 interface Props {
   navigation: any;
 }
+
+const Tab = createMaterialTopTabNavigator()
 
 const ProfileSeller: React.FC<Props> = ({navigation}) => {
   return (
@@ -71,32 +78,42 @@ const ProfileSeller: React.FC<Props> = ({navigation}) => {
             <Text style={styles.verifyIdentiyText}>Verify identity</Text>
           </TouchableOpacity>
         </View>
-        <View style={styles.profileDirectionView}>
-          <Image source={require('../Images/user.png')} style={styles.image} />
-          <View style={styles.userView}>
-            <Text style={styles.userText}>Joseph</Text>
-            <View style={styles.buttonView}>
-              <TouchableOpacity style={styles.uploadPictureButton}>
-                <Text style={styles.uploadPictureText}>Upload New Picture</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.deleteButton}>
-                <Text style={styles.deleteText}>Delete</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-        </View>
-        <View style={styles.inputView}>
-          <TextInput placeholder="Joseph" style={styles.input} />
-          <Feather name="edit" color="#acadb9" size={20} />
-        </View>
-        <View style={styles.inputView}>
-          <TextInput placeholder="+00 0000 0000" style={styles.input} />
-          <Feather name="edit" color="#acadb9" size={20} />
-        </View>
-        <View style={styles.inputView}>
-          <TextInput placeholder="joseph@gmail.com" style={styles.input} />
-          <Feather name="edit" color="#acadb9" size={20} />
-        </View>
+        <Tab.Navigator
+          screenOptions={{
+            tabBarActiveTintColor: '#323142',
+            tabBarLabelStyle: {
+              fontSize: responsiveFontSize(1.8),
+              fontFamily: 'PlusJakartaSans m',
+            },
+          }}>
+          <Tab.Screen
+            name="ProfileInformation"
+            component={ProfileInformation}
+            options={{
+              tabBarIndicatorStyle: {
+                backgroundColor: '#073762',
+              },
+            }}
+          />
+          <Tab.Screen
+            name="ChangePassword"
+            component={ChangePassword}
+            options={{
+              tabBarIndicatorStyle: {
+                backgroundColor: '#073762',
+              },
+            }}
+          />
+          <Tab.Screen
+            name="MyLocations"
+            component={MyLocations}
+            options={{
+              tabBarIndicatorStyle: {
+                backgroundColor: '#073762',
+              },
+            }}
+          />
+        </Tab.Navigator>
       </ScrollView>
     </SafeAreaView>
   );
@@ -246,5 +263,21 @@ const styles = StyleSheet.create({
   },
   userView: {
     left: responsiveWidth(4),
+  },
+  updateButton: {
+    backgroundColor: '#073762',
+    width: responsiveWidth(90),
+    borderRadius: 10,
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: responsiveHeight(6.8),
+    marginTop: responsiveHeight(2.8),
+    marginBottom:responsiveHeight(2)
+  },
+  updateText: {
+    color: 'white',
+    fontSize: responsiveFontSize(1.8),
+    fontFamily: 'PlusJakartaSans j',
   },
 });
