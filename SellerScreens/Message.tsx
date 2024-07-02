@@ -103,7 +103,8 @@ const Message: React.FC<Props> = ({navigation}) => {
             <View style={styles.profileDirection}>
               <Image source={item.image} style={styles.image} />
               <View style={styles.detailsView}>
-                <TouchableOpacity onPress={() => navigation.navigate("MessageDetails")}>
+                <TouchableOpacity
+                  onPress={() => navigation.navigate('MessageDetails')}>
                   <Text style={styles.messagerName}>{item.messagername}</Text>
                   <Text style={styles.subjectText}>{item.subject}</Text>
                   <View style={styles.messageTextView}>

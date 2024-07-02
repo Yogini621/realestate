@@ -15,8 +15,8 @@ import {
   responsiveWidth,
 } from 'react-native-responsive-dimensions';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
-import AntDesign from 'react-native-vector-icons/AntDesign'
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 
 interface Props {
   navigation: any;
@@ -293,7 +293,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     width: responsiveWidth(90),
     alignSelf: 'center',
-    marginBottom:responsiveHeight(4)
+    marginBottom: responsiveHeight(4),
   },
   rejectButton: {
     borderWidth: 1,

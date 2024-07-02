@@ -17,7 +17,7 @@ import {
   responsiveScreenWidth,
   responsiveWidth,
 } from 'react-native-responsive-dimensions';
-import AntDesign from 'react-native-vector-icons/AntDesign'
+import AntDesign from 'react-native-vector-icons/AntDesign';
 
 interface Props {
   navigation: any;
@@ -127,7 +127,11 @@ const AboutUs: React.FC<Props> = ({navigation}) => {
             </View>
           </View>
         </View>
-        <View style={[styles.introductionTextView,{marginTop:responsiveHeight(4.8)}]}>
+        <View
+          style={[
+            styles.introductionTextView,
+            {marginTop: responsiveHeight(4.8)},
+          ]}>
           <Text style={styles.loremText1}>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua.

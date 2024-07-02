@@ -22,7 +22,7 @@ const NotificationsSeller = () => {
           </View>
           <Switch />
         </View>
-        </View>
+      </View>
     </View>
   );
 };
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     borderRadius: 6,
     backgroundColor: '#f4faff',
     marginBottom: responsiveHeight(4),
-    padding:10
+    padding: 10,
   },
   notificationsText: {
     color: '#000929',

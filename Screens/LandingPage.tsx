@@ -69,7 +69,7 @@ const LandingPage: React.FC<Props> = ({navigation}) => {
               </View>
               <View style={styles.iconView}>
                 <TouchableOpacity>
-                  <AntDesign name="hearto" size={16} color="#073762" />
+                  <AntDesign name="hearto" size={15} color="#073762" />
                 </TouchableOpacity>
               </View>
             </View>
@@ -78,11 +78,11 @@ const LandingPage: React.FC<Props> = ({navigation}) => {
             <View style={styles.iconsView}>
               <View style={styles.carIconView}>
                 <AntDesign name="car" color="#073762" size={20} />
-                <Text style={styles.numberText}>3Beds</Text>
+                <Text style={styles.numberText}>3 Beds</Text>
               </View>
               <View style={styles.carIconView}>
                 <FontAwesome name="bathtub" color="#073762" size={20} />
-                <Text style={styles.numberText}>2Bathroms</Text>
+                <Text style={styles.numberText}>2 Bathroms</Text>
               </View>
             </View>
             <View style={styles.carIconView1}>
@@ -172,11 +172,11 @@ const LandingPage: React.FC<Props> = ({navigation}) => {
               </Text>
             </View>
           </View>
-          <Image source={require('../Images/house.png')} 
-          style={styles.image} 
-          />
-          <View style = {{backgroundColor:'green'}}>
-
+          <View style={styles.imgView}>
+            <Image
+              source={require('../Images/house.png')}
+              style={styles.image}
+            />
           </View>
         </View>
         <View style={styles.newWayView}>
@@ -190,9 +190,7 @@ const LandingPage: React.FC<Props> = ({navigation}) => {
                 listed.
               </Text>
             </View>
-
-            <TouchableOpacity
-              style={[styles.propertiesButton, {backgroundColor: '#000929'}]}>
+            <TouchableOpacity style={styles.browsePropertiesButton}>
               <Text
                 style={[
                   styles.marketText1,
@@ -207,7 +205,6 @@ const LandingPage: React.FC<Props> = ({navigation}) => {
             style={styles.image1}
           />
         </View>
-
         <View>
           <CircleComponent
             icon="home"
@@ -341,7 +338,6 @@ const LandingPage: React.FC<Props> = ({navigation}) => {
             estatery community.
           </Text>
         </View>
-
         <Modal visible={modalVisible} animationType="slide" transparent={true}>
           <View style={styles.modalView}>
             <View style={styles.crossIconView}>
@@ -421,8 +417,8 @@ const styles = StyleSheet.create({
   },
   propertiesView: {
     height: responsiveHeight(92.6),
-    // flex: 1,
     backgroundColor: '#9fc5e9',
+    padding: 10,
   },
   marketView: {
     width: responsiveWidth(90),
@@ -440,8 +436,8 @@ const styles = StyleSheet.create({
     marginTop: responsiveHeight(1),
   },
   marketText1: {
-    fontFamily: 'PlusJakartaSans l',
-    fontSize: responsiveFontSize(1.8),
+    fontFamily: 'PlusJakartaSans j',
+    fontSize: responsiveFontSize(1.7),
     color: '#000929',
     lineHeight: 22,
   },
@@ -508,23 +504,28 @@ const styles = StyleSheet.create({
     left: responsiveWidth(4.2),
     width: responsiveWidth(48),
   },
+  imgView: {
+    width: responsiveWidth(100),
+    height: responsiveHeight(40),
+    alignItems: 'flex-end',
+  },
   image: {
     resizeMode: 'contain',
-    left: responsiveWidth(6),
     height: responsiveHeight(70),
-    width: responsiveWidth(94),
-    top:responsiveHeight(-20),
-    zIndex:-1,
-    // backgroundColor:'green'
+    width: responsiveWidth(96),
+    right: 0,
+    top: responsiveHeight(-20),
+    zIndex: -1,
   },
   newWayView: {
     backgroundColor: '#9fc5e9',
-    height: responsiveHeight(32),
+    height: responsiveHeight(30),
     width: responsiveWidth(92),
     marginTop: responsiveHeight(4),
     borderRadius: 8,
     alignSelf: 'center',
     marginBottom: responsiveHeight(4),
+    // padding:10
   },
   textView: {
     left: responsiveWidth(8),
@@ -537,11 +538,15 @@ const styles = StyleSheet.create({
   },
   image1: {
     alignSelf: 'flex-end',
-    bottom: 60,
+    bottom: 250,
+    height: responsiveHeight(60),
+    width: responsiveWidth(40),
+    resizeMode: 'contain',
+    // backgroundColor:'green'
   },
   locationText: {
     textAlign: 'center',
-    fontSize: responsiveFontSize(2.8),
+    fontSize: responsiveFontSize(2.6),
     color: '#000000',
     fontFamily: 'PlusJakartaSans a',
   },
@@ -549,6 +554,7 @@ const styles = StyleSheet.create({
     color: '#4d5461',
     fontFamily: 'PlusJakartaSans j',
     textAlign: 'center',
+    lineHeight: 28,
   },
   inputView: {
     width: responsiveWidth(24),
@@ -604,9 +610,9 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   iconView: {
-    height: 34,
-    width: 34,
-    borderRadius: 17,
+    height: 30,
+    width: 30,
+    borderRadius: 15,
     borderWidth: 1,
     borderColor: '#9fc5e9',
     alignItems: 'center',
@@ -881,5 +887,15 @@ const styles = StyleSheet.create({
     fontSize: responsiveFontSize(1.9),
     fontFamily: 'PlusJakartaSans j',
     color: '#9b9b9b',
+  },
+  browsePropertiesButton: {
+    height: responsiveHeight(5.4),
+    width: responsiveWidth(40),
+    backgroundColor: '#073762',
+    borderRadius: 4,
+    alignItems: 'center',
+    justifyContent: 'center',
+    // left: responsiveWidth(4),
+    marginTop: responsiveHeight(2.8),
   },
 });

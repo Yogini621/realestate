@@ -193,7 +193,7 @@ const Profile: React.FC<Props> = ({navigation}) => {
           />
           <OptionComponent
             optionText="About Us"
-            onPress={() => navigation.navigate('Aboutus')}
+            onPress={() => navigation.navigate('AboutUs')}
             color="#33333380"
           />
           <OptionComponent

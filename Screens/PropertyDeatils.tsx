@@ -1,6 +1,8 @@
 import {
-  FlatList,
+  Alert,
   Image,
+  PermissionsAndroid,
+  Platform,
   SafeAreaView,
   ScrollView,
   StatusBar,
@@ -9,7 +11,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {
@@ -19,17 +21,17 @@ import {
 } from 'react-native-responsive-dimensions';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
 import Entypo from 'react-native-vector-icons/Entypo';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import ListComponent from './ListComponent';
 import {Property} from '../redux/actions/actions';
-import {data} from './data';
-import {addToFavorites, fetchProperties} from '../redux/actions/actionTypes';
+import {addToFavorites} from '../redux/actions/actionTypes';
 import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '../redux/reducers';
 import Octicons from 'react-native-vector-icons/Octicons';
+import Geolocation from '@react-native-community/geolocation';
+import MapView, {LatLng, Marker} from 'react-native-maps';
 
 interface Props {
   navigation: any;
@@ -42,6 +44,52 @@ const PropertyDetails: React.FC<Props> = ({navigation, route}) => {
   );
   const dispatch = useDispatch();
   const {item} = route.params;
+  const [currentLocation, setCurrentLocation] = useState<LatLng | null>(null);
+  const [locationError, setLocationError] = useState<string | null>(null);
+
+  useEffect(() => {
+    requestLocationPermission();
+  }, []);
+
+  const requestLocationPermission = async () => {
+    if (Platform.OS === 'android') {
+      try {
+        const granted = await PermissionsAndroid.request(
+          PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+          {
+            title: 'Location Permission',
+            message: 'App needs access to your location.',
+            buttonNeutral: 'Ask Me Later',
+            buttonNegative: 'Cancel',
+            buttonPositive: 'OK',
+          },
+        );
+        if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+          console.log('Location permission granted');
+          getCurrentLocation();
+        } else {
+          setLocationError('Location permission denied');
+        }
+      } catch (error) {
+        console.error('Error requesting location permission:', error);
+        setLocationError('Error requesting location permission');
+      }
+    }
+  };
+
+  const getCurrentLocation = async () => {
+    Geolocation.getCurrentPosition(
+      async position => {
+        const {latitude, longitude} = position.coords;
+        setCurrentLocation({latitude, longitude});
+        setLocationError(null);
+      },
+      error => {
+        console.error('Error getting current location:', error);
+        setLocationError('Error getting current location');
+      },
+    );
+  };
 
   const handleAddToFavorites = (item: Property) => {
     dispatch(addToFavorites(item));
@@ -49,17 +97,21 @@ const PropertyDetails: React.FC<Props> = ({navigation, route}) => {
 
   return (
     <SafeAreaView style={styles.container}>
+      <StatusBar hidden={true} />
       <ScrollView>
-        <StatusBar hidden={true} />
         <View style={styles.headerView}>
           <View style={styles.logoView}>
             <Image source={require('../Images/Vector1.png')} />
             <View style={styles.iconView}>
               <TouchableOpacity>
-                <Ionicons name="notifications-outline" size={20} />
+                <Ionicons
+                  name="notifications-outline"
+                  size={20}
+                  color="#073762"
+                />
               </TouchableOpacity>
               <TouchableOpacity onPress={() => navigation.navigate('MenuPage')}>
-                <FontAwesome5 name="grip-lines" size={20} />
+                <FontAwesome5 name="grip-lines" size={20} color="#073762" />
               </TouchableOpacity>
             </View>
           </View>
@@ -114,7 +166,7 @@ const PropertyDetails: React.FC<Props> = ({navigation, route}) => {
             </View>
             <View style={styles.numberView}>
               <FontAwesome5 name="bath" size={18} color="#073762" />
-              <Text style={styles.numberText}>4</Text>
+              <Text style={styles.numberText}>2</Text>
             </View>
             <View style={styles.numberView}>
               <FontAwesome5
@@ -159,7 +211,7 @@ const PropertyDetails: React.FC<Props> = ({navigation, route}) => {
         </View>
         <View style={styles.priceView}>
           <Text style={styles.rentedPriceText}>Rented price</Text>
-          <Text style={styles.priceText}>{item.rent} </Text>
+          <Text style={styles.priceText}>${item.rent} </Text>
           <View style={styles.userAndAddressView}>
             <Image source={require('../Images/user.png')} />
             <View>
@@ -245,29 +297,51 @@ const PropertyDetails: React.FC<Props> = ({navigation, route}) => {
           <ListComponent featureText="Rent" details="$2,400" />
         </View>
         <View style={styles.line} />
-        <View>
-          <Text style={styles.featuresText}>Map</Text>
-          <View style={styles.backIconView}>
-            <Text style={styles.seemoreText}>See more listings in Houston</Text>
-            <Ionicons
-              name="chevron-forward"
-              size={18}
-              color="#073762"
-              style={styles.icon1}
+        <Text style={styles.featuresText}>Map</Text>
+        <View style={styles.map}>
+          <MapView
+            style={styles.map}
+            initialRegion={{
+              latitude: 37.78825,
+              longitude: -122.4324,
+              latitudeDelta: 0.0922,
+              longitudeDelta: 0.0421,
+            }}>
+            <Marker
+              draggable
+              coordinate={{
+                latitude: 37.78825,
+                longitude: -122.4324,
+              }}
+              onDragEnd={e =>
+                Alert.alert(JSON.stringify(e.nativeEvent.coordinate))
+              }
+              title={'Test Marker'}
+              description={'This is a description of the marker'}
             />
-          </View>
-          <View style={styles.line} />
-          <View style={styles.policyView}>
-            <Text style={styles.policyText}>
-              You agree to Estatery's Terms of Use & Privacy Policy. By choosing
-              to contact a property, you also agree that Estatery Group,
-              landlords, and property managers may call or text you about any
-              inquiries you submit through our services, which may involve use
-              of automated means and prerecorded/artificial voices. You don't
-              need to consent as a condition of renting any property, or buying
-              any other goods or services. Message/data rates may apply.
-            </Text>
-          </View>
+          </MapView>
+        </View>
+
+        <View style={styles.backIconView}>
+          <Text style={styles.seemoreText}>See more listings in Houston</Text>
+          <Ionicons
+            name="chevron-forward"
+            size={18}
+            color="#073762"
+            style={styles.icon1}
+          />
+        </View>
+        <View style={styles.line} />
+        <View style={styles.policyView}>
+          <Text style={styles.policyText}>
+            You agree to Estatery's Terms of Use & Privacy Policy. By choosing
+            to contact a property, you also agree that Estatery Group,
+            landlords, and property managers may call or text you about any
+            inquiries you submit through our services, which may involve use of
+            automated means and prerecorded/artificial voices. You don't need to
+            consent as a condition of renting any property, or buying any other
+            goods or services. Message/data rates may apply.
+          </Text>
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -399,7 +473,7 @@ const styles = StyleSheet.create({
   numberText: {
     color: '#000000',
     fontFamily: 'PlusJakartaSans a',
-    fontSize: responsiveFontSize(1.8),
+    fontSize: responsiveFontSize(2),
     left: responsiveWidth(1.6),
   },
   repairView: {
@@ -447,8 +521,9 @@ const styles = StyleSheet.create({
     width: responsiveWidth(90),
     alignSelf: 'center',
     marginTop: responsiveHeight(4),
-    height: responsiveHeight(40),
     marginBottom: responsiveHeight(4),
+    backgroundColor: '#f4faff',
+    padding: 10,
   },
   rentedPriceText: {
     color: '#6c727f',
@@ -500,6 +575,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'row',
+    marginBottom: responsiveHeight(2),
   },
   callText: {
     color: '#073762',
@@ -561,8 +637,8 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#9fc5e9',
     alignSelf: 'center',
-    height: responsiveHeight(48),
-    // marginBottom: responsiveHeight(2),
+    backgroundColor: '#f4faff',
+    padding: 10,
   },
   homeTourText: {
     color: '#000000',
@@ -571,7 +647,7 @@ const styles = StyleSheet.create({
   },
   textView: {
     left: responsiveWidth(10),
-    marginTop: responsiveHeight(4),
+    marginTop: responsiveHeight(1),
   },
   personButton: {
     borderWidth: 1,
@@ -587,7 +663,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     width: responsiveWidth(70),
-    marginTop: responsiveHeight(4),
+    marginTop: responsiveHeight(2.8),
   },
   inputView: {
     borderWidth: 1,
@@ -610,12 +686,13 @@ const styles = StyleSheet.create({
   },
   requestButton: {
     backgroundColor: '#100a55',
-    marginTop: responsiveHeight(4),
+    marginTop: responsiveHeight(3.2),
     width: responsiveWidth(70),
     borderRadius: 8,
-    height: responsiveHeight(6.8),
+    height: responsiveHeight(7.4),
     alignItems: 'center',
     justifyContent: 'center',
+    marginBottom: responsiveHeight(1),
   },
   requestText: {
     color: 'white',
@@ -626,6 +703,8 @@ const styles = StyleSheet.create({
     marginTop: responsiveHeight(2),
     fontSize: responsiveFontSize(1.5),
     fontFamily: 'PlusJakartaSans j',
+    color: '#6c727f',
+    marginBottom: responsiveHeight(2),
   },
   line: {
     height: responsiveHeight(0.2),
@@ -644,7 +723,7 @@ const styles = StyleSheet.create({
   seemoreText: {
     color: '#073762',
     left: responsiveWidth(4.8),
-    fontSize: responsiveFontSize(2.2),
+    fontSize: responsiveFontSize(2.1),
     fontFamily: 'PlusJakartaSans a',
   },
   backIconView: {
@@ -657,11 +736,12 @@ const styles = StyleSheet.create({
     marginTop: responsiveHeight(1),
   },
   policyView: {
-    width: responsiveWidth(92),
+    width: responsiveWidth(90),
     alignSelf: 'center',
+    marginBottom: responsiveHeight(4),
   },
   policyText: {
-    fontSize: responsiveFontSize(1.6),
+    fontSize: responsiveFontSize(1.7),
     fontFamily: 'PlusJakartaSans j',
     lineHeight: 20,
   },
@@ -669,5 +749,13 @@ const styles = StyleSheet.create({
     fontSize: responsiveFontSize(1.8),
     fontFamily: 'PlusJakartaSans j',
     left: responsiveWidth(2),
+  },
+  map: {
+    height: responsiveHeight(44),
+    width: responsiveWidth(90),
+    borderRadius: 8,
+    alignSelf: 'center',
+    marginTop: responsiveHeight(2.8),
+    marginBottom: responsiveHeight(6),
   },
 });

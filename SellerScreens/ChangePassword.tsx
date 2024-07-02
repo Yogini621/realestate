@@ -1,7 +1,17 @@
-import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
-import React from 'react'
-import { responsiveFontSize, responsiveHeight, responsiveWidth } from 'react-native-responsive-dimensions';
-import Ionicons from 'react-native-vector-icons/Ionicons'
+import {
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from 'react-native';
+import React from 'react';
+import {
+  responsiveFontSize,
+  responsiveHeight,
+  responsiveWidth,
+} from 'react-native-responsive-dimensions';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const ChangePassword = () => {
   return (
@@ -20,9 +30,9 @@ const ChangePassword = () => {
       </TouchableOpacity>
     </View>
   );
-}
+};
 
-export default ChangePassword
+export default ChangePassword;
 
 const styles = StyleSheet.create({
   container: {
@@ -79,6 +89,6 @@ const styles = StyleSheet.create({
     color: '#acadb9',
     fontSize: responsiveFontSize(1.9),
     fontFamily: 'PlusJakartaSans j',
-    marginTop:responsiveHeight(8)
+    marginTop: responsiveHeight(8),
   },
 });

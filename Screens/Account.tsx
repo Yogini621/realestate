@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
     marginTop: responsiveHeight(4),
     borderRadius: 6,
     backgroundColor: '#f4faff',
-    marginBottom:responsiveHeight(4)
+    marginBottom: responsiveHeight(4),
   },
   settingsText: {
     color: '#000929',

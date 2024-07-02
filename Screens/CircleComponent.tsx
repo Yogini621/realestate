@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
   },
   PropertyText: {
     color: '#000000',
-    fontSize: responsiveFontSize(2.6),
+    fontSize: responsiveFontSize(2.3),
     fontFamily: 'PlusJakartaSans a',
     left: responsiveWidth(4.4),
     marginTop: responsiveHeight(1),

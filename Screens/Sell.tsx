@@ -122,44 +122,7 @@ const Sell: React.FC<Props> = ({navigation}) => {
                 <Text style={styles.residentialText}>Commercial</Text>
               </View>
             </View>
-            <View style={styles.optionsView}>
-              <OptionSelect
-                optionText="Flat/Apartment"
-                onPress={() => console.log('hello')}
-              />
-              <OptionSelect
-                optionText="Independent House/Villa"
-                onPress={() => console.log('hello')}
-              />
-              <OptionSelect
-                optionText="Plot/Land"
-                onPress={() => console.log('hello')}
-              />
-              <OptionSelect
-                optionText="Independent.Builder Floor"
-                onPress={() => console.log('hello')}
-              />
-              <OptionSelect
-                optionText="Plot/Land"
-                onPress={() => console.log('hello')}
-              />
-              <OptionSelect
-                optionText="Farmhouse"
-                onPress={() => console.log('hello')}
-              />
-              <OptionSelect
-                optionText="1 RK/Studio Apartment"
-                onPress={() => console.log('hello')}
-              />
-              <OptionSelect
-                optionText="Serviced Apartment"
-                onPress={() => console.log('hello')}
-              />
-              <OptionSelect
-                optionText="Other"
-                onPress={() => console.log('hello')}
-              />
-            </View>
+              <OptionSelect />
             <View style={styles.residentialAndCommercialButtonView}>
               <TouchableOpacity style={styles.saveAsDraftButton}>
                 <Text style={styles.saveAsDraftsText}>Save as drafts</Text>
@@ -177,7 +140,7 @@ const Sell: React.FC<Props> = ({navigation}) => {
             <View style={styles.rentPropertyView}>
               <View style={styles.sellTextView1}>
                 <Text style={styles.sellText1}>
-                  Sell or Rent Your Property{' '}
+                  Sell or Rent Your Property
                   <Text style={styles.fasterText}>Faster</Text>with
                   E-Property.com
                 </Text>
@@ -212,11 +175,7 @@ const Sell: React.FC<Props> = ({navigation}) => {
               <Text style={styles.privacyText}>Copyright 2023</Text>
             </View>
           </View>
-        )}
-        <View style={styles.footerView}>
-          <Text style={styles.privacyText}>Privacy Policy</Text>
-          <Text style={styles.privacyText}>Copyright 2023</Text>
-        </View>
+        )} 
       </ScrollView>
     </SafeAreaView>
   );

@@ -296,7 +296,7 @@ const AddProperty: React.FC<Props> = ({navigation}) => {
               <Text style={styles.labelText1}>Select Amenitites</Text>
               <View style={styles.amenititesView}>
                 <View style={styles.amenititesDirectionView}>
-                  <OptionSelect
+                  {/* <OptionSelect
                     optionText="A/C"
                     onPress={() => console.log('hello')}
                   />
@@ -335,7 +335,7 @@ const AddProperty: React.FC<Props> = ({navigation}) => {
                   <OptionSelect
                     optionText="Jacuzzi"
                     onPress={() => console.log('hello')}
-                  />
+                  /> */}
                 </View>
               </View>
               <Text style={styles.labelText1}>Description</Text>

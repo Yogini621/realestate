@@ -24,12 +24,11 @@ import ProfileInformation from './ProfileInformation';
 import ChangePassword from './ChangePassword';
 import MyLocations from './MyLocations';
 
-
 interface Props {
   navigation: any;
 }
 
-const Tab = createMaterialTopTabNavigator()
+const Tab = createMaterialTopTabNavigator();
 
 const ProfileSeller: React.FC<Props> = ({navigation}) => {
   return (
@@ -273,7 +272,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     height: responsiveHeight(6.8),
     marginTop: responsiveHeight(2.8),
-    marginBottom:responsiveHeight(2)
+    marginBottom: responsiveHeight(2),
   },
   updateText: {
     color: 'white',

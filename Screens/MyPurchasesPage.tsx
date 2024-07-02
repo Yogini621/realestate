@@ -9,7 +9,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
@@ -31,9 +31,9 @@ interface Props {
 }
 
 const MyPurchasesPage: React.FC<Props> = ({navigation}) => {
-const [name,setName] = useState('')
-const [email,setEmail] = useState('')
-const [contact,setContact] = useState('')
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [contact, setContact] = useState('');
 
   useEffect(() => {
     handleRetrieveCredentials();
@@ -85,9 +85,7 @@ const [contact,setContact] = useState('')
               </View>
               <View style={styles.profileView}>
                 <Fontisto name="email" color="white" size={24} />
-                <Text style={styles.userName}>
-                  Mail:{email}
-                </Text>
+                <Text style={styles.userName}>Mail:{email}</Text>
               </View>
             </View>
             <TouchableOpacity style={styles.editIcon}>

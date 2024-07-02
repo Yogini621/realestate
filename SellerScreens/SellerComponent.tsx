@@ -5,14 +5,13 @@ import {
   responsiveHeight,
   responsiveWidth,
 } from 'react-native-responsive-dimensions';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Entypo from 'react-native-vector-icons/Entypo';
-
 
 interface Props {
   icon: any;
   componentText: string;
-  onPress:() => void
+  onPress: () => void;
 }
 
 const SellerComponent = (props: Props) => {
@@ -38,7 +37,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     flexDirection: 'row',
     alignItems: 'center',
-//     backgroundColor: '#073762',
+    //     backgroundColor: '#073762',
   },
   componentText: {
     color: '#718096',

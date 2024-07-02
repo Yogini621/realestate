@@ -23,7 +23,10 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import Octicons from 'react-native-vector-icons/Octicons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Entypo from 'react-native-vector-icons/Entypo';
-import {removeAllFromFavorites, removeFavorites} from '../redux/actions/actionTypes';
+import {
+  removeAllFromFavorites,
+  removeFavorites,
+} from '../redux/actions/actionTypes';
 
 interface Props {
   navigation: any;
@@ -40,8 +43,8 @@ const Favorites: React.FC<Props> = ({navigation}) => {
   };
 
   const handleRemoveAll = () => {
-    dispatch(removeAllFromFavorites())
-  }
+    dispatch(removeAllFromFavorites());
+  };
 
   const renderItems = ({item}: {item: Property}) => {
     return (
@@ -148,7 +151,9 @@ const Favorites: React.FC<Props> = ({navigation}) => {
             </TouchableOpacity>
           </View>
           <View>
-            <TouchableOpacity style={styles.deleteButton} onPress={handleRemoveAll}>
+            <TouchableOpacity
+              style={styles.deleteButton}
+              onPress={handleRemoveAll}>
               <MaterialIcons name="delete-outline" color="red" size={20} />
               <Text style={styles.removeAllText}>Remove all</Text>
             </TouchableOpacity>

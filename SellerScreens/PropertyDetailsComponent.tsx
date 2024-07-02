@@ -1,22 +1,28 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
-import {responsiveFontSize, responsiveHeight, responsiveWidth} from 'react-native-responsive-dimensions';
+import {
+  responsiveFontSize,
+  responsiveHeight,
+  responsiveWidth,
+} from 'react-native-responsive-dimensions';
 
 interface Props {
   label: string;
   labelText: string;
   optionText?: string;
-  labelTextColor?:string;
+  labelTextColor?: string;
 }
 
 const PropertyDetailsComponent = (props: Props) => {
   return (
     <View>
       <View style={styles.propertyView}>
-        <Text style = {styles.label}>{props.label}</Text>
+        <Text style={styles.label}>{props.label}</Text>
         <View>
-          <Text style = {[styles.labelText,{color:props.labelTextColor}]}>{props.labelText} </Text>
-          <Text style = {styles.optionText}>{props.optionText}</Text>
+          <Text style={[styles.labelText, {color: props.labelTextColor}]}>
+            {props.labelText}{' '}
+          </Text>
+          <Text style={styles.optionText}>{props.optionText}</Text>
         </View>
       </View>
     </View>
@@ -30,7 +36,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     width: responsiveWidth(90),
     alignSelf: 'center',
-    marginTop:responsiveHeight(1)
+    marginTop: responsiveHeight(1),
   },
   label: {
     color: '#073762',

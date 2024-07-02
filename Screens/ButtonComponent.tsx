@@ -11,7 +11,7 @@ interface Props {
   onPress: () => void;
 }
 
-const ButtonComponent = (props:Props) => {
+const ButtonComponent = (props: Props) => {
   return (
     <View>
       <View style={styles.priceButton}>

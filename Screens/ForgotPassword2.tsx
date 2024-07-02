@@ -59,7 +59,7 @@ const ForgotPassword2: React.FC<Props> = ({navigation}) => {
       .required('Password required'),
   });
 
-  const handleChangePassword = async (values:UserDetails) => {
+  const handleChangePassword = async (values: UserDetails) => {
     const userDetails = await AsyncStorage.getItem('userDta');
     if (userDetails !== null) {
       const userData = JSON.parse(userDetails);
@@ -69,7 +69,7 @@ const ForgotPassword2: React.FC<Props> = ({navigation}) => {
           userData.password = values.password;
           await AsyncStorage.setItem('userData', JSON.stringify(userData));
           Alert.alert('Password Changed Successfully');
-          navigation.navigate('SigninPage')
+          navigation.navigate('SigninPage');
         } else {
           Alert.alert('NewPassword and Confirm password don not match');
         }

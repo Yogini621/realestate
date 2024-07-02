@@ -78,7 +78,7 @@ const PreviewProperty: React.FC<Props> = ({navigation, route}) => {
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.shareButton}
-            //             onPress={() => handleAddToFavorites(item)}
+                        // onPress={() => handleAddToFavorites(item)}
           >
             {/* <AntDesign
               name={

@@ -19,9 +19,7 @@ import {
 } from 'react-native-responsive-dimensions';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Entypo from 'react-native-vector-icons/Entypo';
-import {
-  BarChart,
-} from 'react-native-gifted-charts';
+import {BarChart} from 'react-native-gifted-charts';
 
 interface Props {
   navigation: any;
@@ -109,9 +107,9 @@ const SellerDashBoard: React.FC<Props> = ({navigation}) => {
         </View>
         <View style={styles.tenantRequestView}>
           <View style={styles.tenatRequestDirectionView}>
-            <Text style = {styles.tenantRequstText}>Tenant Request</Text>
+            <Text style={styles.tenantRequstText}>Tenant Request</Text>
             <TouchableOpacity>
-              <Text style = {styles.viewAllText}>View all</Text>
+              <Text style={styles.viewAllText}>View all</Text>
             </TouchableOpacity>
           </View>
         </View>

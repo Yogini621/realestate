@@ -1,5 +1,7 @@
 import {
   Image,
+  PermissionsAndroid,
+  Platform,
   SafeAreaView,
   ScrollView,
   StatusBar,
@@ -11,34 +13,38 @@ import {
 } from 'react-native';
 import React, {useState} from 'react';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import {
   responsiveFontSize,
   responsiveHeight,
   responsiveWidth,
 } from 'react-native-responsive-dimensions';
 import Feather from 'react-native-vector-icons/Feather';
-import FontAwesome6 from 'react-native-vector-icons/FontAwesome6';
 import Foundation from 'react-native-vector-icons/Foundation';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Fontisto from 'react-native-vector-icons/Fontisto';
 import Entypo from 'react-native-vector-icons/Entypo';
-import OptionSelect from './OptionSelect';
 import * as ImagePicker from 'react-native-image-picker';
 import {launchImageLibrary} from 'react-native-image-picker';
-import {Dropdown} from 'react-native-element-dropdown';
+import Amenitites from './Amenitites';
+import MapView, {LatLng} from 'react-native-maps';
+import Geolocation from '@react-native-community/geolocation';
+import {SelectList} from 'react-native-dropdown-select-list';
 
 interface Props {
   navigation: any;
 }
 
 const RentProperty: React.FC<Props> = ({navigation}) => {
+  const [currentLocation, setCurrentLocation] = useState<LatLng | null>(null);
+  const [locationError, setLocationError] = useState<string | null>(null);
   const [step1Visible, setStep1Visible] = useState(false);
   const [step2Visible, setStep2Visible] = useState(true);
   const [step3Visible, setStep3Visible] = useState(false);
   const [step4Visible, setStep4Visible] = useState(false);
   const [step, setStep] = useState(0);
   const [image, setImgage] = useState<string[]>([]);
+  const [selected, setSelected] = React.useState('');
+  const [categories, setCategories] = React.useState([]);
 
   const openStep3 = () => {
     setStep2Visible(false);
@@ -51,15 +57,52 @@ const RentProperty: React.FC<Props> = ({navigation}) => {
   };
 
   const data = [
-    {label: 'Item 1', value: '1'},
-    {label: 'Item 2', value: '2'},
-    {label: 'Item 3', value: '3'},
-    {label: 'Item 4', value: '4'},
-    {label: 'Item 5', value: '5'},
-    {label: 'Item 6', value: '6'},
-    {label: 'Item 7', value: '7'},
-    {label: 'Item 8', value: '8'},
+    {key: 'Canada', value: 'Canada'},
+    {key: 'England', value: 'England'},
+    {key: 'Pakistan', value: 'Pakistan'},
+    {key: 'India', value: 'India'},
+    {key: 'NewZealand', value: 'NewZealand'},
   ];
+
+  const requestLocationPermission = async () => {
+    if (Platform.OS === 'android') {
+      try {
+        const granted = await PermissionsAndroid.request(
+          PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+          {
+            title: 'Location Permission',
+            message: 'App needs access to your location.',
+            buttonNeutral: 'Ask Me Later',
+            buttonNegative: 'Cancel',
+            buttonPositive: 'OK',
+          },
+        );
+        if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+          console.log('Location permission granted');
+          getCurrentLocation();
+        } else {
+          setLocationError('Location permission denied');
+        }
+      } catch (error) {
+        console.error('Error requesting location permission:', error);
+        setLocationError('Error requesting location permission');
+      }
+    }
+  };
+
+  const getCurrentLocation = async () => {
+    Geolocation.getCurrentPosition(
+      async position => {
+        const {latitude, longitude} = position.coords;
+        setCurrentLocation({latitude, longitude});
+        setLocationError(null);
+      },
+      error => {
+        console.error('Error getting current location:', error);
+        setLocationError('Error getting current location');
+      },
+    );
+  };
 
   const SelectImage = () => {
     const options: ImagePicker.ImageLibraryOptions = {
@@ -127,7 +170,7 @@ const RentProperty: React.FC<Props> = ({navigation}) => {
             <View>
               <Text style={styles.basicDetailsText}>BasicDetails</Text>
               <View style={styles.flatAndditTextView}>
-                <Text style={styles.flatText}>Flat Apartment Sale/Rent </Text>
+                <Text style={styles.flatText}>Flat Apartment Sale/Rent</Text>
                 <TouchableOpacity>
                   <Text style={styles.editText}>Edit</Text>
                 </TouchableOpacity>
@@ -153,7 +196,9 @@ const RentProperty: React.FC<Props> = ({navigation}) => {
                 Where is your property located
               </Text>
               <Text style={styles.addBasicDetailsText}>Add Basic details</Text>
-              <TouchableOpacity style={styles.locationButton}>
+              <TouchableOpacity
+                style={styles.locationButton}
+                onPress={requestLocationPermission}>
                 <MaterialIcons name="my-location" color="#073762" size={28} />
                 <Text style={styles.pickMyLocationText}>Pick My Location</Text>
               </TouchableOpacity>
@@ -188,7 +233,7 @@ const RentProperty: React.FC<Props> = ({navigation}) => {
                   <Text style={styles.basicDetailsText}>BasicDetails</Text>
                   <View style={styles.flatAndditTextView}>
                     <Text style={styles.flatText}>
-                      Flat Apartment Sale/Rent{' '}
+                      Flat Apartment Sale/Rent
                     </Text>
                     <TouchableOpacity>
                       <Text style={styles.editText}>Edit</Text>
@@ -204,7 +249,9 @@ const RentProperty: React.FC<Props> = ({navigation}) => {
               </TouchableOpacity>
               <Text style={styles.locatedText1}>Listing Information</Text>
               <Text style={styles.labelText}>City*</Text>
-              <View style={styles.inputView}>
+              <SelectList setSelected={setSelected} data={data} />
+
+              {/* <View style={styles.inputView}>
                 <TextInput
                   placeholder="Select your city"
                   placeholderTextColor="#00092980"
@@ -213,8 +260,8 @@ const RentProperty: React.FC<Props> = ({navigation}) => {
                 <TouchableOpacity>
                   <Entypo name="chevron-small-down" color="black" size={16} />
                 </TouchableOpacity>
-              </View>
-              <Text style={styles.labelText}>Apartment / Society </Text>
+              </View> */}
+              <Text style={styles.labelText}>Apartment / Society</Text>
               <TextInput
                 placeholder="Enter your apartment/society"
                 style={styles.input}
@@ -312,47 +359,12 @@ const RentProperty: React.FC<Props> = ({navigation}) => {
               <Text style={styles.labelText}>Select Amenitites</Text>
               <View style={styles.amenititesView}>
                 <View style={styles.amenititesDirectionView}>
-                  <OptionSelect
-                    optionText="A/C"
-                    onPress={() => console.log('hello')}
-                  />
-                  <OptionSelect
-                    optionText="Deck"
-                    onPress={() => console.log('hello')}
-                  />
-                  <OptionSelect
-                    optionText="Pet Friendly"
-                    onPress={() => console.log('hello')}
-                  />
-                  <OptionSelect
-                    optionText="Pool"
-                    onPress={() => console.log('hello')}
-                  />
-                  <OptionSelect
-                    optionText="Free Parking Sports"
-                    onPress={() => console.log('hello')}
-                  />
-                  <OptionSelect
-                    optionText="Yard"
-                    onPress={() => console.log('hello')}
-                  />
-                  <OptionSelect
-                    optionText="Free Wi-Fi"
-                    onPress={() => console.log('hello')}
-                  />
-                  <OptionSelect
-                    optionText="Gym"
-                    onPress={() => console.log('hello')}
-                  />
-                  <OptionSelect
-                    optionText="Hardwood Floor"
-                    onPress={() => console.log('hello')}
-                  />
-                  <OptionSelect
-                    optionText="Jacuzzi"
-                    onPress={() => console.log('hello')}
-                  />
+                  <Amenitites />
                 </View>
+                <TouchableOpacity style={styles.addAmenityButton}>
+                  <Entypo name="plus" color="#073762" size={18} />
+                  <Text style={styles.amenityText}>Add amenity</Text>
+                </TouchableOpacity>
               </View>
               <Text style={styles.labelText}>Description</Text>
               <TextInput
@@ -589,7 +601,7 @@ const styles = StyleSheet.create({
   },
   getHelpText: {
     color: '#073762',
-    fontFamily: 'PlusJakartaSans j',
+    fontFamily: 'PlusJakartaSans m',
     fontSize: responsiveFontSize(1.8),
   },
   getHelpTextView: {
@@ -704,7 +716,7 @@ const styles = StyleSheet.create({
   input1: {
     color: '#000929',
     fontFamily: 'PlusJakartaSans j',
-    fontSize: responsiveFontSize(1.8),
+    fontSize: responsiveFontSize(2),
     width: responsiveWidth(66),
   },
   input: {
@@ -784,7 +796,7 @@ const styles = StyleSheet.create({
   },
   amenititesDirectionView: {
     flexDirection: 'row',
-    margin: 5,
+    margin: 3,
     flexWrap: 'wrap',
   },
   uploadImageView: {
@@ -807,5 +819,18 @@ const styles = StyleSheet.create({
   image: {
     alignSelf: 'center',
     marginTop: responsiveHeight(2),
+  },
+  addAmenityButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: responsiveHeight(2),
+    left: responsiveWidth(2.8),
+    marginTop: responsiveHeight(1),
+  },
+  amenityText: {
+    color: '#073762',
+    fontFamily: 'PlusJakartaSans a',
+    fontSize: responsiveFontSize(1.5),
+    left: responsiveWidth(1.8),
   },
 });

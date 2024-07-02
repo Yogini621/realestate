@@ -1,14 +1,18 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React, { useState } from 'react'
-import { Checkbox } from 'react-native-paper';
-import { responsiveFontSize, responsiveHeight, responsiveWidth } from 'react-native-responsive-dimensions';
+import {StyleSheet, Text, View} from 'react-native';
+import React, {useState} from 'react';
+import {Checkbox} from 'react-native-paper';
+import {
+  responsiveFontSize,
+  responsiveHeight,
+  responsiveWidth,
+} from 'react-native-responsive-dimensions';
 
-interface Props{
-  text:String
+interface Props {
+  text: String;
 }
 
-const CheckBoxComponent= (props:Props) => {
-const [checked, setChecked] = useState(false);
+const CheckBoxComponent = (props: Props) => {
+  const [checked, setChecked] = useState(false);
 
   return (
     <View>
@@ -22,9 +26,9 @@ const [checked, setChecked] = useState(false);
       </View>
     </View>
   );
-}
+};
 
-export default CheckBoxComponent
+export default CheckBoxComponent;
 
 const styles = StyleSheet.create({
   checkBoxView: {

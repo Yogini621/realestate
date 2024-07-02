@@ -239,8 +239,8 @@ const styles = StyleSheet.create({
   mostRelevantAndIconView: {
     flexDirection: 'row',
     alignItems: 'center',
-    width:responsiveWidth(38),
-    justifyContent:'space-between'
+    width: responsiveWidth(38),
+    justifyContent: 'space-between',
   },
   sortByText: {
     color: '#7c8493',
@@ -251,7 +251,7 @@ const styles = StyleSheet.create({
     color: '#25324b',
     fontFamily: 'PlusJakartaSans j',
     fontSize: responsiveFontSize(2),
-    left:responsiveWidth(2.8)
+    left: responsiveWidth(2.8),
   },
   buyingProcessView: {
     borderWidth: 1,

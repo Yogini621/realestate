@@ -30,7 +30,6 @@ const AccountSeller = () => {
         </View>
         <View style={styles.seperator} />
         <View style={styles.deleteAccoutView}>
-      
           <TouchableOpacity style={styles.deleteAccountButton}>
             <Text style={styles.deleteButtonText}>Delete Account</Text>
           </TouchableOpacity>
@@ -143,12 +142,12 @@ const styles = StyleSheet.create({
     padding: 10,
     width: responsiveWidth(34.8),
     borderRadius: 6,
-    alignItems: "center",
-    justifyContent: "center",
+    alignItems: 'center',
+    justifyContent: 'center',
     height: responsiveHeight(6),
-    alignSelf:'flex-end',
-    marginTop:responsiveHeight(2.8),
-    marginBottom:responsiveHeight(2)
+    alignSelf: 'flex-end',
+    marginTop: responsiveHeight(2.8),
+    marginBottom: responsiveHeight(2),
   },
   deleteButtonText: {
     color: '#f06565',

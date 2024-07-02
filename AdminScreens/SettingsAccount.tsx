@@ -1,5 +1,4 @@
 import {
-  Image,
   SafeAreaView,
   ScrollView,
   StatusBar,
@@ -9,73 +8,78 @@ import {
   View,
 } from 'react-native';
 import React from 'react';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {
   responsiveFontSize,
   responsiveHeight,
   responsiveWidth,
 } from 'react-native-responsive-dimensions';
+import Ionicons from 'react-native-vector-icons/Ionicons'
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
-import Account from './AccountSeller';
-import Notifications from './NotificationsSeller';
+import MyAccount from './MyAccount';
+import LinkAccount from './LinkAccount';
+import NotificationsAdmin from './NotificationsAdmin';
+
+const Tab = createMaterialTopTabNavigator();
+
 
 interface Props {
   navigation: any;
 }
 
-const Tab = createMaterialTopTabNavigator();
-
-const SettingsSeller: React.FC<Props> = ({navigation}) => {
+const SettingsAccount: React.FC<Props> = ({navigation}) => {
   return (
     <SafeAreaView style={styles.container}>
-      <StatusBar hidden={true} />
       <ScrollView>
+        <StatusBar hidden={true} />
         <View style={styles.headerView}>
           <View style={styles.logoView}>
             <TouchableOpacity onPress={() => navigation.navigate('MenuPage')}>
-              <FontAwesome5 name="grip-lines" size={20} color="#073762" />
+              <FontAwesome5 name="grip-lines" size={20} />
             </TouchableOpacity>
+            <Text style={styles.settingsText}>Settings</Text>
             <View style={styles.iconView}>
               <TouchableOpacity>
-                <Ionicons
-                  name="notifications-outline"
-                  size={20}
-                  color="#073762"
-                />
+                <Ionicons name="notifications-outline" size={20} />
               </TouchableOpacity>
               <TouchableOpacity onPress={() => navigation.navigate('MenuPage')}>
-                <FontAwesome5 name="grip-lines" size={20} color="#073762" />
+                <FontAwesome5 name="grip-lines" size={20} />
               </TouchableOpacity>
             </View>
           </View>
         </View>
-        <Text style={styles.searchText}>Settings</Text>
         <Tab.Navigator
           screenOptions={{
+            tabBarActiveTintColor: '#323142',
             tabBarLabelStyle: {
-              fontSize: responsiveFontSize(1.8),
-              color: '#000000',
+              fontSize: responsiveFontSize(1.6),
               fontFamily: 'PlusJakartaSans m',
             },
           }}>
           <Tab.Screen
-            name="Account"
-            component={Account}
+            name="MyAccount"
+            component={MyAccount}
             options={{
               tabBarIndicatorStyle: {
-                borderWidth: 1,
-                borderColor: '#073762',
+                backgroundColor: '#073762',
               },
             }}
           />
           <Tab.Screen
-            name="Notifications"
-            component={Notifications}
+            name="LinkAccount"
+            component={LinkAccount}
             options={{
               tabBarIndicatorStyle: {
-                borderWidth: 1,
-                borderColor: '#073762',
+                backgroundColor: '#073762',
+              },
+            }}
+          />
+          <Tab.Screen
+            name="NotificationsAdmin"
+            component={NotificationsAdmin}
+            options={{
+              tabBarIndicatorStyle: {
+                backgroundColor: '#073762',
               },
             }}
           />
@@ -85,7 +89,7 @@ const SettingsSeller: React.FC<Props> = ({navigation}) => {
   );
 };
 
-export default SettingsSeller;
+export default SettingsAccount;
 
 const styles = StyleSheet.create({
   container: {
@@ -109,14 +113,12 @@ const styles = StyleSheet.create({
     width: responsiveWidth(14),
     flexDirection: 'row',
     justifyContent: 'space-between',
+    alignItems:'center'
   },
-  searchText: {
-    color: '#100a55',
+  settingsText: {
+    color: '#1a202c',
     fontSize: responsiveFontSize(2.4),
     fontFamily: 'PlusJakartaSans a',
-    fontWeight: '600',
-    left: responsiveWidth(4.8),
-    marginTop: responsiveHeight(2),
-    marginBottom: responsiveHeight(2),
+    right:responsiveWidth(20)
   },
 });

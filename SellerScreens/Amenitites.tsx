@@ -5,25 +5,25 @@ import {
   responsiveWidth,
 } from 'react-native-responsive-dimensions';
 
-const OptionSelect = () => {
+const Amenitites = () => {
   const [selectId, setSelectId] = useState(0);
 
   const options = [
-    {id: 1, text: 'Flat/Apartment'},
-    {id: 2, text: 'Independent House/Villa'},
-    {id: 3, text: 'Plot/Land'},
-    {id: 4, text: 'Independent Builder Floor'},
-    {id: 5, text: 'Plot/Land'},
-    {id: 6, text: 'Farmhouse'},
-    {id: 7, text: '1 RK/Studio Apartment'},
-    {id: 8, text: 'Serviced Apartment'},
-    {id: 9, text: 'Other'},
+    {id: 1, option: 'A/C'},
+    {id: 2, option: 'Deck'},
+    {id: 3, option: 'Pet Friendly'},
+    {id: 4, option: 'Pool'},
+    {id: 5, option: 'Free Parking Spots'},
+    {id: 6, option: 'Yard'},
+    {id: 7, option: 'Free Wi-Fi'},
+    {id: 8, option: 'Gym'},
+    {id: 9, option: 'Hardwood Floor'},
+    {id: 10, option: 'Jacuzzi'},
   ];
 
   const selectOption = (id: number) => {
     setSelectId(id);
   };
-
   return (
     <View style={styles.optionView}>
       {options.map(item => (
@@ -34,22 +34,20 @@ const OptionSelect = () => {
             style={
               selectId === item.id ? styles.activeText : styles.optionText
             }>
-            {item.text}
+            {item.option}
           </Text>
         </TouchableOpacity>
       ))}
     </View>
   );
 };
-
-export default OptionSelect;
-
+export default Amenitites;
 const styles = StyleSheet.create({
   button: {
     borderWidth: 1,
     borderColor: '#9fc5e9',
     borderRadius: 8,
-    margin: 5,
+    margin: 3,
     paddingVertical: 8,
     paddingHorizontal: 10,
   },

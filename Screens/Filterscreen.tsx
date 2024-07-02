@@ -22,14 +22,17 @@ import CheckBoxComponent from './CheckBoxComponent';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 interface Props {
-  modalVisible:boolean;
-  colseModal:() => void
+  modalVisible: boolean;
+  colseModal: () => void;
 }
 
-const Filterscreen: React.FC<Props> = (props:Props) => {
+const Filterscreen: React.FC<Props> = (props: Props) => {
   return (
     <View>
-      <Modal animationType="slide" transparent={true} visible={props.modalVisible}>
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={props.modalVisible}>
         <View style={styles.modalView}>
           <ScrollView>
             <View style={styles.line} />

@@ -1,5 +1,5 @@
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import {
   responsiveFontSize,
   responsiveHeight,
@@ -9,21 +9,22 @@ interface Props {
   optionText: string;
   onPress?: () => void;
   color?: string;
-  modalVisible?:() => void
+  modalVisible?: () => void;
 }
 
 const OptionComponent = (props: Props) => {
+  const [clicked, setClicked] = useState(false);
 
-const [clicked,setClicked] = useState(false)
-
-const handlePress = () => {
-  setClicked(!clicked)
- props.onPress
-}
+  const handlePress = () => {
+    setClicked(!clicked);
+    props.onPress;
+  };
 
   return (
     <View>
-      <TouchableOpacity onPress={props.onPress || props.modalVisible} style={styles.button}>
+      <TouchableOpacity
+        onPress={props.onPress || props.modalVisible}
+        style={styles.button}>
         <Text style={[styles.optionText, clicked && styles.seletText]}>
           {props.optionText}
         </Text>

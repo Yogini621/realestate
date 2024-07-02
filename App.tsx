@@ -43,6 +43,7 @@ import MessageDetails from './SellerScreens/MessageDetails';
 import ProfileSeller from './SellerScreens/ProfiieSeller';
 import GetHelp from './SellerScreens/GetHelp';
 import SettingsSeller from './SellerScreens/SettingsSeller';
+import SettingsAccount from './AdminScreens/SettingsAccount';
 
 const Stack = createNativeStackNavigator();
 
@@ -224,6 +225,27 @@ const App = () => {
           <Stack.Screen
             name="Sales"
             component={Sales}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="GetHelp"
+            component={GetHelp}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="ProfileSeller"
+            component={ProfileSeller}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="SellerDashBoard"
+            component={SellerDashBoard}
+            options={{headerShown: false}}
+          />
+
+          <Stack.Screen
+            name="SettingsAccount"
+            component={SettingsAccount}
             options={{headerShown: false}}
           />
         </Stack.Navigator>
