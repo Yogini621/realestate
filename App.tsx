@@ -44,6 +44,15 @@ import ProfileSeller from './SellerScreens/ProfiieSeller';
 import GetHelp from './SellerScreens/GetHelp';
 import SettingsSeller from './SellerScreens/SettingsSeller';
 import SettingsAccount from './AdminScreens/SettingsAccount';
+import ProfileAdimin from './AdminScreens/ProfileAdimin';
+import AdminMenu from './AdminScreens/AdminMenu';
+import DashBoard from './AdminScreens/DashBoard';
+import Properties from './AdminScreens/Properties';
+import Customer from './AdminScreens/Customer';
+import Analytics from './AdminScreens/Analytics';
+import Messages from './AdminScreens/Messages';
+import TremsAndConditions from './AdminScreens/TremsAndConditionsAdmin';
+import PrivacyPolicyAdmin from './AdminScreens/PrivacyPolicyAdmin';
 
 const Stack = createNativeStackNavigator();
 
@@ -242,10 +251,54 @@ const App = () => {
             component={SellerDashBoard}
             options={{headerShown: false}}
           />
-
+          <Stack.Screen
+            name="AdminMenu"
+            component={AdminMenu}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="DashBoard"
+            component={DashBoard}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="Properties"
+            component={Properties}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="ProfileAdimin"
+            component={ProfileAdimin}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="Customer"
+            component={Customer}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="Analytics"
+            component={Analytics}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="Messages"
+            component={Messages}
+            options={{headerShown: false}}
+          />
           <Stack.Screen
             name="SettingsAccount"
             component={SettingsAccount}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="TremsAndConditions"
+            component={TremsAndConditions}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="PrivacyPolicyAdmin"
+            component={PrivacyPolicyAdmin}
             options={{headerShown: false}}
           />
         </Stack.Navigator>

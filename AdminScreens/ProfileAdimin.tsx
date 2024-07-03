@@ -13,29 +13,28 @@ import {
   responsiveHeight,
   responsiveWidth,
 } from 'react-native-responsive-dimensions';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
-import MyAccount from './MyAccount';
-import LinkAccount from './LinkAccount';
-import Notifications from './Notifications';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import ProfileInformation from './ProfileInformation';
+import Password from './Password';
 
-const Tab = createMaterialTopTabNavigator();
 interface Props {
   navigation: any;
 }
 
-const SettingsAccount: React.FC<Props> = ({navigation}) => {
+const Tab = createMaterialTopTabNavigator();
+
+const ProfileAdimin: React.FC<Props> = ({navigation}) => {
   return (
     <SafeAreaView style={styles.container}>
+      <StatusBar hidden={true} />
       <ScrollView>
-        <StatusBar hidden={true} />
         <View style={styles.headerView}>
           <View style={styles.logoView}>
             <TouchableOpacity onPress={() => navigation.navigate('MenuPage')}>
               <FontAwesome5 name="grip-lines" size={20} color="#073762" />
             </TouchableOpacity>
-            <Text style={styles.settingsText}>Settings</Text>
             <View style={styles.iconView}>
               <TouchableOpacity>
                 <Ionicons
@@ -50,6 +49,7 @@ const SettingsAccount: React.FC<Props> = ({navigation}) => {
             </View>
           </View>
         </View>
+        <Text style={styles.personalInformationText}>Personal Information</Text>
         <Tab.Navigator
           screenOptions={{
             tabBarActiveTintColor: '#323142',
@@ -59,8 +59,8 @@ const SettingsAccount: React.FC<Props> = ({navigation}) => {
             },
           }}>
           <Tab.Screen
-            name="MyAccount"
-            component={MyAccount}
+            name="ProfileInformation"
+            component={ProfileInformation}
             options={{
               tabBarIndicatorStyle: {
                 backgroundColor: '#073762',
@@ -68,17 +68,8 @@ const SettingsAccount: React.FC<Props> = ({navigation}) => {
             }}
           />
           <Tab.Screen
-            name="LinkAccount"
-            component={LinkAccount}
-            options={{
-              tabBarIndicatorStyle: {
-                backgroundColor: '#073762',
-              },
-            }}
-          />
-          <Tab.Screen
-            name="Notifications"
-            component={Notifications}
+            name="Password"
+            component={Password}
             options={{
               tabBarIndicatorStyle: {
                 backgroundColor: '#073762',
@@ -90,9 +81,7 @@ const SettingsAccount: React.FC<Props> = ({navigation}) => {
     </SafeAreaView>
   );
 };
-
-export default SettingsAccount;
-
+export default ProfileAdimin;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -117,10 +106,11 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
   },
-  settingsText: {
+  personalInformationText: {
     color: '#1a202c',
     fontSize: responsiveFontSize(2.4),
-    fontFamily: 'PlusJakartaSans a',
-    right: responsiveWidth(20),
+    fontFamily: 'PlusJakartaSans m',
+    marginTop: responsiveHeight(2.4),
+    left: responsiveWidth(4.8),
   },
 });
