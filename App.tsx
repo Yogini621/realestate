@@ -53,6 +53,8 @@ import Analytics from './AdminScreens/Analytics';
 import Messages from './AdminScreens/Messages';
 import TremsAndConditions from './AdminScreens/TremsAndConditionsAdmin';
 import PrivacyPolicyAdmin from './AdminScreens/PrivacyPolicyAdmin';
+import MessageDetailsAdmin from './AdminScreens/MessageDetailsAdmin';
+import PropertyFullView from './AdminScreens/PropertyFullView';
 
 const Stack = createNativeStackNavigator();
 
@@ -257,6 +259,11 @@ const App = () => {
             options={{headerShown: false}}
           />
           <Stack.Screen
+            name="Analytics"
+            component={Analytics}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
             name="DashBoard"
             component={DashBoard}
             options={{headerShown: false}}
@@ -277,11 +284,6 @@ const App = () => {
             options={{headerShown: false}}
           />
           <Stack.Screen
-            name="Analytics"
-            component={Analytics}
-            options={{headerShown: false}}
-          />
-          <Stack.Screen
             name="Messages"
             component={Messages}
             options={{headerShown: false}}
@@ -294,6 +296,11 @@ const App = () => {
           <Stack.Screen
             name="TremsAndConditions"
             component={TremsAndConditions}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="PropertyFullView"
+            component={PropertyFullView}
             options={{headerShown: false}}
           />
           <Stack.Screen

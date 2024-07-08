@@ -141,13 +141,6 @@ const AddProperty: React.FC<Props> = ({navigation}) => {
           <Text style={styles.stepText}>STEP 1 OF 4</Text>
         </View>
         <ProgressSteps progressBarColor="#052443">
-          {/* <View style={styles.getHelpTextView}>
-            <Text style={styles.lostText}>Lost or have trouble?</Text>
-            <TouchableOpacity style={styles.getHelpView}>
-              <Text style={styles.getHelpText}>{'    '}Get help</Text>
-              <MaterialIcons name="arrow-right-alt" size={26} color="#073762" />
-            </TouchableOpacity>
-          </View> */}
           <ProgressStep label="Basic Details">
             <View style={styles.locationView}>
               <TouchableOpacity style={styles.backButton}>
@@ -296,46 +289,7 @@ const AddProperty: React.FC<Props> = ({navigation}) => {
               <Text style={styles.labelText1}>Select Amenitites</Text>
               <View style={styles.amenititesView}>
                 <View style={styles.amenititesDirectionView}>
-                  {/* <OptionSelect
-                    optionText="A/C"
-                    onPress={() => console.log('hello')}
-                  />
-                  <OptionSelect
-                    optionText="Deck"
-                    onPress={() => console.log('hello')}
-                  />
-                  <OptionSelect
-                    optionText="Pet Friendly"
-                    onPress={() => console.log('hello')}
-                  />
-                  <OptionSelect
-                    optionText="Pool"
-                    onPress={() => console.log('hello')}
-                  />
-                  <OptionSelect
-                    optionText="Free Parking Sports"
-                    onPress={() => console.log('hello')}
-                  />
-                  <OptionSelect
-                    optionText="Yard"
-                    onPress={() => console.log('hello')}
-                  />
-                  <OptionSelect
-                    optionText="Free Wi-Fi"
-                    onPress={() => console.log('hello')}
-                  />
-                  <OptionSelect
-                    optionText="Gym"
-                    onPress={() => console.log('hello')}
-                  />
-                  <OptionSelect
-                    optionText="Hardwood Floor"
-                    onPress={() => console.log('hello')}
-                  />
-                  <OptionSelect
-                    optionText="Jacuzzi"
-                    onPress={() => console.log('hello')}
-                  /> */}
+                 
                 </View>
               </View>
               <Text style={styles.labelText1}>Description</Text>

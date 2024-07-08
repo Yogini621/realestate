@@ -6,7 +6,10 @@ import {
   RemoveAll,
   RemoveFavorires,
   Address,
-  AddAddress
+  AddAddress,
+  Customer,
+  AddCustomer,
+  RemoveCustomer
 } from './actions';
 
 export const fetchProperties = (properties: Property[]) => ({
@@ -34,4 +37,14 @@ export const addDraft = (item:Property) => ({
 export const addAddress = (address:Address) => ({
   type:AddAddress,
   payload:address
+})
+
+export const addCustomer = (customer:Customer) => ({
+  type:AddCustomer,
+  payload:customer
+})
+
+export const removeCustomer = (id:number) => ({
+  type:RemoveCustomer,
+  payload:id
 })

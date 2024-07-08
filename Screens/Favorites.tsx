@@ -52,6 +52,13 @@ const Favorites: React.FC<Props> = ({navigation}) => {
         <View style={styles.itemView} key={item.id}>
           <Image source={item.image} style={styles.image} />
           <View style={styles.descriptionView}>
+            <View style={styles.triangle} />
+            <View style={styles.popularTextView}>
+              <View style={styles.popularTextDirectionView}>
+                <Ionicons name="sparkles" color="white" size={16} />
+                <Text style={styles.popularText}>POPULAR</Text>
+              </View>
+            </View>
             <View style={styles.favoriteIconView}>
               <View>
                 <View style={styles.rupeeView}>
@@ -363,5 +370,43 @@ const styles = StyleSheet.create({
     fontSize: responsiveFontSize(1.8),
     fontFamily: 'PlusJakartaSans j',
     margin: 5,
+  },
+  popularTextDirectionView: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: responsiveWidth(22),
+    alignItems: 'center',
+  },
+  popularTextView: {
+    backgroundColor: '#073762',
+    width: responsiveWidth(32),
+    height: responsiveHeight(5),
+    alignItems: 'center',
+    justifyContent: 'center',
+    position: 'absolute',
+    top: responsiveHeight(-2.8),
+    left: responsiveWidth(-3.2),
+    borderTopRightRadius: 10,
+    borderBottomRightRadius: 10,
+    borderTopLeftRadius: 10,
+  },
+  popularText: {
+    color: 'white',
+    fontSize: responsiveFontSize(1.6),
+    fontFamily: 'PlusJakartaSans a',
+  },
+  triangle: {
+    width: 0,
+    height: 0,
+    borderLeftWidth: 12,
+    borderTopWidth: 10,
+    borderStyle: 'solid',
+    backgroundColor: 'transparent',
+    borderLeftColor: 'transparent',
+    borderRightColor: 'transparent',
+    borderBottomColor: '#073762',
+    borderTopColor: '#073762',
+    top: responsiveHeight(2.1),
+    right: responsiveWidth(3.4),
   },
 });

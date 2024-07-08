@@ -5,7 +5,8 @@ const rootReducer = combineReducers({
   properties:RealEstateAppReducers,
   favorites:RealEstateAppReducers,
   drafts:RealEstateAppReducers,
-  address:RealEstateAppReducers
+  address:RealEstateAppReducers,
+  customers:RealEstateAppReducers
 })
 export default rootReducer;
 export type RootState = ReturnType<typeof rootReducer>

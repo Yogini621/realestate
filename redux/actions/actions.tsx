@@ -5,6 +5,9 @@ export const RemoveFavorires = 'RemoveFavorires';
 export const AddDraft = "AddDraft"
 export const AddAddress = 'AddAddress';
 export const DeleteAddress = 'DeleteAddress';
+export const AddCustomer = "AddCustomer"
+export const RemoveCustomer = 'RemoveCustomer';
+
 export interface Property {
   id: number;
   image: any;
@@ -20,7 +23,14 @@ export interface Address{
   city:string;
   state:string;
   pincode:string
+}
 
+export interface Customer{
+  id:number;
+  name:string;
+  contact:string;
+  status:string;
+  image:any
 }
 export interface FetchPropertiesAction {
   type: typeof FetchProperties;
@@ -47,6 +57,15 @@ export interface AddAddressAction{
   payload:Address
 }
 
+export interface AddCustomerAction{
+  type:typeof AddCustomer
+  payload:Customer
+}
+
+export interface RemoveCustomerAction{
+  type: typeof RemoveCustomer
+  payload:number
+}
 export type RealEstateAppActionTypes =
   | FetchPropertiesAction
   | AddToFavoritesAction
@@ -54,9 +73,12 @@ export type RealEstateAppActionTypes =
   | RemoveFavoriresAction
   | AddDraftAction
   | AddAddressAction
+  | AddCustomerAction
+  | RemoveCustomerAction
 export interface RealEstateAppState {
   properties: Property[];
   favorites: Property[];
   drafts:Property[];
-  address:Address[]
+  address:Address[];
+  customers:Customer[]
 }

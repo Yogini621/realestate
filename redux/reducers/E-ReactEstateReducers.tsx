@@ -7,13 +7,16 @@ import {
   RemoveAll,
   AddDraft,
   AddAddress,
+  AddCustomer,
+  RemoveCustomer,
 } from '../actions/actions';
 
 const initialState: RealEstateAppState = {
   properties: [],
   favorites: [],
   drafts:[],
-  address:[]
+  address:[],
+  customers:[]
 };
 
 export const RealEstateAppReducers = (
@@ -54,7 +57,17 @@ export const RealEstateAppReducers = (
         ...state,
         address:[...state.address,action.payload]
       }
-      
+    case AddCustomer:
+      return {
+        ...state,
+        customers:[...state.customers,action.payload]
+      }  
+    case RemoveCustomer:
+      const updatedCustomers = state.customers.filter(item => item.id !== action.payload)
+      return {
+        ...state,
+        customers:updatedCustomers
+      }
     default:
       return state;
   }

@@ -12,12 +12,12 @@ import {
   View,
 } from 'react-native';
 import React, {useState} from 'react';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {
   responsiveFontSize,
   responsiveHeight,
   responsiveWidth,
 } from 'react-native-responsive-dimensions';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import Feather from 'react-native-vector-icons/Feather';
 import Foundation from 'react-native-vector-icons/Foundation';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';

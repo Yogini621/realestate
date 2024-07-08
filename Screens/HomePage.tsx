@@ -54,10 +54,6 @@ const HomePage: React.FC<Props> = ({navigation}) => {
     dispatch(fetchProperties(response));
   };
 
-  // const handleAddToFavorites = (item: Property) => {
-  //   dispatch(addToFavorites(item));
-  // };
-
   const handleAddToFavorites = (item: Property) => {
     console.log(item);
     if (favorites.includes(item)) {
@@ -128,12 +124,14 @@ const HomePage: React.FC<Props> = ({navigation}) => {
                 <Image source={item.image} style={styles.image} />
               </TouchableOpacity>
               <View style={styles.descriptionView}>
+                <View style = {styles.triangle} />
                 <View style={styles.popularTextView}>
                   <View style={styles.popularTextDirectionView}>
                     <Ionicons name="sparkles" color="white" size={16} />
                     <Text style={styles.popularText}>POPULAR</Text>
                   </View>
                 </View>
+
                 <View style={styles.favoriteIconView}>
                   <View>
                     <View style={styles.rupeeView}>
@@ -194,9 +192,7 @@ const HomePage: React.FC<Props> = ({navigation}) => {
     </SafeAreaView>
   );
 };
-
 export default HomePage;
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -388,23 +384,6 @@ const styles = StyleSheet.create({
     fontFamily: 'PlusJakartaSans j',
     width: responsiveWidth(60),
   },
-  popularTextView: {
-    backgroundColor: '#073762',
-    width: responsiveWidth(40),
-    borderRadius: 12,
-    height: responsiveHeight(5),
-    alignItems: 'center',
-    justifyContent: 'center',
-    position: 'absolute',
-    top: responsiveHeight(-2.8),
-    left: responsiveWidth(-3.2),
-    // borderTopLeftRadius:20
-  },
-  popularText: {
-    color: 'white',
-    fontSize: responsiveFontSize(1.6),
-    fontFamily: 'PlusJakartaSans a',
-  },
   itemView: {
     flex: 1,
     alignSelf: 'center',
@@ -413,6 +392,7 @@ const styles = StyleSheet.create({
   image: {
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
+    width: responsiveWidth(86),
   },
   descriptionView: {
     borderWidth: 2,
@@ -430,19 +410,16 @@ const styles = StyleSheet.create({
   rupeeView: {
     flexDirection: 'row',
     alignItems: 'center',
-    left: responsiveWidth(4),
   },
   roomsText: {
     color: '#073762',
     fontSize: responsiveFontSize(3),
     fontFamily: 'PlusJakartaSans a',
-    left: responsiveWidth(4),
   },
   favoriteIconView: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center',
-    width: responsiveWidth(84),
+    width: responsiveWidth(72),
     alignSelf: 'center',
     marginTop: responsiveHeight(4),
     marginBottom: responsiveHeight(1),
@@ -510,5 +487,37 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     width: responsiveWidth(22),
     alignItems: 'center',
+  },
+  popularTextView: {
+    backgroundColor: '#073762',
+    width: responsiveWidth(32),
+    height: responsiveHeight(5),
+    alignItems: 'center',
+    justifyContent: 'center',
+    position: 'absolute',
+    top: responsiveHeight(-2.8),
+    left: responsiveWidth(-3.2),
+    borderTopRightRadius: 10,
+    borderBottomRightRadius: 10,
+    borderTopLeftRadius: 10,
+  },
+  popularText: {
+    color: 'white',
+    fontSize: responsiveFontSize(1.6),
+    fontFamily: 'PlusJakartaSans a',
+  },
+  triangle: {
+    width: 0,
+    height: 0,
+    borderLeftWidth: 12,
+    borderTopWidth: 10,
+    borderStyle: 'solid',
+    backgroundColor: 'transparent',
+    borderLeftColor: 'transparent',
+    borderRightColor: 'transparent',
+    borderBottomColor: '#073762',
+    borderTopColor:'#073762',
+    top: responsiveHeight(2.1),
+    right: responsiveWidth(3.4),
   },
 });

@@ -26,6 +26,7 @@ import {Property} from '../redux/actions/actions';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import ViewComponent from './ViewComponent';
 import Entypo from 'react-native-vector-icons/Entypo';
+import Ionicons from 'react-native-vector-icons/Ionicons'
 
 interface Props {
   navigation: any;
@@ -53,6 +54,13 @@ const LandingPage: React.FC<Props> = ({navigation}) => {
       <View style={styles.itemView}>
         <View style={styles.imageView}>
           <Image source={item.image} />
+          <View style={styles.triangle} />
+          <View style={styles.popularTextView}>
+            <View style={styles.popularTextDirectionView}>
+              <Ionicons name="sparkles" color="white" size={12} />
+              <Text style={styles.popularText}>POPULAR</Text>
+            </View>
+          </View>
           <View style={styles.descriptuonView}>
             <View style={styles.rentView}>
               <View style={styles.imageView}>
@@ -897,5 +905,45 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     // left: responsiveWidth(4),
     marginTop: responsiveHeight(2.8),
+  },
+  popularTextDirectionView: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    // width: responsiveWidth(16),
+    alignItems: 'center',
+  },
+  popularTextView: {
+    backgroundColor: '#073762',
+    width: responsiveWidth(20),
+    height: responsiveHeight(3.4),
+    alignItems: 'center',
+    justifyContent: 'center',
+    position: 'absolute',
+    left: responsiveWidth(-3.2),
+    borderTopRightRadius: 8,
+    borderBottomRightRadius: 8,
+    borderTopLeftRadius: 8,
+  },
+  popularText: {
+    color: 'white',
+    fontSize: responsiveFontSize(1),
+    fontFamily: 'PlusJakartaSans a',
+    left:responsiveWidth(1)
+  },
+  triangle: {
+    width: 0,
+    height: 0,
+    borderLeftWidth: 12,
+    borderTopWidth: 10,
+    borderStyle: 'solid',
+    backgroundColor: 'transparent',
+    borderLeftColor: 'transparent',
+    borderRightColor: 'transparent',
+    borderBottomColor: '#073762',
+    borderTopColor: '#073762',
+    top: responsiveHeight(3.1),
+    // right: responsiveWidth(3.4),
+    position:'relative',
+    left:-178
   },
 });
