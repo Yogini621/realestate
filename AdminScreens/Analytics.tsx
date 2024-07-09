@@ -21,6 +21,8 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import Feather from 'react-native-vector-icons/Feather';
 import HorizontalProgressBarComponent from './HorizontalProgressBarComponent';
 import {BarChart, LineChart} from 'react-native-gifted-charts';
+import PropertyDetailsAnalytics from './PropertyDetailsAnalytics';
+import PropertyGraphComponent from './PropertyGraphComponent';
 
 interface Props {
   navigation: any;
@@ -28,22 +30,22 @@ interface Props {
 
 const Analytics: React.FC<Props> = ({navigation}) => {
   const data = [
-    {value: 11, label: "06"},
-    {value: 12, label: "07"},
-    {value: 13, label: "08"},
-    {value: 14, label: "09"},
-    {value: 15, label: "10"},
-    {value: 16, label: "11"},
-    {value: 17, label: "12"},
-    {value: 18, label: "13"},
-    {value: 19, label: "14"},
-    {value: 20, label: "15"},
-    {value: 21, label: "16"},
-    {value: 6, label: "17"},
-    {value: 7, label: "18"},
-    {value: 8, label: "19"},
-    {value: 9, label: "20"},
-    {value: 10, label: "21"},
+    {value: 11, label: '06'},
+    {value: 12, label: '07'},
+    {value: 13, label: '08'},
+    {value: 14, label: '09'},
+    {value: 15, label: '10'},
+    {value: 16, label: '11'},
+    {value: 17, label: '12'},
+    {value: 18, label: '13'},
+    {value: 19, label: '14'},
+    {value: 20, label: '15'},
+    {value: 21, label: '16'},
+    {value: 6, label: '17'},
+    {value: 7, label: '18'},
+    {value: 8, label: '19'},
+    {value: 9, label: '20'},
+    {value: 10, label: '21'},
   ];
   return (
     <SafeAreaView style={styles.container}>
@@ -142,6 +144,36 @@ const Analytics: React.FC<Props> = ({navigation}) => {
             data={data}
             yAxisThickness={0}
             xAxisThickness={0}
+          />
+        </View>
+        <View style={styles.propertiesView}>
+          <PropertyDetailsAnalytics
+            peopertyText="Properties for Sale"
+            percentage={71}
+            monthText="Target 3k/month"
+            count="2,356"
+            progressColor="#073762"
+          />
+          <PropertyDetailsAnalytics
+            peopertyText="Properties for Rent"
+            percentage={88}
+            monthText="Target 3k/month"
+            count="2,206"
+            progressColor="#37d159"
+          />
+          <PropertyGraphComponent
+            iconName="caretdown"
+            iconColor="#ff6746"
+            text="Target This Month"
+            percentage={34}
+            image={require('../Images/graph1.png')}
+          />
+          <PropertyGraphComponent
+            iconName="caretup"
+            iconColor="#ff6746"
+            text="Customers"
+            percentage={4}
+            image={require('../Images/graph2.png')}
           />
         </View>
         <View style={styles.customerView}>
@@ -391,7 +423,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#ffffff',
     width: responsiveWidth(90),
     alignSelf: 'center',
-    marginTop: responsiveHeight(2.8),
+    marginTop: responsiveHeight(2),
     borderColor: '#9fc5e9',
     borderRadius: 20,
   },
@@ -518,5 +550,13 @@ const styles = StyleSheet.create({
     color: '#37d159',
     fontFamily: 'PlusJakartaSans j',
     fontSize: responsiveFontSize(1.7),
+  },
+  propertiesView: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    flexWrap: 'wrap',
+    width: responsiveWidth(92),
+    alignSelf: 'center',
+    marginTop:responsiveHeight(2),
   },
 });

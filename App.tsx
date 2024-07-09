@@ -55,6 +55,8 @@ import TremsAndConditions from './AdminScreens/TremsAndConditionsAdmin';
 import PrivacyPolicyAdmin from './AdminScreens/PrivacyPolicyAdmin';
 import MessageDetailsAdmin from './AdminScreens/MessageDetailsAdmin';
 import PropertyFullView from './AdminScreens/PropertyFullView';
+import TermsDrafts from './AdminScreens/TermsDrafts';
+import PolicyDraft from './AdminScreens/PolicyDraft';
 
 const Stack = createNativeStackNavigator();
 
@@ -258,9 +260,25 @@ const App = () => {
             component={AdminMenu}
             options={{headerShown: false}}
           />
+
+          <Stack.Screen
+            name="PrivacyPolicyAdmin"
+            component={PrivacyPolicyAdmin}
+            options={{headerShown: false}}
+          />
           <Stack.Screen
             name="Analytics"
             component={Analytics}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="TermsDrafts"
+            component={TermsDrafts}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="PolicyDraft"
+            component={PolicyDraft}
             options={{headerShown: false}}
           />
           <Stack.Screen
@@ -301,11 +319,6 @@ const App = () => {
           <Stack.Screen
             name="PropertyFullView"
             component={PropertyFullView}
-            options={{headerShown: false}}
-          />
-          <Stack.Screen
-            name="PrivacyPolicyAdmin"
-            component={PrivacyPolicyAdmin}
             options={{headerShown: false}}
           />
         </Stack.Navigator>

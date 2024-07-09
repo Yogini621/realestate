@@ -9,6 +9,10 @@ import {
   AddAddress,
   AddCustomer,
   RemoveCustomer,
+  AddPrivacyPolicy,
+  AddTermsAndConditions,
+  AddPoliciesDraft,
+  AddTermsDraft,
 } from '../actions/actions';
 
 const initialState: RealEstateAppState = {
@@ -16,7 +20,11 @@ const initialState: RealEstateAppState = {
   favorites: [],
   drafts:[],
   address:[],
-  customers:[]
+  customers:[],
+  policies:[],
+  terms:[],
+  policyDraft:[],
+  termsDraft:[]
 };
 
 export const RealEstateAppReducers = (
@@ -68,6 +76,26 @@ export const RealEstateAppReducers = (
         ...state,
         customers:updatedCustomers
       }
+    case AddPrivacyPolicy:
+      return {
+        ...state,
+        policies:[...state.policies,action.payload]
+      }
+    case AddTermsAndConditions:
+      return {
+        ...state,
+        terms:[...state.terms,action.payload]
+      }
+    case AddPoliciesDraft:
+      return {
+        ...state,
+        policyDraft:[...state.policyDraft,action.payload]
+      } 
+    case AddTermsDraft:
+      return {
+        ...state,
+        termsDraft:[...state.termsDraft,action.payload]
+      } 
     default:
       return state;
   }

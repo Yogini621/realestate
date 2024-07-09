@@ -9,7 +9,12 @@ import {
   AddAddress,
   Customer,
   AddCustomer,
-  RemoveCustomer
+  RemoveCustomer,
+  Policy,
+  AddPrivacyPolicy,
+  AddTermsAndConditions,
+  AddPoliciesDraft,
+  AddTermsDraft
 } from './actions';
 
 export const fetchProperties = (properties: Property[]) => ({
@@ -47,4 +52,24 @@ export const addCustomer = (customer:Customer) => ({
 export const removeCustomer = (id:number) => ({
   type:RemoveCustomer,
   payload:id
+})
+
+export const addPrivacyPolicy = (policy:Policy) => ({
+  type:AddPrivacyPolicy,
+  payload:policy
+})
+
+export const addTermsAndConditions = (terms:Policy) => ({
+  type:AddTermsAndConditions,
+  payload:terms
+})
+
+export const addPoliciesDraft = (policyDraft:Policy) => () => ({
+  type:AddPoliciesDraft,
+  payload:policyDraft
+})
+
+export const addTermsDraft = (termsDraft:Policy) => ({
+  type:typeof AddTermsDraft,
+  payload:termsDraft
 })

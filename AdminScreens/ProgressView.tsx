@@ -2,8 +2,6 @@ import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import { responsiveFontSize, responsiveHeight, responsiveWidth } from 'react-native-responsive-dimensions';
 import CircularProgress from 'react-native-circular-progress-indicator';
-// import {ProgressCircle} from 'react-native-svg-charts';
-
 
 interface Props {
   textLabel: string;

@@ -7,6 +7,10 @@ export const AddAddress = 'AddAddress';
 export const DeleteAddress = 'DeleteAddress';
 export const AddCustomer = "AddCustomer"
 export const RemoveCustomer = 'RemoveCustomer';
+export const AddPrivacyPolicy = "AddPrivacyPolicy"
+export const AddTermsAndConditions = "AddTermsAndConditions"
+export const AddPoliciesDraft = 'AddPoliciesDraft';
+export const AddTermsDraft = 'AddTermsDraft';
 
 export interface Property {
   id: number;
@@ -23,6 +27,12 @@ export interface Address{
   city:string;
   state:string;
   pincode:string
+}
+
+export interface Policy{
+  id:number;
+  title:string;
+  description:string;
 }
 
 export interface Customer{
@@ -66,6 +76,26 @@ export interface RemoveCustomerAction{
   type: typeof RemoveCustomer
   payload:number
 }
+
+export interface AddPrivacyPolicyAction{
+  type:typeof AddPrivacyPolicy
+  payload:Policy
+}
+
+export interface AddTermsAndConditionsAction {
+  type:typeof AddTermsAndConditions
+  payload:Policy
+}
+
+export interface AddPoliciesDraftAction{
+  type:typeof AddPoliciesDraft
+  payload:Policy
+}
+
+export interface AddTermsDraftAction{
+  type:typeof AddTermsDraft
+  payload:Policy
+}
 export type RealEstateAppActionTypes =
   | FetchPropertiesAction
   | AddToFavoritesAction
@@ -75,10 +105,19 @@ export type RealEstateAppActionTypes =
   | AddAddressAction
   | AddCustomerAction
   | RemoveCustomerAction
+  | AddPrivacyPolicyAction
+  | AddTermsAndConditionsAction
+  | AddPoliciesDraftAction
+  | AddTermsDraftAction
+
 export interface RealEstateAppState {
   properties: Property[];
   favorites: Property[];
   drafts:Property[];
   address:Address[];
-  customers:Customer[]
+  customers:Customer[];
+  policies:Policy[];
+  terms:Policy[];
+  policyDraft:Policy[];
+  termsDraft:Policy[]
 }
