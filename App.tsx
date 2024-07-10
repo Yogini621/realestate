@@ -251,16 +251,15 @@ const App = () => {
             options={{headerShown: false}}
           />
           <Stack.Screen
-            name="SellerDashBoard"
-            component={SellerDashBoard}
-            options={{headerShown: false}}
-          />
-          <Stack.Screen
             name="AdminMenu"
             component={AdminMenu}
             options={{headerShown: false}}
           />
-
+          <Stack.Screen
+            name="ProfileAdimin"
+            component={ProfileAdimin}
+            options={{headerShown: false}}
+          />
           <Stack.Screen
             name="PrivacyPolicyAdmin"
             component={PrivacyPolicyAdmin}
@@ -291,11 +290,7 @@ const App = () => {
             component={Properties}
             options={{headerShown: false}}
           />
-          <Stack.Screen
-            name="ProfileAdimin"
-            component={ProfileAdimin}
-            options={{headerShown: false}}
-          />
+
           <Stack.Screen
             name="Customer"
             component={Customer}

@@ -64,7 +64,6 @@ const Profile: React.FC<Props> = ({navigation}) => {
     const userDetails = await AsyncStorage.getItem('userData');
     if (userDetails !== null) {
       const userData = JSON.parse(userDetails);
-      console.log(userData.name);
       setName(userData.name);
       setContact(userData.contact);
       setEmail(userData.email);
@@ -164,17 +163,14 @@ const Profile: React.FC<Props> = ({navigation}) => {
           <OptionComponent
             optionText="My Favorites"
             onPress={() => navigation.navigate('Favorites')}
-            // color="#33333380"
           />
           <OptionComponent
             optionText="My Purchases"
             onPress={() => navigation.navigate('MyPurchasesPage')}
-            // color="#33333380"
           />
           <OptionComponent
             optionText="Settings"
             onPress={() => navigation.navigate('Settings')}
-            // color="#33333380"
           />
           <OptionComponent
             optionText="Contact Us"
@@ -314,7 +310,6 @@ const Profile: React.FC<Props> = ({navigation}) => {
             <View style={styles.iputView}>
               <Text style={styles.labelText}>Full Name</Text>
               <TextInput
-                // placeholder="Joseph K"
                 style={styles.input1}
                 value={name}
                 placeholderTextColor="#666666"
@@ -324,7 +319,6 @@ const Profile: React.FC<Props> = ({navigation}) => {
             <View style={styles.iputView}>
               <Text style={styles.labelText}>Phone Number</Text>
               <TextInput
-                // placeholder="9000459209"
                 placeholderTextColor="#666666"
                 style={styles.input1}
                 value={contact}
@@ -334,7 +328,6 @@ const Profile: React.FC<Props> = ({navigation}) => {
             <View style={styles.iputView}>
               <Text style={styles.labelText}>Email ID</Text>
               <TextInput
-                // placeholder="Josephexample@gmail.com"
                 style={styles.input1}
                 value={email}
                 placeholderTextColor="#666666"

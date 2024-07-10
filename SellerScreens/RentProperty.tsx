@@ -11,7 +11,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React, {useState} from 'react';
+import React,{useState} from 'react';
 import {
   responsiveFontSize,
   responsiveHeight,
@@ -168,7 +168,7 @@ const RentProperty: React.FC<Props> = ({navigation}) => {
           </View>
           <View style={styles.progressStepsTextView}>
             <View>
-              <Text style={styles.basicDetailsText}>BasicDetails</Text>
+              <Text style={styles.basicDetailsText}>Basic Details</Text>
               <View style={styles.flatAndditTextView}>
                 <Text style={styles.flatText}>Flat Apartment Sale/Rent</Text>
                 <TouchableOpacity>
@@ -230,7 +230,7 @@ const RentProperty: React.FC<Props> = ({navigation}) => {
               </View>
               <View style={styles.progressStepsTextView}>
                 <View>
-                  <Text style={styles.basicDetailsText}>BasicDetails</Text>
+                  <Text style={styles.basicDetailsText}>Basic Details</Text>
                   <View style={styles.flatAndditTextView}>
                     <Text style={styles.flatText}>
                       Flat Apartment Sale/Rent
@@ -342,7 +342,7 @@ const RentProperty: React.FC<Props> = ({navigation}) => {
               <Text style={styles.labelText}>Baths</Text>
               <View style={styles.inputView}>
                 <TextInput
-                  placeholder="How many baths "
+                  placeholder="How many baths"
                   placeholderTextColor="#00092980"
                   style={styles.input1}
                 />
@@ -419,7 +419,7 @@ const RentProperty: React.FC<Props> = ({navigation}) => {
               <Text style={styles.labelText}>Parking Area</Text>
               <View style={styles.inputView}>
                 <TextInput
-                  placeholder="Select Parking Area Yes or No "
+                  placeholder="Select Parking Area Yes or No"
                   placeholderTextColor="#00092980"
                   style={styles.input1}
                 />
@@ -465,7 +465,7 @@ const RentProperty: React.FC<Props> = ({navigation}) => {
                 </TouchableOpacity>
               </View>
             </View>
-          </View>
+          </View> 
         )}
         {step4Visible && (
           <View>

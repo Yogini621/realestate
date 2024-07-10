@@ -1,5 +1,4 @@
 import {
-  Image,
   SafeAreaView,
   ScrollView,
   StatusBar,
@@ -20,14 +19,14 @@ import {
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Entypo from 'react-native-vector-icons/Entypo';
 import {BarChart} from 'react-native-gifted-charts';
+import ProgressBarComponent from './ProgressBarComponent';
 
 interface Props {
   navigation: any;
 }
 
 const SellerDashBoard: React.FC<Props> = ({navigation}) => {
-  const data = [{value: 50}, {value: 80}, {value: 90}, {value: 70}];
-
+  const data = [{value: 10}, {value: 14}, {value: 12}, {value: 4}];
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar hidden={true} />
@@ -45,7 +44,7 @@ const SellerDashBoard: React.FC<Props> = ({navigation}) => {
                   color="#073762"
                 />
               </TouchableOpacity>
-              <TouchableOpacity onPress={() => navigation.navigate('MenuPage')}>
+              <TouchableOpacity>
                 <FontAwesome5 name="grip-lines" size={20} color="#073762" />
               </TouchableOpacity>
             </View>
@@ -72,9 +71,7 @@ const SellerDashBoard: React.FC<Props> = ({navigation}) => {
               <AntDesign name="right" color="#1a202c" size={14} />
             </TouchableOpacity>
           </View>
-          <View style={styles.pieChartView}>
-            {/* <PieChart data={data} /> */}
-          </View>
+          <View style={styles.pieChartView}></View>
         </View>
         <View style={styles.statisticsView}>
           <View style={styles.statisticsAndViewAllButtonView}>
@@ -84,7 +81,22 @@ const SellerDashBoard: React.FC<Props> = ({navigation}) => {
               <Entypo name="chevron-down" color="#1a202c" size={16} />
             </TouchableOpacity>
           </View>
-          <View style={styles.salesIncomeView}></View>
+          <ProgressBarComponent
+            saleText="Sales Income"
+            increaseText="increased By 10%"
+            income="$225.5K"
+            iconBackgroundColor="#f4faff"
+            progressPercentage={0.7}
+            progressBarColor="#073762"
+          />
+          <ProgressBarComponent
+            saleText="Rent Income"
+            increaseText="increased By 5%"
+            income="$45.7K"
+            iconBackgroundColor="#f2fdf6"
+            progressPercentage={0.6}
+            progressBarColor="#fbad18"
+          />
         </View>
         <View style={styles.revenueOverView}>
           <View style={styles.revenueDirectionView}>
@@ -101,7 +113,7 @@ const SellerDashBoard: React.FC<Props> = ({navigation}) => {
               <Entypo name="chevron-down" color="#00092980" size={13} />
             </TouchableOpacity>
           </View>
-          <View>
+          <View style = {styles.barChart}>
             <BarChart data={data} />
           </View>
         </View>
@@ -314,4 +326,7 @@ const styles = StyleSheet.create({
     fontSize: responsiveFontSize(2),
     fontFamily: 'PlusJakartaSans j',
   },
+  barChart:{
+    marginTop:responsiveHeight(2.8)
+  }
 });

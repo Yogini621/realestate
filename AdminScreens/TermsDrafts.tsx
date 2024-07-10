@@ -70,8 +70,7 @@ const TermsDrafts: React.FC<Props> = ({navigation}) => {
               <FontAwesome name="plus" size={20} color="white" />
               <Text style={styles.addText}>Add</Text>
             </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.publishButton}>
+            <TouchableOpacity style={styles.publishButton}>
               <Text style={styles.publishText}>Publish</Text>
               <Feather name="chevron-down" size={22} color="#000000" />
             </TouchableOpacity>

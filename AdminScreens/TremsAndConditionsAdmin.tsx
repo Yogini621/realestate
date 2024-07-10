@@ -1,6 +1,5 @@
 import {
   Alert,
-  Image,
   Modal,
   SafeAreaView,
   ScrollView,
@@ -24,7 +23,7 @@ import MaterialComminityIcons from 'react-native-vector-icons/MaterialCommunityI
 import Feather from 'react-native-vector-icons/Feather';
 import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '../redux/reducers';
-import {addPrivacyPolicy, addTermsAndConditions, addTermsDraft} from '../redux/actions/actionTypes';
+import {addTermsAndConditions, addTermsDraft} from '../redux/actions/actionTypes';
 
 interface Props {
   navigation: any;
@@ -103,12 +102,12 @@ const TermsAndConditionsAdmin: React.FC<Props> = ({navigation}) => {
               onPress={() => setModalVisible(true)}>
               <Text style={styles.publishText}>Publish</Text>
               <Feather name="chevron-down" size={22} color="#000000" />
-            </TouchableOpacity>
+            </TouchableOpacity>  
           </View>
         </View>
         <View style={styles.inputView}>
           <TextInput
-            placeholder="Write your Title|"
+            placeholder="Write Your Title|"
             style={styles.input}
             value={title}
             onChangeText={setTitle}
@@ -121,7 +120,7 @@ const TermsAndConditionsAdmin: React.FC<Props> = ({navigation}) => {
         </Text>
         <TextInput
           style={styles.input1}
-          placeholder="Add your description"
+          placeholder="Add Your description"
           value={description}
           onChangeText={setDescription}
         />
