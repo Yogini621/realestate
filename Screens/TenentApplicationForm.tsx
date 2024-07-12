@@ -10,25 +10,21 @@ import {
   View,
 } from 'react-native';
 import React, {useState} from 'react';
-
 import {
   responsiveFontSize,
   responsiveHeight,
   responsiveScreenFontSize,
   responsiveWidth,
 } from 'react-native-responsive-dimensions';
-import {Formik} from 'formik';
 import * as Yup from 'yup';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import Feather from 'react-native-vector-icons/Feather';
 import Foundation from 'react-native-vector-icons/Foundation';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import Fontisto from 'react-native-vector-icons/Fontisto';
-import Entypo from 'react-native-vector-icons/Entypo';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import {SelectList} from 'react-native-dropdown-select-list';
+import Octicons from 'react-native-vector-icons/Octicons';
 
 interface Props {
   navigation: any;
@@ -60,8 +56,8 @@ interface Step4Data {
 const TenantApplicationForm: React.FC<Props> = ({navigation, route}) => {
   const {item} = route.params;
   const [step4Data, setStep4Data] = useState<Step4Data>({aadhar: ''});
-  const [step1Visible, setStep1Visible] = useState(false);
-  const [step2Visible, setStep2Visible] = useState(true);
+  const [step1Visible, setStep1Visible] = useState(true);
+  const [step2Visible, setStep2Visible] = useState(false);
   const [step3Visible, setStep3Visible] = useState(false);
   const [step4Visible, setStep4Visible] = useState(false);
   const [vehicleDescriptionView, setVehicleDescriptionView] = useState(false);
@@ -80,6 +76,21 @@ const TenantApplicationForm: React.FC<Props> = ({navigation, route}) => {
     values: Step1Data & Step2Data & Step3Data & Step4Data,
   ) => {
     console.log(values);
+  };
+
+  const openStep2 = () => {
+    setStep1Visible(false);
+    setStep2Visible(true);
+  };
+
+  const openStep3 = () => {
+    setStep2Visible(false);
+    setStep3Visible(true);
+  };
+
+  const openStep4 = () => {
+    setStep3Visible(false);
+    setStep4Visible(true);
   };
   return (
     <SafeAreaView style={styles.container}>
@@ -148,21 +159,17 @@ const TenantApplicationForm: React.FC<Props> = ({navigation, route}) => {
           </View>
         </View>
         <Text style={styles.stepText}>STEP 2 OF 4</Text>
-        {step2Visible && (
+        {step1Visible && (
           <View>
             <View style={styles.stepView}>
               <View style={styles.progressFormDirection}>
                 <Feather name="square" color="#073762" size={28} />
-                <View style={styles.minusView1}>
-                  <Foundation name="minus" color="#073762" size={12} />
-                  <Foundation name="minus" color="#073762" size={12} />
-                </View>
-                <Feather name="square" color="#073762" size={28} />
-                <View style={styles.minusView1}>
-                  <Foundation name="minus" color="#073762" size={12} />
-                  <Foundation name="minus" color="#073762" size={12} />
-                </View>
-                <Feather name="square" color="#073762" size={28} />
+                <Octicons
+                  name="square-fill"
+                  color="#073762"
+                  size={20}
+                  style={styles.smallSquareView}
+                />
                 <View style={styles.minusView}>
                   <Foundation name="minus" color="#073762" size={12} />
                   <Foundation name="minus" color="#073762" size={12} />
@@ -173,23 +180,30 @@ const TenantApplicationForm: React.FC<Props> = ({navigation, route}) => {
                   <Foundation name="minus" color="#073762" size={12} />
                 </View>
                 <Feather name="square" color="#073762" size={28} />
+                <View style={styles.minusView1}>
+                  <Foundation name="minus" color="#073762" size={12} />
+                  <Foundation name="minus" color="#073762" size={12} />
+                </View>
+                <Feather name="square" color="#073762" size={28} />
+                <View style={styles.minusView1}>
+                  <Foundation name="minus" color="#073762" size={12} />
+                  <Foundation name="minus" color="#073762" size={12} />
+                </View>
+                <Feather name="square" color="#073762" size={28} />
               </View>
               <View style={styles.progressStepsTextView}>
                 <View>
-                  <Text style={styles.basicDetailsText}>BasicDetails</Text>
+                  <Text style={styles.basicDetailsText}>Personal Details</Text>
                   <View style={styles.flatAndditTextView}>
                     <Text style={styles.flatText}>
                       Flat Apartment Sale/Rent
                     </Text>
-                    <TouchableOpacity>
-                      <Text style={styles.editText}>Edit</Text>
-                    </TouchableOpacity>
                   </View>
                 </View>
               </View>
             </View>
             <Text style={styles.fillText}>Fill The Application</Text>
-            <View style={styles.informationView}>
+            <View style={styles.informationView1}>
               <Text style={styles.informationText}>
                 Please filling in your personal, address, vehicle and Aadhar
                 information
@@ -244,8 +258,277 @@ const TenantApplicationForm: React.FC<Props> = ({navigation, route}) => {
               <View style={styles.spaceView} />
             </View>
             <View style={styles.line} />
-            <TouchableOpacity style={styles.continueButton}>
+            <TouchableOpacity style={styles.continueButton} onPress={openStep2}>
               <Text style={styles.continueText}>Continue</Text>
+            </TouchableOpacity>
+          </View>
+        )}
+        {step2Visible && (
+          <View>
+            <View style={styles.stepView}>
+              <View style={styles.progressFormDirection}>
+                <AntDesign name="checksquare" color="#073762" size={28} />
+                <View style={styles.minusView1}>
+                  <Foundation name="minus" color="#073762" size={12} />
+                  <Foundation name="minus" color="#073762" size={12} />
+                </View>
+                <Feather name="square" color="#073762" size={28} />
+                <Octicons
+                  name="square-fill"
+                  color="#073762"
+                  size={20}
+                  style={styles.smallSquareView1}
+                />
+                <View style={styles.minusView}>
+                  <Foundation name="minus" color="#073762" size={12} />
+                  <Foundation name="minus" color="#073762" size={12} />
+                  <Foundation name="minus" color="#073762" size={12} />
+                  <Foundation name="minus" color="#073762" size={12} />
+                  <Foundation name="minus" color="#073762" size={12} />
+                  <Foundation name="minus" color="#073762" size={12} />
+                  <Foundation name="minus" color="#073762" size={12} />
+                </View>
+                <Feather name="square" color="#073762" size={28} />
+                <View style={styles.minusView1}>
+                  <Foundation name="minus" color="#073762" size={12} />
+                  <Foundation name="minus" color="#073762" size={12} />
+                </View>
+                <Feather name="square" color="#073762" size={28} />
+              </View>
+              <View style={styles.progressStepsTextView}>
+                <View style={styles.editAndDetailsView}>
+                  <TouchableOpacity>
+                    <Text style={styles.editText}>Edit</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity>
+                    <Text style={styles.basicDetailsText1}>Address</Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
+            </View>
+            <Text style={styles.fillText}>Fill The Application</Text>
+            <View style={styles.informationView1}>
+              <Text style={styles.informationText}>
+                Please filling in your personal, address, vehicle and Aadhar
+                information
+              </Text>
+            </View>
+            <View style={styles.informationView}>
+              <Text style={styles.locatedText1}>Address</Text>
+              <Text style={styles.labelText}>Enter Address </Text>
+              <TextInput
+                placeholder="e.g. 142 Risse Street"
+                style={styles.input}
+                placeholderTextColor="#00092980"
+              />
+              <Text style={styles.labelText}>City</Text>
+              <TextInput
+                placeholder="Enter City"
+                style={styles.input}
+                placeholderTextColor="#00092980"
+              />
+              <Text style={styles.labelText}>State</Text>
+              <TextInput
+                placeholder="Select State"
+                placeholderTextColor="#00092980"
+                style={styles.input}
+              />
+              <Text style={styles.labelText}>Pin Code</Text>
+              <TextInput
+                placeholder="Enter Pin Code"
+                placeholderTextColor="#00092980"
+                style={styles.input}
+              />
+              <Text style={styles.labelText}>Country</Text>
+              <TextInput
+                placeholder="Select Country"
+                placeholderTextColor="#00092980"
+                style={styles.input}
+              />
+              <View style={styles.spaceView} />
+            </View>
+            <View style={styles.line} />
+            <TouchableOpacity style={styles.continueButton} onPress={openStep3}>
+              <Text style={styles.continueText}>Continue</Text>
+            </TouchableOpacity>
+          </View>
+        )}
+        {step3Visible && (
+          <View>
+            <View style={styles.stepView}>
+              <View style={styles.progressFormDirection}>
+                <AntDesign name="checksquare" color="#073762" size={28} />
+                <View style={styles.minusView1}>
+                  <Foundation name="minus" color="#073762" size={12} />
+                  <Foundation name="minus" color="#073762" size={12} />
+                </View>
+                <AntDesign name="checksquare" color="#073762" size={28} />
+                <View style={styles.minusView1}>
+                  <Foundation name="minus" color="#073762" size={12} />
+                  <Foundation name="minus" color="#073762" size={12} />
+                </View>
+                <Feather name="square" color="#073762" size={28} />
+                <Octicons
+                  name="square-fill"
+                  color="#073762"
+                  size={20}
+                  style={styles.smallSquareView1}
+                />
+                <View style={styles.minusView}>
+                  <Foundation name="minus" color="#073762" size={12} />
+                  <Foundation name="minus" color="#073762" size={12} />
+                  <Foundation name="minus" color="#073762" size={12} />
+                  <Foundation name="minus" color="#073762" size={12} />
+                  <Foundation name="minus" color="#073762" size={12} />
+                  <Foundation name="minus" color="#073762" size={12} />
+                  <Foundation name="minus" color="#073762" size={12} />
+                </View>
+                <Feather name="square" color="#073762" size={28} />
+              </View>
+              <View style={styles.progressStepsTextView}>
+                <View style={styles.editAndDetailsView}>
+                  <TouchableOpacity>
+                    <Text style={styles.editText}>Edit</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity>
+                    <Text style={styles.editText1}>Edit</Text>
+                  </TouchableOpacity>
+                  <Text style={styles.vehiclesText}>Vehicles</Text>
+                </View>
+              </View>
+            </View>
+            <Text style={styles.fillText}>Fill The Application</Text>
+            <View style={styles.informationView1}>
+              <Text style={styles.informationText}>
+                Please filling in your personal, address, vehicle and Aadhar
+                information
+              </Text>
+            </View>
+            <View style={styles.informationView}>
+              <View style={styles.vehicleNoView}>
+                <Text style={styles.locatedText1}>Vehicles</Text>
+                <TouchableOpacity
+                  onPress={() => setVehicleDescriptionView(true)}>
+                  <AntDesign
+                    name="exclamationcircle"
+                    color="#9fc5e9"
+                    size={20}
+                  />
+                </TouchableOpacity>
+              </View>
+              {vehicleDescriptionView && (
+                <View style = {styles.vehicleDescriptionView1}>
+                  <Text style = {styles.descriptionText}>
+                    If you own any vehicles that will be on the property, please
+                    enter them here.
+                  </Text>
+                </View>
+              )}
+
+              <Text style={styles.labelText}>vehicle Names </Text>
+              <TextInput
+                placeholder="e.g. benz Car,Kawaski Bike"
+                style={styles.input}
+                placeholderTextColor="#00092980"
+              />
+              <View style={styles.spaceView} />
+            </View>
+            <View style={styles.line} />
+            <TouchableOpacity style={styles.continueButton} onPress={openStep4}>
+              <Text style={styles.continueText}>Continue</Text>
+            </TouchableOpacity>
+          </View>
+        )}
+        {step4Visible && (
+          <View>
+            <View style={styles.stepView}>
+              <View style={styles.progressFormDirection}>
+                <AntDesign name="checksquare" color="#073762" size={28} />
+                <View style={styles.minusView1}>
+                  <Foundation name="minus" color="#073762" size={12} />
+                  <Foundation name="minus" color="#073762" size={12} />
+                </View>
+                <AntDesign name="checksquare" color="#073762" size={28} />
+                <View style={styles.minusView1}>
+                  <Foundation name="minus" color="#073762" size={12} />
+                  <Foundation name="minus" color="#073762" size={12} />
+                </View>
+                <AntDesign name="checksquare" color="#073762" size={28} />
+                <View style={styles.minusView}>
+                  <Foundation name="minus" color="#073762" size={12} />
+                  <Foundation name="minus" color="#073762" size={12} />
+                  <Foundation name="minus" color="#073762" size={12} />
+                  <Foundation name="minus" color="#073762" size={12} />
+                  <Foundation name="minus" color="#073762" size={12} />
+                  <Foundation name="minus" color="#073762" size={12} />
+                  <Foundation name="minus" color="#073762" size={12} />
+                </View>
+                <Feather name="square" color="#073762" size={28} />
+                <Octicons
+                  name="square-fill"
+                  color="#073762"
+                  size={20}
+                  style={styles.smallSquareView1}
+                />
+              </View>
+              <View style={styles.progressStepsTextView}>
+                <View style={styles.editAndDetailsView}>
+                  <TouchableOpacity>
+                    <Text style={styles.editText}>Edit</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity onPress={openStep2}>
+                    <Text style={styles.editText2}>Edit</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity onPress={openStep3}>
+                    <Text style={styles.editText3}>Edit</Text>
+                  </TouchableOpacity>
+                  <Text style={styles.basicDetailsText2}>Aadhar No</Text>
+                </View>
+              </View>
+            </View>
+            <Text style={styles.fillText}>Fill The Application</Text>
+            <View style={styles.informationView1}>
+              <Text style={styles.informationText}>
+                Please filling in your personal, address, vehicle and Aadhar
+                information
+              </Text>
+            </View>
+            <View style={styles.informationView}>
+              <View style={styles.aadharNoView}>
+                <Text style={styles.locatedText1}>Aadhar No</Text>
+                <TouchableOpacity
+                  onPress={() => setVehicleDescriptionView(true)}>
+                  <AntDesign
+                    name="exclamationcircle"
+                    color="#9fc5e9"
+                    size={20}
+                  />
+                </TouchableOpacity>
+              </View>
+
+              {vehicleDescriptionView && (
+                <View style={styles.vehicleDescriptionView}>
+                  <View>
+                    <Text style={styles.descriptionText}>
+                      Aadhaar numbers can be used to verify the identity of the
+                      parties involved in the property transaction, such as the
+                      buyer, seller, or witnesses.
+                    </Text>
+                  </View>
+                </View>
+              )}
+              <Text style={styles.labelText}>Aadhar No </Text>
+              <TextInput
+                placeholder="e.g. 6308513255"
+                style={styles.input}
+                placeholderTextColor="#00092980"
+              />
+              <View style={styles.spaceView} />
+            </View>
+            <View style={styles.line} />
+            <TouchableOpacity style={styles.continueButton1}>
+              <Feather name="file-text" color="white" size={20} />
+              <Text style={styles.continueText1}>Apply and Submit</Text>
             </TouchableOpacity>
           </View>
         )}
@@ -607,5 +890,120 @@ const styles = StyleSheet.create({
     color: 'white',
     fontFamily: 'PlusJakartaSans m',
     fontSize: responsiveFontSize(2),
+  },
+  smallSquareView: {
+    position: 'absolute',
+    top: responsiveHeight(0.6),
+    left: responsiveWidth(2.6),
+  },
+  smallSquareView1: {
+    // position: 'absolute',
+    right: responsiveWidth(4.8),
+    top: responsiveHeight(0.5),
+  },
+  editAndDetailsView: {
+    flexDirection: 'row',
+  },
+  basicDetailsText1: {
+    color: '#073762',
+    fontSize: responsiveFontSize(1.4),
+    fontFamily: 'PlusJakartaSans a',
+    left: responsiveWidth(12),
+  },
+  editText1: {
+    color: '#2289ff',
+    fontSize: responsiveFontSize(1.2),
+    fontFamily: 'PlusJakartaSans a',
+    left: responsiveWidth(12),
+  },
+  vehiclesText: {
+    color: '#073762',
+    fontSize: responsiveFontSize(1.4),
+    fontFamily: 'PlusJakartaSans a',
+    left: responsiveWidth(22),
+  },
+  editText2: {
+    color: '#2289ff',
+    fontSize: responsiveFontSize(1.2),
+    fontFamily: 'PlusJakartaSans a',
+    left: responsiveWidth(12),
+  },
+  editText3: {
+    color: '#2289ff',
+    fontSize: responsiveFontSize(1.2),
+    fontFamily: 'PlusJakartaSans a',
+    left: responsiveWidth(22),
+  },
+  basicDetailsText2: {
+    color: '#073762',
+    fontSize: responsiveFontSize(1.4),
+    fontFamily: 'PlusJakartaSans a',
+    left: responsiveWidth(48),
+  },
+  continueButton1: {
+    backgroundColor: '#073762',
+    width: responsiveWidth(90),
+    alignSelf: 'center',
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingVertical: 12,
+    borderRadius: 10,
+    marginTop: responsiveHeight(2.8),
+    marginBottom: responsiveHeight(6),
+    flexDirection: 'row',
+  },
+  continueText1: {
+    color: 'white',
+    fontFamily: 'PlusJakartaSans m',
+    fontSize: responsiveFontSize(2),
+    left: responsiveWidth(2.8),
+  },
+  aadharNoView: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    width: responsiveWidth(36),
+    right: responsiveWidth(4),
+  },
+  vehicleDescriptionView: {
+    backgroundColor: '#100a55',
+    width: responsiveWidth(60),
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
+    borderBottomRightRadius: 10,
+    position: 'absolute',
+    right: -12,
+    top: -74,
+  },
+  informationView1: {
+    width: responsiveWidth(90),
+    alignSelf: 'center',
+    // padding: 10,
+    marginTop: responsiveHeight(2),
+    marginBottom: responsiveHeight(2),
+  },
+  descriptionText: {
+    color: 'white',
+    padding: 10,
+    fontFamily: 'PlusJakartaSans j',
+    fontSize: responsiveFontSize(1.6),
+    lineHeight: 21,
+  },
+  vehicleNoView: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    width: responsiveWidth(30),
+    right: responsiveWidth(4),
+  },
+  vehicleDescriptionView1: {
+    backgroundColor: '#100a55',
+    width: responsiveWidth(64),
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
+    borderBottomRightRadius: 10,
+    position: 'absolute',
+    right: -6,
+    top: -26,
   },
 });

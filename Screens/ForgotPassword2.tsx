@@ -32,8 +32,7 @@ const ForgotPassword2: React.FC<Props> = ({navigation}) => {
   const [isconfirmPasswordsecure, setIsConfirmPasswordSecure] =
     useState<boolean>(false);
   const [email, setEmail] = useState('');
-  // const [password, setPassword] = useState('');
-  // const [confirmPassword, setConfirmPassword] = useState('');
+
 
   const handleConfirmPAssword = () => {
     setIsConfirmPasswordSecure(!isconfirmPasswordsecure);

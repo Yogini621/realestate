@@ -11,7 +11,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React,{useState} from 'react';
+import React, {useState} from 'react';
 import {
   responsiveFontSize,
   responsiveHeight,
@@ -29,6 +29,8 @@ import Amenitites from './Amenitites';
 import MapView, {LatLng} from 'react-native-maps';
 import Geolocation from '@react-native-community/geolocation';
 import {SelectList} from 'react-native-dropdown-select-list';
+import AntDesign from 'react-native-vector-icons/AntDesign';
+import Octicons from 'react-native-vector-icons/Octicons';
 
 interface Props {
   navigation: any;
@@ -138,55 +140,69 @@ const RentProperty: React.FC<Props> = ({navigation}) => {
             </TouchableOpacity>
           </View>
         </View>
-        <View style={styles.listingInformationView}>
-          <Text style={styles.listingText}>Listing Information</Text>
-          <Text style={styles.stepText}>STEP 2 OF 4</Text>
-        </View>
-        <View style={styles.stepView}>
-          <View style={styles.progressFormDirection}>
-            <Feather name="square" color="#073762" size={28} />
-            <View style={styles.minusView}>
-              <Foundation name="minus" color="#073762" size={12} />
-              <Foundation name="minus" color="#073762" size={12} />
-              <Foundation name="minus" color="#073762" size={12} />
-              <Foundation name="minus" color="#073762" size={12} />
-              <Foundation name="minus" color="#073762" size={12} />
-              <Foundation name="minus" color="#073762" size={12} />
-              <Foundation name="minus" color="#073762" size={12} />
-            </View>
-            <Feather name="square" color="#073762" size={28} />
-            <View style={styles.minusView1}>
-              <Foundation name="minus" color="#073762" size={12} />
-              <Foundation name="minus" color="#073762" size={12} />
-            </View>
-            <Feather name="square" color="#073762" size={28} />
-            <View style={styles.minusView1}>
-              <Foundation name="minus" color="#073762" size={12} />
-              <Foundation name="minus" color="#073762" size={12} />
-            </View>
-            <Feather name="square" color="#073762" size={28} />
-          </View>
-          <View style={styles.progressStepsTextView}>
-            <View>
-              <Text style={styles.basicDetailsText}>Basic Details</Text>
-              <View style={styles.flatAndditTextView}>
-                <Text style={styles.flatText}>Flat Apartment Sale/Rent</Text>
-                <TouchableOpacity>
-                  <Text style={styles.editText}>Edit</Text>
-                </TouchableOpacity>
-              </View>
-            </View>
-          </View>
-        </View>
-        <View style={styles.getHelpTextView}>
-          <Text style={styles.lostText}>Lost or have trouble?</Text>
-          <TouchableOpacity style={styles.getHelpView}>
-            <Text style={styles.getHelpText}>{'     '}Get help</Text>
-            <MaterialIcons name="arrow-right-alt" size={26} color="#073762" />
-          </TouchableOpacity>
-        </View>
         {step2Visible && (
           <View>
+            <View style={styles.listingInformationView}>
+              <Text style={styles.listingText}>Listing Information</Text>
+              <Text style={styles.stepText}>STEP 2 OF 4</Text>
+            </View>
+
+            <View style={styles.stepView}>
+              <View style={styles.progressFormDirection}>
+                <AntDesign name="checksquare" color="#073762" size={28} />
+                <View style={styles.minusView}>
+                  <Foundation name="minus" color="#073762" size={12} />
+                  <Foundation name="minus" color="#073762" size={12} />
+                  <Foundation name="minus" color="#073762" size={12} />
+                  <Foundation name="minus" color="#073762" size={12} />
+                  <Foundation name="minus" color="#073762" size={12} />
+                  <Foundation name="minus" color="#073762" size={12} />
+                  <Foundation name="minus" color="#073762" size={12} />
+                </View>
+                <Feather name="square" color="#073762" size={28} />
+                <View style={styles.minusView1}>
+                  <Foundation name="minus" color="#073762" size={12} />
+                  <Foundation name="minus" color="#073762" size={12} />
+                </View>
+                <Octicons
+                  name="square-fill"
+                  color="#073762"
+                  size={20}
+                  style={styles.smallSquareView}
+                />
+                <Feather name="square" color="#073762" size={28} />
+                <View style={styles.minusView1}>
+                  <Foundation name="minus" color="#073762" size={12} />
+                  <Foundation name="minus" color="#073762" size={12} />
+                </View>
+                <Feather name="square" color="#073762" size={28} />
+              </View>
+              <View style={styles.progressStepsTextView}>
+                <View>
+                  <Text style={styles.basicDetailsText}>Basic Details</Text>
+                  <View style={styles.flatAndditTextView}>
+                    <Text style={styles.flatText}>
+                      Flat Apartment Sale/Rent
+                    </Text>
+                    <TouchableOpacity
+                      onPress={() => navigation.navigate('Sell')}>
+                      <Text style={styles.editText}>Edit</Text>
+                    </TouchableOpacity>
+                  </View>
+                </View>
+              </View>
+            </View>
+            <View style={styles.getHelpTextView}>
+              <Text style={styles.lostText}>Lost or have trouble?</Text>
+              <TouchableOpacity style={styles.getHelpView}>
+                <Text style={styles.getHelpText}>{'     '}Get help</Text>
+                <MaterialIcons
+                  name="arrow-right-alt"
+                  size={26}
+                  color="#073762"
+                />
+              </TouchableOpacity>
+            </View>
             <View style={styles.locationView}>
               <TouchableOpacity style={styles.backButton}>
                 <Fontisto name="arrow-left-l" size={16} color="#073762" />
@@ -206,7 +222,7 @@ const RentProperty: React.FC<Props> = ({navigation}) => {
             <Text style={styles.listingText1}>Listing Information</Text>
             <View style={styles.stepView}>
               <View style={styles.progressFormDirection}>
-                <Feather name="square" color="#073762" size={28} />
+                <AntDesign name="checksquare" color="#073762" size={28} />
                 <View style={styles.minusView1}>
                   <Foundation name="minus" color="#073762" size={12} />
                   <Foundation name="minus" color="#073762" size={12} />
@@ -215,6 +231,12 @@ const RentProperty: React.FC<Props> = ({navigation}) => {
                 <View style={styles.minusView1}>
                   <Foundation name="minus" color="#073762" size={12} />
                   <Foundation name="minus" color="#073762" size={12} />
+                  <Octicons
+                    name="square-fill"
+                    color="#073762"
+                    size={16}
+                    style={styles.smallSquareView1}
+                  />
                 </View>
                 <Feather name="square" color="#073762" size={28} />
                 <View style={styles.minusView}>
@@ -229,18 +251,29 @@ const RentProperty: React.FC<Props> = ({navigation}) => {
                 <Feather name="square" color="#073762" size={28} />
               </View>
               <View style={styles.progressStepsTextView}>
-                <View>
-                  <Text style={styles.basicDetailsText}>Basic Details</Text>
-                  <View style={styles.flatAndditTextView}>
-                    <Text style={styles.flatText}>
-                      Flat Apartment Sale/Rent
+                <View style={{flexDirection: 'row'}}>
+                  <TouchableOpacity onPress={() => navigation.navigate('Sell')}>
+                    <Text style={styles.editText}>Edit</Text>
+                  </TouchableOpacity>
+                  <View style={styles.propertyDetailsview}>
+                    <Text style={styles.propertyDetailsText}>
+                      Property Details
                     </Text>
-                    <TouchableOpacity>
-                      <Text style={styles.editText}>Edit</Text>
-                    </TouchableOpacity>
+                    <Text style={styles.step3Text}>Step3</Text>
                   </View>
                 </View>
               </View>
+            </View>
+            <View style={styles.getHelpTextView}>
+              <Text style={styles.lostText}>Lost or have trouble?</Text>
+              <TouchableOpacity style={styles.getHelpView}>
+                <Text style={styles.getHelpText}>{'     '}Get help</Text>
+                <MaterialIcons
+                  name="arrow-right-alt"
+                  size={26}
+                  color="#073762"
+                />
+              </TouchableOpacity>
             </View>
             <View style={styles.informationView}>
               <TouchableOpacity style={styles.backButton}>
@@ -249,18 +282,13 @@ const RentProperty: React.FC<Props> = ({navigation}) => {
               </TouchableOpacity>
               <Text style={styles.locatedText1}>Listing Information</Text>
               <Text style={styles.labelText}>City*</Text>
-              <SelectList setSelected={setSelected} data={data} />
-
-              {/* <View style={styles.inputView}>
-                <TextInput
-                  placeholder="Select your city"
-                  placeholderTextColor="#00092980"
-                  style={styles.input1}
-                />
-                <TouchableOpacity>
-                  <Entypo name="chevron-small-down" color="black" size={16} />
-                </TouchableOpacity>
-              </View> */}
+              <SelectList
+                setSelected={setSelected}
+                data={data}
+                boxStyles={styles.input}
+                placeholder="Select your city"
+                fontFamily="PlusJakartaSans j"
+              />
               <Text style={styles.labelText}>Apartment / Society</Text>
               <TextInput
                 placeholder="Enter your apartment/society"
@@ -311,6 +339,68 @@ const RentProperty: React.FC<Props> = ({navigation}) => {
         )}
         {step3Visible && (
           <View>
+            <View style={styles.listingInformationView}>
+              <Text style={styles.listingText}>Listing Information</Text>
+              <Text style={styles.stepText}>STEP 2 OF 4</Text>
+            </View>
+            <View style={styles.stepView}>
+              <View style={styles.progressFormDirection}>
+                <AntDesign name="checksquare" color="#073762" size={28} />
+                <View style={styles.minusView2}>
+                  <Foundation name="minus" color="#073762" size={12} />
+                  <Foundation name="minus" color="#073762" size={12} />
+                </View>
+                <AntDesign name="checksquare" color="#073762" size={28} />
+                <View style={styles.minusView1}>
+                  <Foundation name="minus" color="#073762" size={12} />
+                  <Foundation name="minus" color="#073762" size={12} />
+                </View>
+                <Feather name="square" color="#073762" size={28} />
+                <View style={styles.minusView3}>
+                  <Foundation name="minus" color="#073762" size={12} />
+                  <Foundation name="minus" color="#073762" size={12} />
+                  <Foundation name="minus" color="#073762" size={12} />
+                  <Foundation name="minus" color="#073762" size={12} />
+                  <Foundation name="minus" color="#073762" size={12} />
+                  <Foundation name="minus" color="#073762" size={12} />
+                  <Foundation name="minus" color="#073762" size={12} />
+                  <Octicons
+                    name="square-fill"
+                    color="#073762"
+                    size={20}
+                    style={styles.smallSquareView2}
+                  />
+                </View>
+                <Feather name="square" color="#073762" size={28} />
+              </View>
+              <View style={styles.progressStepsTextView}>
+                <View style={styles.editButtonView}>
+                  <TouchableOpacity onPress={() => navigation.navigate('Sell')}>
+                    <Text style={styles.editText}>Edit</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity onPress={() => navigation.navigate('Sell')}>
+                    <Text style={styles.editText1}>Edit</Text>
+                  </TouchableOpacity>
+                  <View style={styles.propertyDetailsview1}>
+                    <Text style={styles.propertyDetailsText}>
+                      Property Details
+                    </Text>
+                    <Text style={styles.step3Text}>Step3</Text>
+                  </View>
+                </View>
+              </View>
+            </View>
+            <View style={styles.getHelpTextView}>
+              <Text style={styles.lostText}>Lost or have trouble?</Text>
+              <TouchableOpacity style={styles.getHelpView}>
+                <Text style={styles.getHelpText}>{'     '}Get help</Text>
+                <MaterialIcons
+                  name="arrow-right-alt"
+                  size={26}
+                  color="#073762"
+                />
+              </TouchableOpacity>
+            </View>
             <View style={styles.informationView}>
               <TouchableOpacity style={styles.backButton}>
                 <Fontisto name="arrow-left-l" size={16} color="#073762" />
@@ -318,38 +408,28 @@ const RentProperty: React.FC<Props> = ({navigation}) => {
               </TouchableOpacity>
               <Text style={styles.locatedText1}>Listing Information</Text>
               <Text style={styles.labelText}>Property Type*</Text>
-              <View style={styles.inputView}>
-                <TextInput
-                  placeholder="Select Type"
-                  placeholderTextColor="#00092980"
-                  style={styles.input1}
-                />
-                <TouchableOpacity>
-                  <Entypo name="chevron-small-down" color="black" size={16} />
-                </TouchableOpacity>
-              </View>
+              <SelectList
+                setSelected={setSelected}
+                data={data}
+                boxStyles={styles.input}
+                placeholder="Select type"
+              />
               <Text style={styles.labelText}>Bedrooms</Text>
-              <View style={styles.inputView}>
-                <TextInput
-                  placeholder="How many beds"
-                  placeholderTextColor="#00092980"
-                  style={styles.input1}
-                />
-                <TouchableOpacity>
-                  <Entypo name="chevron-small-down" color="black" size={16} />
-                </TouchableOpacity>
-              </View>
+              <SelectList
+                setSelected={setSelected}
+                data={data}
+                boxStyles={styles.input}
+                fontFamily="PlusJakartaSans j"
+                placeholder="How Many beds"
+              />
               <Text style={styles.labelText}>Baths</Text>
-              <View style={styles.inputView}>
-                <TextInput
-                  placeholder="How many baths"
-                  placeholderTextColor="#00092980"
-                  style={styles.input1}
-                />
-                <TouchableOpacity>
-                  <Entypo name="chevron-small-down" color="black" size={16} />
-                </TouchableOpacity>
-              </View>
+              <SelectList
+                setSelected={setSelected}
+                data={data}
+                boxStyles={styles.input}
+                fontFamily="PlusJakartaSans j"
+                placeholder="How Many baths"
+              />
               <Text style={styles.labelText}>Square Feet</Text>
               <TextInput
                 placeholder="Sq ft"
@@ -373,71 +453,53 @@ const RentProperty: React.FC<Props> = ({navigation}) => {
                 style={styles.input}
               />
               <Text style={styles.labelText}>Lease Duration</Text>
-              <View style={styles.inputView}>
-                <TextInput
-                  placeholder="Select duration"
-                  placeholderTextColor="#00092980"
-                  style={styles.input1}
-                />
-                <TouchableOpacity>
-                  <Entypo name="chevron-small-down" color="black" size={16} />
-                </TouchableOpacity>
-              </View>
+              <SelectList
+                setSelected={setSelected}
+                data={data}
+                boxStyles={styles.input}
+                fontFamily="PlusJakartaSans j"
+                placeholder="Select duration"
+              />
               <Text style={styles.labelText}>Heating</Text>
-              <View style={styles.inputView}>
-                <TextInput
-                  placeholder="Select heating"
-                  placeholderTextColor="#00092980"
-                  style={styles.input1}
-                />
-                <TouchableOpacity>
-                  <Entypo name="chevron-small-down" color="black" size={16} />
-                </TouchableOpacity>
-              </View>
+              <SelectList
+                setSelected={setSelected}
+                data={data}
+                boxStyles={styles.input}
+                fontFamily="PlusJakartaSans j"
+                placeholder="Select heating"
+              />
               <Text style={styles.labelText}>Cooling</Text>
-              <View style={styles.inputView}>
-                <TextInput
-                  placeholder="Select Cooling"
-                  placeholderTextColor="#00092980"
-                  style={styles.input1}
-                />
-                <TouchableOpacity>
-                  <Entypo name="chevron-small-down" color="black" size={16} />
-                </TouchableOpacity>
-              </View>
+              <SelectList
+                setSelected={setSelected}
+                data={data}
+                boxStyles={styles.input}
+                fontFamily="PlusJakartaSans j"
+                placeholder="Select Cooling"
+              />
               <Text style={styles.labelText}>Repair Quality</Text>
-              <View style={styles.inputView}>
-                <TextInput
-                  placeholder="Select Repair Quality"
-                  placeholderTextColor="#00092980"
-                  style={styles.input1}
-                />
-                <TouchableOpacity>
-                  <Entypo name="chevron-small-down" color="black" size={16} />
-                </TouchableOpacity>
-              </View>
+              <SelectList
+                setSelected={setSelected}
+                data={data}
+                boxStyles={styles.input}
+                fontFamily="PlusJakartaSans j"
+                placeholder="Select Repair Quality"
+              />
               <Text style={styles.labelText}>Parking Area</Text>
-              <View style={styles.inputView}>
-                <TextInput
-                  placeholder="Select Parking Area Yes or No"
-                  placeholderTextColor="#00092980"
-                  style={styles.input1}
-                />
-                <TouchableOpacity>
-                  <Entypo name="chevron-small-down" color="black" size={16} />
-                </TouchableOpacity>
-              </View>
+              <SelectList
+                setSelected={setSelected}
+                data={data}
+                boxStyles={styles.input}
+                fontFamily="PlusJakartaSans j"
+                placeholder="Select parking Area Yes or No"
+              />
               <Text style={styles.labelText}>Laundry</Text>
-              <View style={styles.inputView}>
-                <TextInput
-                  placeholder="Select Laundry"
-                  placeholderTextColor="#00092980"
-                  style={styles.input1}
-                />
-                <TouchableOpacity>
-                  <Entypo name="chevron-small-down" color="black" size={16} />
-                </TouchableOpacity>
-              </View>
+              <SelectList
+                setSelected={setSelected}
+                data={data}
+                boxStyles={styles.input}
+                fontFamily="PlusJakartaSans j"
+                placeholder="Select Laundry"
+              />
               <Text style={styles.labelText}>Rent</Text>
               <View style={styles.inputView}>
                 <TextInput
@@ -465,10 +527,74 @@ const RentProperty: React.FC<Props> = ({navigation}) => {
                 </TouchableOpacity>
               </View>
             </View>
-          </View> 
+          </View>
         )}
         {step4Visible && (
           <View>
+            <View style={styles.listingInformationView}>
+              <Text style={styles.listingText}>Listing Information</Text>
+              <Text style={styles.stepText}>STEP 2 OF 4</Text>
+            </View>
+            <View style={styles.stepView}>
+              <View style={styles.progressFormDirection}>
+                <AntDesign name="checksquare" color="#073762" size={28} />
+                <View style={styles.minusView2}>
+                  <Foundation name="minus" color="#073762" size={12} />
+                  <Foundation name="minus" color="#073762" size={12} />
+                </View>
+                <AntDesign name="checksquare" color="#073762" size={28} />
+                <View style={styles.minusView1}>
+                  <Foundation name="minus" color="#073762" size={12} />
+                  <Foundation name="minus" color="#073762" size={12} />
+                </View>
+                <AntDesign name="checksquare" color="#073762" size={28} />
+                <View style={styles.minusView3}>
+                  <Foundation name="minus" color="#073762" size={12} />
+                  <Foundation name="minus" color="#073762" size={12} />
+                  <Foundation name="minus" color="#073762" size={12} />
+                  <Foundation name="minus" color="#073762" size={12} />
+                  <Foundation name="minus" color="#073762" size={12} />
+                  <Foundation name="minus" color="#073762" size={12} />
+                  <Foundation name="minus" color="#073762" size={12} />
+                </View>
+                <Feather name="square" color="#073762" size={28} />
+                <Octicons
+                  name="square-fill"
+                  color="#073762"
+                  size={20}
+                  style={styles.smallSquareView3}
+                />
+              </View>
+              <View style={styles.progressStepsTextView}>
+                <View style={styles.editButtonView}>
+                  <TouchableOpacity onPress={() => navigation.navigate('Sell')}>
+                    <Text style={styles.editText}>Edit</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity onPress={() => navigation.navigate('Sell')}>
+                    <Text style={styles.editText1}>Edit</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity onPress={() => navigation.navigate('Sell')}>
+                    <Text style={styles.editText1}>Edit</Text>
+                  </TouchableOpacity>
+                  <View style={styles.propertyDetailsview1}>
+                    <Text style={styles.propertyDetailsText}>
+                      Photo & Video Upload
+                    </Text>
+                  </View>
+                </View>
+              </View>
+            </View>
+            <View style={styles.getHelpTextView}>
+              <Text style={styles.lostText}>Lost or have trouble?</Text>
+              <TouchableOpacity style={styles.getHelpView}>
+                <Text style={styles.getHelpText}>{'     '}Get help</Text>
+                <MaterialIcons
+                  name="arrow-right-alt"
+                  size={26}
+                  color="#073762"
+                />
+              </TouchableOpacity>
+            </View>
             <View style={styles.locationView}>
               <TouchableOpacity style={styles.backButton}>
                 <Fontisto name="arrow-left-l" size={16} color="#073762" />
@@ -576,6 +702,20 @@ const styles = StyleSheet.create({
     margin: 6,
     justifyContent: 'space-between',
     width: responsiveWidth(6),
+  },
+  minusView2: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    margin: 6,
+    justifyContent: 'space-between',
+    width: responsiveWidth(6),
+  },
+  minusView3: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    margin: 6,
+    justifyContent: 'space-between',
+    width: responsiveWidth(28),
   },
   basicDetailsText: {
     color: '#073762',
@@ -832,5 +972,51 @@ const styles = StyleSheet.create({
     fontFamily: 'PlusJakartaSans a',
     fontSize: responsiveFontSize(1.5),
     left: responsiveWidth(1.8),
+  },
+  smallSquareView: {
+    position: 'absolute',
+    marginLeft: responsiveWidth(40.5),
+    marginTop: responsiveHeight(0.5),
+  },
+  smallSquareView1: {
+    position: 'absolute',
+    marginLeft: responsiveWidth(-6),
+    marginTop: responsiveHeight(0.8),
+  },
+  propertyDetailsview: {
+    // position:'absolute',
+    marginLeft: responsiveWidth(26),
+  },
+  propertyDetailsText: {
+    color: '#073762',
+    fontFamily: 'PlusJakartaSans a',
+    fontSize: responsiveFontSize(1.4),
+  },
+  step3Text: {
+    color: '#a8a8a8',
+    fontFamily: 'PlusJakartaSans j',
+    fontSize: responsiveFontSize(1),
+  },
+  smallSquareView2: {
+    position: 'absolute',
+    marginLeft: responsiveWidth(-6.4),
+    marginTop: responsiveHeight(0.8),
+  },
+  editButtonView: {
+    flexDirection: 'row',
+  },
+  propertyDetailsview1: {
+    marginLeft: responsiveWidth(10),
+  },
+  editText1: {
+    color: '#2289ff',
+    fontSize: responsiveFontSize(1.2),
+    fontFamily: 'PlusJakartaSans a',
+    marginLeft: responsiveWidth(12),
+  },
+  smallSquareView3: {
+    position: 'absolute',
+    marginLeft: responsiveWidth(72.8),
+    marginTop: responsiveHeight(0.5),
   },
 });

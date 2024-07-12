@@ -32,6 +32,8 @@ import {RootState} from '../redux/reducers';
 import Octicons from 'react-native-vector-icons/Octicons';
 import Geolocation from '@react-native-community/geolocation';
 import MapView, {LatLng, Marker} from 'react-native-maps';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import ImageView from 'react-native-image-viewing';
 
 interface Props {
   navigation: any;
@@ -46,6 +48,19 @@ const PropertyDetails: React.FC<Props> = ({navigation, route}) => {
   const {item} = route.params;
   const [currentLocation, setCurrentLocation] = useState<LatLng | null>(null);
   const [locationError, setLocationError] = useState<string | null>(null);
+  const [visible, setIsVisible] = useState(false);
+
+const images = [
+  {
+    uri: 'https://images.unsplash.com/photo-1571501679680-de32f1e7aad4',
+  },
+  {
+    uri: 'https://images.unsplash.com/photo-1573273787173-0eb81a833b34',
+  },
+  {
+    uri: 'https://images.unsplash.com/photo-1569569970363-df7b6160d111',
+  },
+];
 
   useEffect(() => {
     requestLocationPermission();
@@ -148,10 +163,31 @@ const PropertyDetails: React.FC<Props> = ({navigation, route}) => {
             <Text style={styles.shareText}>Favorite</Text>
           </TouchableOpacity>
         </View>
-        <Image source={item.image} style={styles.image} />
+        <View>
+          <Image source={item.image} style={styles.image} />
+          <TouchableOpacity
+            style={styles.viewAllPhotosButton}
+            onPress={() => setIsVisible(true)}>
+            <MaterialIcons name="photo" color="#000000" size={20} />
+            <Text style={styles.viewAllPhotosText}>View all photos</Text>
+          </TouchableOpacity>
+        </View>
+
         <View style={styles.imageView}>
           <Image source={require('../Images/home2.png')} />
           <Image source={require('../Images/home3.png')} />
+        </View>
+
+        <View>
+          <Text style={{color: 'white'}}>Hello</Text>
+          <ImageView
+            images={images}
+            imageIndex={0}
+            visible={visible}
+            onRequestClose={() => setIsVisible(false)}
+            backgroundColor="#000000EE"
+            presentationStyle="formSheet"
+          />
         </View>
         <View style={styles.detailsView}>
           <View style={styles.roomsView}>
@@ -757,5 +793,22 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     marginTop: responsiveHeight(2.8),
     marginBottom: responsiveHeight(6),
+  },
+  viewAllPhotosButton: {
+    backgroundColor: 'white',
+    borderRadius: 10,
+    padding: 10,
+    position: 'absolute',
+    marginTop: responsiveHeight(24),
+    alignSelf: 'flex-end',
+    right: responsiveWidth(6),
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  viewAllPhotosText: {
+    color: '#000000',
+    fontFamily: 'PlusJakartaSans a',
+    fontSize: responsiveFontSize(1.8),
+    marginLeft: responsiveWidth(2),
   },
 });

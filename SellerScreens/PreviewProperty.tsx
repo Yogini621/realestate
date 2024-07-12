@@ -40,11 +40,11 @@ const PreviewProperty: React.FC<Props> = ({navigation, route}) => {
     (state: RootState) => state.favorites.favorites,
   );
   const dispatch = useDispatch();
-  //   const {item} = route.params;
+  const {item} = route.params;
 
-  //   const handleAddToFavorites = (item: Property) => {
-  //     dispatch(addToFavorites(item));
-  //   };
+  const handleAddToFavorites = (item: Property) => {
+    dispatch(addToFavorites(item));
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -69,8 +69,8 @@ const PreviewProperty: React.FC<Props> = ({navigation, route}) => {
             <Text style={styles.backtoMapText}>Back to map</Text>
           </TouchableOpacity>
         </View>
-        {/* <Text style={styles.stCrystalText}>{item.rooms} </Text>
-        <Text style={styles.addressText}>{item.location} </Text> */}
+        <Text style={styles.stCrystalText}>{item.rooms} </Text>
+        <Text style={styles.addressText}>{item.location} </Text>
         <View style={styles.buttonView}>
           <TouchableOpacity style={styles.shareButton}>
             <EvilIcons name="share-google" size={24} color="#073762" />
@@ -78,9 +78,8 @@ const PreviewProperty: React.FC<Props> = ({navigation, route}) => {
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.shareButton}
-                        // onPress={() => handleAddToFavorites(item)}
-          >
-            {/* <AntDesign
+            onPress={() => handleAddToFavorites(item)}>
+            <AntDesign
               name={
                 favorites.find(favoriteItem => item.id === favoriteItem.id)
                   ? 'heart'
@@ -92,15 +91,18 @@ const PreviewProperty: React.FC<Props> = ({navigation, route}) => {
                   : '#073762'
               }
               size={22}
-            /> */}
+            />
             <Text style={styles.shareText}>Favorite</Text>
           </TouchableOpacity>
         </View>
-        {/* <Image source={item.image} style={styles.image} />
+        <Image source={item.image} style={styles.image} />
+        <TouchableOpacity style={styles.viewAllPhotosButton}>
+          <Text>View all photos</Text>
+        </TouchableOpacity>
         <View style={styles.imageView}>
           <Image source={require('../Images/home2.png')} />
           <Image source={require('../Images/home3.png')} />
-        </View> */}
+        </View>
         <View style={styles.detailsView}>
           <View style={styles.roomsView}>
             <Text style={styles.roomsText}>Bed</Text>
@@ -188,10 +190,9 @@ const PreviewProperty: React.FC<Props> = ({navigation, route}) => {
             </View>
             <TouchableOpacity
               style={styles.applyButton}
-              //               onPress={() =>
-              //                 navigation.navigate('TenentApplicationForm', {item})
-              //               }
-            >
+              onPress={() =>
+                navigation.navigate('TenentApplicationForm', {item})
+              }>
               <Ionicons name="document-text-outline" color="white" size={22} />
               <Text style={styles.applyText}>Apply now</Text>
             </TouchableOpacity>
@@ -670,5 +671,9 @@ const styles = StyleSheet.create({
     fontSize: responsiveFontSize(1.8),
     fontFamily: 'PlusJakartaSans j',
     left: responsiveWidth(2),
+  },
+  viewAllPhotosButton: {
+    backgroundColor: 'green',
+    padding: 10,
   },
 });
