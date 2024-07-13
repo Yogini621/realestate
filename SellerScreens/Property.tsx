@@ -1,6 +1,7 @@
 import {
   Image,
   SafeAreaView,
+  ScrollView,
   StatusBar,
   StyleSheet,
   Text,
@@ -22,6 +23,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import Entypo from 'react-native-vector-icons/Entypo';
 import {useSelector} from 'react-redux';
 import {RootState} from '../redux/reducers';
+import {data} from '../Screens/data';
 
 interface Props {
   navigation: any;
@@ -30,106 +32,103 @@ interface Props {
 const Property: React.FC<Props> = ({navigation}) => {
   const drafts = useSelector((state: RootState) => state.drafts.drafts);
   const [openDrafts, setOpenDrafts] = useState(false);
-
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar hidden={true} />
-      <View style={styles.headerView}>
-        <View style={styles.logoView}>
-          <TouchableOpacity onPress={() => navigation.navigate('MenuPage')}>
-            <FontAwesome5 name="grip-lines" size={20} color="#073762" />
-          </TouchableOpacity>
-          <View style={styles.iconView}>
-            <TouchableOpacity>
-              <Ionicons
-                name="notifications-outline"
-                size={20}
-                color="#073762"
-              />
-            </TouchableOpacity>
+      <ScrollView>
+        <View style={styles.headerView}>
+          <View style={styles.logoView}>
             <TouchableOpacity onPress={() => navigation.navigate('MenuPage')}>
               <FontAwesome5 name="grip-lines" size={20} color="#073762" />
             </TouchableOpacity>
+            <View style={styles.iconView}>
+              <TouchableOpacity>
+                <Ionicons
+                  name="notifications-outline"
+                  size={20}
+                  color="#073762"
+                />
+              </TouchableOpacity>
+              <TouchableOpacity onPress={() => navigation.navigate('MenuPage')}>
+                <FontAwesome5 name="grip-lines" size={20} color="#073762" />
+              </TouchableOpacity>
+            </View>
           </View>
         </View>
-      </View>
-      <View style={styles.inputView}>
-        <AntDesign name="search1" size={20} color="#c2c3cb" />
-        <TextInput
-          placeholder="Search"
-          style={styles.input}
-          placeholderTextColor="#c2c3cb"
-        />
-      </View>
-      <View style={styles.propertyListAndIconView}>
-        <Text style={styles.propertyListText}>Property List</Text>
-        <View style={styles.draftButtonView}>
-          <TouchableOpacity
-            style={styles.draftButton}
-            onPress={() => setOpenDrafts(true)}>
-            <Text style={styles.draftsText}>Drafts</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.plusIconButton}
-            onPress={() => navigation.navigate('Sell')}>
-            <Entypo name="plus" color="white" size={16} />
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.sortIconButton}>
-            <MaterialCommunityIcons
-              name="sort-descending"
-              color="#073762"
-              size={16}
-            />
-          </TouchableOpacity>
+        <View style={styles.inputView}>
+          <AntDesign name="search1" size={20} color="#c2c3cb" />
+          <TextInput
+            placeholder="Search"
+            style={styles.input}
+            placeholderTextColor="#c2c3cb"
+          />
         </View>
-      </View>
-      {openDrafts && (
+        <View style={styles.propertyListAndIconView}>
+          <Text style={styles.propertyListText}>Property List</Text>
+          <View style={styles.draftButtonView}>
+            <TouchableOpacity
+              style={styles.draftButton}
+              onPress={() => setOpenDrafts(true)}>
+              <Text style={styles.draftsText}>Drafts</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.plusIconButton}
+              onPress={() => navigation.navigate('Sell')}>
+              <Entypo name="plus" color="white" size={16} />
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.sortIconButton}>
+              <MaterialCommunityIcons
+                name="sort-descending"
+                color="#073762"
+                size={16}
+              />
+            </TouchableOpacity>
+          </View>
+        </View>
         <View>
-          {drafts.map(item => (
-            <View>
-              <Image source={item.image} />
-              <View>
-                <Text style={styles.roomsText}>{item.rooms}</Text>
-                <View style={styles.locationView}>
-                  <Entypo name="location-pin" size={16} color="#11142d" />
-                  <Text style={styles.locationText}>{item.location}</Text>
-                </View>
-                <View style={styles.iconView1}>
-                  <View style={styles.numberView}>
-                    <Ionicons name="bed-outline" size={22} color="#073762" />
-                    <Text style={styles.numberText}>4</Text>
+          {data.map(item => (
+            <View style={styles.itemView}>
+              <View style={styles.directionView}>
+                <Image source={item.image} style={styles.image} />
+                <View style={styles.descriptionView}>
+                  <Text style={styles.roomsText}>{item.rooms}</Text>
+                  <View style={styles.locationView}>
+                    <Entypo name="location-pin" size={14} color="#11142d" />
+                    <Text style={styles.locationText}>{item.location}</Text>
                   </View>
-                  <View style={styles.numberView}>
-                    <FontAwesome5 name="bath" size={18} color="#073762" />
-                    <Text style={styles.numberText}>2</Text>
+                  <View style={styles.iconView1}>
+                    <View style={styles.numberView}>
+                      <Ionicons name="bed-outline" size={14} color="#073762" />
+                      <Text style={styles.numberText}>4</Text>
+                    </View>
+                    <View style={styles.numberView}>
+                      <FontAwesome5 name="bath" size={14} color="#073762" />
+                      <Text style={styles.numberText}>2</Text>
+                    </View>
+                    <View style={styles.numberView}>
+                      <FontAwesome5
+                        name="bath"
+                        size={14}
+                        style={styles.icon}
+                        color="#073762"
+                      />
+                      <Text style={[styles.numberText,{marginLeft:responsiveWidth(2)}
+                      ]}>6x8 m²</Text>
+                    </View>
                   </View>
-                  <View style={styles.numberView}>
-                    <FontAwesome5
-                      name="bath"
-                      size={18}
-                      style={styles.icon}
-                      color="#073762"
-                    />
-                    <Text
-                      style={[styles.numberText, {left: responsiveWidth(4.8)}]}>
-                      6x8 m²
-                    </Text>
+                  <View style={styles.rentView}>
+                    <Text style={styles.rentText}>$ {item.rent}</Text>
                   </View>
-                </View>
-                <View style={styles.rentView}>
-                  <Text style={styles.rentText}>{item.rent}</Text>
                 </View>
               </View>
             </View>
           ))}
         </View>
-      )}
+      </ScrollView>
     </SafeAreaView>
   );
 };
-
 export default Property;
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -149,7 +148,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   iconView: {
-    width: responsiveWidth(14),
+    width: responsiveWidth(10),
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
@@ -224,19 +223,18 @@ const styles = StyleSheet.create({
   iconView1: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    width: responsiveWidth(80),
+    width: responsiveWidth(32),
+    left: responsiveWidth(4.8),
+    marginTop: responsiveHeight(2),
   },
   numberView: {
     flexDirection: 'row',
-    marginHorizontal: responsiveWidth(6.8),
-    marginTop: responsiveHeight(2),
-    justifyContent: 'space-between',
     alignItems: 'center',
   },
   numberText: {
     color: '#000000',
-    fontFamily: 'PlusJakartaSans a',
-    fontSize: responsiveFontSize(1.8),
+    fontFamily: 'PlusJakartaSans j',
+    fontSize: responsiveFontSize(1.4),
     left: responsiveWidth(1.6),
   },
   icon: {
@@ -246,25 +244,45 @@ const styles = StyleSheet.create({
     backgroundColor: '#073762',
     borderRadius: 8,
     width: responsiveWidth(20),
-    height: responsiveHeight(4.8),
+    height: responsiveHeight(4.2),
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: responsiveHeight(2.8),
   },
   roomsText: {
     color: '#323142',
-    fontFamily: 'PlusJakartaSans j',
-    fontSize: responsiveFontSize(2),
+    fontFamily: 'PlusJakartaSans m',
+    fontSize: responsiveFontSize(2.2),
   },
   locationView: {
     flexDirection: 'row',
     marginTop: responsiveHeight(1),
+    alignItems: 'center',
   },
   locationText: {
     color: '#808191',
-    fontFamily: 'PlusJakartaSans a',
-    fontSize: responsiveFontSize(1.6),
+    fontFamily: 'PlusJakartaSans j',
+    fontSize: responsiveFontSize(1.4),
   },
   rentText: {
     color: 'white',
-    fontFamily: 'PlusJakartaSans a',
-    fontSize: responsiveFontSize(1.8),
+    fontFamily: 'PlusJakartaSans j',
+    fontSize: responsiveFontSize(1.6),
+  },
+  directionView: {
+    flexDirection: 'row',
+  },
+  image: {
+    height: responsiveHeight(22),
+    width: responsiveWidth(46),
+    borderRadius: 10,
+  },
+  itemView: {
+    alignSelf: 'center',
+    width: responsiveWidth(90),
+    margin: 10,
+  },
+  descriptionView: {
+    left: responsiveWidth(4),
   },
 });

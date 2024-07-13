@@ -30,12 +30,15 @@ import {
 } from '../redux/actions/actionTypes';
 import {Property} from '../redux/actions/actions';
 import FiltersScreen from './FiltersScreen';
+import DateTimePicker from 'react-native-ui-datepicker';
+import dayjs from 'dayjs';
 
 interface Props {
   navigation: any;
 }
 
 const HomePage: React.FC<Props> = ({navigation}) => {
+    const [date, setDate] = useState(dayjs());
   const Properties = useSelector(
     (state: RootState) => state.properties.properties,
   );
@@ -48,7 +51,7 @@ const HomePage: React.FC<Props> = ({navigation}) => {
   useEffect(() => {
     handleFetchProperties();
   });
-
+const [datePicker,setDatePicker] = useState(false)
   const handleFetchProperties = () => {
     const response = data;
     dispatch(fetchProperties(response));
@@ -120,7 +123,7 @@ const HomePage: React.FC<Props> = ({navigation}) => {
           return (
             <View style={styles.itemView} key={item.id}>
               <TouchableOpacity
-                onPress={() => navigation.navigate('PropertyDetails', {item})}>
+                onPress={() => navigation.navigate('PropertyDetails',{item})}>
                 <Image source={item.image} style={styles.image} />
               </TouchableOpacity>
               <View style={styles.descriptionView}>

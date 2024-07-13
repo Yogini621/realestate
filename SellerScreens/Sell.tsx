@@ -58,7 +58,7 @@ const Sell: React.FC<Props> = ({navigation}) => {
             <Entypo name="home" size={24} color="#073762" />
           </View>
           <View style={styles.sellTextView}>
-            <TouchableOpacity onPress={() => navigation.navigate("MenuPage")}>
+            <TouchableOpacity onPress={() => setSellPropertyState(true)}>
               <Text style={styles.sellText}>Sell</Text>
               <Text style={styles.lookStraightText}>
                 Look Straight in Your Cam For 30 Seconds
@@ -71,7 +71,7 @@ const Sell: React.FC<Props> = ({navigation}) => {
             <Entypo name="home" size={24} color="#073762" />
           </View>
           <View style={styles.sellTextView}>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => setSellPropertyState(true)}>
               <Text style={styles.sellText}>Rent</Text>
               <Text style={styles.lookStraightText}>
                 Proof Of Your Residaency Via Passport / ID Card
@@ -86,72 +86,102 @@ const Sell: React.FC<Props> = ({navigation}) => {
             <MaterialIcons name="arrow-right-alt" size={26} color="#073762" />
           </TouchableOpacity>
         </View>
-        <View>
-          <View style={styles.rentPropertyView}>
-            <View style={styles.sellTextView1}>
-              <Text style={styles.sellText1}>
-                Sell or Rent Your Property
-                <Text style={styles.fasterText}>{" "}Faster{" "}</Text>with E-Property.com
-              </Text>
+        {sellPropertyState ? (
+          <View style={styles.sellProprtyOptionsView}>
+            <TouchableOpacity
+              style={styles.backButton}
+              onPress={() => setSellPropertyState(false)}>
+              <Fontisto name="arrow-left-l" size={16} color="#073762" />
+              <Text style={styles.backText}>Back</Text>
+            </TouchableOpacity>
+            <Text style={styles.postingPropertyText}>
+              Start Posting your property,it's free
+            </Text>
+            <Text style={styles.basicDetailsText}>Add Basic details</Text>
+            <Text style={styles.andItsText}>And it's a...</Text>
+            <View style={styles.residentialAndCommercialButtonView}>
+              <View style={styles.residentialButtonView}>
+                <RadioButton
+                  status={
+                    propertyType === 'residential' ? 'checked' : 'unchecked'
+                  }
+                  value="residential"
+                  color="#073762"
+                  onPress={() => setPropertyType('residential')}
+                />
+                <Text style={styles.residentialText}>Residential</Text>
+              </View>
+              <View style={styles.residentialButtonView}>
+                <RadioButton
+                  status={
+                    propertyType === 'commercial' ? 'checked' : 'unchecked'
+                  }
+                  value="commercial"
+                  color="#073762"
+                  onPress={() => setPropertyType('commercial')}
+                />
+                <Text style={styles.residentialText}>Commercial</Text>
+              </View>
             </View>
-            <View style={styles.advertiseView}>
-              <AntDesign name="checkcircleo" color="#003fc3" size={18} />
-              <Text style={styles.advertiseText}>Advertise for FREE</Text>
+            <OptionSelect />
+            <View style={styles.residentialAndCommercialButtonView}>
+              <TouchableOpacity style={styles.saveAsDraftButton}>
+                <Text style={styles.saveAsDraftsText}>Save as drafts</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.nextStepButton}
+                onPress={() => navigation.navigate('RentProperty')}>
+                <Text style={styles.nextStepText}>Next step</Text>
+                <MaterialIcons name="arrow-right-alt" size={26} color="white" />
+              </TouchableOpacity>
             </View>
-            <View style={styles.advertiseView}>
-              <AntDesign name="checkcircleo" color="#003fc3" size={18} />
-              <Text style={styles.advertiseText}>Get unlimited enquires</Text>
-            </View>
-            <View style={styles.advertiseView}>
-              <AntDesign name="checkcircleo" color="#003fc3" size={18} />
-              <Text style={styles.advertiseText}>
-                Get shortlisted buyers and tenants*
-              </Text>
-            </View>
-            <View style={styles.advertiseView}>
-              <AntDesign name="checkcircleo" color="#003fc3" size={18} />
-              <Text style={styles.advertiseText}>
-                Assistance in coordinating site visits*
-              </Text>
-            </View>
-            <Image
-              source={require('../Images/home.png')}
-              style={styles.image}
-            />
           </View>
-          <View style={styles.footerView}>
-            <Text style={styles.privacyText}>Privacy Policy</Text>
-            <Text style={styles.privacyText}>Copyright 2023</Text>
+        ) : (
+          <View>
+            <View style={styles.rentPropertyView}>
+              <View style={styles.sellTextView1}>
+                <Text style={styles.sellText1}>
+                  Sell or Rent Your Property
+                  <Text style={styles.fasterText}>Faster</Text>with
+                  E-Property.com
+                </Text>
+              </View>
+              <View style={styles.advertiseView}>
+                <AntDesign name="checkcircleo" color="#003fc3" size={18} />
+                <Text style={styles.advertiseText}>Advertise for FREE</Text>
+              </View>
+              <View style={styles.advertiseView}>
+                <AntDesign name="checkcircleo" color="#003fc3" size={18} />
+                <Text style={styles.advertiseText}>Get unlimited enquires</Text>
+              </View>
+              <View style={styles.advertiseView}>
+                <AntDesign name="checkcircleo" color="#003fc3" size={18} />
+                <Text style={styles.advertiseText}>
+                  Get shortlisted buyers and tenants*
+                </Text>
+              </View>
+              <View style={styles.advertiseView}>
+                <AntDesign name="checkcircleo" color="#003fc3" size={18} />
+                <Text style={styles.advertiseText}>
+                  Assistance in coordinating site visits*
+                </Text>
+              </View>
+              <Image
+                source={require('../Images/home.png')}
+                style={styles.image}
+              />
+            </View>
+            <View style={styles.footerView}>
+              <Text style={styles.privacyText}>Privacy Policy</Text>
+              <Text style={styles.privacyText}>Copyright 2023</Text>
+            </View>
           </View>
-        </View>
+        )}
       </ScrollView>
       {modalVisible && (
         <Modal visible={modalVisible} animationType="slide" transparent={true}>
-          <View style={styles.centeredModal}>
-            <View style={styles.modalView}>
-              <View style={styles.userModeView}>
-                <Text style={styles.userModeText}>User Mode</Text>
-                <TouchableOpacity onPress={() => setModalVisible(false)}>
-                  <AntDesign name="close" color="#787681" size={24} />
-                </TouchableOpacity>
-              </View>
-              <View style={styles.seperator} />
-              <View style={styles.switchTextView}>
-                <Text style={styles.switchText}>
-                  Are you sure you want to switch to customer?
-                </Text>
-              </View>
-              <View style={styles.buttonView}>
-                <TouchableOpacity style={styles.yesButton}>
-                  <Text style={styles.yesText}>Yes,I Want to</Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                  style={styles.cancelButton}
-                  onPress={() => setModalVisible(false)}>
-                  <Text style={styles.cancelText}>Cancel</Text>
-                </TouchableOpacity>
-              </View>
-            </View>
+          <View>
+            <View></View>
           </View>
         </Modal>
       )}
@@ -306,7 +336,6 @@ const styles = StyleSheet.create({
   },
   // ===================================================================================
   sellProprtyOptionsView: {
-    // height: responsiveHeight(72),
     width: responsiveWidth(90),
     borderRadius: 6,
     backgroundColor: '#ffffff',
@@ -405,84 +434,5 @@ const styles = StyleSheet.create({
     color: '#073762',
     fontFamily: 'PlusJakartaSans a',
     fontSize: responsiveFontSize(1.8),
-  },
-  centeredModal: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  modalView: {
-    backgroundColor: '#ffffff',
-    elevation: 1,
-    padding: 10,
-    width: responsiveWidth(90),
-    borderRadius: 10,
-    height: responsiveHeight(30),
-  },
-  userModeView: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    width: responsiveWidth(80),
-    alignSelf: 'center',
-    alignItems: 'center',
-  },
-  userModeText: {
-    color: '#f14231',
-    fontFamily: 'PlusJakartaSans a',
-    fontSize: responsiveFontSize(3.2),
-  },
-  seperator: {
-    height: responsiveHeight(0.1),
-    width: responsiveWidth(80),
-    backgroundColor: '#e1e1e3',
-    alignSelf: 'center',
-    marginTop: responsiveHeight(2),
-  },
-  switchTextView: {
-    width: responsiveWidth(48),
-    alignSelf: 'center',
-    alignItems: 'center',
-    // backgroundColor: 'green',
-    marginTop: responsiveHeight(1),
-    justifyContent: 'center',
-  },
-  switchText: {
-    color: '#000000',
-    fontFamily: 'PlusJakartaSans j',
-    fontSize: responsiveFontSize(2),
-    textAlign: 'center',
-  },
-  yesButton: {
-    backgroundColor: '#073762',
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 10,
-    padding: 10,
-    width: responsiveWidth(34),
-  },
-  yesText: {
-    color: '#ffffff',
-    fontFamily: 'PlusJakartaSans a',
-  },
-  buttonView: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    width: responsiveWidth(78),
-    alignSelf: 'center',
-    alignItems: 'center',
-    marginTop: responsiveHeight(2.8),
-  },
-  cancelButton: {
-    borderWidth: 1,
-    borderColor: '#9fc5e9',
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 10,
-    padding: 10,
-    width: responsiveWidth(34),
-  },
-  cancelText: {
-    color: '#000000',
-    fontFamily: 'PlusJakartaSans a',
   },
 });

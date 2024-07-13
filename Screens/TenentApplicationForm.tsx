@@ -25,6 +25,8 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import {SelectList} from 'react-native-dropdown-select-list';
 import Octicons from 'react-native-vector-icons/Octicons';
+import DateTimePicker, { DateType } from 'react-native-ui-datepicker';
+import dayjs from 'dayjs';
 
 interface Props {
   navigation: any;
@@ -62,6 +64,8 @@ const TenantApplicationForm: React.FC<Props> = ({navigation, route}) => {
   const [step4Visible, setStep4Visible] = useState(false);
   const [vehicleDescriptionView, setVehicleDescriptionView] = useState(false);
   const [selected, setSelected] = useState('');
+  const [datePicker,setDatePicker] = useState(false)
+  const [date, setDate] = useState<DateType>(dayjs());
 
   const data = [
     {key: 'Canada', value: 'Canada'},
@@ -70,6 +74,21 @@ const TenantApplicationForm: React.FC<Props> = ({navigation, route}) => {
     {key: 'India', value: 'India'},
     {key: 'NewZealand', value: 'NewZealand'},
   ];
+
+  const state = [
+    {key: 'Andhra Pradesh', value: 'Andhra Pradesh'},
+    {key: 'Arunachal pradesh', value: 'Arunachal Pradesh'},
+    {key: 'Assam', value: 'Assam'},
+    {key: 'Bihar', value: 'Bihar'},
+    {key: 'Chhattisgarh', value: 'Chhattisgarh'},
+    {key: 'Goa', value: 'Goa'},
+  ];
+
+  const country = [
+    {key:'India',value:'India'},
+    {key:'Ireland',value:'Ireland'},
+    {key:'Finland',value:"Finland"},
+  ]
 
   const ValidationSchema = Yup.object().shape({});
   const handleFormSubmit = (
@@ -218,11 +237,25 @@ const TenantApplicationForm: React.FC<Props> = ({navigation, route}) => {
                 placeholderTextColor="#00092980"
               />
               <Text style={styles.labelText}>Date of Birth</Text>
-              <TextInput
-                placeholder="DD/MM/YYYY"
-                style={styles.input}
-                placeholderTextColor="#00092980"
-              />
+              <View style={styles.inputView}>
+                <TextInput
+                  placeholder="DD/MM/YYYY"
+                  style={styles.input1}
+                  placeholderTextColor="#00092980"
+                  value={date?.toLocaleString()}
+                />
+                <TouchableOpacity onPress={() => setDatePicker(true)}>
+                  <AntDesign name="calendar" color="#00092980" size={22} />
+                </TouchableOpacity>
+              </View>
+              {datePicker && (
+                <DateTimePicker
+                  mode="single"
+                  date={date}
+                  onChange={params => setDate(params.date)}
+                />
+              )}
+
               <Text style={styles.labelText}>Email</Text>
               <TextInput
                 placeholder="hi@example.com"
@@ -250,11 +283,17 @@ const TenantApplicationForm: React.FC<Props> = ({navigation, route}) => {
                 style={styles.input}
               />
               <Text style={styles.labelText}>Move in Date</Text>
-              <TextInput
-                placeholder="DD/MM/YYYY"
-                placeholderTextColor="#00092980"
-                style={styles.input}
-              />
+              <View style={styles.inputView}>
+                <TextInput
+                  placeholder="DD/MM/YYYY"
+                  placeholderTextColor="#00092980"
+                  style={styles.input1}
+                />
+                <TouchableOpacity>
+                  <AntDesign name="calendar" color="#00092980" size={22} />
+                </TouchableOpacity>
+              </View>
+
               <View style={styles.spaceView} />
             </View>
             <View style={styles.line} />
@@ -328,11 +367,14 @@ const TenantApplicationForm: React.FC<Props> = ({navigation, route}) => {
                 placeholderTextColor="#00092980"
               />
               <Text style={styles.labelText}>State</Text>
-              <TextInput
-                placeholder="Select State"
-                placeholderTextColor="#00092980"
-                style={styles.input}
+              <SelectList
+                setSelected={setSelected}
+                data={state}
+                boxStyles={styles.input}
+                placeholder="Select your State"
+                fontFamily="PlusJakartaSans j"
               />
+
               <Text style={styles.labelText}>Pin Code</Text>
               <TextInput
                 placeholder="Enter Pin Code"
@@ -340,10 +382,12 @@ const TenantApplicationForm: React.FC<Props> = ({navigation, route}) => {
                 style={styles.input}
               />
               <Text style={styles.labelText}>Country</Text>
-              <TextInput
-                placeholder="Select Country"
-                placeholderTextColor="#00092980"
-                style={styles.input}
+              <SelectList
+                setSelected={setSelected}
+                data={country}
+                boxStyles={styles.input}
+                placeholder="Select your Country"
+                fontFamily="PlusJakartaSans j"
               />
               <View style={styles.spaceView} />
             </View>
@@ -417,15 +461,15 @@ const TenantApplicationForm: React.FC<Props> = ({navigation, route}) => {
                 </TouchableOpacity>
               </View>
               {vehicleDescriptionView && (
-                <View style = {styles.vehicleDescriptionView1}>
-                  <Text style = {styles.descriptionText}>
+                <View style={styles.vehicleDescriptionView1}>
+                  <Text style={styles.descriptionText}>
                     If you own any vehicles that will be on the property, please
                     enter them here.
                   </Text>
                 </View>
               )}
 
-              <Text style={styles.labelText}>vehicle Names </Text>
+              <Text style={styles.labelText}>Vehicle Names </Text>
               <TextInput
                 placeholder="e.g. benz Car,Kawaski Bike"
                 style={styles.input}
@@ -517,7 +561,7 @@ const TenantApplicationForm: React.FC<Props> = ({navigation, route}) => {
                   </View>
                 </View>
               )}
-              <Text style={styles.labelText}>Aadhar No </Text>
+              <Text style={styles.labelText}>Aadhar No</Text>
               <TextInput
                 placeholder="e.g. 6308513255"
                 style={styles.input}

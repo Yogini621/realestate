@@ -17,7 +17,6 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import MatetialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import Feather from 'react-native-vector-icons/Feather';
 import SellerComponent from '../SellerScreens/SellerComponent';
 
 const Drawer = createDrawerNavigator();
@@ -38,9 +37,6 @@ const MenuPage: React.FC<Props> = ({navigation}) => {
     handleRetrieveCredentials();
   }, []);
 
-  // const toogleUserSelection = () => {
-  //   setUser(!customer)
-  // }
 
   const handleRetrieveCredentials = async () => {
     const userDetails = await AsyncStorage.getItem('userData');
@@ -55,7 +51,7 @@ const MenuPage: React.FC<Props> = ({navigation}) => {
   return (
     <Drawer.Navigator
       defaultStatus="open"
-      initialRouteName="HomePage"
+      // initialRouteName="HomePage"
       drawerContent={focused => (
         <View style={styles.drawerContent}>
           <View style={styles.header}>
@@ -73,7 +69,7 @@ const MenuPage: React.FC<Props> = ({navigation}) => {
           </View>
           <Divider style={styles.seperator} />
           <View style={styles.userView}>
-            <Text style={styles.selectUserText}>Select User </Text>
+            <Text style={styles.selectUserText}>Select User</Text>
             <View style={styles.radioButtonDirectionView}>
               <View style={styles.radioButtonView}>
                 <RadioButton
@@ -186,7 +182,7 @@ const MenuPage: React.FC<Props> = ({navigation}) => {
               <SellerComponent
                 componentText="Tenants"
                 icon="compass"
-                onPress={() => navigation.navigate('')}
+                onPress={() => navigation.navigate('Tenants')}
               />
               <SellerComponent
                 componentText="Sales"
@@ -196,22 +192,22 @@ const MenuPage: React.FC<Props> = ({navigation}) => {
               <SellerComponent
                 componentText="Messages"
                 icon="compass"
-                onPress={() => navigation.navigate('')}
+                onPress={() => navigation.navigate('Messages')}
               />
               <SellerComponent
                 componentText="Profile"
                 icon="compass"
-                onPress={() => navigation.navigate('')}
+                onPress={() => navigation.navigate('ProfileSeller')}
               />
               <SellerComponent
                 componentText="Get Help"
                 icon="compass"
-                onPress={() => navigation.navigate('')}
+                onPress={() => navigation.navigate('GetHelp')}
               />
               <SellerComponent
                 componentText="Settings"
                 icon="compass"
-                onPress={() => navigation.navigate('')}
+                onPress={() => navigation.navigate('SettingsSeller')}
               />
             </View>
           )}

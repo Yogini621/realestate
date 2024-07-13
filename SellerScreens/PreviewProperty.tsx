@@ -161,7 +161,7 @@ const PreviewProperty: React.FC<Props> = ({navigation, route}) => {
         </View>
         <View style={styles.priceView}>
           <Text style={styles.rentedPriceText}>Rented price</Text>
-          {/* <Text style={styles.priceText}>{item.rent} </Text> */}
+          <Text style={styles.priceText}>{item.rent} </Text>
           <View style={styles.userAndAddressView}>
             <Image source={require('../Images/user.png')} />
             <View>

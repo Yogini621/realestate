@@ -26,7 +26,7 @@ import Entypo from 'react-native-vector-icons/Entypo';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import ListComponent from './ListComponent';
 import {Property} from '../redux/actions/actions';
-import {addToFavorites} from '../redux/actions/actionTypes';
+import {addToFavorites, removeFavorites} from '../redux/actions/actionTypes';
 import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '../redux/reducers';
 import Octicons from 'react-native-vector-icons/Octicons';
@@ -44,6 +44,7 @@ const PropertyDetails: React.FC<Props> = ({navigation, route}) => {
   const favorites = useSelector(
     (state: RootState) => state.favorites.favorites,
   );
+  const Properties = useSelector((state:RootState) => state.properties.properties)
   const dispatch = useDispatch();
   const {item} = route.params;
   const [currentLocation, setCurrentLocation] = useState<LatLng | null>(null);
@@ -107,8 +108,15 @@ const images = [
   };
 
   const handleAddToFavorites = (item: Property) => {
-    dispatch(addToFavorites(item));
-  };
+        console.log(item);
+        if (favorites.includes(item)) {
+          console.log('item Removed');
+          dispatch(removeFavorites(item));
+        } else {
+          console.log('item Added');
+          dispatch(addToFavorites(item));
+        }
+      };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -378,6 +386,83 @@ const images = [
             consent as a condition of renting any property, or buying any other
             goods or services. Message/data rates may apply.
           </Text>
+        </View>
+        <View style = {styles.similarListingsView}>
+          <Text style={styles.similarListingsText}>Similar listings</Text>
+          {Properties.map(item => {
+            return (
+              <View style={styles.itemView} key={item.id}>
+                <TouchableOpacity
+                  onPress={() =>
+                    navigation.navigate('PropertyDetails', {item})
+                  }>
+                  <Image source={item.image} style={styles.image1} />
+                </TouchableOpacity>
+                <View style={styles.descriptionView1}>
+                  <View style={styles.triangle} />
+                  <View style={styles.popularTextView}>
+                    <View style={styles.popularTextDirectionView}>
+                      <Ionicons name="sparkles" color="white" size={16} />
+                      <Text style={styles.popularText}>POPULAR</Text>
+                    </View>
+                  </View>
+
+                  <View style={styles.favoriteIconView}>
+                    <View>
+                      <View style={styles.rupeeView}>
+                        <FontAwesome5
+                          name="rupee-sign"
+                          color="#073762"
+                          size={20}
+                          style={styles.icon1}
+                        />
+                        <Text style={styles.rentText}>{item.rent}</Text>
+                      </View>
+                      <Text style={styles.roomsText1}>{item.rooms}</Text>
+                    </View>
+                    <View style={styles.circle1}>
+                      <TouchableOpacity
+                        onPress={() => handleAddToFavorites(item)}>
+                        <AntDesign
+                          name={
+                            favorites.find(
+                              favoriteItem => item.id === favoriteItem.id,
+                            )
+                              ? 'heart'
+                              : 'hearto'
+                          }
+                          color={
+                            favorites.find(
+                              favoriteItem => item.id === favoriteItem.id,
+                            )
+                              ? 'red'
+                              : '#073762'
+                          }
+                          size={22}
+                        />
+                      </TouchableOpacity>
+                    </View>
+                  </View>
+                  <Text style={styles.locationText2}>{item.location}</Text>
+                  <View style={styles.line1} />
+                  <View style={styles.iconView3}>
+                    <View style={styles.roomView}>
+                      <Ionicons name="bed-outline" size={20} color="#073762" />
+                      <Text style={styles.bedText}>3</Text>
+                    </View>
+                    <View style={styles.roomView}>
+                      <Ionicons name="bed-outline" size={20} color="#073762" />
+                      <Text style={styles.bedText}>2</Text>
+                    </View>
+                    <View style={styles.roomView}>
+                      <Ionicons name="bed-outline" size={20} color="#073762" />
+                      <Text style={styles.bedText}>5x7 m²</Text>
+                    </View>
+                  </View>
+                </View>
+              </View>
+            );
+          })}
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -810,5 +895,266 @@ const styles = StyleSheet.create({
     fontFamily: 'PlusJakartaSans a',
     fontSize: responsiveFontSize(1.8),
     marginLeft: responsiveWidth(2),
+  },
+  // ==============================================================
+
+  filterIconView: {
+    backgroundColor: '#073762',
+    padding: 10,
+    borderRadius: 8,
+    height: responsiveHeight(6.8),
+    width: responsiveWidth(10),
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  imgView: {
+    borderRadius: 10,
+    borderColor: '#9fc5e9',
+  },
+  directionView1: {
+    borderWidth: 2,
+    borderRadius: 8,
+    borderTopWidth: 0,
+    borderColor: '#9fc5e9',
+    borderTopLeftRadius: 0,
+    borderTopRightRadius: 0,
+  },
+  line1: {
+    backgroundColor: '#9fc5e9',
+    height: responsiveHeight(0.2),
+    width: responsiveWidth(80),
+    marginTop: responsiveHeight(2.2),
+    marginBottom: responsiveHeight(2.2),
+    alignSelf: 'center',
+  },
+  carIconView: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  numberText1: {
+    color: '#073762',
+    fontFamily: 'PlusJakartaSans j',
+    left: responsiveWidth(2.2),
+  },
+  iconsView: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: responsiveWidth(50),
+    left: responsiveWidth(6),
+    marginBottom: responsiveHeight(2),
+  },
+  favoritesIcon: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: responsiveWidth(80),
+    alignItems: 'center',
+  },
+  circle: {
+    height: responsiveHeight(7),
+    width: responsiveWidth(14),
+    borderRadius: 38,
+    borderWidth: 2,
+    borderColor: '#9fc5e9',
+    alignItems: 'center',
+    justifyContent: 'center',
+    position: 'absolute',
+    right: 50,
+    top: 30,
+  },
+  headerView1: {
+    flexDirection: 'row',
+    marginTop: responsiveHeight(4),
+    left: responsiveWidth(12),
+  },
+  filterText: {
+    color: '#100a55',
+    fontFamily: 'PlusJakartaSans a',
+    left: responsiveWidth(28),
+    fontSize: responsiveFontSize(1.8),
+  },
+  myLocationText: {
+    color: '#000000',
+    fontSize: responsiveFontSize(1.9),
+    fontFamily: 'PlusJakartaSans j',
+  },
+  input: {
+    height: responsiveHeight(8),
+    width: responsiveWidth(90),
+    borderWidth: 0.8,
+    borderRadius: 4,
+    alignSelf: 'center',
+    marginTop: responsiveHeight(2.2),
+    borderColor: '#636363',
+    padding: 20,
+    color: '#000000',
+    fontSize: responsiveFontSize(1.8),
+    fontFamily: 'PlusJakartaSans j',
+  },
+  inputView1: {
+    height: responsiveHeight(8),
+    width: responsiveWidth(90),
+    borderWidth: 0.8,
+    borderRadius: 4,
+    alignSelf: 'center',
+    marginTop: responsiveHeight(2.2),
+    borderColor: '#636363',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    padding: 10,
+  },
+  input2: {
+    color: '#000000',
+    fontSize: responsiveFontSize(1.8),
+    fontFamily: 'PlusJakartaSans j',
+    width: responsiveWidth(60),
+  },
+  itemView: {
+    flex: 1,
+    alignSelf: 'center',
+    margin: 8,
+  },
+  image1: {
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
+    width: responsiveWidth(86),
+  },
+  descriptionView1: {
+    borderWidth: 2,
+    borderRadius: 10,
+    borderColor: '#9fc5e9',
+    borderTopWidth: 0,
+    borderTopLeftRadius: 0,
+    borderTopRightRadius: 0,
+  },
+  rentText: {
+    color: '#073762',
+    fontSize: responsiveFontSize(3),
+    fontFamily: 'PlusJakartaSans a',
+  },
+  rupeeView: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  roomsText1: {
+    color: '#073762',
+    fontSize: responsiveFontSize(3),
+    fontFamily: 'PlusJakartaSans a',
+  },
+  favoriteIconView: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: responsiveWidth(72),
+    alignSelf: 'center',
+    marginTop: responsiveHeight(4),
+    marginBottom: responsiveHeight(1),
+  },
+  circle1: {
+    height: 50,
+    width: 50,
+    borderRadius: 25,
+    borderWidth: 1,
+    borderColor: '#9fc5e9',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  icon2: {
+    marginTop: responsiveHeight(1),
+  },
+  locationText2: {
+    color: '#9b9b9b',
+    left: responsiveWidth(8),
+    fontSize: responsiveFontSize(2),
+    fontFamily: 'PlusJakartaSans j',
+    marginBottom: responsiveHeight(1),
+  },
+  locationText1: {
+    color: '#9b9b9b',
+    fontSize: responsiveFontSize(1.8),
+    fontFamily: 'PlusJakartaSans j',
+  },
+  ownerview: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: responsiveWidth(90),
+  },
+  line2: {
+    height: responsiveHeight(0.2),
+    width: responsiveWidth(84),
+    backgroundColor: '#9fc5e9',
+    marginBottom: responsiveWidth(2.8),
+    alignSelf: 'center',
+  },
+  iconView3: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: responsiveWidth(44),
+    marginBottom: responsiveHeight(2.8),
+    alignItems: 'center',
+    left: responsiveWidth(6),
+  },
+  roomView: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  bedText: {
+    color: '#9b9b9b',
+    fontSize: responsiveFontSize(1.8),
+    fontFamily: 'PlusJakartaSans j',
+    left: responsiveWidth(2),
+  },
+  bottomview: {
+    marginBottom: responsiveHeight(10),
+  },
+  popularTextDirectionView: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: responsiveWidth(22),
+    alignItems: 'center',
+  },
+  popularTextView: {
+    backgroundColor: '#073762',
+    width: responsiveWidth(32),
+    height: responsiveHeight(5),
+    alignItems: 'center',
+    justifyContent: 'center',
+    position: 'absolute',
+    top: responsiveHeight(-2.8),
+    left: responsiveWidth(-3.2),
+    borderTopRightRadius: 10,
+    borderBottomRightRadius: 10,
+    borderTopLeftRadius: 10,
+  },
+  popularText: {
+    color: 'white',
+    fontSize: responsiveFontSize(1.6),
+    fontFamily: 'PlusJakartaSans a',
+  },
+  triangle: {
+    width: 0,
+    height: 0,
+    borderLeftWidth: 12,
+    borderTopWidth: 10,
+    borderStyle: 'solid',
+    backgroundColor: 'transparent',
+    borderLeftColor: 'transparent',
+    borderRightColor: 'transparent',
+    borderBottomColor: '#073762',
+    borderTopColor: '#073762',
+    top: responsiveHeight(2.1),
+    right: responsiveWidth(3.4),
+  },
+  similarListingsText: {
+    color: '#000000',
+    fontFamily: 'PlusJakartaSans a',
+    fontSize: responsiveFontSize(3.2),
+    left: responsiveWidth(6.8),
+    marginTop: responsiveHeight(6),
+    marginBottom: responsiveHeight(4),
+  },
+  similarListingsView: {
+    backgroundColor: '#f7f7fd',
   },
 });
