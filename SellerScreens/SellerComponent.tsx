@@ -15,6 +15,17 @@ interface Props {
 }
 
 const SellerComponent = (props: Props) => {
+
+  const SellerComponentData = [
+    {id: 1, option: 'Property', icon: 'compass'},
+    {id: 2, option: 'Tenants', icon: 'compass'},
+    {id: 3, option: 'Sales', icon: 'compass'},
+    {id: 4, option: 'Messages', icon: 'compass'},
+    {id: 5, option: 'Profile', icon: 'compass'},
+    {id: 6, option: 'Get Help', icon: 'compass'},
+    {id: 7, option: 'Settings', icon: 'compass'},
+  ];
+
   return (
     <View>
       <TouchableOpacity style={styles.componentButton} onPress={props.onPress}>

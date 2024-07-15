@@ -1,5 +1,4 @@
 import {
-  FlatList,
   Image,
   SafeAreaView,
   ScrollView,
@@ -19,12 +18,11 @@ import {
 } from 'react-native-responsive-dimensions';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
 import Entypo from 'react-native-vector-icons/Entypo';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import {Property} from '../redux/actions/actions';
-import {addToFavorites, fetchProperties} from '../redux/actions/actionTypes';
+import {addToFavorites} from '../redux/actions/actionTypes';
 import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '../redux/reducers';
 import Octicons from 'react-native-vector-icons/Octicons';

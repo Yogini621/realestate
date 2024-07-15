@@ -14,10 +14,8 @@ import {
   responsiveWidth,
 } from 'react-native-responsive-dimensions';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import MatetialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import SellerComponent from '../SellerScreens/SellerComponent';
+import Entypo from 'react-native-vector-icons/Entypo';
 
 const Drawer = createDrawerNavigator();
 
@@ -32,11 +30,59 @@ const MenuPage: React.FC<Props> = ({navigation}) => {
   const [customer, setCustomer] = useState(false);
   const [seller, setSeller] = useState(false);
   const [user, setUser] = useState('customer');
+  const [sselectId, setSelectId] = useState(1);
+
+  const SellerComponentData = [
+    {id: 1, option: 'Property', icon: 'compass', navigatePage: 'Property'},
+    {id: 2, option: 'Tenants', icon: 'users', navigatePage: 'Tenants'},
+    {id: 3, option: 'Sales', icon: 'bar-graph', navigatePage: 'Sales'},
+    {id: 4, option: 'Messages', icon: 'message', navigatePage: 'Messages'},
+    {id: 5, option: 'Profile', icon: 'user', navigatePage: 'ProfileSeller'},
+    {
+      id: 6,
+      option: 'Get Help',
+      icon: 'help-with-circle',
+      navigatePage: 'GetHelp',
+    },
+    {id: 7, option: 'Settings', icon: 'cog', navigatePage: 'SettingsSeller'},
+  ];
+
+  const CustomerComponentData = [
+    {
+      id: 1,
+      option: 'Rent',
+      icon: require('../Images/Layer.png'),
+      navigatePage: 'Rent',
+    },
+    {
+      id: 2,
+      option: 'Buy',
+      icon: require('../Images/Photo.png'),
+      navigatePage: 'Buy',
+    },
+    {
+      id: 3,
+      option: 'Sell',
+      icon: require('../Images/BuyHome.png'),
+      navigatePage: 'sell',
+    },
+    {
+      id: 4,
+      option: 'FAQ`s',
+      icon: require('../Images/FAQ.png'),
+      navigatePage: 'Faqs',
+    },
+    {
+      id: 5,
+      option: 'Profile',
+      icon: require('../Images/Initial.png'),
+      navigatePage: 'Profile',
+    },
+  ];
 
   useEffect(() => {
     handleRetrieveCredentials();
   }, []);
-
 
   const handleRetrieveCredentials = async () => {
     const userDetails = await AsyncStorage.getItem('userData');
@@ -46,6 +92,11 @@ const MenuPage: React.FC<Props> = ({navigation}) => {
       setContact(userData.contact);
       setEmail(userData.email);
     }
+  };
+
+  const handleOnPress = (id: number, navigatePage: any) => {
+    setSelectId(id);
+    navigation.navigate(navigatePage);
   };
 
   return (
@@ -95,120 +146,55 @@ const MenuPage: React.FC<Props> = ({navigation}) => {
 
           {user === 'customer' ? (
             <View>
-              <TouchableOpacity
-                style={styles.screenComponentButton}
-                onPress={() => navigation.navigate('Rent')}>
-                <MatetialCommunityIcons
-                  name="hand-extended"
-                  color="white"
-                  size={30}
-                  style={styles.icn2}
-                />
-                <MatetialCommunityIcons
-                  name="key-chain-variant"
-                  color="white"
-                  size={18}
-                  style={styles.icon}
-                />
-                <Text style={styles.rentText}>Rent</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={styles.screenComponentButton1}
-                onPress={() => navigation.navigate('Buy')}>
-                <MatetialCommunityIcons
-                  name="hand-extended"
-                  color="#073762"
-                  size={30}
-                  style={styles.icn2}
-                />
-                <MatetialCommunityIcons
-                  name="key-chain-variant"
-                  color="#1ea1d6"
-                  size={18}
-                  style={styles.icon}
-                />
-                <Text style={styles.rentText1}>Buy</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={styles.screenComponentButton1}
-                onPress={() => navigation.navigate('Sell')}>
-                <MatetialCommunityIcons
-                  name="hand-extended"
-                  color="#073762"
-                  size={30}
-                  style={styles.icn2}
-                />
-                <MatetialCommunityIcons
-                  name="home-variant"
-                  color="#1ea1d6"
-                  size={20}
-                  style={styles.icon}
-                />
-                <Text style={styles.rentText1}>Sell</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={styles.screenComponentButton1}
-                onPress={() => navigation.navigate('Faqs')}>
-                <MaterialCommunityIcons
-                  name="message"
-                  color="#073762"
-                  size={30}
-                  style={styles.icn2}
-                />
-                <Text style={styles.faqTxt}>FAQ</Text>
-                <Text style={styles.rentText1}>FAQ's</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={styles.screenComponentButton1}
-                onPress={() => navigation.navigate('Profile')}>
-                <MaterialCommunityIcons
-                  name="clock-time-eight"
-                  color="#073762"
-                  size={30}
-                  style={styles.icn2}
-                />
-                <Text style={[styles.rentText1, {color: '#073762'}]}>
-                  Profile
-                </Text>
-              </TouchableOpacity>
+              {CustomerComponentData.map(item => (
+                <TouchableOpacity
+                  key={item.id}
+                  style={
+                    sselectId === item.id
+                      ? styles.activeComponentButton
+                      : styles.componentButton
+                  }
+                  onPress={() => handleOnPress(item.id, item.navigatePage)}>
+                  <Image
+                    source={item.icon}
+                  />
+                  <Text
+                    style={
+                      sselectId === item.id
+                        ? styles.activeComponentText
+                        : styles.componentText
+                    }>
+                    {item.option}
+                  </Text>
+                </TouchableOpacity>
+              ))}
             </View>
           ) : (
             <View>
-              <SellerComponent
-                componentText="Property"
-                icon="compass"
-                onPress={() => navigation.navigate('Property')}
-              />
-              <SellerComponent
-                componentText="Tenants"
-                icon="compass"
-                onPress={() => navigation.navigate('Tenants')}
-              />
-              <SellerComponent
-                componentText="Sales"
-                icon="compass"
-                onPress={() => navigation.navigate('Sales')}
-              />
-              <SellerComponent
-                componentText="Messages"
-                icon="compass"
-                onPress={() => navigation.navigate('Messages')}
-              />
-              <SellerComponent
-                componentText="Profile"
-                icon="compass"
-                onPress={() => navigation.navigate('ProfileSeller')}
-              />
-              <SellerComponent
-                componentText="Get Help"
-                icon="compass"
-                onPress={() => navigation.navigate('GetHelp')}
-              />
-              <SellerComponent
-                componentText="Settings"
-                icon="compass"
-                onPress={() => navigation.navigate('SettingsSeller')}
-              />
+              {SellerComponentData.map(item => (
+                <TouchableOpacity
+                  key={item.id}
+                  style={
+                    sselectId === item.id
+                      ? styles.activeComponentButton
+                      : styles.componentButton
+                  }
+                  onPress={() => handleOnPress(item.id, item.navigatePage)}>
+                  <Entypo
+                    name={item.icon}
+                    size={20}
+                    color={sselectId === item.id ? 'white' : '#718096'}
+                  />
+                  <Text
+                    style={
+                      sselectId === item.id
+                        ? styles.activeComponentText
+                        : styles.componentText
+                    }>
+                    {item.option}
+                  </Text>
+                </TouchableOpacity>
+              ))}
             </View>
           )}
         </View>
@@ -255,7 +241,6 @@ const styles = StyleSheet.create({
   userDirectionView: {
     flexDirection: 'row',
     left: responsiveWidth(4),
-    // marginTop: responsiveHeight(2),
   },
   userName: {
     color: '#000000',
@@ -364,5 +349,38 @@ const styles = StyleSheet.create({
     fontSize: responsiveFontSize(1.2),
     left: responsiveWidth(6),
     fontFamily: 'PlusJakartaSans a',
+  },
+  componentButton: {
+    width: responsiveWidth(60),
+    alignSelf: 'center',
+    height: responsiveHeight(6.8),
+    borderRadius: 10,
+    marginTop: responsiveHeight(1.8),
+    paddingHorizontal: 20,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  componentText: {
+    color: '#718096',
+    fontFamily: 'PlusJakartaSans j',
+    fontSize: responsiveFontSize(1.8),
+    left: responsiveWidth(2.8),
+  },
+  activeComponentButton: {
+    width: responsiveWidth(60),
+    alignSelf: 'center',
+    height: responsiveHeight(6.8),
+    borderRadius: 10,
+    marginTop: responsiveHeight(1.8),
+    paddingHorizontal: 20,
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#073762',
+  },
+  activeComponentText: {
+    color: 'white',
+    fontFamily: 'PlusJakartaSans j',
+    fontSize: responsiveFontSize(1.8),
+    left: responsiveWidth(2.8),
   },
 });

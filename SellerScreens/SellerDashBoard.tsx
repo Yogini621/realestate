@@ -1,4 +1,5 @@
 import {
+  Image,
   SafeAreaView,
   ScrollView,
   StatusBar,
@@ -20,6 +21,7 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import Entypo from 'react-native-vector-icons/Entypo';
 import {BarChart} from 'react-native-gifted-charts';
 import ProgressBarComponent from './ProgressBarComponent';
+import {PieChart} from 'react-native-gifted-charts';
 
 interface Props {
   navigation: any;
@@ -27,6 +29,11 @@ interface Props {
 
 const SellerDashBoard: React.FC<Props> = ({navigation}) => {
   const data = [{value: 10}, {value: 14}, {value: 12}, {value: 4}];
+  const pieData = [
+    {value: 30, color: '#fbad18'},
+    {value: 60, color: '#073762'},
+    {value: 30, color: '#f4faff'},
+  ];
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar hidden={true} />
@@ -71,7 +78,29 @@ const SellerDashBoard: React.FC<Props> = ({navigation}) => {
               <AntDesign name="right" color="#1a202c" size={14} />
             </TouchableOpacity>
           </View>
-          <View style={styles.pieChartView}></View>
+          <View style={styles.pieChartView}>
+            <View style={styles.pieChartDirectionView}>
+              <PieChart donut innerRadius={60} radius={80} data={pieData} />
+              <View>
+                <View style={styles.dataView}>
+                  <View
+                    style={[styles.dotView, {backgroundColor: '#fbad18'}]}
+                  />
+                  <View>
+                    <Text style={styles.priceText1}>$45.7k</Text>
+                    <Text style={styles.rentText}>Rent</Text>
+                  </View>
+                </View>
+                <View style={styles.dataView}>
+                  <View style={styles.dotView} />
+                  <View>
+                    <Text style={styles.priceText1}>$73.5k</Text>
+                    <Text style={styles.rentText}>Sales</Text>
+                  </View>
+                </View>
+              </View>
+            </View>
+          </View>
         </View>
         <View style={styles.statisticsView}>
           <View style={styles.statisticsAndViewAllButtonView}>
@@ -113,16 +142,81 @@ const SellerDashBoard: React.FC<Props> = ({navigation}) => {
               <Entypo name="chevron-down" color="#00092980" size={13} />
             </TouchableOpacity>
           </View>
-          <View style = {styles.barChart}>
+          <View style={styles.barChart}>
             <BarChart data={data} />
           </View>
         </View>
-        <View style={styles.tenantRequestView}>
-          <View style={styles.tenatRequestDirectionView}>
-            <Text style={styles.tenantRequstText}>Tenant Request</Text>
+        <View style={styles.customerView}>
+          <View style={styles.customerAndViewAllButtonView}>
+            <Text style={styles.recentCustomersText}>Tenant Request</Text>
             <TouchableOpacity>
               <Text style={styles.viewAllText}>View all</Text>
             </TouchableOpacity>
+          </View>
+          <View style={styles.seperator} />
+          <View style={styles.userDirectionView}>
+            <Image source={require('../Images/MaskGroup.png')} />
+            <View style={styles.userView}>
+              <Text style={styles.customerText}>Edin Kaolo</Text>
+              <Text style={styles.kelapaBafingText}>Kelapa Bafing</Text>
+              <Text style={styles.dateText}>07 Sep 2023</Text>
+            </View>
+            <AntDesign name="right" color="#000000" size={16} />
+          </View>
+          <View style={styles.seperator} />
+          <View style={styles.userDirectionView}>
+            <Image source={require('../Images/MaskGroup.png')} />
+            <View style={styles.userView}>
+              <Text style={styles.customerText}>Edin Kaolo</Text>
+              <Text style={styles.kelapaBafingText}>Kelapa Bafing</Text>
+              <Text style={styles.dateText}>07 Sep 2023</Text>
+            </View>
+            <AntDesign name="right" color="#000000" size={16} />
+          </View>
+          <View style={styles.seperator} />
+          <View style={styles.userDirectionView}>
+            <Image source={require('../Images/MaskGroup.png')} />
+            <View style={styles.userView}>
+              <Text style={styles.customerText}>Edin Kaolo</Text>
+              <Text style={styles.kelapaBafingText}>Kelapa Bafing</Text>
+              <Text style={styles.dateText}>07 Sep 2023</Text>
+            </View>
+            <AntDesign name="right" color="#000000" size={16} />
+          </View>
+          <View style={styles.seperator} />
+          <View style={styles.userDirectionView}>
+            <Image source={require('../Images/MaskGroup.png')} />
+            <View style={styles.userView}>
+              <Text style={styles.customerText}>Edin Kaolo</Text>
+              <Text style={styles.kelapaBafingText}>Kelapa Bafing</Text>
+              <Text style={styles.dateText}>07 Sep 2023</Text>
+            </View>
+            <AntDesign name="right" color="#000000" size={16} />
+          </View>
+          <View style={styles.seperator} />
+        </View>
+        <View style={styles.recentSalesView}>
+          <View style={styles.recentSalesAndViewAllButtonView}>
+            <Text style={styles.recentSalesText}>Recent Sales</Text>
+            <TouchableOpacity>
+              <Text style={styles.viewAllText}>View all</Text>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.apartmentView}>
+            <Image source={require('../Images/Rectangl.png')} />
+            <View style={styles.apartmentTextView}>
+              <Text style={styles.apartmentText}>Glam Apartment</Text>
+              <Text style={styles.locationText}>Miyapur,Hyd</Text>
+            </View>
+            <Text style={styles.rent}>$30 L</Text>
+          </View>
+          <View style={styles.apartmentView}>
+            <Image source={require('../Images/Rectangl.png')} />
+            <View style={styles.apartmentTextView}>
+              <Text style={styles.apartmentText}>Sideway Hotels</Text>
+              <Text style={styles.locationText}>Kukatpally,Hyd</Text>
+            </View>
+            <Text style={styles.rent}>$70 L</Text>
           </View>
         </View>
       </ScrollView>
@@ -224,12 +318,13 @@ const styles = StyleSheet.create({
   },
   pieChartView: {
     backgroundColor: '#f4faff',
-    height: responsiveHeight(28),
+    height: responsiveHeight(32),
     width: responsiveWidth(76),
     alignSelf: 'center',
     marginTop: responsiveHeight(3.4),
     borderRadius: 10,
     marginBottom: responsiveHeight(4),
+    justifyContent: 'center',
   },
   viewAlButtonView1: {
     flexDirection: 'row',
@@ -326,7 +421,139 @@ const styles = StyleSheet.create({
     fontSize: responsiveFontSize(2),
     fontFamily: 'PlusJakartaSans j',
   },
-  barChart:{
-    marginTop:responsiveHeight(2.8)
-  }
+  barChart: {
+    marginTop: responsiveHeight(2.8),
+  },
+  pieChartDirectionView: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: responsiveWidth(66),
+    alignSelf: 'center',
+  },
+  dotView: {
+    height: 10,
+    width: 10,
+    borderRadius: 5,
+    backgroundColor: '#073762',
+  },
+  dataView: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    margin: 5,
+  },
+  priceText1: {
+    color: '#1a202c',
+    fontSize: responsiveFontSize(1.9),
+    fontFamily: 'PlusJakartaSans a',
+    left: responsiveWidth(2),
+  },
+  rentText: {
+    color: '#718096',
+    fontSize: responsiveFontSize(1.6),
+    fontFamily: 'PlusJakartaSans j',
+    left: responsiveWidth(2),
+    lineHeight: 28,
+  },
+  customerAndViewAllButtonView: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: responsiveWidth(80),
+    alignSelf: 'center',
+    marginTop: responsiveHeight(2),
+  },
+  seperator: {
+    backgroundColor: '#f0effb',
+    height: responsiveHeight(0.2),
+    width: responsiveWidth(80),
+    alignSelf: 'center',
+    marginTop: responsiveHeight(2.8),
+    marginBottom: responsiveHeight(2.8),
+  },
+  customerText: {
+    color: '#000000',
+    fontSize: responsiveFontSize(2.2),
+    fontFamily: 'PlusJakartaSans j',
+  },
+  kelapaBafingText: {
+    color: '#737b8b',
+    fontSize: responsiveFontSize(1.8),
+    fontFamily: 'PlusJakartaSans j',
+  },
+  dateText: {
+    color: '#737b8b',
+    fontSize: responsiveFontSize(1.8),
+    fontFamily: 'PlusJakartaSans j',
+  },
+  userDirectionView: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: responsiveWidth(70),
+    alignSelf: 'center',
+    alignItems: 'center',
+  },
+  userView: {
+    right: responsiveWidth(10),
+  },
+  customerView: {
+    borderWidth: 1,
+    backgroundColor: '#ffffff',
+    width: responsiveWidth(90),
+    alignSelf: 'center',
+    marginTop: responsiveHeight(2),
+    borderColor: '#f0effb',
+    borderRadius: 20,
+    marginBottom: responsiveHeight(4),
+  },
+  recentCustomersText: {
+    color: '#000000',
+    fontSize: responsiveFontSize(2.4),
+    fontFamily: 'PlusJakartaSans a',
+  },
+  recentSalesView: {
+    backgroundColor: '#ffffff',
+    elevation: 1,
+    width: responsiveWidth(90),
+    borderRadius: 10,
+    alignSelf: 'center',
+    marginBottom: responsiveHeight(6),
+  },
+  recentSalesText: {
+    color: '#000000',
+    fontSize: responsiveFontSize(2.4),
+    fontFamily: 'PlusJakartaSans m',
+  },
+  apartmentView: {
+    flexDirection: 'row',
+    width: responsiveWidth(80),
+    alignSelf: 'center',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: responsiveHeight(4),
+  },
+  recentSalesAndViewAllButtonView: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: responsiveWidth(80),
+    alignSelf: 'center',
+    marginTop: responsiveHeight(2),
+    marginBottom: responsiveHeight(4),
+  },
+  apartmentTextView: {
+    marginRight: responsiveWidth(16),
+  },
+  apartmentText: {
+    color: '#141416',
+    fontSize: responsiveFontSize(2),
+    fontFamily: 'PlusJakartaSans j',
+  },
+  locationText: {
+    color: '#64748b',
+    fontSize: responsiveFontSize(1.6),
+    fontFamily: 'PlusJakartaSans j',
+  },
+  rent: {
+    color: '#141416',
+    fontSize: responsiveFontSize(1.8),
+    fontFamily: 'PlusJakartaSans a',
+  },
 });

@@ -44,7 +44,23 @@ const Profile: React.FC<Props> = ({navigation}) => {
   const [oldPassword, setOldPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [clicked, setClicked] = useState(false);
+  const [clicked, setClicked] = useState(0);
+
+  const profileComponentData = [
+    {id: 1, option: 'My requests', navigatePage: 'Profile'},
+    {id: 2, option: 'My Favorites', navigatePage: 'Favorites'},
+    {id: 3, option: 'My Purchases', navigatePage: 'MyPurchasesPage'},
+    {id: 4, option: 'Settings', navigatePage: 'Settings'},
+    {id: 5, option: 'Conatct us', navigatePage: 'ContactUs'},
+    {id: 6, option: 'Privacy Policy', navigatePage: 'PrivacyPolicy'},
+    {id: 7, option: 'Terms & Conditions', navigatePage: 'TermsAndConditions'},
+    {id: 8, option: 'About Us', navigatePage: 'AboutUs'},
+  ];
+
+  const handlePress = (id: number, navigatePage: any) => {
+    setClicked(id);
+    navigation.navigate(navigatePage);
+  };
 
   const toogleButton = () => {
     setSelectButton(!selectButton);
@@ -140,7 +156,7 @@ const Profile: React.FC<Props> = ({navigation}) => {
             <View>
               <View style={styles.profileView}>
                 <FontAwesome name="user-circle" color="white" size={24} />
-                <Text style={styles.userName}>{name} </Text>
+                <Text style={styles.userName}>{name}</Text>
               </View>
               <View style={styles.profileView}>
                 <Ionicons name="call-outline" color="white" size={24} />
@@ -159,44 +175,23 @@ const Profile: React.FC<Props> = ({navigation}) => {
           </View>
         </View>
         <View style={styles.optionView}>
-          <OptionComponent optionText="My requests" color="#222222" />
-          <OptionComponent
-            optionText="My Favorites"
-            onPress={() => navigation.navigate('Favorites')}
-          />
-          <OptionComponent
-            optionText="My Purchases"
-            onPress={() => navigation.navigate('MyPurchasesPage')}
-          />
-          <OptionComponent
-            optionText="Settings"
-            onPress={() => navigation.navigate('Settings')}
-          />
-          <OptionComponent
-            optionText="Contact Us"
-            onPress={() => navigation.navigate('ContactUs')}
-            color="#33333380"
-          />
-          <OptionComponent
-            optionText="Privacy Policy"
-            onPress={() => navigation.navigate('PrivacyPolicy')}
-            color="#33333380"
-          />
-          <OptionComponent
-            optionText="Terms & Conditions"
-            onPress={() => navigation.navigate('TermsAndConditions')}
-            color="#33333380"
-          />
-          <OptionComponent
-            optionText="About Us"
-            onPress={() => navigation.navigate('AboutUs')}
-            color="#33333380"
-          />
+          {profileComponentData.map(item => (
+            <TouchableOpacity
+              onPress={() => handlePress(item.id, item.navigatePage)}
+              style={styles.button} key={item.id}>
+              <Text
+                style={
+                  clicked === item.id ? styles.seletText : styles.optionText
+                }>
+                {item.option}
+              </Text>
+            </TouchableOpacity>
+          ))}
           <OptionComponent
             optionText="Change Password"
             onPress={() => setChangePasswordModal(true)}
             color="#33333380"
-          />
+          /> 
           <TouchableOpacity
             style={styles.logOutButton}
             onPress={() => setLogoutModal(true)}>
@@ -222,7 +217,7 @@ const Profile: React.FC<Props> = ({navigation}) => {
             </TouchableOpacity>
           </View>
         </View>
-        <Text style={styles.myRequestText}>My requests </Text>
+        <Text style={styles.myRequestText}>My requests</Text>
         <View style={styles.requestSentView}>
           <Text style={styles.requestSentText}>Requests sent</Text>
           <View style={styles.acceptedCountView}>
@@ -851,5 +846,19 @@ const styles = StyleSheet.create({
   },
   star: {
     color: 'red',
+  },
+  optionText: {
+    color: '#333333cc',
+    fontSize: responsiveFontSize(1.8),
+    fontFamily: 'PlusJakartaSans m',
+  },
+  button: {
+    alignSelf: 'center',
+    marginTop: responsiveHeight(4),
+  },
+  seletText: {
+    color: '#222222',
+    fontSize: responsiveFontSize(1.8),
+    fontFamily: 'PlusJakartaSans m',
   },
 });

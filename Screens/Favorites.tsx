@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React from 'react';
+import React, { useState } from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '../redux/reducers';
 import {Property} from '../redux/actions/actions';
@@ -27,6 +27,8 @@ import {
   removeAllFromFavorites,
   removeFavorites,
 } from '../redux/actions/actionTypes';
+import {Button, Menu, Divider, PaperProvider} from 'react-native-paper';
+
 
 interface Props {
   navigation: any;
@@ -45,6 +47,11 @@ const Favorites: React.FC<Props> = ({navigation}) => {
   const handleRemoveAll = () => {
     dispatch(removeAllFromFavorites());
   };
+   const [visible, setVisible] = React.useState(false);
+
+   const openMenu = () => setVisible(true);
+   const closeMenu = () => setVisible(false);
+   const [menuItem,setMenuItem] = useState("")
 
   const renderItems = ({item}: {item: Property}) => {
     return (
@@ -99,15 +106,15 @@ const Favorites: React.FC<Props> = ({navigation}) => {
             <View style={styles.line} />
             <View style={styles.iconView}>
               <View style={styles.roomView}>
-                <Ionicons name="bed-outline" size={20} />
-                <Text style={styles.bedText}>3 Beds</Text>
+                <Ionicons name="bed-outline" size={20} color="#073762" />
+                <Text style={styles.bedText}>3</Text>
               </View>
               <View style={styles.roomView}>
-                <Ionicons name="bed-outline" size={20} />
-                <Text style={styles.bedText}>2Bathrooms</Text>
+                <Ionicons name="bed-outline" size={20} color="#073762" />
+                <Text style={styles.bedText}>2</Text>
               </View>
               <View style={styles.roomView}>
-                <Ionicons name="bed-outline" size={20} />
+                <Ionicons name="bed-outline" size={20} color="#073762" />
                 <Text style={styles.bedText}>5x7 m²</Text>
               </View>
             </View>
@@ -146,10 +153,26 @@ const Favorites: React.FC<Props> = ({navigation}) => {
       </View>
       <View style={styles.filterView}>
         <View style={styles.showingAllView}>
-          <TouchableOpacity style={styles.showingAllView}>
-            <Text style={styles.showingAllTxt}>Showing all</Text>
-            <Entypo name="chevron-down" size={18} color="#000000" />
-          </TouchableOpacity>
+          <PaperProvider>
+            <View>
+              <Menu
+                visible={visible}
+                onDismiss={closeMenu}
+                anchor={
+                  <TouchableOpacity
+                    style={styles.showingAllView}
+                    onPress={openMenu}>
+                    <Text style={styles.showingAllTxt}>Showing all</Text>
+                    <Entypo name="chevron-down" size={18} color="#000000" />
+                  </TouchableOpacity>
+                }
+                >
+                  <Menu.Item onPress={() => console.log("hello")} title="Rent" />
+                  <Menu.Item onPress={() => {}} title="Buy" />
+                  <Menu.Item onPress={() => {}} title="Showing all" />
+              </Menu>
+            </View>
+          </PaperProvider>
         </View>
         <View style={styles.removeIconView}>
           <View style={styles.sortIconView}>
@@ -224,7 +247,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   roomsText: {
-    color: '#000000',
+    color: '#073762',
     fontSize: responsiveFontSize(3),
     fontFamily: 'PlusJakartaSans a',
   },
@@ -250,14 +273,14 @@ const styles = StyleSheet.create({
     marginTop: responsiveHeight(1),
   },
   locationText: {
-    color: '#9b9b9b',
+    color: '#07376266',
     left: responsiveWidth(4.4),
     fontSize: responsiveFontSize(2),
     fontFamily: 'PlusJakartaSans j',
     marginBottom: responsiveHeight(1),
   },
   locationText1: {
-    color: '#9b9b9b',
+    color: '#07376266',
     fontSize: responsiveFontSize(1.8),
     fontFamily: 'PlusJakartaSans j',
   },
@@ -268,18 +291,19 @@ const styles = StyleSheet.create({
   },
   line: {
     height: responsiveHeight(0.2),
-    width: responsiveWidth(84),
+    width: responsiveWidth(80),
     backgroundColor: '#9fc5e9',
     marginBottom: responsiveWidth(2.8),
     alignSelf: 'center',
+    marginTop: responsiveHeight(1),
   },
   iconView: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    width: responsiveWidth(80),
+    width: responsiveWidth(48),
     marginBottom: responsiveHeight(2.8),
-    alignSelf: 'center',
     alignItems: 'center',
+    left: responsiveWidth(8),
   },
   roomView: {
     flexDirection: 'row',
@@ -287,7 +311,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   bedText: {
-    color: '#9b9b9b',
+    color: '#073762cc',
     fontSize: responsiveFontSize(1.8),
     fontFamily: 'PlusJakartaSans j',
     left: responsiveWidth(2),
@@ -409,4 +433,11 @@ const styles = StyleSheet.create({
     top: responsiveHeight(2.1),
     right: responsiveWidth(3.4),
   },
+  menuItemView:{
+    // backgroundColor:'green',
+    // // position:'absolute',
+    // // bottom:-10,
+    // borderRadius:10,
+    // elevation:1
+  }
 });

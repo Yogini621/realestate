@@ -57,6 +57,7 @@ import MessageDetailsAdmin from './AdminScreens/MessageDetailsAdmin';
 import PropertyFullView from './AdminScreens/PropertyFullView';
 import TermsDrafts from './AdminScreens/TermsDrafts';
 import PolicyDraft from './AdminScreens/PolicyDraft';
+import Tenants from './SellerScreens/Tenants';
 
 const Stack = createNativeStackNavigator();
 
@@ -65,7 +66,7 @@ const App = () => {
     <Provider store={store}>
       <NavigationContainer>
         <Stack.Navigator>
-          <Stack.Screen
+          {/* <Stack.Screen
             name="LandingPage"
             component={LandingPage}
             options={{headerShown: false}}
@@ -89,7 +90,8 @@ const App = () => {
             name="ForgotPassword2"
             component={ForgotPassword2}
             options={{headerShown: false}}
-          />
+          /> */}
+
           <Stack.Screen
             name="HomePage"
             component={HomePage}
@@ -231,6 +233,11 @@ const App = () => {
             options={{headerShown: false}}
           />
           <Stack.Screen
+            name="SellerDashBoard"
+            component={SellerDashBoard}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
             name="TenancyApplicationDetails"
             component={TenancyApplicationDetails}
             options={{headerShown: false}}
@@ -238,6 +245,11 @@ const App = () => {
           <Stack.Screen
             name="Sales"
             component={Sales}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="Tenants"
+            component={Tenants}
             options={{headerShown: false}}
           />
           <Stack.Screen
