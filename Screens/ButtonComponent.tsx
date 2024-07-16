@@ -17,8 +17,8 @@ const ButtonComponent = (props: Props) => {
       <View style={styles.priceButton}>
         <Text style={styles.anyPriceText}>{props.buttonText} </Text>
         <TouchableOpacity style={styles.iconView1} onPress={props.onPress}>
-          <FontAwesome5 name="chevron-up" color="#073762" size={8} />
-          <FontAwesome5 name="chevron-down" color="#073762" size={8} />
+          <FontAwesome5 name="chevron-up" color="#073762" size={7} />
+          <FontAwesome5 name="chevron-down" color="#073762" size={7} />
         </TouchableOpacity>
       </View>
     </View>
@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
     width: 18,
     backgroundColor: '#e0def7',
     borderRadius: 9,
-    left: responsiveWidth(2),
+    left: responsiveWidth(1),
     alignItems: 'center',
     justifyContent: 'center',
   },

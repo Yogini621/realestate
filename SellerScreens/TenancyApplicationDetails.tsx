@@ -17,6 +17,7 @@ import {
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 interface Props {
   navigation: any;
@@ -38,6 +39,40 @@ const TenancyApplicationDetails: React.FC<Props> = ({navigation}) => {
           </View>
         </View>
         <Text style={styles.applicationText}>Application Summary</Text>
+        <View style={styles.itemView}>
+          <View style={styles.directionView}>
+            <Image source={require('../Images/Image3.png')} />
+            <View style={styles.descriptionView}>
+              <Text style={styles.roomTxt}>3 Bedrooms 2Baths</Text>
+              <Text style={styles.locationText}>
+                In Southend Park Apartment,LB Nagar,hyd
+              </Text>
+              <View style={styles.applyDateView}>
+                <MaterialCommunityIcons
+                  name="clock-time-ten"
+                  color="#27ae60"
+                  size={12}
+                />
+                <Text style={styles.dateText1}>Applied Dec 9, 11:00 AM</Text>
+              </View>
+              <View style={styles.horizontalLine} />
+              <View style={styles.iconsView}>
+                <View style={styles.carIconView}>
+                  <AntDesign name="car" color="#073762" size={13} />
+                  <Text style={styles.numberText}>3 Beds</Text>
+                </View>
+                <View style={styles.carIconView}>
+                  <FontAwesome name="bathtub" color="#073762" size={13} />
+                  <Text style={styles.numberText}>2 Bathrooms</Text>
+                </View>
+                <View style={styles.carIconView}>
+                  <FontAwesome name="bathtub" color="#073762" size={13} />
+                  <Text style={styles.numberText}>6x7.5 m²</Text>
+                </View>
+              </View>
+            </View>
+          </View>
+        </View>
         <View style={styles.incomeView}>
           <View style={styles.incomeDirectionView}>
             <View>
@@ -121,9 +156,7 @@ const TenancyApplicationDetails: React.FC<Props> = ({navigation}) => {
     </SafeAreaView>
   );
 };
-
 export default TenancyApplicationDetails;
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -316,5 +349,79 @@ const styles = StyleSheet.create({
     fontFamily: 'PlusJakartaSans m',
     fontSize: responsiveFontSize(1.8),
     left: responsiveWidth(2),
+  },
+  horizontalLine: {
+    backgroundColor: '#e0def7',
+    height: responsiveHeight(0.2),
+    marginTop: responsiveHeight(1.4),
+    width: responsiveWidth(40),
+    alignSelf: 'center',
+  },
+  itemView: {
+    width: responsiveWidth(90),
+    alignSelf: 'center',
+    marginTop: responsiveHeight(2.8),
+  },
+  directionView: {
+    flexDirection: 'row',
+  },
+  descriptionView: {
+    borderWidth: 1,
+    width: responsiveWidth(50),
+    borderRadius: 10,
+    borderLeftWidth: 0,
+    borderBottomLeftRadius: 0,
+    borderTopLeftRadius: 0,
+    borderColor: '#073762',
+  },
+  roomTxt: {
+    color: '#000000',
+    fontFamily: 'PlusJakartaSans a',
+    fontSize: responsiveFontSize(1.8),
+    marginTop: responsiveHeight(2),
+    marginLeft: responsiveWidth(4.8),
+  },
+  locationText: {
+    color: '#6c727f',
+    fontFamily: 'PlusJakartaSans j',
+    fontSize: responsiveFontSize(1),
+    marginLeft: responsiveWidth(4.8),
+  },
+  applyDateView: {
+    borderWidth: 1,
+    borderColor: '#27ae60',
+    borderRadius: 6,
+    flexDirection: 'row',
+    paddingVertical: 6,
+    width: responsiveWidth(32),
+    marginLeft: responsiveWidth(4.8),
+    marginTop: responsiveHeight(1),
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#ffffff',
+  },
+  dateText1: {
+    color: '#27ae60',
+    fontSize: responsiveFontSize(1),
+    fontFamily: 'PlusJakartaSans j',
+    marginLeft: responsiveWidth(1),
+  },
+  carIconView: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  numberText: {
+    fontFamily: 'PlusJakartaSans j',
+    left: responsiveWidth(1),
+    fontSize: responsiveFontSize(1),
+    color: '#394150',
+  },
+  iconsView: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: responsiveWidth(42),
+    marginTop: responsiveHeight(1.4),
+    alignSelf: 'center',
   },
 });

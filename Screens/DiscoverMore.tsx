@@ -109,7 +109,11 @@ const DiscoverMore: React.FC<Props> = ({navigation}) => {
           </View>
           <View style={styles.sortIconView}>
             <TouchableOpacity>
-              <AntDesign name="right" color="#9b9b9b" size={18} />
+              <FontAwesome5
+                name="sort-amount-up-alt"
+                color="#9b9b9b"
+                size={18}
+              />
             </TouchableOpacity>
           </View>
         </View>

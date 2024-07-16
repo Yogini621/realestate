@@ -123,7 +123,7 @@ const PreviewProperty: React.FC<Props> = ({navigation, route}) => {
                 style={styles.icon}
                 color="#073762"
               />
-              <Text style={[styles.numberText, {left: responsiveWidth(4.8)}]}>
+              <Text style={[styles.numberText,{left: responsiveWidth(4.8)}]}>
                 6x8 m²
               </Text>
             </View>
@@ -159,7 +159,7 @@ const PreviewProperty: React.FC<Props> = ({navigation, route}) => {
         </View>
         <View style={styles.priceView}>
           <Text style={styles.rentedPriceText}>Rented price</Text>
-          <Text style={styles.priceText}>{item.rent} </Text>
+          <Text style={styles.priceText}>{item.rent}</Text>
           <View style={styles.userAndAddressView}>
             <Image source={require('../Images/user.png')} />
             <View>
@@ -189,7 +189,7 @@ const PreviewProperty: React.FC<Props> = ({navigation, route}) => {
             <TouchableOpacity
               style={styles.applyButton}
               onPress={() =>
-                navigation.navigate('TenentApplicationForm', {item})
+                navigation.navigate('TenentApplicationForm',{item})
               }>
               <Ionicons name="document-text-outline" color="white" size={22} />
               <Text style={styles.applyText}>Apply now</Text>

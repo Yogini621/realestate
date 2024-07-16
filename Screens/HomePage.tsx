@@ -30,7 +30,6 @@ import {
 } from '../redux/actions/actionTypes';
 import {Property} from '../redux/actions/actions';
 import FiltersScreen from './FiltersScreen';
-import DateTimePicker from 'react-native-ui-datepicker';
 import dayjs from 'dayjs';
 
 interface Props {
@@ -38,19 +37,20 @@ interface Props {
 }
 
 const HomePage: React.FC<Props> = ({navigation}) => {
-    const [date, setDate] = useState(dayjs());
+  const [date, setDate] = useState(dayjs());
+  const [modalVisible, setModalVisible] = useState(false);
+  const dispatch = useDispatch();
   const Properties = useSelector(
     (state: RootState) => state.properties.properties,
   );
   const favorites = useSelector(
     (state: RootState) => state.favorites.favorites,
   );
-  const dispatch = useDispatch();
-  const [modalVisible, setModalVisible] = useState(false);
 
   useEffect(() => {
     handleFetchProperties();
   });
+
 const [datePicker,setDatePicker] = useState(false)
   const handleFetchProperties = () => {
     const response = data;
@@ -134,7 +134,6 @@ const [datePicker,setDatePicker] = useState(false)
                     <Text style={styles.popularText}>POPULAR</Text>
                   </View>
                 </View>
-
                 <View style={styles.favoriteIconView}>
                   <View>
                     <View style={styles.rupeeView}>
@@ -179,11 +178,12 @@ const [datePicker,setDatePicker] = useState(false)
                     <Text style={styles.bedText}>3</Text>
                   </View>
                   <View style={styles.roomView}>
-                    <Ionicons name="bed-outline" size={20} color="#073762" />
-                    <Text style={styles.bedText}>2</Text>
+                 <FontAwesome5 name="bath" size={18} color="#073762" />                    
+                 <Text style={styles.bedText}>2</Text>
                   </View>
                   <View style={styles.roomView}>
-                    <Ionicons name="bed-outline" size={20} color="#073762" />
+                    {/* <Ionicons name="bed-outline" size={20} color="#073762" /> */}
+                    <Image source={require('../Images/Vector4.png')} />
                     <Text style={styles.bedText}>5x7 m²</Text>
                   </View>
                 </View>
@@ -440,7 +440,7 @@ const styles = StyleSheet.create({
     marginTop: responsiveHeight(1),
   },
   locationText: {
-    color: '#9b9b9b',
+    color: '#07376280',
     left: responsiveWidth(8),
     fontSize: responsiveFontSize(2),
     fontFamily: 'PlusJakartaSans j',
@@ -477,7 +477,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   bedText: {
-    color: '#9b9b9b',
+    color: '#07376280',
     fontSize: responsiveFontSize(1.8),
     fontFamily: 'PlusJakartaSans j',
     left: responsiveWidth(2),
@@ -519,7 +519,7 @@ const styles = StyleSheet.create({
     borderLeftColor: 'transparent',
     borderRightColor: 'transparent',
     borderBottomColor: '#073762',
-    borderTopColor:'#073762',
+    borderTopColor: '#073762',
     top: responsiveHeight(2.1),
     right: responsiveWidth(3.4),
   },

@@ -109,15 +109,15 @@ const Buy: React.FC<Props> = ({navigation}) => {
                 <View style={styles.line} />
                 <View style={styles.iconView}>
                   <View style={styles.roomView}>
-                    <Ionicons name="bed-outline" size={20} />
+                    <Ionicons name="bed-outline" size={20} color="#073762" />
                     <Text style={styles.bedText}>3 Beds</Text>
                   </View>
                   <View style={styles.roomView}>
-                    <Ionicons name="bed-outline" size={20} />
+                    <Ionicons name="bed-outline" size={20} color="#073762" />
                     <Text style={styles.bedText}>2Bathrooms</Text>
                   </View>
                   <View style={styles.roomView}>
-                    <Ionicons name="bed-outline" size={20} />
+                    <Ionicons name="bed-outline" size={20} color="#073762" />
                     <Text style={styles.bedText}>5x7 m²</Text>
                   </View>
                 </View>
@@ -213,15 +213,15 @@ const Buy: React.FC<Props> = ({navigation}) => {
               <View style={styles.line} />
               <View style={styles.iconView}>
                 <View style={styles.roomView}>
-                  <Ionicons name="bed-outline" size={20} />
+                  <Ionicons name="bed-outline" size={20} color="#073762" />
                   <Text style={styles.bedText}>3 Beds</Text>
                 </View>
                 <View style={styles.roomView}>
-                  <Ionicons name="bed-outline" size={20} />
+                  <Ionicons name="bed-outline" size={20} color="#073762" />
                   <Text style={styles.bedText}>2Bathrooms</Text>
                 </View>
                 <View style={styles.roomView}>
-                  <Ionicons name="bed-outline" size={20} />
+                  <Ionicons name="bed-outline" size={20} color="#073762" />
                   <Text style={styles.bedText}>5x7 m²</Text>
                 </View>
               </View>
@@ -298,10 +298,10 @@ const styles = StyleSheet.create({
     width: responsiveWidth(60),
   },
   circle: {
-    height: responsiveHeight(2.8),
-    width: responsiveWidth(4.8),
+    height: 20,
+    width: 20,
     backgroundColor: '#e0def7',
-    borderRadius: 14,
+    borderRadius: 10,
     alignItems: 'center',
     justifyContent: 'center',
     right: responsiveWidth(4),
@@ -348,6 +348,7 @@ const styles = StyleSheet.create({
     fontSize: responsiveFontSize(1.6),
     marginTop: responsiveHeight(1),
     marginBottom: responsiveHeight(1),
+    color: '#00000080',
   },
   moreButton: {
     borderWidth: 1,

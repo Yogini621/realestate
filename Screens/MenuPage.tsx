@@ -1,11 +1,14 @@
 import 'react-native-gesture-handler';
-import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {
+  Image,
+  Modal,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {createDrawerNavigator} from '@react-navigation/drawer';
-import Rent from './Rent';
-import Buy from './Buy';
-import Sell from './Sell';
-import Faqs from './Faqs';
 import Profile from './Profile';
 import {Divider, RadioButton} from 'react-native-paper';
 import {
@@ -16,6 +19,7 @@ import {
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Entypo from 'react-native-vector-icons/Entypo';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 
 const Drawer = createDrawerNavigator();
 
@@ -31,6 +35,8 @@ const MenuPage: React.FC<Props> = ({navigation}) => {
   const [seller, setSeller] = useState(false);
   const [user, setUser] = useState('customer');
   const [sselectId, setSelectId] = useState(1);
+  const [modalVisible, setModalVisible] = useState(false);
+  const [pendingUserType, setPendingUserType] = useState<string | null>(null);
 
   const SellerComponentData = [
     {id: 1, option: 'Property', icon: 'compass', navigatePage: 'Property'},
@@ -99,10 +105,23 @@ const MenuPage: React.FC<Props> = ({navigation}) => {
     navigation.navigate(navigatePage);
   };
 
+  const switchUserType = () => {
+    if (pendingUserType) {
+      setUser(pendingUserType);
+      setModalVisible(false)
+      setPendingUserType(null)
+    }
+  };
+
+  const handleUserTypeChange = (newUserType:string) => {
+    setPendingUserType(newUserType)
+    setModalVisible(true)
+  }
+
   return (
     <Drawer.Navigator
       defaultStatus="open"
-      // initialRouteName="HomePage"
+      initialRouteName="HomePage"
       drawerContent={focused => (
         <View style={styles.drawerContent}>
           <View style={styles.header}>
@@ -126,7 +145,7 @@ const MenuPage: React.FC<Props> = ({navigation}) => {
                 <RadioButton
                   value="customer"
                   color="#073762"
-                  onPress={() => setUser('customer')}
+                  onPress={() => handleUserTypeChange('customer')}
                   status={user === 'customer' ? 'checked' : 'unchecked'}
                 />
                 <Text style={styles.customerText}>Customer</Text>
@@ -135,7 +154,7 @@ const MenuPage: React.FC<Props> = ({navigation}) => {
                 <RadioButton
                   value="seller"
                   color="#073762"
-                  onPress={() => setUser('seller')}
+                  onPress={() => handleUserTypeChange('seller')}
                   status={user === 'seller' ? 'checked' : 'unchecked'}
                 />
                 <Text style={styles.customerText}>Seller</Text>
@@ -143,7 +162,6 @@ const MenuPage: React.FC<Props> = ({navigation}) => {
             </View>
           </View>
           <Divider style={styles.seperator} />
-
           {user === 'customer' ? (
             <View>
               {CustomerComponentData.map(item => (
@@ -155,9 +173,7 @@ const MenuPage: React.FC<Props> = ({navigation}) => {
                       : styles.componentButton
                   }
                   onPress={() => handleOnPress(item.id, item.navigatePage)}>
-                  <Image
-                    source={item.icon}
-                  />
+                  <Image source={item.icon} />
                   <Text
                     style={
                       sselectId === item.id
@@ -197,9 +213,44 @@ const MenuPage: React.FC<Props> = ({navigation}) => {
               ))}
             </View>
           )}
+          {modalVisible && (
+            <Modal
+              visible={modalVisible}
+              animationType="slide"
+              transparent={true}>
+              <View style={styles.centeredModal}>
+                <View style={styles.modalView}>
+                  <View style={styles.userModeView}>
+                    <Text style={styles.userModeText}>User Mode</Text>
+                    <TouchableOpacity onPress={() => setModalVisible(false)}>
+                      <AntDesign name="close" color="#787681" size={24} />
+                    </TouchableOpacity>
+                  </View>
+                  <View style={styles.seperator} />
+                  <View style={styles.switchTextView}>
+                    <Text style={styles.switchText}>
+                      Are you sure you want to switch to {pendingUserType}?
+                    </Text>
+                  </View>
+                  <View style={styles.buttonView}>
+                    <TouchableOpacity
+                      style={styles.yesButton}
+                      onPress={switchUserType}>
+                      <Text style={styles.yesText}>Yes,I Want to</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                      style={styles.cancelButton}
+                      onPress={() => setModalVisible(false)}>
+                      <Text style={styles.cancelText}>Cancel</Text>
+                    </TouchableOpacity>
+                  </View>
+                </View>
+              </View>
+            </Modal>
+          )}
         </View>
       )}>
-      <Drawer.Screen
+      {/* <Drawer.Screen
         name="Rent"
         component={Rent}
         options={{headerShown: false}}
@@ -208,7 +259,7 @@ const MenuPage: React.FC<Props> = ({navigation}) => {
         name="Buy"
         component={Buy}
         options={{headerShown: false}}
-      />
+      />  
       <Drawer.Screen
         name="Sell"
         component={Sell}
@@ -218,7 +269,7 @@ const MenuPage: React.FC<Props> = ({navigation}) => {
         name="Faqs"
         component={Faqs}
         options={{headerShown: false}}
-      />
+      /> */}
       <Drawer.Screen
         name="Profile"
         component={Profile}
@@ -382,5 +433,84 @@ const styles = StyleSheet.create({
     fontFamily: 'PlusJakartaSans j',
     fontSize: responsiveFontSize(1.8),
     left: responsiveWidth(2.8),
+  },
+  centeredModal: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  modalView: {
+    backgroundColor: '#ffffff',
+    elevation: 1,
+    padding: 10,
+    width: responsiveWidth(90),
+    borderRadius: 10,
+    height: responsiveHeight(30),
+  },
+  userModeView: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: responsiveWidth(80),
+    alignSelf: 'center',
+    alignItems: 'center',
+  },
+  userModeText: {
+    color: '#f14231',
+    fontFamily: 'PlusJakartaSans a',
+    fontSize: responsiveFontSize(3.2),
+  },
+  seperator1: {
+    height: responsiveHeight(0.1),
+    width: responsiveWidth(80),
+    backgroundColor: '#e1e1e3',
+    alignSelf: 'center',
+    marginTop: responsiveHeight(2),
+  },
+  switchTextView: {
+    width: responsiveWidth(48),
+    alignSelf: 'center',
+    alignItems: 'center',
+    // backgroundColor: 'green',
+    marginTop: responsiveHeight(1),
+    justifyContent: 'center',
+  },
+  switchText: {
+    color: '#000000',
+    fontFamily: 'PlusJakartaSans j',
+    fontSize: responsiveFontSize(2),
+    textAlign: 'center',
+  },
+  yesButton: {
+    backgroundColor: '#073762',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 10,
+    padding: 10,
+    width: responsiveWidth(34),
+  },
+  yesText: {
+    color: '#ffffff',
+    fontFamily: 'PlusJakartaSans a',
+  },
+  buttonView: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: responsiveWidth(78),
+    alignSelf: 'center',
+    alignItems: 'center',
+    marginTop: responsiveHeight(2.8),
+  },
+  cancelButton: {
+    borderWidth: 1,
+    borderColor: '#9fc5e9',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 10,
+    padding: 10,
+    width: responsiveWidth(34),
+  },
+  cancelText: {
+    color: '#000000',
+    fontFamily: 'PlusJakartaSans a',
   },
 });

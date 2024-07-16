@@ -486,6 +486,7 @@ const styles = StyleSheet.create({
     width: responsiveWidth(44),
     left: responsiveWidth(6.2),
     marginTop: responsiveHeight(2.8),
+    // height:responsiveHeight(60)
   },
   rentersText: {
     color: '#073762',
@@ -514,15 +515,16 @@ const styles = StyleSheet.create({
   },
   imgView: {
     width: responsiveWidth(100),
-    height: responsiveHeight(40),
+    height: responsiveHeight(42),
     alignItems: 'flex-end',
+    // backgroundColor:'green'
   },
   image: {
     resizeMode: 'contain',
-    height: responsiveHeight(70),
+    height: responsiveHeight(62),
     width: responsiveWidth(96),
     right: 0,
-    top: responsiveHeight(-20),
+    top: responsiveHeight(-9),
     zIndex: -1,
   },
   newWayView: {
@@ -541,16 +543,15 @@ const styles = StyleSheet.create({
     marginTop: responsiveHeight(4),
   },
   descriptionView: {
-    width: responsiveWidth(70),
+    width: responsiveWidth(60),
     marginTop: responsiveHeight(1),
   },
   image1: {
     alignSelf: 'flex-end',
-    bottom: 250,
+    bottom: 263,
     height: responsiveHeight(60),
     width: responsiveWidth(40),
     resizeMode: 'contain',
-    // backgroundColor:'green'
   },
   locationText: {
     textAlign: 'center',
@@ -614,8 +615,9 @@ const styles = StyleSheet.create({
   itemView: {
     flex: 1,
     margin: 10,
-    width: responsiveWidth(90),
+    width: responsiveWidth(80),
     alignSelf: 'center',
+    right:responsiveWidth(4.8)
   },
   iconView: {
     height: 30,
@@ -639,6 +641,8 @@ const styles = StyleSheet.create({
     borderLeftWidth: 0,
     borderColor: '#9fc5e9',
     width: responsiveWidth(50),
+    borderTopRightRadius:10,
+    borderBottomRightRadius:10
   },
   rentText1: {
     color: '#073762',
@@ -903,7 +907,7 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     alignItems: 'center',
     justifyContent: 'center',
-    // left: responsiveWidth(4),
+    left: responsiveWidth(4),
     marginTop: responsiveHeight(2.8),
   },
   popularTextDirectionView: {
@@ -914,12 +918,12 @@ const styles = StyleSheet.create({
   },
   popularTextView: {
     backgroundColor: '#073762',
-    width: responsiveWidth(20),
+    width: responsiveWidth(18),
     height: responsiveHeight(3.4),
     alignItems: 'center',
     justifyContent: 'center',
     position: 'absolute',
-    left: responsiveWidth(-3.2),
+    left: responsiveWidth(-2.8),
     borderTopRightRadius: 8,
     borderBottomRightRadius: 8,
     borderTopLeftRadius: 8,
@@ -942,8 +946,7 @@ const styles = StyleSheet.create({
     borderBottomColor: '#073762',
     borderTopColor: '#073762',
     top: responsiveHeight(3.1),
-    // right: responsiveWidth(3.4),
-    position:'relative',
-    left:-178
+    position:'absolute',
+    left:-12
   },
 });

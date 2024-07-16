@@ -44,24 +44,26 @@ const PropertyDetails: React.FC<Props> = ({navigation, route}) => {
   const favorites = useSelector(
     (state: RootState) => state.favorites.favorites,
   );
-  const Properties = useSelector((state:RootState) => state.properties.properties)
+  const Properties = useSelector(
+    (state: RootState) => state.properties.properties,
+  );
   const dispatch = useDispatch();
   const {item} = route.params;
   const [currentLocation, setCurrentLocation] = useState<LatLng | null>(null);
   const [locationError, setLocationError] = useState<string | null>(null);
   const [visible, setIsVisible] = useState(false);
 
-const images = [
-  {
-    uri: 'https://images.unsplash.com/photo-1571501679680-de32f1e7aad4',
-  },
-  {
-    uri: 'https://images.unsplash.com/photo-1573273787173-0eb81a833b34',
-  },
-  {
-    uri: 'https://images.unsplash.com/photo-1569569970363-df7b6160d111',
-  },
-];
+  const images = [
+    {
+      uri: 'https://images.unsplash.com/photo-1571501679680-de32f1e7aad4',
+    },
+    {
+      uri: 'https://images.unsplash.com/photo-1573273787173-0eb81a833b34',
+    },
+    {
+      uri: 'https://images.unsplash.com/photo-1569569970363-df7b6160d111',
+    },
+  ];
 
   useEffect(() => {
     requestLocationPermission();
@@ -108,15 +110,15 @@ const images = [
   };
 
   const handleAddToFavorites = (item: Property) => {
-        console.log(item);
-        if (favorites.includes(item)) {
-          console.log('item Removed');
-          dispatch(removeFavorites(item));
-        } else {
-          console.log('item Added');
-          dispatch(addToFavorites(item));
-        }
-      };
+    console.log(item);
+    if (favorites.includes(item)) {
+      console.log('item Removed');
+      dispatch(removeFavorites(item));
+    } else {
+      console.log('item Added');
+      dispatch(addToFavorites(item));
+    }
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -140,7 +142,9 @@ const images = [
           </View>
         </View>
         <View>
-          <TouchableOpacity style={styles.mapToMapButton}>
+          <TouchableOpacity
+            style={styles.mapToMapButton}
+            onPress={() => navigation.goBack()}>
             <AntDesign name="left" color="#073762" size={18} />
             <Text style={styles.backtoMapText}>Back to map</Text>
           </TouchableOpacity>
@@ -387,7 +391,7 @@ const images = [
             goods or services. Message/data rates may apply.
           </Text>
         </View>
-        <View style = {styles.similarListingsView}>
+        <View style={styles.similarListingsView}>
           <Text style={styles.similarListingsText}>Similar listings</Text>
           {Properties.map(item => {
             return (
@@ -865,11 +869,13 @@ const styles = StyleSheet.create({
     fontSize: responsiveFontSize(1.7),
     fontFamily: 'PlusJakartaSans j',
     lineHeight: 20,
+    color: '#00092980',
   },
   selectText: {
     fontSize: responsiveFontSize(1.8),
     fontFamily: 'PlusJakartaSans j',
     left: responsiveWidth(2),
+    color: '#00092980',
   },
   map: {
     height: responsiveHeight(44),
@@ -884,7 +890,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     padding: 10,
     position: 'absolute',
-    marginTop: responsiveHeight(24),
+    marginTop: responsiveHeight(20),
     alignSelf: 'flex-end',
     right: responsiveWidth(6),
     flexDirection: 'row',

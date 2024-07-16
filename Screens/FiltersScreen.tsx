@@ -55,7 +55,7 @@ const FiltersScreen = (props: Props) => {
           <ScrollView>
             <View style={styles.headerView}>
               <TouchableOpacity onPress={() => props.closeModal()}>
-                <AntDesign name="close" size={22} />
+                <AntDesign name="close" size={22} color="#00092980" />
               </TouchableOpacity>
               <Text style={styles.filterText}>Filters</Text>
             </View>

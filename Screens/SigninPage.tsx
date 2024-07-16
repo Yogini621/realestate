@@ -213,6 +213,7 @@ const styles = StyleSheet.create({
     padding: 10,
     marginTop: responsiveHeight(1),
     fontFamily: 'PlusJakartaSans j',
+    color: '#9b9b9b',
   },
   signupButton: {
     backgroundColor: '#073762',

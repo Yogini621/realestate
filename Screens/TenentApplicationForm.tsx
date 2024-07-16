@@ -1,5 +1,7 @@
 import {
+  Alert,
   Image,
+  Modal,
   SafeAreaView,
   ScrollView,
   StatusBar,
@@ -16,7 +18,6 @@ import {
   responsiveScreenFontSize,
   responsiveWidth,
 } from 'react-native-responsive-dimensions';
-import * as Yup from 'yup';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import Feather from 'react-native-vector-icons/Feather';
 import Foundation from 'react-native-vector-icons/Foundation';
@@ -25,48 +26,93 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import {SelectList} from 'react-native-dropdown-select-list';
 import Octicons from 'react-native-vector-icons/Octicons';
-import DateTimePicker, { DateType } from 'react-native-ui-datepicker';
+import DateTimePicker, {DateType} from 'react-native-ui-datepicker';
 import dayjs from 'dayjs';
-
 interface Props {
   navigation: any;
   route: any;
 }
-interface Step1Data {
-  name: string;
-  dateOfBirth: string;
-  email: string;
-  contact: string;
-  income: string;
-  occupants: string;
-  moveInDate: string;
-}
-interface Step2Data {
-  address: string;
-  city: string;
-  state: string;
-  pincode: string;
-  country: string;
-}
-interface Step3Data {
-  vehicleName: string;
-}
-interface Step4Data {
-  aadhar: string;
-}
 
 const TenantApplicationForm: React.FC<Props> = ({navigation, route}) => {
   const {item} = route.params;
-  const [step4Data, setStep4Data] = useState<Step4Data>({aadhar: ''});
   const [step1Visible, setStep1Visible] = useState(true);
   const [step2Visible, setStep2Visible] = useState(false);
   const [step3Visible, setStep3Visible] = useState(false);
   const [step4Visible, setStep4Visible] = useState(false);
   const [vehicleDescriptionView, setVehicleDescriptionView] = useState(false);
   const [selected, setSelected] = useState('');
-  const [datePicker,setDatePicker] = useState(false)
+  const [datePicker, setDatePicker] = useState(false);
   const [date, setDate] = useState<DateType>(dayjs());
+  const [name, setName] = useState('');
+  const [dob, setDob] = useState('');
+  const [email, setEmail] = useState('');
+  const [contact, setContact] = useState('');
+  const [income, setIncome] = useState('');
+  const [occupant, setOccupant] = useState('');
+  const [moveDate, setMoveDate] = useState('');
+  const [address, setAddress] = useState('');
+  const [city, setCity] = useState('');
+  const [state, setState] = useState('');
+  const [pincode, setPincode] = useState('');
+  const [country, setCountry] = useState('');
+  const [vehicleName, setVehicleName] = useState('');
+  const [aadharNo, setAadharNo] = useState('');
+  const [modalVisible,setModalVisible] = useState(false)
 
+  const validateStep1 = () => {
+    if (name === '') {
+      Alert.alert('Enter Name');
+    } else if (dob === '') {
+      Alert.alert('Enter Date of Birth');
+    } else if (email === '') {
+      Alert.alert('Enter Email');
+    } else if (contact === '') {
+      Alert.alert('Enter Phone Number');
+    } else if (income === '') {
+      Alert.alert('Enter Income');
+    } else if (occupant === '') {
+      Alert.alert('Enter Occupant');
+    } else if (moveDate === '') {
+      Alert.alert('Enter Move in Date');
+    } else {
+      setStep1Visible(false);
+      setStep2Visible(true);
+    }
+  };
+
+  const validateStep2 = () => {
+    if (address === '') {
+      Alert.alert('Enter Address');
+    } else if (city === '') {
+      Alert.alert('Enter City');
+    } else if (state === '') {
+      Alert.alert('Enter State');
+    } else if (pincode === '') {
+      Alert.alert('Enter Pincode');
+    } else if (country === '') {
+      Alert.alert('Enter Country');
+    } else {
+      setStep2Visible(false);
+      setStep3Visible(true);
+    }
+  };
+
+  const validateStep3 = () => {
+    if (vehicleName === '') {
+      Alert.alert('Enter Vehicle Names');
+    } else {
+      setStep3Visible(false);
+      setStep4Visible(true);
+    }
+  };
+
+  const validateStep4 = () => {
+    if (aadharNo === '') {
+      Alert.alert('Enter Aadhar Number');
+    } else {
+      setModalVisible(true)
+    }
+  };
   const data = [
     {key: 'Canada', value: 'Canada'},
     {key: 'England', value: 'England'},
@@ -75,7 +121,7 @@ const TenantApplicationForm: React.FC<Props> = ({navigation, route}) => {
     {key: 'NewZealand', value: 'NewZealand'},
   ];
 
-  const state = [
+  const states = [
     {key: 'Andhra Pradesh', value: 'Andhra Pradesh'},
     {key: 'Arunachal pradesh', value: 'Arunachal Pradesh'},
     {key: 'Assam', value: 'Assam'},
@@ -84,33 +130,12 @@ const TenantApplicationForm: React.FC<Props> = ({navigation, route}) => {
     {key: 'Goa', value: 'Goa'},
   ];
 
-  const country = [
-    {key:'India',value:'India'},
-    {key:'Ireland',value:'Ireland'},
-    {key:'Finland',value:"Finland"},
-  ]
+  const countries = [
+    {key: 'India', value: 'India'},
+    {key: 'Ireland', value: 'Ireland'},
+    {key: 'Finland', value: 'Finland'},
+  ];
 
-  const ValidationSchema = Yup.object().shape({});
-  const handleFormSubmit = (
-    values: Step1Data & Step2Data & Step3Data & Step4Data,
-  ) => {
-    console.log(values);
-  };
-
-  const openStep2 = () => {
-    setStep1Visible(false);
-    setStep2Visible(true);
-  };
-
-  const openStep3 = () => {
-    setStep2Visible(false);
-    setStep3Visible(true);
-  };
-
-  const openStep4 = () => {
-    setStep3Visible(false);
-    setStep4Visible(true);
-  };
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar hidden={true} />
@@ -134,7 +159,7 @@ const TenantApplicationForm: React.FC<Props> = ({navigation, route}) => {
           </View>
         </View>
         <View style={styles.backToView}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.goBack()}>
             <Ionicons name="chevron-back-outline" size={24} color="#073762" />
           </TouchableOpacity>
           <TouchableOpacity>
@@ -235,6 +260,8 @@ const TenantApplicationForm: React.FC<Props> = ({navigation, route}) => {
                 placeholder="Enter full name"
                 style={styles.input}
                 placeholderTextColor="#00092980"
+                value={name}
+                onChangeText={setName}
               />
               <Text style={styles.labelText}>Date of Birth</Text>
               <View style={styles.inputView}>
@@ -242,7 +269,9 @@ const TenantApplicationForm: React.FC<Props> = ({navigation, route}) => {
                   placeholder="DD/MM/YYYY"
                   style={styles.input1}
                   placeholderTextColor="#00092980"
-                  value={date?.toLocaleString()}
+                  // value={date?.toLocaleString()}
+                  value={dob}
+                  onChangeText={setDob}
                 />
                 <TouchableOpacity onPress={() => setDatePicker(true)}>
                   <AntDesign name="calendar" color="#00092980" size={22} />
@@ -261,13 +290,28 @@ const TenantApplicationForm: React.FC<Props> = ({navigation, route}) => {
                 placeholder="hi@example.com"
                 placeholderTextColor="#00092980"
                 style={styles.input}
+                value={email}
+                onChangeText={setEmail}
               />
               <Text style={styles.labelText}>Phone Number</Text>
-              <TextInput
-                placeholder="+91 XXXX XXX XXX"
-                placeholderTextColor="#00092980"
-                style={styles.input}
-              />
+              <View style={styles.inputView}>
+                <Image source={require('../Images/flag.png')} />
+                <AntDesign
+                  name="down"
+                  color="#00092980"
+                  size={12}
+                  style={styles.icon}
+                />
+                <View style={styles.verticalLine} />
+                <TextInput
+                  placeholder="+91 XXXX XXX XXX"
+                  placeholderTextColor="#00092980"
+                  style={styles.input1}
+                  value={contact}
+                  onChangeText={setContact}
+                />
+              </View>
+
               <Text style={styles.labelText}>
                 Gross Annual Employment Income
               </Text>
@@ -275,12 +319,16 @@ const TenantApplicationForm: React.FC<Props> = ({navigation, route}) => {
                 placeholder="e.g.50000"
                 placeholderTextColor="#00092980"
                 style={styles.input}
+                value={income}
+                onChangeText={setIncome}
               />
               <Text style={styles.labelText}>Occupants</Text>
               <TextInput
                 placeholder="Enter Occupants"
                 placeholderTextColor="#00092980"
                 style={styles.input}
+                value={occupant}
+                onChangeText={setOccupant}
               />
               <Text style={styles.labelText}>Move in Date</Text>
               <View style={styles.inputView}>
@@ -288,6 +336,8 @@ const TenantApplicationForm: React.FC<Props> = ({navigation, route}) => {
                   placeholder="DD/MM/YYYY"
                   placeholderTextColor="#00092980"
                   style={styles.input1}
+                  value={moveDate}
+                  onChangeText={setMoveDate}
                 />
                 <TouchableOpacity>
                   <AntDesign name="calendar" color="#00092980" size={22} />
@@ -297,7 +347,9 @@ const TenantApplicationForm: React.FC<Props> = ({navigation, route}) => {
               <View style={styles.spaceView} />
             </View>
             <View style={styles.line} />
-            <TouchableOpacity style={styles.continueButton} onPress={openStep2}>
+            <TouchableOpacity
+              style={styles.continueButton}
+              onPress={validateStep1}>
               <Text style={styles.continueText}>Continue</Text>
             </TouchableOpacity>
           </View>
@@ -359,17 +411,21 @@ const TenantApplicationForm: React.FC<Props> = ({navigation, route}) => {
                 placeholder="e.g. 142 Risse Street"
                 style={styles.input}
                 placeholderTextColor="#00092980"
+                value={address}
+                onChangeText={setAddress}
               />
               <Text style={styles.labelText}>City</Text>
               <TextInput
                 placeholder="Enter City"
                 style={styles.input}
                 placeholderTextColor="#00092980"
+                value={city}
+                onChangeText={setCity}
               />
               <Text style={styles.labelText}>State</Text>
               <SelectList
                 setSelected={setSelected}
-                data={state}
+                data={states}
                 boxStyles={styles.input}
                 placeholder="Select your State"
                 fontFamily="PlusJakartaSans j"
@@ -380,11 +436,13 @@ const TenantApplicationForm: React.FC<Props> = ({navigation, route}) => {
                 placeholder="Enter Pin Code"
                 placeholderTextColor="#00092980"
                 style={styles.input}
+                value={pincode}
+                onChangeText={setPincode}
               />
               <Text style={styles.labelText}>Country</Text>
               <SelectList
                 setSelected={setSelected}
-                data={country}
+                data={countries}
                 boxStyles={styles.input}
                 placeholder="Select your Country"
                 fontFamily="PlusJakartaSans j"
@@ -392,7 +450,9 @@ const TenantApplicationForm: React.FC<Props> = ({navigation, route}) => {
               <View style={styles.spaceView} />
             </View>
             <View style={styles.line} />
-            <TouchableOpacity style={styles.continueButton} onPress={openStep3}>
+            <TouchableOpacity
+              style={styles.continueButton}
+              onPress={validateStep2}>
               <Text style={styles.continueText}>Continue</Text>
             </TouchableOpacity>
           </View>
@@ -474,11 +534,15 @@ const TenantApplicationForm: React.FC<Props> = ({navigation, route}) => {
                 placeholder="e.g. benz Car,Kawaski Bike"
                 style={styles.input}
                 placeholderTextColor="#00092980"
+                value={vehicleName}
+                onChangeText={setVehicleName}
               />
               <View style={styles.spaceView} />
             </View>
             <View style={styles.line} />
-            <TouchableOpacity style={styles.continueButton} onPress={openStep4}>
+            <TouchableOpacity
+              style={styles.continueButton}
+              onPress={validateStep3}>
               <Text style={styles.continueText}>Continue</Text>
             </TouchableOpacity>
           </View>
@@ -520,10 +584,10 @@ const TenantApplicationForm: React.FC<Props> = ({navigation, route}) => {
                   <TouchableOpacity>
                     <Text style={styles.editText}>Edit</Text>
                   </TouchableOpacity>
-                  <TouchableOpacity onPress={openStep2}>
+                  <TouchableOpacity>
                     <Text style={styles.editText2}>Edit</Text>
                   </TouchableOpacity>
-                  <TouchableOpacity onPress={openStep3}>
+                  <TouchableOpacity onPress={() => {}}>
                     <Text style={styles.editText3}>Edit</Text>
                   </TouchableOpacity>
                   <Text style={styles.basicDetailsText2}>Aadhar No</Text>
@@ -566,11 +630,13 @@ const TenantApplicationForm: React.FC<Props> = ({navigation, route}) => {
                 placeholder="e.g. 6308513255"
                 style={styles.input}
                 placeholderTextColor="#00092980"
+                value={aadharNo}
+                onChangeText={setAadharNo}
               />
               <View style={styles.spaceView} />
             </View>
             <View style={styles.line} />
-            <TouchableOpacity style={styles.continueButton1}>
+            <TouchableOpacity style={styles.continueButton1} onPress={validateStep4}>
               <Feather name="file-text" color="white" size={20} />
               <Text style={styles.continueText1}>Apply and Submit</Text>
             </TouchableOpacity>
@@ -584,6 +650,15 @@ const TenantApplicationForm: React.FC<Props> = ({navigation, route}) => {
           <Text style={styles.termsText}>Privacy</Text>
         </View>
       </ScrollView>
+      {modalVisible &&(
+        <View>
+          <Modal>
+            <View>
+              <Text>Applied Successfully  </Text>
+            </View>
+          </Modal>
+        </View>
+      )}
     </SafeAreaView>
   );
 };
@@ -662,8 +737,8 @@ const styles = StyleSheet.create({
     borderLeftWidth: 0,
     borderBottomLeftRadius: 0,
     borderTopLeftRadius: 0,
-    height: responsiveWidth(36.6),
     borderColor: '#9fc5e9',
+    height: responsiveHeight(20),
   },
   propertyDirectionView: {
     flexDirection: 'row',
@@ -872,7 +947,7 @@ const styles = StyleSheet.create({
     color: '#000929',
     fontFamily: 'PlusJakartaSans j',
     fontSize: responsiveFontSize(2),
-    width: responsiveWidth(66),
+    width: responsiveWidth(60),
   },
   input: {
     height: responsiveHeight(6.8),
@@ -1049,5 +1124,14 @@ const styles = StyleSheet.create({
     position: 'absolute',
     right: -6,
     top: -26,
+  },
+  verticalLine: {
+    height: responsiveHeight(6.8),
+    width: 1,
+    backgroundColor: '#C4C4C4',
+    marginLeft: responsiveWidth(4),
+  },
+  icon: {
+    marginLeft: responsiveWidth(1.8),
   },
 });

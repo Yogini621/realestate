@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '../redux/reducers';
 import {Property} from '../redux/actions/actions';
@@ -29,7 +29,6 @@ import {
 } from '../redux/actions/actionTypes';
 import {Button, Menu, Divider, PaperProvider} from 'react-native-paper';
 
-
 interface Props {
   navigation: any;
 }
@@ -47,11 +46,11 @@ const Favorites: React.FC<Props> = ({navigation}) => {
   const handleRemoveAll = () => {
     dispatch(removeAllFromFavorites());
   };
-   const [visible, setVisible] = React.useState(false);
+  const [visible, setVisible] = React.useState(false);
 
-   const openMenu = () => setVisible(true);
-   const closeMenu = () => setVisible(false);
-   const [menuItem,setMenuItem] = useState("")
+  const openMenu = () => setVisible(true);
+  const closeMenu = () => setVisible(false);
+  const [menuItem, setMenuItem] = useState('');
 
   const renderItems = ({item}: {item: Property}) => {
     return (
@@ -165,11 +164,10 @@ const Favorites: React.FC<Props> = ({navigation}) => {
                     <Text style={styles.showingAllTxt}>Showing all</Text>
                     <Entypo name="chevron-down" size={18} color="#000000" />
                   </TouchableOpacity>
-                }
-                >
-                  <Menu.Item onPress={() => console.log("hello")} title="Rent" />
-                  <Menu.Item onPress={() => {}} title="Buy" />
-                  <Menu.Item onPress={() => {}} title="Showing all" />
+                }>
+                <Menu.Item onPress={() => console.log('hello')} title="Rent" />
+                <Menu.Item onPress={() => {}} title="Buy" />
+                <Menu.Item onPress={() => {}} title="Showing all" />
               </Menu>
             </View>
           </PaperProvider>
@@ -433,11 +431,11 @@ const styles = StyleSheet.create({
     top: responsiveHeight(2.1),
     right: responsiveWidth(3.4),
   },
-  menuItemView:{
+  menuItemView: {
     // backgroundColor:'green',
     // // position:'absolute',
     // // bottom:-10,
     // borderRadius:10,
     // elevation:1
-  }
+  },
 });

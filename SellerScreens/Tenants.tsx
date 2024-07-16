@@ -23,16 +23,29 @@ import Feather from 'react-native-vector-icons/Feather';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { SelectList } from 'react-native-dropdown-select-list';
 import { data } from '../Screens/data';
+import {Menu, MenuDivider, MenuItem} from 'react-native-material-menu';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 
 interface Props {
   navigation: any;
 }
 
+interface Tenant {
+ id:number,
+ image:any;
+ date:string;
+ rent:string;
+ status:string;
+ name:string
+
+}
+
 const Tenants: React.FC<Props> = ({navigation}) => {
   const [visible, setVisible] = useState(false);
   const [selected,setSelected] = useState('')
+  const [tenants ,setTenants] = useState<Tenant[]>([])
 
-  const TenantsData = [
+  const TenantsData:Tenant[] = [
     {
       id: 1,
       name: 'Valentino Parker',
@@ -121,6 +134,23 @@ const data = [
   {key: 'Rejected', value: 'Rejected'},
 ];
 
+  const [menuVisible, setMenuVisible] = React.useState<{
+    [key: number]: boolean;
+  }>({});
+
+  const openMenu = (id: number) => {
+    setMenuVisible({...menuVisible, [id]: true});
+  };
+
+  const closeMenu = (id: number) => {
+    setMenuVisible({...menuVisible, [id]: false});
+  };
+
+  const handleRemoveTenants = (id:number) => {
+   const updatedTenats = TenantsData.filter(item => item.id !== id)
+   setTenants(updatedTenats)
+  }
+
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar hidden={true} />
@@ -155,12 +185,6 @@ const data = [
             />
           </View>
           <View>
-            {/* <TouchableOpacity
-              style={styles.allTenantsButton}
-              onPress={() => setVisible(true)}>
-              <Text style={styles.allTenantsText}>All tenants</Text>
-              <Entypo name="chevron-small-down" color="#6c727f" size={22} />
-            </TouchableOpacity> */}
             <SelectList
               setSelected={setSelected}
               data={data}
@@ -178,9 +202,37 @@ const data = [
                 <Text style={styles.userName}>{item.name}</Text>
                 <Text style={styles.dateText}>{item.date}</Text>
               </View>
-              <TouchableOpacity>
-                <Feather name="more-horizontal" color="#000000" size={22} />
-              </TouchableOpacity>
+              <Menu
+                visible={menuVisible[item.id] || false}
+                anchor={
+                  <TouchableOpacity onPress={() => openMenu(item.id)}>
+                    <Entypo
+                      name="dots-three-vertical"
+                      size={18}
+                      color="gray"
+                      testID="menu"
+                    />
+                  </TouchableOpacity>
+                }
+                onRequestClose={() => closeMenu(item.id)}>
+                <View style={styles.viewView}>
+                  <Feather name="eye" size={18} color="#414141" />
+                  <MenuItem onPress={() => navigation.navigate("TenancyApplicationDetails")} textStyle={styles.viewText}>
+                    View
+                  </MenuItem>
+                </View>
+                <View style={styles.viewView}>
+                  <MaterialCommunityIcons
+                    name="delete-outline"
+                    size={18}
+                    color="#414141"
+                  />
+                  <MenuItem onPress={() => handleRemoveTenants(item.id)} textStyle={styles.viewText}>
+                    Delete
+                  </MenuItem>
+                </View>
+                <MenuDivider />
+              </Menu>
             </View>
             <View style={styles.rentAndStatusView}>
               <Text style={styles.rentText}>${item.rent}/mo</Text>
@@ -300,7 +352,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   userView: {
-    marginRight: responsiveWidth(24),
+    marginRight: responsiveWidth(18),
   },
   userName: {
     color: '#000929',
@@ -341,15 +393,27 @@ const styles = StyleSheet.create({
     fontSize: responsiveFontSize(1.6),
     lineHeight: 32,
   },
-  modalView:{
-    backgroundColor:'white',
-    elevation:1,
-    padding:10,
-    width:responsiveWidth(30),
-    borderRadius:10,
-    position:'absolute',
-    right:10,
-    top:180
-
+  modalView: {
+    backgroundColor: 'white',
+    elevation: 1,
+    padding: 10,
+    width: responsiveWidth(30),
+    borderRadius: 10,
+    position: 'absolute',
+    right: 10,
+    top: 180,
+  },
+  viewView: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 10,
+    width:responsiveWidth(40),
+    justifyContent:'space-between',
+    // left:responsiveWidth(4)
+  },
+  viewText: {
+    color: '#414141',
+    fontFamily: 'PlusJakartaSans m',
+    fontSize:responsiveFontSize(1.6)
   },
 });

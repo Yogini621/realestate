@@ -178,7 +178,8 @@ const Profile: React.FC<Props> = ({navigation}) => {
           {profileComponentData.map(item => (
             <TouchableOpacity
               onPress={() => handlePress(item.id, item.navigatePage)}
-              style={styles.button} key={item.id}>
+              style={styles.button}
+              key={item.id}>
               <Text
                 style={
                   clicked === item.id ? styles.seletText : styles.optionText
@@ -191,7 +192,7 @@ const Profile: React.FC<Props> = ({navigation}) => {
             optionText="Change Password"
             onPress={() => setChangePasswordModal(true)}
             color="#33333380"
-          /> 
+          />
           <TouchableOpacity
             style={styles.logOutButton}
             onPress={() => setLogoutModal(true)}>
@@ -241,18 +242,22 @@ const Profile: React.FC<Props> = ({navigation}) => {
           <PropertyPropsComponent
             propertyType="Property Name"
             propertyText="Southend Park Apart ment LB Nagar..."
+            color="#000000"
           />
           <PropertyPropsComponent
             propertyType="Owner Name"
             propertyText="Madina Aulia"
+            color="#000000"
           />
           <PropertyPropsComponent
             propertyType="Rented Price"
             propertyText="2,095"
+            color="#000000"
           />
           <PropertyPropsComponent
             propertyType="Applied Date"
             propertyText="28-08-2023"
+            color="#000000"
           />
           <PropertyPropsComponent
             propertyType="Status"
