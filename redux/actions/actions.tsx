@@ -11,6 +11,7 @@ export const AddPrivacyPolicy = "AddPrivacyPolicy"
 export const AddTermsAndConditions = "AddTermsAndConditions"
 export const AddPoliciesDraft = 'AddPoliciesDraft';
 export const AddTermsDraft = 'AddTermsDraft';
+export const LogedIn = "LogedIn"
 
 export interface Property {
   id: number;
@@ -41,6 +42,10 @@ export interface Customer{
   contact:string;
   status:string;
   image:any
+}
+
+export interface login{
+  isLogedIn:boolean
 }
 export interface FetchPropertiesAction {
   type: typeof FetchProperties;
@@ -96,6 +101,11 @@ export interface AddTermsDraftAction{
   type:typeof AddTermsDraft
   payload:Policy
 }
+
+export interface LoginAction{
+  type:typeof LogedIn
+  payload:login
+}
 export type RealEstateAppActionTypes =
   | FetchPropertiesAction
   | AddToFavoritesAction
@@ -109,6 +119,7 @@ export type RealEstateAppActionTypes =
   | AddTermsAndConditionsAction
   | AddPoliciesDraftAction
   | AddTermsDraftAction
+  | LoginAction
 
 export interface RealEstateAppState {
   properties: Property[];
@@ -119,5 +130,6 @@ export interface RealEstateAppState {
   policies:Policy[];
   terms:Policy[];
   policyDraft:Policy[];
-  termsDraft:Policy[]
+  termsDraft:Policy[];
+  isLogedIn:boolean
 }

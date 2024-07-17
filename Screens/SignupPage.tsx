@@ -68,7 +68,7 @@ const SignupPage: React.FC<Props> = ({navigation}) => {
 
   const ValidateOtp = (enteredOtp: string) => {
     if (otp === enteredOtp) {
-      navigation.navigate('HomePage');
+      navigation.navigate('SigninPage');
       setModalVisible(false);
     } else {
       Alert.alert('InValid otp');

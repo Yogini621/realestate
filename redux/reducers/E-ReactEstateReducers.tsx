@@ -13,6 +13,7 @@ import {
   AddTermsAndConditions,
   AddPoliciesDraft,
   AddTermsDraft,
+  LogedIn,
 } from '../actions/actions';
 
 const initialState: RealEstateAppState = {
@@ -24,7 +25,8 @@ const initialState: RealEstateAppState = {
   policies:[],
   terms:[],
   policyDraft:[],
-  termsDraft:[]
+  termsDraft:[],
+  isLogedIn:false
 };
 
 export const RealEstateAppReducers = (
@@ -95,6 +97,11 @@ export const RealEstateAppReducers = (
       return {
         ...state,
         termsDraft:[...state.termsDraft,action.payload]
+      }
+    case LogedIn:
+      return {
+        ...state,
+        isLogedIn:true
       } 
     default:
       return state;

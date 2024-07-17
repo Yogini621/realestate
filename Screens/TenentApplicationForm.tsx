@@ -28,6 +28,7 @@ import {SelectList} from 'react-native-dropdown-select-list';
 import Octicons from 'react-native-vector-icons/Octicons';
 import DateTimePicker, {DateType} from 'react-native-ui-datepicker';
 import dayjs from 'dayjs';
+
 interface Props {
   navigation: any;
   route: any;
@@ -57,7 +58,7 @@ const TenantApplicationForm: React.FC<Props> = ({navigation, route}) => {
   const [country, setCountry] = useState('');
   const [vehicleName, setVehicleName] = useState('');
   const [aadharNo, setAadharNo] = useState('');
-  const [modalVisible,setModalVisible] = useState(false)
+  const [modalVisible, setModalVisible] = useState(false);
 
   const validateStep1 = () => {
     if (name === '') {
@@ -85,13 +86,17 @@ const TenantApplicationForm: React.FC<Props> = ({navigation, route}) => {
       Alert.alert('Enter Address');
     } else if (city === '') {
       Alert.alert('Enter City');
-    } else if (state === '') {
-      Alert.alert('Enter State');
-    } else if (pincode === '') {
+    }
+    // else if (state === '') {
+    //   Alert.alert('Enter State');
+    // }
+    else if (pincode === '') {
       Alert.alert('Enter Pincode');
-    } else if (country === '') {
-      Alert.alert('Enter Country');
-    } else {
+    }
+    //  else if (country === '') {
+    //   Alert.alert('Enter Country');
+    // }
+    else {
       setStep2Visible(false);
       setStep3Visible(true);
     }
@@ -110,9 +115,10 @@ const TenantApplicationForm: React.FC<Props> = ({navigation, route}) => {
     if (aadharNo === '') {
       Alert.alert('Enter Aadhar Number');
     } else {
-      setModalVisible(true)
+      setModalVisible(true);
     }
   };
+
   const data = [
     {key: 'Canada', value: 'Canada'},
     {key: 'England', value: 'England'},
@@ -636,7 +642,9 @@ const TenantApplicationForm: React.FC<Props> = ({navigation, route}) => {
               <View style={styles.spaceView} />
             </View>
             <View style={styles.line} />
-            <TouchableOpacity style={styles.continueButton1} onPress={validateStep4}>
+            <TouchableOpacity
+              style={styles.continueButton1}
+              onPress={validateStep4}>
               <Feather name="file-text" color="white" size={20} />
               <Text style={styles.continueText1}>Apply and Submit</Text>
             </TouchableOpacity>
@@ -650,11 +658,21 @@ const TenantApplicationForm: React.FC<Props> = ({navigation, route}) => {
           <Text style={styles.termsText}>Privacy</Text>
         </View>
       </ScrollView>
-      {modalVisible &&(
+      {modalVisible && (
         <View>
-          <Modal>
-            <View>
-              <Text>Applied Successfully  </Text>
+          <Modal
+            visible={modalVisible}
+            animationType="slide"
+            transparent={true}>
+            <View style={styles.centeredModal}>
+              <View style={styles.modalView}>
+                <Text style={styles.applyText}>Applied Successfully </Text>
+                <TouchableOpacity
+                  style={styles.okButton}
+                  onPress={() => setModalVisible(false)}>
+                  <Text style={styles.okText}>Ok</Text>
+                </TouchableOpacity>
+              </View>
             </View>
           </Modal>
         </View>
@@ -1133,5 +1151,39 @@ const styles = StyleSheet.create({
   },
   icon: {
     marginLeft: responsiveWidth(1.8),
+  },
+  centeredModal: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  modalView: {
+    backgroundColor: 'white',
+    borderRadius: 10,
+    width: responsiveWidth(80),
+    height: responsiveHeight(20),
+    elevation: 1,
+    alignItems: 'center',
+  },
+  applyText: {
+    color: '#000000',
+    fontFamily: 'PlusJakartaSans m',
+    fontSize: responsiveFontSize(2),
+    marginTop: responsiveHeight(2),
+  },
+  okButton: {
+    backgroundColor: '#073762',
+    width: responsiveWidth(70),
+    alignSelf: 'center',
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingVertical: 12,
+    borderRadius: 10,
+    marginTop: responsiveHeight(2.8),
+  },
+  okText: {
+    color: 'white',
+    fontFamily: 'PlusJakartaSans m',
+    fontSize: responsiveFontSize(2),
   },
 });

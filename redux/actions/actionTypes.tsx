@@ -14,7 +14,9 @@ import {
   AddPrivacyPolicy,
   AddTermsAndConditions,
   AddPoliciesDraft,
-  AddTermsDraft
+  AddTermsDraft,
+  login,
+  LogedIn
 } from './actions';
 
 export const fetchProperties = (properties: Property[]) => ({
@@ -70,6 +72,11 @@ export const addPoliciesDraft = (policyDraft:Policy) => () => ({
 })
 
 export const addTermsDraft = (termsDraft:Policy) => ({
-  type:typeof AddTermsDraft,
+  type: AddTermsDraft,
   payload:termsDraft
+})
+
+export const logedIn = () => ({
+  type:LogedIn,
+  // payload:isLogedin
 })

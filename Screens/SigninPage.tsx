@@ -21,6 +21,9 @@ import * as Yup from 'yup';
 import {Formik} from 'formik';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import { useDispatch } from 'react-redux';
+import { logedIn } from '../redux/actions/actionTypes';
+import { Screen } from 'react-native-screens';
 
 interface UserDetails {
   email: string;
@@ -33,10 +36,11 @@ interface Props {
 const SigninPage: React.FC<Props> = ({navigation}) => {
   const [isconfirmPasswordsecure, setIsConfirmPasswordSecure] =
     useState<boolean>(false);
-
+const [isLogedIn,setIsLogedIn] = useState(false)
   const handleConfirmPAssword = () => {
     setIsConfirmPasswordSecure(!isconfirmPasswordsecure);
   };
+const dispatch = useDispatch()
 
   const ValidationSchema = Yup.object().shape({
     email: Yup.string()
@@ -64,7 +68,9 @@ const SigninPage: React.FC<Props> = ({navigation}) => {
       credentials.password === values.password
     ) {
       console.log(credentials, '>>>>>>>>>>>>>>>>>>>');
-      navigation.navigate('HomePage');
+      navigation.navigate('CustomerStackScreen', {
+        screen: 'HomePage',
+      });
       Alert.alert('login Sucess');
     } else {
       Alert.alert('Incorrect Credentials');
@@ -94,6 +100,7 @@ const SigninPage: React.FC<Props> = ({navigation}) => {
             validateOnBlur={true}
             onSubmit={(values: UserDetails) => {
               handleFormSubmit(values);
+              dispatch(logedIn())
             }}>
             {({
               handleChange,
@@ -147,12 +154,18 @@ const SigninPage: React.FC<Props> = ({navigation}) => {
                     </Text>
                   </TouchableOpacity>
                 </View>
-
-                <TouchableOpacity
+                <View style={styles.buttonView}>
+                  <TouchableOpacity
+                    style={styles.signupButton}
+                    onPress={() => handleSubmit()}>
+                    <Text style={styles.signUpButtonText}>Customer</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity
                   style={styles.signupButton}
                   onPress={() => handleSubmit()}>
-                  <Text style={styles.signUpButtonText}>Login</Text>
+                  <Text style={styles.signUpButtonText}>Seller</Text>
                 </TouchableOpacity>
+                </View>
               </View>
             )}
           </Formik>
@@ -217,7 +230,7 @@ const styles = StyleSheet.create({
   },
   signupButton: {
     backgroundColor: '#073762',
-    width: responsiveWidth(80),
+    width: responsiveWidth(34),
     height: responsiveHeight(4.8),
     borderRadius: 8,
     alignSelf: 'center',
@@ -289,4 +302,10 @@ const styles = StyleSheet.create({
   image: {
     marginTop: responsiveHeight(7),
   },
+  buttonView:{
+    flexDirection:'row',
+    justifyContent:'space-between',
+    width:responsiveWidth(80),
+    alignSelf:'center'
+  }
 });

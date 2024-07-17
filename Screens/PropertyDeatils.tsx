@@ -20,7 +20,7 @@ import {
   responsiveWidth,
 } from 'react-native-responsive-dimensions';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import EvilIcons from 'react-native-vector-icons/EvilIcons';
+import Feather from 'react-native-vector-icons/Feather';
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
 import Entypo from 'react-native-vector-icons/Entypo';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
@@ -47,11 +47,12 @@ const PropertyDetails: React.FC<Props> = ({navigation, route}) => {
   const Properties = useSelector(
     (state: RootState) => state.properties.properties,
   );
-  const dispatch = useDispatch();
-  const {item} = route.params;
   const [currentLocation, setCurrentLocation] = useState<LatLng | null>(null);
   const [locationError, setLocationError] = useState<string | null>(null);
   const [visible, setIsVisible] = useState(false);
+  const [imageVisible, setImageVisible] = useState(true);
+  const dispatch = useDispatch();
+  const {item} = route.params;
 
   const images = [
     {
@@ -68,6 +69,10 @@ const PropertyDetails: React.FC<Props> = ({navigation, route}) => {
   useEffect(() => {
     requestLocationPermission();
   }, []);
+
+  const toogleImage = () => {
+    setImageVisible(!imageVisible);
+  };
 
   const requestLocationPermission = async () => {
     if (Platform.OS === 'android') {
@@ -149,34 +154,38 @@ const PropertyDetails: React.FC<Props> = ({navigation, route}) => {
             <Text style={styles.backtoMapText}>Back to map</Text>
           </TouchableOpacity>
         </View>
-        <Text style={styles.stCrystalText}>{item.rooms} </Text>
-        <Text style={styles.addressText}>{item.location} </Text>
+        <Text style={styles.stCrystalText}>{item.rooms}</Text>
+        <Text style={styles.addressText}>{item.location}</Text>
         <View style={styles.buttonView}>
           <TouchableOpacity style={styles.shareButton}>
-            <EvilIcons name="share-google" size={24} color="#073762" />
+            <Feather name="share-2" size={18} color="#073762" />
             <Text style={styles.shareText}>Share</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.shareButton}
             onPress={() => handleAddToFavorites(item)}>
-            <AntDesign
+            <Entypo
               name={
                 favorites.find(favoriteItem => item.id === favoriteItem.id)
                   ? 'heart'
-                  : 'hearto'
+                  : 'heart-outlined'
               }
               color={
                 favorites.find(favoriteItem => item.id === favoriteItem.id)
                   ? 'red'
                   : '#073762'
               }
-              size={22}
+              size={18}
             />
             <Text style={styles.shareText}>Favorite</Text>
           </TouchableOpacity>
         </View>
         <View>
-          <Image source={item.image} style={styles.image} />
+          {imageVisible ? (
+            <Image source={item.image} style={styles.image} />
+          ) : (
+            <Image source={require('../Images/home3.png')} style={styles.img} />
+          )}
           <TouchableOpacity
             style={styles.viewAllPhotosButton}
             onPress={() => setIsVisible(true)}>
@@ -186,8 +195,16 @@ const PropertyDetails: React.FC<Props> = ({navigation, route}) => {
         </View>
 
         <View style={styles.imageView}>
-          <Image source={require('../Images/home2.png')} />
-          <Image source={require('../Images/home3.png')} />
+          <View style={imageVisible ? styles.imageBackground : null}>
+            <TouchableOpacity onPress={() => setImageVisible(true)}>
+              <Image source={item.image} style={styles.images} />
+            </TouchableOpacity>
+          </View>
+          <View style={!imageVisible ? styles.imageBackground : null}>
+            <TouchableOpacity onPress={() => setImageVisible(false)}>
+              <Image source={require('../Images/home3.png')} />
+            </TouchableOpacity>
+          </View>
         </View>
 
         <View>
@@ -410,7 +427,6 @@ const PropertyDetails: React.FC<Props> = ({navigation, route}) => {
                       <Text style={styles.popularText}>POPULAR</Text>
                     </View>
                   </View>
-
                   <View style={styles.favoriteIconView}>
                     <View>
                       <View style={styles.rupeeView}>
@@ -546,7 +562,7 @@ const styles = StyleSheet.create({
   shareText: {
     color: '#073762',
     fontFamily: 'PlusJakartaSans a',
-    fontSize: responsiveFontSize(1.7),
+    fontSize: responsiveFontSize(2),
     left: responsiveWidth(1.8),
   },
   image: {
@@ -1162,5 +1178,23 @@ const styles = StyleSheet.create({
   },
   similarListingsView: {
     backgroundColor: '#f7f7fd',
+  },
+  images: {
+    height: responsiveHeight(14),
+    width: responsiveWidth(44),
+    borderRadius: 10,
+  },
+  imageBackground: {
+    borderWidth: 1.6,
+    borderColor: '#073762',
+    borderRadius: 10,
+    padding: 4,
+  },
+  img: {
+    borderRadius: 8,
+    alignSelf: 'center',
+    marginTop: responsiveHeight(3.4),
+    width: responsiveWidth(94),
+    height:responsiveHeight(28)
   },
 });
