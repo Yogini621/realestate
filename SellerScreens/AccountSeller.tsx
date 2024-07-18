@@ -5,7 +5,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React from 'react';
+import React, { useState } from 'react';
 import {
   responsiveFontSize,
   responsiveHeight,
@@ -15,6 +15,7 @@ import {
 import {RadioButton} from 'react-native-paper';
 
 const AccountSeller = () => {
+  const [user,setUser] = useState('customer')
   return (
     <View style={styles.container}>
       <View style={styles.settingsView}>
@@ -42,7 +43,12 @@ const AccountSeller = () => {
           </Text>
 
           <View style={styles.radioButtonView}>
-            <RadioButton value="" color="#073762" />
+            <RadioButton
+              value="customer"
+              color="#073762"
+              onPress={() => setUser('customer')}
+              status={user === 'customer' ? 'checked' : 'unchecked'}
+            />
             <View style={styles.customerModeView}>
               <Text style={styles.customerMode}>Customer Mode</Text>
               <Text style={styles.customerModeText}>
@@ -145,9 +151,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     height: responsiveHeight(6),
-    alignSelf: 'flex-end',
     marginTop: responsiveHeight(2.8),
     marginBottom: responsiveHeight(2),
+    left:responsiveWidth(48),
   },
   deleteButtonText: {
     color: '#f06565',

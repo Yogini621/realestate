@@ -23,7 +23,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import { useDispatch } from 'react-redux';
 import { logedIn } from '../redux/actions/actionTypes';
-import { Screen } from 'react-native-screens';
 
 interface UserDetails {
   email: string;
@@ -33,10 +32,11 @@ interface UserDetails {
 interface Props {
   navigation: any;
 }
+
 const SigninPage: React.FC<Props> = ({navigation}) => {
   const [isconfirmPasswordsecure, setIsConfirmPasswordSecure] =
     useState<boolean>(false);
-const [isLogedIn,setIsLogedIn] = useState(false)
+  const [isLogedIn,setIsLogedIn] = useState(false)
   const handleConfirmPAssword = () => {
     setIsConfirmPasswordSecure(!isconfirmPasswordsecure);
   };
@@ -57,7 +57,7 @@ const dispatch = useDispatch()
       .required('Password required'),
   });
 
-  const handleFormSubmit = async (values: UserDetails) => {
+  const handleFormSubmit = async (values: UserDetails,role:string) => {
     const storedUser = await AsyncStorage.getItem('userData');
 
     if (storedUser !== null) var credentials = JSON.parse(storedUser);
@@ -67,11 +67,16 @@ const dispatch = useDispatch()
       credentials.email === values.email &&
       credentials.password === values.password
     ) {
+      dispatch(logedIn())
+      if(role === 'Customer'){
+        navigation.navigate('CustomerStackScreen');
+      }
+      else if(role === 'Seller'){
+        navigation.navigate('SellerStackScreen');
+      }
       console.log(credentials, '>>>>>>>>>>>>>>>>>>>');
-      navigation.navigate('CustomerStackScreen', {
-        screen: 'HomePage',
-      });
-      Alert.alert('login Sucess');
+      // navigation.navigate('HomePage');
+      // Alert.alert('login Sucess');
     } else {
       Alert.alert('Incorrect Credentials');
     }
@@ -98,10 +103,7 @@ const dispatch = useDispatch()
             validationSchema={ValidationSchema}
             validateOnChange={true}
             validateOnBlur={true}
-            onSubmit={(values: UserDetails) => {
-              handleFormSubmit(values);
-              dispatch(logedIn())
-            }}>
+            onSubmit={(values: UserDetails) => {}}>
             {({
               handleChange,
               handleBlur,
@@ -157,12 +159,12 @@ const dispatch = useDispatch()
                 <View style={styles.buttonView}>
                   <TouchableOpacity
                     style={styles.signupButton}
-                    onPress={() => handleSubmit()}>
+                    onPress={() => handleFormSubmit(values,'Customer')}>
                     <Text style={styles.signUpButtonText}>Customer</Text>
                   </TouchableOpacity>
                   <TouchableOpacity
                   style={styles.signupButton}
-                  onPress={() => handleSubmit()}>
+                  onPress={() => handleFormSubmit(values,'Seller')}>
                   <Text style={styles.signUpButtonText}>Seller</Text>
                 </TouchableOpacity>
                 </View>
@@ -172,7 +174,7 @@ const dispatch = useDispatch()
           <View style={styles.alreadyHaveAccount}>
             <Text style={styles.alreadyText}>Don't have an account?</Text>
             <TouchableOpacity onPress={() => navigation.navigate('SignupPage')}>
-              <Text style={styles.loginText}> Sign up for free</Text>
+              <Text style={styles.loginText}>Sign up for free</Text>
             </TouchableOpacity>
           </View>
           <View style={styles.image}>

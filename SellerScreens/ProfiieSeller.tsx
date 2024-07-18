@@ -37,7 +37,8 @@ const ProfileSeller: React.FC<Props> = ({navigation}) => {
       <ScrollView>
         <View style={styles.headerView}>
           <View style={styles.logoView}>
-            <TouchableOpacity onPress={() => navigation.navigate('MenuPage')}>
+            <TouchableOpacity
+              onPress={() => navigation.navigate('MenuPageSeller')}>
               <FontAwesome5 name="grip-lines" size={20} color="#073762" />
             </TouchableOpacity>
             <TouchableOpacity>

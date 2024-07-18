@@ -9,8 +9,7 @@ import {
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {createDrawerNavigator} from '@react-navigation/drawer';
-import Profile from './Profile';
-import {Divider, RadioButton} from 'react-native-paper';
+import {Divider} from 'react-native-paper';
 import {
   responsiveFontSize,
   responsiveHeight,
@@ -19,11 +18,7 @@ import {
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Entypo from 'react-native-vector-icons/Entypo';
-import AntDesign from 'react-native-vector-icons/AntDesign';
-import Rent from './Rent';
-import Buy from './Buy';
-import Faqs from './Faqs';
-import Sell from './Sell';
+import Profile from '../Screens/Profile';
 
 const Drawer = createDrawerNavigator();
 
@@ -31,7 +26,7 @@ interface Props {
   navigation: any;
 }
 
-const MenuPage: React.FC<Props> = ({navigation}) => {
+const MenuPageSeller: React.FC<Props> = ({navigation}) => {
   const [name, setName] = useState('');
   const [contact, setContact] = useState('');
   const [email, setEmail] = useState('');
@@ -42,37 +37,19 @@ const MenuPage: React.FC<Props> = ({navigation}) => {
   const [modalVisible, setModalVisible] = useState(false);
   const [pendingUserType, setPendingUserType] = useState<string | null>(null);
 
-  const CustomerComponentData = [
+  const SellerComponentData = [
+    {id: 1, option: 'Property', icon: 'compass', navigatePage: 'Property'},
+    {id: 2, option: 'Tenants', icon: 'users', navigatePage: 'Tenants'},
+    {id: 3, option: 'Sales', icon: 'bar-graph', navigatePage: 'Sales'},
+    {id: 4, option: 'Messages', icon: 'message', navigatePage: 'Messages'},
+    {id: 5, option: 'Profile', icon: 'user', navigatePage: 'ProfileSeller'},
     {
-      id: 1,
-      option: 'Rent',
-      icon: require('../Images/Layer.png'),
-      navigatePage: 'Rent',
+      id: 6,
+      option: 'Get Help',
+      icon: 'help-with-circle',
+      navigatePage: 'GetHelp',
     },
-    {
-      id: 2,
-      option: 'Buy',
-      icon: require('../Images/Photo.png'),
-      navigatePage: 'Buy',
-    },
-    {
-      id: 3,
-      option: 'Sell',
-      icon: require('../Images/BuyHome.png'),
-      navigatePage: 'Sell',
-    },
-    {
-      id: 4,
-      option: 'FAQ`s',
-      icon: require('../Images/FAQ.png'),
-      navigatePage: 'Faqs',
-    },
-    {
-      id: 5,
-      option: 'Profile',
-      icon: require('../Images/Initial.png'),
-      navigatePage: 'Profile',
-    },
+    {id: 7, option: 'Settings', icon: 'cog', navigatePage: 'SettingsSeller'},
   ];
 
   useEffect(() => {
@@ -94,24 +71,11 @@ const MenuPage: React.FC<Props> = ({navigation}) => {
     navigation.navigate(navigatePage);
   };
 
-  // const switchUserType = () => {
-  //   if (pendingUserType) {
-  //     setUser(pendingUserType);
-  //     setModalVisible(false)
-  //     setPendingUserType(null)
-  //   }
-  // };
-
-  // const handleUserTypeChange = (newUserType:string) => {
-  //   setPendingUserType(newUserType)
-  //   setModalVisible(true)
-  // }
-
   return (
     <Drawer.Navigator
-      // defaultStatus="open"
-      initialRouteName="HomePage"
-      drawerContent={(focused) => (
+      defaultStatus="open"
+      initialRouteName="SellerDashBoard"
+      drawerContent={focused => (
         <View style={styles.drawerContent}>
           <View style={styles.header}>
             <View style={styles.userDirectionView}>
@@ -129,7 +93,7 @@ const MenuPage: React.FC<Props> = ({navigation}) => {
           <Divider style={styles.seperator} />
           <View style={styles.userView}>
             <View>
-              {CustomerComponentData.map(item => (
+              {SellerComponentData.map(item => (
                 <TouchableOpacity
                   key={item.id}
                   style={
@@ -138,7 +102,11 @@ const MenuPage: React.FC<Props> = ({navigation}) => {
                       : styles.componentButton
                   }
                   onPress={() => handleOnPress(item.id, item.navigatePage)}>
-                  <Image source={item.icon} />
+                  <Entypo
+                    name={item.icon}
+                    size={20}
+                    color={sselectId === item.id ? 'white' : '#718096'}
+                  />
                   <Text
                     style={
                       sselectId === item.id
@@ -148,41 +116,19 @@ const MenuPage: React.FC<Props> = ({navigation}) => {
                     {item.option}
                   </Text>
                 </TouchableOpacity>
-               ))} 
+              ))}
             </View>
-          </View>
-        </View>
+            </View>
+            </View>
+         
       )}>
-      <Drawer.Screen
-        name="Rent"
-        component={Rent}
-        options={{headerShown: false}}
-      />
-      <Drawer.Screen
-        name="Buy"
-        component={Buy}
-        options={{headerShown: false}}
-      />  
-      <Drawer.Screen
-        name="Sell"
-        component={Sell}
-        options={{headerShown: false}}
-      />
-      <Drawer.Screen
-        name="Faqs"
-        component={Faqs}
-        options={{headerShown: false}}
-      />
-      <Drawer.Screen
-        name="Profile"
-        component={Profile}
-        options={{headerShown: false}}
-      />
-    </Drawer.Navigator>
+<Drawer.Screen name='Profile' component={Profile} />
+</Drawer.Navigator>
+     
   );
 };
 
-export default MenuPage;
+export default MenuPageSeller;
 
 const styles = StyleSheet.create({
   drawerContent: {},

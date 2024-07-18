@@ -12,6 +12,9 @@ export const AddTermsAndConditions = "AddTermsAndConditions"
 export const AddPoliciesDraft = 'AddPoliciesDraft';
 export const AddTermsDraft = 'AddTermsDraft';
 export const LogedIn = "LogedIn"
+export const LogedOut = 'LogedOut';
+export const AddProperty = "AddProperty"
+export const DeleteProperty = 'DeleteProperty';
 
 export interface Property {
   id: number;
@@ -21,6 +24,15 @@ export interface Property {
   rent: string;
 }
 
+export interface PropertyType{
+  id:number;
+  property:string;
+  date:string;
+  paymentType:string;
+  amount:string;
+  email:string;
+  status:string
+}
 export interface Address{
   id:number;
   streetNo:string;
@@ -46,6 +58,10 @@ export interface Customer{
 
 export interface login{
   isLogedIn:boolean
+}
+
+export interface logout{
+  isLogedout:boolean
 }
 export interface FetchPropertiesAction {
   type: typeof FetchProperties;
@@ -106,6 +122,21 @@ export interface LoginAction{
   type:typeof LogedIn
   payload:login
 }
+
+export interface LogedOutAction{
+  type:typeof LogedOut
+  payload:logout
+}
+
+export interface AddPropertyAction{
+  type:typeof AddProperty
+  payload:PropertyType
+}
+
+export interface DeletePropertyAction{
+  type:typeof DeleteProperty
+  payload:number
+}
 export type RealEstateAppActionTypes =
   | FetchPropertiesAction
   | AddToFavoritesAction
@@ -120,6 +151,9 @@ export type RealEstateAppActionTypes =
   | AddPoliciesDraftAction
   | AddTermsDraftAction
   | LoginAction
+  | LogedOutAction
+  | AddPropertyAction
+  | DeletePropertyAction
 
 export interface RealEstateAppState {
   properties: Property[];
@@ -131,5 +165,6 @@ export interface RealEstateAppState {
   terms:Policy[];
   policyDraft:Policy[];
   termsDraft:Policy[];
-  isLogedIn:boolean
+  isLogedIn:boolean;
+  property:PropertyType[]
 }

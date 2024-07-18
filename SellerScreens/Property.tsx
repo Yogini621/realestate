@@ -38,7 +38,8 @@ const Property: React.FC<Props> = ({navigation}) => {
       <ScrollView>
         <View style={styles.headerView}>
           <View style={styles.logoView}>
-            <TouchableOpacity onPress={() => navigation.navigate('MenuPage')}>
+            <TouchableOpacity
+              onPress={() => navigation.navigate('MenuPageSeller')}>
               <FontAwesome5 name="grip-lines" size={20} color="#073762" />
             </TouchableOpacity>
             <View style={styles.iconView}>
@@ -49,7 +50,8 @@ const Property: React.FC<Props> = ({navigation}) => {
                   color="#073762"
                 />
               </TouchableOpacity>
-              <TouchableOpacity onPress={() => navigation.navigate('MenuPage')}>
+              <TouchableOpacity
+                onPress={() => navigation.navigate('MenuPageSeller')}>
                 <FontAwesome5 name="grip-lines" size={20} color="#073762" />
               </TouchableOpacity>
             </View>
@@ -73,7 +75,7 @@ const Property: React.FC<Props> = ({navigation}) => {
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.plusIconButton}
-              onPress={() => navigation.navigate('Sell')}>
+              onPress={() => navigation.navigate('SellerStackScreen',{screen:'SellerSell'})}>
               <Entypo name="plus" color="white" size={16} />
             </TouchableOpacity>
             <TouchableOpacity style={styles.sortIconButton}>
@@ -87,7 +89,7 @@ const Property: React.FC<Props> = ({navigation}) => {
         </View>
         <View>
           {data.map(item => (
-            <View style={styles.itemView}>
+            <View style={styles.itemView} key={item.id}>
               <View style={styles.directionView}>
                 <Image source={item.image} style={styles.image} />
                 <View style={styles.descriptionView}>
@@ -112,8 +114,13 @@ const Property: React.FC<Props> = ({navigation}) => {
                         style={styles.icon}
                         color="#073762"
                       />
-                      <Text style={[styles.numberText,{marginLeft:responsiveWidth(2)}
-                      ]}>6x8 m²</Text>
+                      <Text
+                        style={[
+                          styles.numberText,
+                          {marginLeft: responsiveWidth(2)},
+                        ]}>
+                        6x8 m²
+                      </Text>
                     </View>
                   </View>
                   <View style={styles.rentView}>

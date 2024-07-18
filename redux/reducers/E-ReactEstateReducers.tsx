@@ -14,6 +14,9 @@ import {
   AddPoliciesDraft,
   AddTermsDraft,
   LogedIn,
+  LogedOut,
+  AddProperty,
+  DeleteProperty,
 } from '../actions/actions';
 
 const initialState: RealEstateAppState = {
@@ -26,7 +29,8 @@ const initialState: RealEstateAppState = {
   terms:[],
   policyDraft:[],
   termsDraft:[],
-  isLogedIn:false
+  isLogedIn:false,
+  property:[]
 };
 
 export const RealEstateAppReducers = (
@@ -102,7 +106,23 @@ export const RealEstateAppReducers = (
       return {
         ...state,
         isLogedIn:true
+      }
+    case LogedOut:
+      return {
+        ...state,
+        isLogedIn:false
       } 
+    case AddProperty:
+      return {
+        ...state,
+        property:[...state.property,action.payload]
+      }
+    case DeleteProperty:
+      const updatedProperties = state.property.filter(item => item.id !== action.payload)
+      return {
+        ...state,
+        property:updatedProperties
+      }
     default:
       return state;
   }

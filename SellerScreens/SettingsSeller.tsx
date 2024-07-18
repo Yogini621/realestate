@@ -19,6 +19,7 @@ import {
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import Account from './AccountSeller';
 import Notifications from './NotificationsSeller';
+import AccountSeller from './AccountSeller';
 
 interface Props {
   navigation: any;
@@ -33,7 +34,7 @@ const SettingsSeller: React.FC<Props> = ({navigation}) => {
       <ScrollView>
         <View style={styles.headerView}>
           <View style={styles.logoView}>
-            <TouchableOpacity onPress={() => navigation.navigate('MenuPage')}>
+            <TouchableOpacity onPress={() => navigation.navigate('MenuPageSeller')}>
               <FontAwesome5 name="grip-lines" size={20} color="#073762" />
             </TouchableOpacity>
             <View style={styles.iconView}>
@@ -61,7 +62,7 @@ const SettingsSeller: React.FC<Props> = ({navigation}) => {
           }}>
           <Tab.Screen
             name="Account"
-            component={Account}
+            component={AccountSeller}
             options={{
               tabBarIndicatorStyle: {
                 borderWidth: 1,

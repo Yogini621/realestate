@@ -1,4 +1,5 @@
 import {
+  Image,
   SafeAreaView,
   ScrollView,
   StatusBar,
@@ -17,7 +18,7 @@ import {
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Entypo from 'react-native-vector-icons/Entypo';
-
+import Ionicons from 'react-native-vector-icons/Ionicons'
 interface Props {
   navigation: any;
 }
@@ -29,12 +30,22 @@ const GetHelp: React.FC<Props> = ({navigation}) => {
       <ScrollView>
         <View style={styles.headerView}>
           <View style={styles.logoView}>
-            <TouchableOpacity onPress={() => navigation.navigate('MenuPage')}>
+            <TouchableOpacity
+              onPress={() => navigation.navigate('MenuPageSeller')}>
               <FontAwesome5 name="grip-lines" size={20} color="#073762" />
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigation.navigate('MenuPage')}>
-              <FontAwesome5 name="grip-lines" size={20} color="#073762" />
+             <View style={styles.iconView}>
+              <TouchableOpacity>
+                <Ionicons
+                  name="notifications-outline"
+                  size={20}
+                  color="#073762"
+                />
+              </TouchableOpacity>
+            <TouchableOpacity>
+              <Image source={require('../Images/user.png')} />
             </TouchableOpacity>
+          </View>
           </View>
         </View>
         <Text style={styles.typeYourQuestionText}>
@@ -150,6 +161,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginHorizontal: responsiveWidth(4),
+    alignItems: 'center',
+  },
+  iconView: {
+    width: responsiveWidth(20),
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     alignItems: 'center',
   },
   typeYourQuestionText: {

@@ -27,6 +27,8 @@ import OptionComponent from './OptionComponent';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import PropertyPropsComponent from './PropertyPropsComponent';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useDispatch } from 'react-redux';
+import { logedOut } from '../redux/actions/actionTypes';
 
 interface Props {
   navigation: any;
@@ -45,6 +47,7 @@ const Profile: React.FC<Props> = ({navigation}) => {
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [clicked, setClicked] = useState(0);
+  const dispatch = useDispatch()
 
   const profileComponentData = [
     {id: 1, option: 'My requests', navigatePage: 'Profile'},
@@ -124,8 +127,9 @@ const Profile: React.FC<Props> = ({navigation}) => {
     if (storedUserDetails !== null) {
       let userDetails = JSON.parse(storedUserDetails);
     }
-    const removeData = await AsyncStorage.removeItem('userData');
-    console.log(removeData, 'removedata');
+    // const removeData = await AsyncStorage.removeItem('userData');
+    // console.log(removeData, 'removedata');
+    dispatch(logedOut())
     navigation.navigate('SigninPage');
   };
 

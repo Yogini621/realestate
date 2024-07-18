@@ -55,8 +55,8 @@ const PreviewProperty: React.FC<Props> = ({navigation, route}) => {
               <TouchableOpacity>
                 <Ionicons name="notifications-outline" size={20} />
               </TouchableOpacity>
-              <TouchableOpacity onPress={() => navigation.navigate('MenuPage')}>
-                <FontAwesome5 name="grip-lines" size={20} />
+              <TouchableOpacity>
+                <Image source={require('../Images/user.png')} />
               </TouchableOpacity>
             </View>
           </View>
@@ -123,7 +123,7 @@ const PreviewProperty: React.FC<Props> = ({navigation, route}) => {
                 style={styles.icon}
                 color="#073762"
               />
-              <Text style={[styles.numberText,{left: responsiveWidth(4.8)}]}>
+              <Text style={[styles.numberText, {left: responsiveWidth(4.8)}]}>
                 6x8 m²
               </Text>
             </View>
@@ -189,7 +189,7 @@ const PreviewProperty: React.FC<Props> = ({navigation, route}) => {
             <TouchableOpacity
               style={styles.applyButton}
               onPress={() =>
-                navigation.navigate('TenentApplicationForm',{item})
+                navigation.navigate('TenentApplicationForm', {item})
               }>
               <Ionicons name="document-text-outline" color="white" size={22} />
               <Text style={styles.applyText}>Apply now</Text>

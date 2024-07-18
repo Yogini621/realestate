@@ -1,4 +1,5 @@
 import {
+  Alert,
   Image,
   PermissionsAndroid,
   Platform,
@@ -47,6 +48,24 @@ const RentProperty: React.FC<Props> = ({navigation}) => {
   const [image, setImgage] = useState<string[]>([]);
   const [selected, setSelected] = React.useState('');
   const [categories, setCategories] = React.useState([]);
+  const [city,setCity] = useState('')
+  const [apartment,setApartment] = useState('')
+  const [locality,setLocality] = useState('')
+  const [state,setState] = useState('')
+  const [country,setCountry] = useState('')
+  const [pincode,setPincode] = useState('')
+  const [property,setProperty] = useState('')
+  const [bedrooms,setBedrooms] = useState('')
+  const [bathRooms,setBathRooms] = useState('')
+  const [squarefeet,setSquareFeet] = useState('')
+  const [description,setDescription] = useState('')
+  const [leaseDuration,setLeaseDuration] = useState('')
+  const [heating,setHeating] = useState('')
+  const [colling,setCooling] = useState('')
+  const [repairQuality,setRepairQuality] = useState('')
+  const [parkingArea,setParkingArea] = useState('')
+  const [laundry,setLaundry] = useState('')
+  const [rent,setRent] = useState('')
 
   const openStep3 = () => {
     setStep2Visible(false);
@@ -58,13 +77,123 @@ const RentProperty: React.FC<Props> = ({navigation}) => {
     setStep4Visible(true);
   };
 
-  const data = [
-    {key: 'Canada', value: 'Canada'},
-    {key: 'England', value: 'England'},
-    {key: 'Pakistan', value: 'Pakistan'},
-    {key: 'India', value: 'India'},
-    {key: 'NewZealand', value: 'NewZealand'},
+  const City = [
+    {key: 'Hyderabad', value: 'Hyderabad'},
+    {key: 'Guntur', value: 'Guntur'},
+    {key: 'Kurnool', value: 'Kurnool'},
+    {key: 'Nellore', value: 'Nellore'},
+    {key: 'Vizag', value: 'Vizag'},
   ];
+
+  const coolingType = [
+    {key: 'Air Conditioner', value: 'Air Conditioner'},
+    {key: 'Fan', value: 'Fan'},
+    {key: 'Cooler', value: 'Cooler'},
+  ];
+
+  const heatingType = [
+    {key: 'Forced Air', value: 'Forced Air'},
+    {key: 'geyser', value: 'geyser'},
+  ];
+
+  const ParkingArea = [
+    {key: 'Yes', value: 'Yes'},
+    {key: 'No', value: 'No'},
+  ];
+
+  const RepairQuality = [
+    {key: 'Yes', value: 'Yes'},
+    {key: 'No', value: 'No'},
+  ];
+
+  const BedRooms = [
+    {key: '2', value: '2'},
+    {key: '3', value: '3'},
+    {key: '4', value: '4'},
+  ];
+
+  const BathRooms = [
+    {key: '2', value: '2'},
+    {key: '3', value: '3'},
+    {key: '4', value: '4'},
+  ];
+
+  const LeaseDuration = [
+    {key: '2', value: '2'},
+    {key: '3', value: '3'},
+    {key: '4', value: '4'},
+  ];
+
+  const PropertyType = [
+    {key: 'Home', value: 'Home'},
+    {key: 'Villa', value: 'Villa'},
+  ];
+
+  const Laundry = [
+    {key: 'Yes', value: 'Yes'},
+    {key: 'No', value: 'No'},
+  ];
+
+    const validateStep1 = () => {
+      if (city === '') {
+        Alert.alert('Enter City');
+      } else if (apartment === '') {
+        Alert.alert('Enter Apartment');
+      } else if (locality === '') {
+        Alert.alert('Enter locality');
+      } else if (state === '') {
+        Alert.alert('Select State');
+      } else if (country === '') {
+        Alert.alert('Select Country');
+      } else if (pincode === '') {
+        Alert.alert('Enter Pincode');
+      }else {
+         setStep2Visible(false);
+         setStep3Visible(true);
+      }
+    };
+
+    const validateStep2 = () => {
+      if (property === '') {
+        Alert.alert('Select Property');
+      } else if (bedrooms === '') {
+        Alert.alert('Select How Many Bedrooms ');
+      }
+      else if (bathRooms === '') {
+        Alert.alert('Select How Many Bathrooms ');
+      }
+      else if (squarefeet === '') {
+        Alert.alert('Enter Square Feet');
+      }
+       else if (description === '') {
+        Alert.alert('Enter Description');
+      }
+      else if(leaseDuration === ""){
+        Alert.alert("Select Lease Duration")
+      }
+      else if(heating === ""){
+        Alert.alert("Select Heat Type")
+      }
+      else if(colling === ""){
+        Alert.alert("Select Cooling Type")
+      }
+      else if(repairQuality === ""){
+        Alert.alert("Select Repair Quality")
+      }
+      else if(parkingArea === ""){
+        Alert.alert("Select Parking Area")
+      }
+      else if(laundry === ""){
+        Alert.alert("Select Laundry")
+      }
+      else if(rent === ""){
+        Alert.alert("Enter rent")
+      }
+      else {
+        setStep3Visible(false);
+        setStep4Visible(true);
+      }
+    };
 
   const requestLocationPermission = async () => {
     if (Platform.OS === 'android') {
@@ -132,7 +261,8 @@ const RentProperty: React.FC<Props> = ({navigation}) => {
       <ScrollView>
         <View style={styles.headerView}>
           <View style={styles.logoView}>
-            <TouchableOpacity onPress={() => navigation.navigate('MenuPage')}>
+            <TouchableOpacity
+              onPress={() => navigation.navigate('MenuPageSeller')}>
               <FontAwesome5 name="grip-lines" size={20} color="#073762" />
             </TouchableOpacity>
             <TouchableOpacity onPress={() => navigation.navigate('MenuPage')}>
@@ -283,41 +413,52 @@ const RentProperty: React.FC<Props> = ({navigation}) => {
               <Text style={styles.locatedText1}>Listing Information</Text>
               <Text style={styles.labelText}>City*</Text>
               <SelectList
-                setSelected={setSelected}
-                data={data}
+                setSelected={setCity}
+                data={City}
                 boxStyles={styles.input}
                 placeholder="Select your city"
                 fontFamily="PlusJakartaSans j"
+                save="value"
               />
               <Text style={styles.labelText}>Apartment / Society</Text>
               <TextInput
                 placeholder="Enter your apartment/society"
                 style={styles.input}
                 placeholderTextColor="#00092980"
+                onChangeText={setApartment}
+                value={apartment}
               />
               <Text style={styles.labelText}>Locality</Text>
               <TextInput
                 placeholder="Enter your locality"
                 placeholderTextColor="#00092980"
                 style={styles.input}
+                onChangeText={setLocality}
+                value={locality}
               />
               <Text style={styles.labelText}>State</Text>
               <TextInput
                 placeholder="Enter State"
                 placeholderTextColor="#00092980"
                 style={styles.input}
+                onChangeText={setState}
+                value={state}
               />
               <Text style={styles.labelText}>Country</Text>
               <TextInput
                 placeholder="Enter Country"
                 placeholderTextColor="#00092980"
                 style={styles.input}
+                onChangeText={setCountry}
+                value={country}
               />
               <Text style={styles.labelText}>Pincode</Text>
               <TextInput
                 placeholder="Enter Pincode"
                 placeholderTextColor="#00092980"
                 style={styles.input}
+                onChangeText={setPincode}
+                value={pincode}
               />
               <View style={styles.residentialAndCommercialButtonView}>
                 <TouchableOpacity style={styles.saveAsDraftButton}>
@@ -325,7 +466,7 @@ const RentProperty: React.FC<Props> = ({navigation}) => {
                 </TouchableOpacity>
                 <TouchableOpacity
                   style={styles.nextStepButton}
-                  onPress={openStep3}>
+                  onPress={validateStep1}>
                   <Text style={styles.nextStepText}>Next step</Text>
                   <MaterialIcons
                     name="arrow-right-alt"
@@ -409,32 +550,36 @@ const RentProperty: React.FC<Props> = ({navigation}) => {
               <Text style={styles.locatedText1}>Listing Information</Text>
               <Text style={styles.labelText}>Property Type*</Text>
               <SelectList
-                setSelected={setSelected}
-                data={data}
+                setSelected={setProperty}
+                data={PropertyType}
                 boxStyles={styles.input}
                 placeholder="Select type"
               />
               <Text style={styles.labelText}>Bedrooms</Text>
               <SelectList
-                setSelected={setSelected}
-                data={data}
+                setSelected={setBedrooms}
+                data={BedRooms}
                 boxStyles={styles.input}
                 fontFamily="PlusJakartaSans j"
                 placeholder="How Many beds"
+                save="value"
               />
               <Text style={styles.labelText}>Baths</Text>
               <SelectList
-                setSelected={setSelected}
-                data={data}
+                setSelected={setBathRooms}
+                data={BathRooms}
                 boxStyles={styles.input}
                 fontFamily="PlusJakartaSans j"
                 placeholder="How Many baths"
+                save="value"
               />
               <Text style={styles.labelText}>Square Feet</Text>
               <TextInput
                 placeholder="Sq ft"
                 placeholderTextColor="#00092980"
                 style={styles.input}
+                onChangeText={setSquareFeet}
+                value={squarefeet}
               />
               <Text style={styles.labelText}>Select Amenitites</Text>
               <View style={styles.amenititesView}>
@@ -451,54 +596,62 @@ const RentProperty: React.FC<Props> = ({navigation}) => {
                 placeholder="Tell us about your home here"
                 placeholderTextColor="#00092980"
                 style={styles.input}
+                onChangeText={setDescription}
+                value={description}
               />
               <Text style={styles.labelText}>Lease Duration</Text>
               <SelectList
-                setSelected={setSelected}
-                data={data}
+                setSelected={setLeaseDuration}
+                data={LeaseDuration}
                 boxStyles={styles.input}
                 fontFamily="PlusJakartaSans j"
                 placeholder="Select duration"
+                save="value"
               />
               <Text style={styles.labelText}>Heating</Text>
               <SelectList
-                setSelected={setSelected}
-                data={data}
+                setSelected={setHeating}
+                data={heatingType}
                 boxStyles={styles.input}
                 fontFamily="PlusJakartaSans j"
                 placeholder="Select heating"
+                save="value"
               />
               <Text style={styles.labelText}>Cooling</Text>
               <SelectList
-                setSelected={setSelected}
-                data={data}
+                setSelected={setCooling}
+                data={coolingType}
                 boxStyles={styles.input}
                 fontFamily="PlusJakartaSans j"
                 placeholder="Select Cooling"
+                save="value"
               />
               <Text style={styles.labelText}>Repair Quality</Text>
               <SelectList
-                setSelected={setSelected}
-                data={data}
+                setSelected={setRepairQuality}
+                data={RepairQuality}
                 boxStyles={styles.input}
                 fontFamily="PlusJakartaSans j"
                 placeholder="Select Repair Quality"
+                save="value"
               />
               <Text style={styles.labelText}>Parking Area</Text>
               <SelectList
-                setSelected={setSelected}
-                data={data}
+                setSelected={setParkingArea}
+                data={ParkingArea}
                 boxStyles={styles.input}
                 fontFamily="PlusJakartaSans j"
                 placeholder="Select parking Area Yes or No"
+                save="value"
               />
               <Text style={styles.labelText}>Laundry</Text>
               <SelectList
-                setSelected={setSelected}
-                data={data}
+                setSelected={setLaundry}
+                data={Laundry}
                 boxStyles={styles.input}
                 fontFamily="PlusJakartaSans j"
                 placeholder="Select Laundry"
+                save="value"
               />
               <Text style={styles.labelText}>Rent</Text>
               <View style={styles.inputView}>
@@ -506,6 +659,8 @@ const RentProperty: React.FC<Props> = ({navigation}) => {
                   placeholder="Enter your rented price"
                   placeholderTextColor="#00092980"
                   style={styles.input1}
+                  onChangeText={setRent}
+                  value={rent}
                 />
                 <TouchableOpacity>
                   <Entypo name="chevron-small-down" color="black" size={16} />
@@ -517,7 +672,7 @@ const RentProperty: React.FC<Props> = ({navigation}) => {
                 </TouchableOpacity>
                 <TouchableOpacity
                   style={styles.nextStepButton}
-                  onPress={openStep4}>
+                  onPress={validateStep2}>
                   <Text style={styles.nextStepText}>Next step</Text>
                   <MaterialIcons
                     name="arrow-right-alt"

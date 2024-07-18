@@ -22,6 +22,7 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import Fontisto from 'react-native-vector-icons/Fontisto';
 import {RadioButton} from 'react-native-paper';
 import OptionSelect from '../SellerScreens/OptionSelect';
+import Ionicons from 'react-native-vector-icons/Ionicons'
 
 interface Props {
   navigation: any;
@@ -44,9 +45,18 @@ const Sell: React.FC<Props> = ({navigation}) => {
             <TouchableOpacity onPress={() => navigation.navigate('MenuPage')}>
               <FontAwesome5 name="grip-lines" size={20} color="#073762" />
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigation.navigate('MenuPage')}>
-              <FontAwesome5 name="grip-lines" size={20} color="#073762" />
-            </TouchableOpacity>
+            <View style={styles.iconView}>
+              <TouchableOpacity>
+                <Ionicons
+                  name="notifications-outline"
+                  size={20}
+                  color="#073762"
+                />
+                </TouchableOpacity>
+              <TouchableOpacity>
+                <Image source={require('../Images/user.png')} />
+              </TouchableOpacity>
+            </View>
           </View>
         </View>
         <View style={styles.stepView}>
@@ -58,7 +68,7 @@ const Sell: React.FC<Props> = ({navigation}) => {
             <Entypo name="home" size={24} color="#073762" />
           </View>
           <View style={styles.sellTextView}>
-            <TouchableOpacity onPress={() => navigation.navigate("MenuPage")}>
+            <TouchableOpacity>
               <Text style={styles.sellText}>Sell</Text>
               <Text style={styles.lookStraightText}>
                 Look Straight in Your Cam For 30 Seconds
@@ -91,7 +101,8 @@ const Sell: React.FC<Props> = ({navigation}) => {
             <View style={styles.sellTextView1}>
               <Text style={styles.sellText1}>
                 Sell or Rent Your Property
-                <Text style={styles.fasterText}>{" "}Faster{" "}</Text>with E-Property.com
+                <Text style={styles.fasterText}> Faster </Text>with
+                E-Property.com
               </Text>
             </View>
             <View style={styles.advertiseView}>
@@ -177,6 +188,12 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     marginHorizontal: responsiveWidth(4),
     alignItems: 'center',
+  },
+  iconView: {
+    width: responsiveWidth(20),
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems:'center'
   },
   stepView: {
     flexDirection: 'row',

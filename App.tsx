@@ -1,5 +1,5 @@
 import 'react-native-gesture-handler';
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import HomePage from './Screens/HomePage';
@@ -33,7 +33,6 @@ import PropertyDetails from './Screens/PropertyDeatils';
 import NotificatonList from './Screens/NotificatonList';
 import SellerDashBoard from './SellerScreens/SellerDashBoard';
 import Property from './SellerScreens/Property';
-import AddProperty from './SellerScreens/AddProperty';
 import RentProperty from './SellerScreens/RentProperty';
 import PreviewProperty from './SellerScreens/PreviewProperty';
 import Sales from './SellerScreens/Sales';
@@ -58,18 +57,17 @@ import PropertyFullView from './AdminScreens/PropertyFullView';
 import TermsDrafts from './AdminScreens/TermsDrafts';
 import PolicyDraft from './AdminScreens/PolicyDraft';
 import Tenants from './SellerScreens/Tenants';
-import { View } from 'react-native';
-import { RootState } from './redux/reducers';
-import { AuthStackScreen } from './Screens/CustomerStack';
-
-
-interface Props{
-  navigation:any;
+import {View} from 'react-native';
+import {RootState} from './redux/reducers';
+import MenuPageSeller from './SellerScreens/MenuPageSeller';
+import SellerSell from './SellerScreens/SellerSell';
+interface Props {
+  navigation: any;
 }
 
-const Stack = createNativeStackNavigator()
+const Stack = createNativeStackNavigator();
 
- function CustomerStackScreen() {
+function CustomerStackScreen() {
   return (
     <Stack.Navigator>
       <Stack.Screen
@@ -102,11 +100,7 @@ const Stack = createNativeStackNavigator()
         component={Rent}
         options={{headerShown: false}}
       />
-      <Stack.Screen
-        name="Buy"
-        component={Buy}
-        options={{headerShown: false}}
-      />
+      <Stack.Screen name="Buy" component={Buy} options={{headerShown: false}} />
       <Stack.Screen
         name="PropertyListings1"
         component={PropertyListings1}
@@ -183,11 +177,6 @@ const Stack = createNativeStackNavigator()
         options={{headerShown: false}}
       />
       <Stack.Screen
-        name="AddProperty"
-        component={AddProperty}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
         name="Property"
         component={Property}
         options={{headerShown: false}}
@@ -196,139 +185,17 @@ const Stack = createNativeStackNavigator()
   );
 }
 
-export function SellerStackScreen() {
+function SellerStackScreen() {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name="HomePage"
-        component={HomePage}
+        name="SellerDashBoard"
+        component={SellerDashBoard}
         options={{headerShown: false}}
       />
       <Stack.Screen
-        name="PropertyDetails"
-        component={PropertyDetails}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name="MenuPage"
-        component={MenuPage}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name="DiscoverMore"
-        component={DiscoverMore}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name="Faqs"
-        component={Faqs}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name="Rent"
-        component={Rent}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name="Buy"
-        component={Buy}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name="PropertyListings1"
-        component={PropertyListings1}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name="PropertyListings2"
-        component={PropertyListings2}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name="PropertyListings3"
-        component={PropertyListings3}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name="Sell"
-        component={Sell}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name="TenentApplicationForm"
-        component={TenentApplicationForm}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name="Favorites"
-        component={Favorites}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name="SwipeUp"
-        component={SwipeUp}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name="Profile"
-        component={Profile}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name="MyPurchasesPage"
-        component={MyPurchasesPage}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name="ContactUs"
-        component={ContactUs}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name="Settings"
-        component={Settings}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name="PrivacyPolicy"
-        component={PrivacyPolicy}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name="TermsAndConditions"
-        component={TermsAndConditions}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name="AboutUs"
-        component={AboutUs}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name="NotificatonList"
-        component={NotificatonList}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name="AddProperty"
-        component={AddProperty}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name="Property"
-        component={Property}
-        options={{headerShown: false}}
-      />
-    </Stack.Navigator>
-  );
-}
-
-export function StackScreen() {
-  return (
-    <Stack.Navigator>
-      <Stack.Screen
-        name="RentProperty"
-        component={RentProperty}
+        name="MenuPageSeller"
+        component={MenuPageSeller}
         options={{headerShown: false}}
       />
       <Stack.Screen
@@ -344,11 +211,6 @@ export function StackScreen() {
       <Stack.Screen
         name="Message"
         component={Message}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name="SellerDashBoard"
-        component={SellerDashBoard}
         options={{headerShown: false}}
       />
       <Stack.Screen
@@ -376,31 +238,74 @@ export function StackScreen() {
         component={ProfileSeller}
         options={{headerShown: false}}
       />
+      <Stack.Screen
+        name="Messages"
+        component={Messages}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="SellerSell"
+        component={SellerSell}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="RentProperty"
+        component={RentProperty}
+        options={{headerShown: false}}
+      />
     </Stack.Navigator>
   );
 }
 
 const App = () => {
-  const logedIn = useSelector((state:RootState) => state.isLogedIn.isLogedIn)
+  const logedIn = useSelector((state: RootState) => state.isLogedIn.isLogedIn);
   return (
     <Provider store={store}>
       <NavigationContainer>
-        {logedIn ? (
-          <View>
-            <Stack.Screen
-              name="CustomerStackScreen"
-              component={CustomerStackScreen}
-              options={{headerShown: false}}
-            />
-            <Stack.Screen
-              name="SellerStackScreen"
-              component={SellerStackScreen}
-              options={{headerShown: false}}
-            />
-          </View>
-        ) : (
-          <AuthStackScreen />
-        )}
+        <Stack.Navigator>
+          {logedIn ? (
+            <>
+              <Stack.Screen
+                name="CustomerStackScreen"
+                component={CustomerStackScreen}
+                options={{headerShown: false}}
+              />
+              <Stack.Screen
+                name="SellerStackScreen"
+                component={SellerStackScreen}
+                options={{headerShown: false}}
+              />
+            </>
+          ) : (
+            <>
+              <Stack.Screen
+                name="LandingPage"
+                component={LandingPage}
+                options={{headerShown: false}}
+              />
+              <Stack.Screen
+                name="SignupPage"
+                component={SignupPage}
+                options={{headerShown: false}}
+              />
+              <Stack.Screen
+                name="SigninPage"
+                component={SigninPage}
+                options={{headerShown: false}}
+              />
+              <Stack.Screen
+                name="ForgotPasswordPage"
+                component={ForgotPasswordPage}
+                options={{headerShown: false}}
+              />
+              <Stack.Screen
+                name="ForgotPassword2"
+                component={ForgotPassword2}
+                options={{headerShown: false}}
+              />
+            </>
+          )}
+        </Stack.Navigator>
       </NavigationContainer>
     </Provider>
   );

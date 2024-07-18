@@ -16,7 +16,11 @@ import {
   AddPoliciesDraft,
   AddTermsDraft,
   login,
-  LogedIn
+  LogedIn,
+  LogedOut,
+  PropertyType,
+  AddProperty,
+  DeleteProperty
 } from './actions';
 
 export const fetchProperties = (properties: Property[]) => ({
@@ -78,5 +82,16 @@ export const addTermsDraft = (termsDraft:Policy) => ({
 
 export const logedIn = () => ({
   type:LogedIn,
-  // payload:isLogedin
+})
+export const logedOut = () => ({
+  type:LogedOut
+})
+export const addProperty = (items:PropertyType) => ({
+  type:AddProperty,
+  payload:items
+})
+
+export const deleteProperty = (id:number) => ({
+type:DeleteProperty,
+payload:id
 })

@@ -81,8 +81,8 @@ const LandingPage: React.FC<Props> = ({navigation}) => {
                 </TouchableOpacity>
               </View>
             </View>
-            <Text style={styles.buildingNameText}>{item.rooms} </Text>
-            <Text style={styles.addressText}>{item.location} </Text>
+            <Text style={styles.buildingNameText}>{item.rooms}</Text>
+            <Text style={styles.addressText}>{item.location}</Text>
             <View style={styles.iconsView}>
               <View style={styles.carIconView}>
                 <AntDesign name="car" color="#073762" size={20} />

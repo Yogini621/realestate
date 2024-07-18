@@ -21,7 +21,7 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Fontisto from 'react-native-vector-icons/Fontisto';
 import {RadioButton} from 'react-native-paper';
-import OptionSelect from '../SellerScreens/OptionSelect';
+import OptionSelect from './OptionSelect';
 
 interface Props {
   navigation: any;
@@ -41,10 +41,10 @@ const Sell: React.FC<Props> = ({navigation}) => {
       <ScrollView>
         <View style={styles.headerView}>
           <View style={styles.logoView}>
-            <TouchableOpacity onPress={() => navigation.navigate('MenuPage')}>
+            <TouchableOpacity onPress={() => navigation.navigate('MenuPageSeller')}>
               <FontAwesome5 name="grip-lines" size={20} color="#073762" />
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigation.navigate('MenuPage')}>
+            <TouchableOpacity onPress={() => navigation.navigate('MenuPageSeller')}>
               <FontAwesome5 name="grip-lines" size={20} color="#073762" />
             </TouchableOpacity>
           </View>
@@ -130,7 +130,7 @@ const Sell: React.FC<Props> = ({navigation}) => {
               </TouchableOpacity>
               <TouchableOpacity
                 style={styles.nextStepButton}
-                onPress={() => navigation.navigate('RentProperty')}>
+                onPress={() => navigation.navigate("SellerStackScreen",{screen:'RentProperty'})}>
                 <Text style={styles.nextStepText}>Next step</Text>
                 <MaterialIcons name="arrow-right-alt" size={26} color="white" />
               </TouchableOpacity>

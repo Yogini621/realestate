@@ -11,7 +11,8 @@ const rootReducer = combineReducers({
   terms: RealEstateAppReducers,
   policyDraft: RealEstateAppReducers,
   termsDraft:RealEstateAppReducers,
-  isLogedIn:RealEstateAppReducers
+  isLogedIn:RealEstateAppReducers,
+  property:RealEstateAppReducers
 });
 export default rootReducer;
 export type RootState = ReturnType<typeof rootReducer>
