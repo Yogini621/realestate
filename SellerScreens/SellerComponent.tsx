@@ -5,7 +5,6 @@ import {
   responsiveHeight,
   responsiveWidth,
 } from 'react-native-responsive-dimensions';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Entypo from 'react-native-vector-icons/Entypo';
 
 interface Props {
@@ -15,7 +14,7 @@ interface Props {
 }
 
 const SellerComponent = (props: Props) => {
-
+  
   const SellerComponentData = [
     {id: 1, option: 'Property', icon: 'compass'},
     {id: 2, option: 'Tenants', icon: 'compass'},
@@ -35,9 +34,7 @@ const SellerComponent = (props: Props) => {
     </View>
   );
 };
-
 export default SellerComponent;
-
 const styles = StyleSheet.create({
   componentButton: {
     width: responsiveWidth(60),
@@ -48,7 +45,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     flexDirection: 'row',
     alignItems: 'center',
-    //     backgroundColor: '#073762',
   },
   componentText: {
     color: '#718096',

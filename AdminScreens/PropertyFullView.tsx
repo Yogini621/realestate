@@ -95,7 +95,7 @@ const PropertyFullView: React.FC<Props> = ({navigation}) => {
                 style={styles.icon}
                 color="#073762"
               />
-              <Text style={[styles.numberText,{left: responsiveWidth(4.8)}]}>
+              <Text style={[styles.numberText, {left: responsiveWidth(4.8)}]}>
                 6x8 m²
               </Text>
             </View>
@@ -172,7 +172,7 @@ const PropertyFullView: React.FC<Props> = ({navigation}) => {
             />
           </MapView>
         </View>
-        <Text style = {styles.ownerHistoryText}>Owner History</Text>
+        <Text style={styles.ownerHistoryText}>Owner History</Text>
       </ScrollView>
     </SafeAreaView>
   );

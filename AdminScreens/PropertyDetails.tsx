@@ -1,21 +1,25 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
-import { responsiveFontSize, responsiveHeight, responsiveWidth } from 'react-native-responsive-dimensions';
+import {StyleSheet, Text, View} from 'react-native';
+import React from 'react';
+import {
+  responsiveFontSize,
+  responsiveHeight,
+  responsiveWidth,
+} from 'react-native-responsive-dimensions';
 
-interface Props{
-label:string;
-labelText:string;
-optionText?:string;
-labelTextColor?:string;
+interface Props {
+  label: string;
+  labelText: string;
+  optionText?: string;
+  labelTextColor?: string;
 }
 
-const PropertyDetails = (props:Props) => {
+const PropertyDetails = (props: Props) => {
   return (
     <View>
       <View style={styles.propertyView}>
         <Text style={styles.label}>{props.label}</Text>
         <View>
-          <Text style={[styles.labelText,{color:props.labelTextColor}]}>
+          <Text style={[styles.labelText, {color: props.labelTextColor}]}>
             {props.labelText}
           </Text>
           <Text style={styles.optionText}>{props.optionText}</Text>
@@ -23,9 +27,9 @@ const PropertyDetails = (props:Props) => {
       </View>
     </View>
   );
-}
+};
 
-export default PropertyDetails
+export default PropertyDetails;
 
 const styles = StyleSheet.create({
   propertyView: {
@@ -48,6 +52,6 @@ const styles = StyleSheet.create({
   optionText: {
     fontSize: responsiveFontSize(1.8),
     alignSelf: 'flex-end',
-    color :'#111827',
+    color: '#111827',
   },
 });

@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import {
   responsiveFontSize,
   responsiveHeight,
@@ -20,7 +20,7 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import Feather from 'react-native-vector-icons/Feather';
 import {data7} from './data2';
 import {Property} from '../redux/actions/actions';
-import {addToFavorites} from '../redux/actions/actionTypes';
+import {addToFavorites, removeFavorites} from '../redux/actions/actionTypes';
 import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '../redux/reducers';
 import Filterscreen from './Filterscreen';
@@ -34,10 +34,17 @@ const SwipeUp: React.FC<Props> = ({navigation}) => {
   const favorites = useSelector(
     (state: RootState) => state.favorites.favorites,
   );
-  const [modalVisible,setModalVisible] = useState(false)
+  const [modalVisible, setModalVisible] = useState(false);
 
   const handleAddToFavorites = (item: Property) => {
-    dispatch(addToFavorites(item));
+    console.log(item);
+    if (favorites.includes(item)) {
+      console.log('item Removed');
+      dispatch(removeFavorites(item));
+    } else {
+      console.log('item Added');
+      dispatch(addToFavorites(item));
+    }
   };
 
   return (
@@ -155,11 +162,12 @@ const SwipeUp: React.FC<Props> = ({navigation}) => {
           <Text style={styles.mapsText}>Open Maps</Text>
         </TouchableOpacity>
       </ScrollView>
-      {
-        modalVisible && (
-          <Filterscreen modalVisible={true} colseModal={() => setModalVisible(false)} />
-        )
-      }
+      {modalVisible && (
+        <Filterscreen
+          modalVisible={true}
+          colseModal={() => setModalVisible(false)}
+        />
+      )}
     </SafeAreaView>
   );
 };

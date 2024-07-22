@@ -13,7 +13,6 @@ import {
   responsiveHeight,
   responsiveWidth,
 } from 'react-native-responsive-dimensions';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
 interface Props {
@@ -31,13 +30,17 @@ const AdminMenu: React.FC<Props> = ({navigation}) => {
     {id: 5, optionText: 'Messages', navigationPage: 'Messages'},
     {id: 6, optionText: 'Profile', navigationPage: 'ProfileAdmin'},
     {id: 7, optionText: 'Settings', navigationPage: 'settingsAccount'},
-    {id: 8, optionText: 'Terms & Conditions', navigationPage: 'TermsAndConditions'},
+    {
+      id: 8,
+      optionText: 'Terms & Conditions',
+      navigationPage: 'TermsAndConditions',
+    },
     {id: 9, optionText: 'Privacy Policy', navigationPage: 'PrivacyPolicy'},
   ];
 
-  const handleSelectOption = (id: number,text:string) => {
+  const handleSelectOption = (id: number, text: string) => {
     setSelectButton(id);
-    navigation.navigate(text)
+    navigation.navigate(text);
   };
 
   return (
@@ -58,8 +61,7 @@ const AdminMenu: React.FC<Props> = ({navigation}) => {
               style={
                 selectButton === item.id ? styles.activeButton : styles.button
               }
-              onPress={() => handleSelectOption(item.id,item.navigationPage)}
-              >
+              onPress={() => handleSelectOption(item.id, item.navigationPage)}>
               <Text
                 style={
                   selectButton === item.id

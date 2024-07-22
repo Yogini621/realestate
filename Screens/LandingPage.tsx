@@ -26,7 +26,7 @@ import {Property} from '../redux/actions/actions';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import ViewComponent from './ViewComponent';
 import Entypo from 'react-native-vector-icons/Entypo';
-import Ionicons from 'react-native-vector-icons/Ionicons'
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 interface Props {
   navigation: any;
@@ -617,7 +617,7 @@ const styles = StyleSheet.create({
     margin: 10,
     width: responsiveWidth(80),
     alignSelf: 'center',
-    right:responsiveWidth(4.8)
+    right: responsiveWidth(4.8),
   },
   iconView: {
     height: 30,
@@ -641,8 +641,8 @@ const styles = StyleSheet.create({
     borderLeftWidth: 0,
     borderColor: '#9fc5e9',
     width: responsiveWidth(50),
-    borderTopRightRadius:10,
-    borderBottomRightRadius:10
+    borderTopRightRadius: 10,
+    borderBottomRightRadius: 10,
   },
   rentText1: {
     color: '#073762',
@@ -932,7 +932,7 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: responsiveFontSize(1),
     fontFamily: 'PlusJakartaSans a',
-    left:responsiveWidth(1)
+    left: responsiveWidth(1),
   },
   triangle: {
     width: 0,
@@ -946,7 +946,7 @@ const styles = StyleSheet.create({
     borderBottomColor: '#073762',
     borderTopColor: '#073762',
     top: responsiveHeight(3.1),
-    position:'absolute',
-    left:-12
+    position: 'absolute',
+    left: -12,
   },
 });

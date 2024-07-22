@@ -21,31 +21,30 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import Entypo from 'react-native-vector-icons/Entypo';
 import Feather from 'react-native-vector-icons/Feather';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { SelectList } from 'react-native-dropdown-select-list';
-import { data } from '../Screens/data';
+import {SelectList} from 'react-native-dropdown-select-list';
+import {data} from '../Screens/data';
 import {Menu, MenuDivider, MenuItem} from 'react-native-material-menu';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 interface Props {
   navigation: any;
 }
 
 interface Tenant {
- id:number,
- image:any;
- date:string;
- rent:string;
- status:string;
- name:string
-
+  id: number;
+  image: any;
+  date: string;
+  rent: string;
+  status: string;
+  name: string;
 }
 
 const Tenants: React.FC<Props> = ({navigation}) => {
   const [visible, setVisible] = useState(false);
-  const [selected,setSelected] = useState('')
-  const [tenants ,setTenants] = useState<Tenant[]>([])
+  const [selected, setSelected] = useState('');
+  const [tenants, setTenants] = useState<Tenant[]>([]);
 
-  const TenantsData:Tenant[] = [
+  const TenantsData: Tenant[] = [
     {
       id: 1,
       name: 'Valentino Parker',
@@ -128,11 +127,11 @@ const Tenants: React.FC<Props> = ({navigation}) => {
     },
   ];
 
-const data = [
-  {key: 'All tenants', value: 'All tenants'},
-  {key: 'Accepted', value: 'Accepted'},
-  {key: 'Rejected', value: 'Rejected'},
-];
+  const data = [
+    {key: 'All tenants', value: 'All tenants'},
+    {key: 'Accepted', value: 'Accepted'},
+    {key: 'Rejected', value: 'Rejected'},
+  ];
 
   const [menuVisible, setMenuVisible] = React.useState<{
     [key: number]: boolean;
@@ -146,10 +145,10 @@ const data = [
     setMenuVisible({...menuVisible, [id]: false});
   };
 
-  const handleRemoveTenants = (id:number) => {
-   const updatedTenats = TenantsData.filter(item => item.id !== id)
-   setTenants(updatedTenats)
-  }
+  const handleRemoveTenants = (id: number) => {
+    const updatedTenats = TenantsData.filter(item => item.id !== id);
+    setTenants(updatedTenats);
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -157,7 +156,12 @@ const data = [
       <ScrollView>
         <View style={styles.headerView}>
           <View style={styles.logoView}>
-            <TouchableOpacity onPress={() => navigation.navigate('MenuPageSeller')}>
+            <TouchableOpacity
+              onPress={() =>
+                navigation.navigate('CustomerStackScreen', {
+                  screen: 'MenuPageSeller',
+                })
+              }>
               <FontAwesome5 name="grip-lines" size={20} color="#073762" />
             </TouchableOpacity>
             <View style={styles.iconView}>
@@ -217,7 +221,11 @@ const data = [
                 onRequestClose={() => closeMenu(item.id)}>
                 <View style={styles.viewView}>
                   <Feather name="eye" size={18} color="#414141" />
-                  <MenuItem onPress={() => navigation.navigate("TenancyApplicationDetails")} textStyle={styles.viewText}>
+                  <MenuItem
+                    onPress={() =>
+                      navigation.navigate('TenancyApplicationDetails')
+                    }
+                    textStyle={styles.viewText}>
                     View
                   </MenuItem>
                 </View>
@@ -227,7 +235,9 @@ const data = [
                     size={18}
                     color="#414141"
                   />
-                  <MenuItem onPress={() => handleRemoveTenants(item.id)} textStyle={styles.viewText}>
+                  <MenuItem
+                    onPress={() => handleRemoveTenants(item.id)}
+                    textStyle={styles.viewText}>
                     Delete
                   </MenuItem>
                 </View>
@@ -407,13 +417,13 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     paddingHorizontal: 10,
-    width:responsiveWidth(40),
-    justifyContent:'space-between',
+    width: responsiveWidth(40),
+    justifyContent: 'space-between',
     // left:responsiveWidth(4)
   },
   viewText: {
     color: '#414141',
     fontFamily: 'PlusJakartaSans m',
-    fontSize:responsiveFontSize(1.6)
+    fontSize: responsiveFontSize(1.6),
   },
 });

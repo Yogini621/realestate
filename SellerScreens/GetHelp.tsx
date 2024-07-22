@@ -18,7 +18,8 @@ import {
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Entypo from 'react-native-vector-icons/Entypo';
-import Ionicons from 'react-native-vector-icons/Ionicons'
+import Ionicons from 'react-native-vector-icons/Ionicons';
+
 interface Props {
   navigation: any;
 }
@@ -34,7 +35,7 @@ const GetHelp: React.FC<Props> = ({navigation}) => {
               onPress={() => navigation.navigate('MenuPageSeller')}>
               <FontAwesome5 name="grip-lines" size={20} color="#073762" />
             </TouchableOpacity>
-             <View style={styles.iconView}>
+            <View style={styles.iconView}>
               <TouchableOpacity>
                 <Ionicons
                   name="notifications-outline"
@@ -42,10 +43,10 @@ const GetHelp: React.FC<Props> = ({navigation}) => {
                   color="#073762"
                 />
               </TouchableOpacity>
-            <TouchableOpacity>
-              <Image source={require('../Images/user.png')} />
-            </TouchableOpacity>
-          </View>
+              <TouchableOpacity>
+                <Image source={require('../Images/user.png')} />
+              </TouchableOpacity>
+            </View>
           </View>
         </View>
         <Text style={styles.typeYourQuestionText}>
@@ -105,7 +106,6 @@ const GetHelp: React.FC<Props> = ({navigation}) => {
             How do I start the home buying process?
           </Text>
           <View style={styles.optionView}>
-            {/* <Text>.</Text> */}
             <View style={styles.dot} />
             <Text style={styles.optionText}>
               Determine your budget and get pre-approved for a mortgage.

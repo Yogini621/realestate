@@ -34,7 +34,8 @@ const SettingsSeller: React.FC<Props> = ({navigation}) => {
       <ScrollView>
         <View style={styles.headerView}>
           <View style={styles.logoView}>
-            <TouchableOpacity onPress={() => navigation.navigate('MenuPageSeller')}>
+            <TouchableOpacity
+              onPress={() => navigation.navigate('MenuPageSeller')}>
               <FontAwesome5 name="grip-lines" size={20} color="#073762" />
             </TouchableOpacity>
             <View style={styles.iconView}>
@@ -45,9 +46,18 @@ const SettingsSeller: React.FC<Props> = ({navigation}) => {
                   color="#073762"
                 />
               </TouchableOpacity>
-              <TouchableOpacity onPress={() => navigation.navigate('MenuPage')}>
-                <FontAwesome5 name="grip-lines" size={20} color="#073762" />
-              </TouchableOpacity>
+              <View style={styles.iconView}>
+                <TouchableOpacity>
+                  <Ionicons
+                    name="notifications-outline"
+                    size={20}
+                    color="#073762"
+                  />
+                </TouchableOpacity>
+                <TouchableOpacity>
+                  <Image source={require('../Images/user.png')} />
+                </TouchableOpacity>
+              </View>
             </View>
           </View>
         </View>
@@ -107,9 +117,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   iconView: {
-    width: responsiveWidth(14),
+    width: responsiveWidth(20),
     flexDirection: 'row',
     justifyContent: 'space-between',
+    alignItems: 'center',
   },
   searchText: {
     color: '#100a55',

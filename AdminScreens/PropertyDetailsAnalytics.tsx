@@ -38,7 +38,7 @@ export const PropertyDetailsAnalytics = (props: Props) => {
     </View>
   );
 };
-export default PropertyDetailsAnalytics
+export default PropertyDetailsAnalytics;
 const styles = StyleSheet.create({
   countText: {
     color: '#000000',
@@ -67,11 +67,11 @@ const styles = StyleSheet.create({
   progressView: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop:responsiveHeight(1)
+    marginTop: responsiveHeight(1),
   },
   propertiesTextView: {
     marginTop: responsiveHeight(1),
-    right:responsiveWidth(2),
-    marginBottom:responsiveHeight(1)
+    right: responsiveWidth(2),
+    marginBottom: responsiveHeight(1),
   },
 });

@@ -5,7 +5,6 @@ import {
   StatusBar,
   StyleSheet,
   Text,
-  TextInput,
   TouchableOpacity,
   View,
 } from 'react-native';
@@ -41,13 +40,14 @@ const ProfileSeller: React.FC<Props> = ({navigation}) => {
               onPress={() => navigation.navigate('MenuPageSeller')}>
               <FontAwesome5 name="grip-lines" size={20} color="#073762" />
             </TouchableOpacity>
-            <TouchableOpacity>
-              <Ionicons
-                name="notifications-outline"
-                size={20}
-                color="#073762"
-              />
-            </TouchableOpacity>
+            <View style={styles.iconView}>
+              <TouchableOpacity>
+                <Ionicons name="notifications-outline" size={20} />
+              </TouchableOpacity>
+              <TouchableOpacity>
+                <Image source={require('../Images/user.png')} />
+              </TouchableOpacity>
+            </View>
           </View>
         </View>
         <Text style={styles.personalInformationText}>Personal Information</Text>
@@ -279,5 +279,11 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: responsiveFontSize(1.8),
     fontFamily: 'PlusJakartaSans j',
+  },
+  iconView: {
+    width: responsiveWidth(20),
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
 });

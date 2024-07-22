@@ -241,7 +241,6 @@ const MyLocations = () => {
   );
 };
 export default MyLocations;
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,

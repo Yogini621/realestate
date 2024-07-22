@@ -70,10 +70,6 @@ const PropertyDetails: React.FC<Props> = ({navigation, route}) => {
     requestLocationPermission();
   }, []);
 
-  const toogleImage = () => {
-    setImageVisible(!imageVisible);
-  };
-
   const requestLocationPermission = async () => {
     if (Platform.OS === 'android') {
       try {
@@ -193,7 +189,6 @@ const PropertyDetails: React.FC<Props> = ({navigation, route}) => {
             <Text style={styles.viewAllPhotosText}>View all photos</Text>
           </TouchableOpacity>
         </View>
-
         <View style={styles.imageView}>
           <View style={imageVisible ? styles.imageBackground : null}>
             <TouchableOpacity onPress={() => setImageVisible(true)}>
@@ -206,7 +201,6 @@ const PropertyDetails: React.FC<Props> = ({navigation, route}) => {
             </TouchableOpacity>
           </View>
         </View>
-
         <View>
           <Text style={{color: 'white'}}>Hello</Text>
           <ImageView
@@ -240,7 +234,7 @@ const PropertyDetails: React.FC<Props> = ({navigation, route}) => {
                 style={styles.icon}
                 color="#073762"
               />
-              <Text style={[styles.numberText, {left: responsiveWidth(4.8)}]}>
+              <Text style={[styles.numberText,{left: responsiveWidth(4.8)}]}>
                 6x8 m²
               </Text>
             </View>
@@ -386,7 +380,6 @@ const PropertyDetails: React.FC<Props> = ({navigation, route}) => {
             />
           </MapView>
         </View>
-
         <View style={styles.backIconView}>
           <Text style={styles.seemoreText}>See more listings in Houston</Text>
           <Ionicons
@@ -1195,6 +1188,6 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     marginTop: responsiveHeight(3.4),
     width: responsiveWidth(94),
-    height:responsiveHeight(28)
+    height: responsiveHeight(28),
   },
 });

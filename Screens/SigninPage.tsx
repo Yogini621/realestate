@@ -21,8 +21,8 @@ import * as Yup from 'yup';
 import {Formik} from 'formik';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
-import { useDispatch } from 'react-redux';
-import { logedIn } from '../redux/actions/actionTypes';
+import {useDispatch} from 'react-redux';
+import {logedIn} from '../redux/actions/actionTypes';
 
 interface UserDetails {
   email: string;
@@ -36,11 +36,11 @@ interface Props {
 const SigninPage: React.FC<Props> = ({navigation}) => {
   const [isconfirmPasswordsecure, setIsConfirmPasswordSecure] =
     useState<boolean>(false);
-  const [isLogedIn,setIsLogedIn] = useState(false)
+  const [isLogedIn, setIsLogedIn] = useState(false);
   const handleConfirmPAssword = () => {
     setIsConfirmPasswordSecure(!isconfirmPasswordsecure);
   };
-const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const ValidationSchema = Yup.object().shape({
     email: Yup.string()
@@ -57,7 +57,7 @@ const dispatch = useDispatch()
       .required('Password required'),
   });
 
-  const handleFormSubmit = async (values: UserDetails,role:string) => {
+  const handleFormSubmit = async (values: UserDetails, role: string) => {
     const storedUser = await AsyncStorage.getItem('userData');
 
     if (storedUser !== null) var credentials = JSON.parse(storedUser);
@@ -67,16 +67,13 @@ const dispatch = useDispatch()
       credentials.email === values.email &&
       credentials.password === values.password
     ) {
-      dispatch(logedIn())
-      if(role === 'Customer'){
+      dispatch(logedIn());
+      if (role === 'Customer') {
         navigation.navigate('CustomerStackScreen');
-      }
-      else if(role === 'Seller'){
+      } else if (role === 'Seller') {
         navigation.navigate('SellerStackScreen');
       }
       console.log(credentials, '>>>>>>>>>>>>>>>>>>>');
-      // navigation.navigate('HomePage');
-      // Alert.alert('login Sucess');
     } else {
       Alert.alert('Incorrect Credentials');
     }
@@ -159,14 +156,14 @@ const dispatch = useDispatch()
                 <View style={styles.buttonView}>
                   <TouchableOpacity
                     style={styles.signupButton}
-                    onPress={() => handleFormSubmit(values,'Customer')}>
+                    onPress={() => handleFormSubmit(values, 'Customer')}>
                     <Text style={styles.signUpButtonText}>Customer</Text>
                   </TouchableOpacity>
                   <TouchableOpacity
-                  style={styles.signupButton}
-                  onPress={() => handleFormSubmit(values,'Seller')}>
-                  <Text style={styles.signUpButtonText}>Seller</Text>
-                </TouchableOpacity>
+                    style={styles.signupButton}
+                    onPress={() => handleFormSubmit(values, 'Seller')}>
+                    <Text style={styles.signUpButtonText}>Seller</Text>
+                  </TouchableOpacity>
                 </View>
               </View>
             )}
@@ -304,10 +301,10 @@ const styles = StyleSheet.create({
   image: {
     marginTop: responsiveHeight(7),
   },
-  buttonView:{
-    flexDirection:'row',
-    justifyContent:'space-between',
-    width:responsiveWidth(80),
-    alignSelf:'center'
-  }
+  buttonView: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: responsiveWidth(80),
+    alignSelf: 'center',
+  },
 });

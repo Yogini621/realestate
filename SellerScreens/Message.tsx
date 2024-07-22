@@ -73,16 +73,22 @@ const Message: React.FC<Props> = ({navigation}) => {
       <ScrollView>
         <View style={styles.headerView}>
           <View style={styles.logoView}>
-            <TouchableOpacity onPress={() => navigation.navigate('MenuPageSeller')}>
+            <TouchableOpacity
+              onPress={() => navigation.navigate('MenuPageSeller')}>
               <FontAwesome5 name="grip-lines" size={20} color="#073762" />
             </TouchableOpacity>
-            <TouchableOpacity>
-              <Ionicons
-                name="notifications-outline"
-                size={20}
-                color="#073762"
-              />
-            </TouchableOpacity>
+            <View style={styles.iconView}>
+              <TouchableOpacity>
+                <Ionicons
+                  name="notifications-outline"
+                  size={20}
+                  color="#073762"
+                />
+              </TouchableOpacity>
+              <TouchableOpacity>
+                <Image source={require('../Images/user.png')} />
+              </TouchableOpacity>
+            </View>
           </View>
         </View>
         <View style={styles.inputDirectionView}>
@@ -229,5 +235,11 @@ const styles = StyleSheet.create({
     color: '#073762',
     fontFamily: 'PlusJakartaSans a',
     fontSize: responsiveFontSize(1.6),
+  },
+  iconView: {
+    width: responsiveWidth(20),
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
 });

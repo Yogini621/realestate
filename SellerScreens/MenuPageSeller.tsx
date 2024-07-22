@@ -1,7 +1,6 @@
 import 'react-native-gesture-handler';
 import {
   Image,
-  Modal,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -118,13 +117,11 @@ const MenuPageSeller: React.FC<Props> = ({navigation}) => {
                 </TouchableOpacity>
               ))}
             </View>
-            </View>
-            </View>
-         
+          </View>
+        </View>
       )}>
-<Drawer.Screen name='Profile' component={Profile} />
-</Drawer.Navigator>
-     
+      <Drawer.Screen name="Profile" component={Profile} />
+    </Drawer.Navigator>
   );
 };
 
@@ -319,7 +316,6 @@ const styles = StyleSheet.create({
     width: responsiveWidth(48),
     alignSelf: 'center',
     alignItems: 'center',
-    // backgroundColor: 'green',
     marginTop: responsiveHeight(1),
     justifyContent: 'center',
   },

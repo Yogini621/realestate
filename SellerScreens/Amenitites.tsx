@@ -24,7 +24,7 @@ const Amenitites = () => {
   const selectOption = (id: number) => {
     setSelectId(id);
   };
-  
+
   return (
     <View style={styles.optionView}>
       {options.map(item => (

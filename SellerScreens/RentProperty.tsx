@@ -32,6 +32,7 @@ import Geolocation from '@react-native-community/geolocation';
 import {SelectList} from 'react-native-dropdown-select-list';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Octicons from 'react-native-vector-icons/Octicons';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 interface Props {
   navigation: any;
@@ -40,32 +41,28 @@ interface Props {
 const RentProperty: React.FC<Props> = ({navigation}) => {
   const [currentLocation, setCurrentLocation] = useState<LatLng | null>(null);
   const [locationError, setLocationError] = useState<string | null>(null);
-  const [step1Visible, setStep1Visible] = useState(false);
   const [step2Visible, setStep2Visible] = useState(true);
   const [step3Visible, setStep3Visible] = useState(false);
   const [step4Visible, setStep4Visible] = useState(false);
-  const [step, setStep] = useState(0);
   const [image, setImgage] = useState<string[]>([]);
-  const [selected, setSelected] = React.useState('');
-  const [categories, setCategories] = React.useState([]);
-  const [city,setCity] = useState('')
-  const [apartment,setApartment] = useState('')
-  const [locality,setLocality] = useState('')
-  const [state,setState] = useState('')
-  const [country,setCountry] = useState('')
-  const [pincode,setPincode] = useState('')
-  const [property,setProperty] = useState('')
-  const [bedrooms,setBedrooms] = useState('')
-  const [bathRooms,setBathRooms] = useState('')
-  const [squarefeet,setSquareFeet] = useState('')
-  const [description,setDescription] = useState('')
-  const [leaseDuration,setLeaseDuration] = useState('')
-  const [heating,setHeating] = useState('')
-  const [colling,setCooling] = useState('')
-  const [repairQuality,setRepairQuality] = useState('')
-  const [parkingArea,setParkingArea] = useState('')
-  const [laundry,setLaundry] = useState('')
-  const [rent,setRent] = useState('')
+  const [city, setCity] = useState('');
+  const [apartment, setApartment] = useState('');
+  const [locality, setLocality] = useState('');
+  const [state, setState] = useState('');
+  const [country, setCountry] = useState('');
+  const [pincode, setPincode] = useState('');
+  const [property, setProperty] = useState('');
+  const [bedrooms, setBedrooms] = useState('');
+  const [bathRooms, setBathRooms] = useState('');
+  const [squarefeet, setSquareFeet] = useState('');
+  const [description, setDescription] = useState('');
+  const [leaseDuration, setLeaseDuration] = useState('');
+  const [heating, setHeating] = useState('');
+  const [colling, setCooling] = useState('');
+  const [repairQuality, setRepairQuality] = useState('');
+  const [parkingArea, setParkingArea] = useState('');
+  const [laundry, setLaundry] = useState('');
+  const [rent, setRent] = useState('');
 
   const openStep3 = () => {
     setStep2Visible(false);
@@ -134,66 +131,55 @@ const RentProperty: React.FC<Props> = ({navigation}) => {
     {key: 'No', value: 'No'},
   ];
 
-    const validateStep1 = () => {
-      if (city === '') {
-        Alert.alert('Enter City');
-      } else if (apartment === '') {
-        Alert.alert('Enter Apartment');
-      } else if (locality === '') {
-        Alert.alert('Enter locality');
-      } else if (state === '') {
-        Alert.alert('Select State');
-      } else if (country === '') {
-        Alert.alert('Select Country');
-      } else if (pincode === '') {
-        Alert.alert('Enter Pincode');
-      }else {
-         setStep2Visible(false);
-         setStep3Visible(true);
-      }
-    };
+  const validateStep1 = () => {
+    if (city === '') {
+      Alert.alert('Enter City');
+    } else if (apartment === '') {
+      Alert.alert('Enter Apartment');
+    } else if (locality === '') {
+      Alert.alert('Enter locality');
+    } else if (state === '') {
+      Alert.alert('Select State');
+    } else if (country === '') {
+      Alert.alert('Select Country');
+    } else if (pincode === '') {
+      Alert.alert('Enter Pincode');
+    } else {
+      setStep2Visible(false);
+      setStep3Visible(true);
+    }
+  };
 
-    const validateStep2 = () => {
-      if (property === '') {
-        Alert.alert('Select Property');
-      } else if (bedrooms === '') {
-        Alert.alert('Select How Many Bedrooms ');
-      }
-      else if (bathRooms === '') {
-        Alert.alert('Select How Many Bathrooms ');
-      }
-      else if (squarefeet === '') {
-        Alert.alert('Enter Square Feet');
-      }
-       else if (description === '') {
-        Alert.alert('Enter Description');
-      }
-      else if(leaseDuration === ""){
-        Alert.alert("Select Lease Duration")
-      }
-      else if(heating === ""){
-        Alert.alert("Select Heat Type")
-      }
-      else if(colling === ""){
-        Alert.alert("Select Cooling Type")
-      }
-      else if(repairQuality === ""){
-        Alert.alert("Select Repair Quality")
-      }
-      else if(parkingArea === ""){
-        Alert.alert("Select Parking Area")
-      }
-      else if(laundry === ""){
-        Alert.alert("Select Laundry")
-      }
-      else if(rent === ""){
-        Alert.alert("Enter rent")
-      }
-      else {
-        setStep3Visible(false);
-        setStep4Visible(true);
-      }
-    };
+  const validateStep2 = () => {
+    if (property === '') {
+      Alert.alert('Select Property');
+    } else if (bedrooms === '') {
+      Alert.alert('Select How Many Bedrooms');
+    } else if (bathRooms === '') {
+      Alert.alert('Select How Many Bathrooms');
+    } else if (squarefeet === '') {
+      Alert.alert('Enter Square Feet');
+    } else if (description === '') {
+      Alert.alert('Enter Description');
+    } else if (leaseDuration === '') {
+      Alert.alert('Select Lease Duration');
+    } else if (heating === '') {
+      Alert.alert('Select Heat Type');
+    } else if (colling === '') {
+      Alert.alert('Select Cooling Type');
+    } else if (repairQuality === '') {
+      Alert.alert('Select Repair Quality');
+    } else if (parkingArea === '') {
+      Alert.alert('Select Parking Area');
+    } else if (laundry === '') {
+      Alert.alert('Select Laundry');
+    } else if (rent === '') {
+      Alert.alert('Enter rent');
+    } else {
+      setStep3Visible(false);
+      setStep4Visible(true);
+    }
+  };
 
   const requestLocationPermission = async () => {
     if (Platform.OS === 'android') {
@@ -265,9 +251,14 @@ const RentProperty: React.FC<Props> = ({navigation}) => {
               onPress={() => navigation.navigate('MenuPageSeller')}>
               <FontAwesome5 name="grip-lines" size={20} color="#073762" />
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigation.navigate('MenuPage')}>
-              <FontAwesome5 name="grip-lines" size={20} color="#073762" />
-            </TouchableOpacity>
+            <View style={styles.iconView}>
+              <TouchableOpacity>
+                <Ionicons name="notifications-outline" size={20} />
+              </TouchableOpacity>
+              <TouchableOpacity>
+                <Image source={require('../Images/user.png')} />
+              </TouchableOpacity>
+            </View>
           </View>
         </View>
         {step2Visible && (
@@ -756,7 +747,7 @@ const RentProperty: React.FC<Props> = ({navigation}) => {
                 <Text style={styles.backText}>Back</Text>
               </TouchableOpacity>
               <View style={styles.uploadImageView}>
-                <Text style={styles.uploadPhotosText}>upload Photos</Text>
+                <Text style={styles.uploadPhotosText}>Upload Photos</Text>
                 <TouchableOpacity onPress={SelectImage}>
                   <Image
                     source={require('../Images/Uploadphoto.png')}
@@ -815,7 +806,6 @@ const styles = StyleSheet.create({
     color: '#1a202c',
     fontFamily: 'PlusJakartaSans m',
     fontSize: responsiveFontSize(2.4),
-    // left: responsiveWidth(4.8),
   },
   listingInformationView: {
     flexDirection: 'row',
@@ -1173,5 +1163,11 @@ const styles = StyleSheet.create({
     position: 'absolute',
     marginLeft: responsiveWidth(72.8),
     marginTop: responsiveHeight(0.5),
+  },
+  iconView: {
+    width: responsiveWidth(20),
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
 });

@@ -11,7 +11,7 @@ import {
   responsiveHeight,
   responsiveWidth,
 } from 'react-native-responsive-dimensions';
-import { Switch } from 'react-native-paper';
+import {Switch} from 'react-native-paper';
 
 const MyAccount = () => {
   return (

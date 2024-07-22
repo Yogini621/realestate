@@ -6,7 +6,6 @@ import {
   responsiveWidth,
 } from 'react-native-responsive-dimensions';
 import {ProgressBar} from 'react-native-paper';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 interface Props {
   saleText: string;

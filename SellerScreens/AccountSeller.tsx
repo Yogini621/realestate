@@ -5,7 +5,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import {
   responsiveFontSize,
   responsiveHeight,
@@ -15,7 +15,7 @@ import {
 import {RadioButton} from 'react-native-paper';
 
 const AccountSeller = () => {
-  const [user,setUser] = useState('customer')
+ const [user, setUser] = useState('seller');
   return (
     <View style={styles.container}>
       <View style={styles.settingsView}>
@@ -41,7 +41,6 @@ const AccountSeller = () => {
           <Text style={styles.updateAccountTypeText}>
             You can update your account type
           </Text>
-
           <View style={styles.radioButtonView}>
             <RadioButton
               value="customer"
@@ -58,7 +57,12 @@ const AccountSeller = () => {
             </View>
           </View>
           <View style={styles.radioButtonView}>
-            <RadioButton value="" color="#073762" />
+            <RadioButton
+              value="seller"
+              color="#073762"
+              onPress={() => setUser('seller')}
+              status={user === 'seller' ? 'checked' : 'unchecked'}
+            />
             <View style={styles.customerModeView}>
               <Text style={styles.customerMode}>Seller Mode</Text>
               <Text style={styles.customerModeText}>
@@ -153,7 +157,7 @@ const styles = StyleSheet.create({
     height: responsiveHeight(6),
     marginTop: responsiveHeight(2.8),
     marginBottom: responsiveHeight(2),
-    left:responsiveWidth(48),
+    left: responsiveWidth(48),
   },
   deleteButtonText: {
     color: '#f06565',

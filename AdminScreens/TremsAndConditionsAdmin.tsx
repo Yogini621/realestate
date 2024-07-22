@@ -23,7 +23,10 @@ import MaterialComminityIcons from 'react-native-vector-icons/MaterialCommunityI
 import Feather from 'react-native-vector-icons/Feather';
 import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '../redux/reducers';
-import {addTermsAndConditions, addTermsDraft} from '../redux/actions/actionTypes';
+import {
+  addTermsAndConditions,
+  addTermsDraft,
+} from '../redux/actions/actionTypes';
 
 interface Props {
   navigation: any;
@@ -47,14 +50,14 @@ const TermsAndConditionsAdmin: React.FC<Props> = ({navigation}) => {
   };
 
   const handleAddDraft = () => {
-     if (title === '') {
-       Alert.alert('Enter Title');
-     } else if (description === '') {
-       Alert.alert('Enter Description');
-     } else {
-       dispatch(addTermsDraft({id: Date.now(), title, description}));
-     }
-  }
+    if (title === '') {
+      Alert.alert('Enter Title');
+    } else if (description === '') {
+      Alert.alert('Enter Description');
+    } else {
+      dispatch(addTermsDraft({id: Date.now(), title, description}));
+    }
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -102,7 +105,7 @@ const TermsAndConditionsAdmin: React.FC<Props> = ({navigation}) => {
               onPress={() => setModalVisible(true)}>
               <Text style={styles.publishText}>Publish</Text>
               <Feather name="chevron-down" size={22} color="#000000" />
-            </TouchableOpacity>  
+            </TouchableOpacity>
           </View>
         </View>
         <View style={styles.inputView}>

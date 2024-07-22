@@ -22,7 +22,7 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import Fontisto from 'react-native-vector-icons/Fontisto';
 import {RadioButton} from 'react-native-paper';
 import OptionSelect from '../SellerScreens/OptionSelect';
-import Ionicons from 'react-native-vector-icons/Ionicons'
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 interface Props {
   navigation: any;
@@ -52,7 +52,7 @@ const Sell: React.FC<Props> = ({navigation}) => {
                   size={20}
                   color="#073762"
                 />
-                </TouchableOpacity>
+              </TouchableOpacity>
               <TouchableOpacity>
                 <Image source={require('../Images/user.png')} />
               </TouchableOpacity>
@@ -193,7 +193,7 @@ const styles = StyleSheet.create({
     width: responsiveWidth(20),
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems:'center'
+    alignItems: 'center',
   },
   stepView: {
     flexDirection: 'row',

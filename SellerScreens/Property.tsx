@@ -21,8 +21,6 @@ import {
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Entypo from 'react-native-vector-icons/Entypo';
-import {useSelector} from 'react-redux';
-import {RootState} from '../redux/reducers';
 import {data} from '../Screens/data';
 
 interface Props {
@@ -30,7 +28,6 @@ interface Props {
 }
 
 const Property: React.FC<Props> = ({navigation}) => {
-  const drafts = useSelector((state: RootState) => state.drafts.drafts);
   const [openDrafts, setOpenDrafts] = useState(false);
   return (
     <SafeAreaView style={styles.container}>
@@ -39,7 +36,11 @@ const Property: React.FC<Props> = ({navigation}) => {
         <View style={styles.headerView}>
           <View style={styles.logoView}>
             <TouchableOpacity
-              onPress={() => navigation.navigate('MenuPageSeller')}>
+              onPress={() =>
+                navigation.navigate('CustomerStackScreen', {
+                  screen: 'MenuPageSeller',
+                })
+              }>
               <FontAwesome5 name="grip-lines" size={20} color="#073762" />
             </TouchableOpacity>
             <View style={styles.iconView}>
@@ -50,9 +51,8 @@ const Property: React.FC<Props> = ({navigation}) => {
                   color="#073762"
                 />
               </TouchableOpacity>
-              <TouchableOpacity
-                onPress={() => navigation.navigate('MenuPageSeller')}>
-                <FontAwesome5 name="grip-lines" size={20} color="#073762" />
+              <TouchableOpacity>
+                <Image source={require('../Images/user.png')} />
               </TouchableOpacity>
             </View>
           </View>
@@ -60,7 +60,7 @@ const Property: React.FC<Props> = ({navigation}) => {
         <View style={styles.inputView}>
           <AntDesign name="search1" size={20} color="#c2c3cb" />
           <TextInput
-            placeholder="Search"
+            placeholder="Search..."
             style={styles.input}
             placeholderTextColor="#c2c3cb"
           />
@@ -75,7 +75,9 @@ const Property: React.FC<Props> = ({navigation}) => {
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.plusIconButton}
-              onPress={() => navigation.navigate('SellerStackScreen',{screen:'SellerSell'})}>
+              onPress={() =>
+                navigation.navigate('SellerStackScreen', {screen: 'SellerSell'})
+              }>
               <Entypo name="plus" color="white" size={16} />
             </TouchableOpacity>
             <TouchableOpacity style={styles.sortIconButton}>
@@ -155,9 +157,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   iconView: {
-    width: responsiveWidth(10),
+    width: responsiveWidth(20),
     flexDirection: 'row',
     justifyContent: 'space-between',
+    alignItems: 'center',
   },
   inputView: {
     flexDirection: 'row',
@@ -185,6 +188,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     marginTop: responsiveHeight(4),
     alignItems: 'center',
+    marginBottom: responsiveHeight(2),
   },
   draftButtonView: {
     flexDirection: 'row',

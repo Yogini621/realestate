@@ -1,11 +1,15 @@
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
-import {responsiveFontSize, responsiveHeight, responsiveWidth} from 'react-native-responsive-dimensions';
-import { Checkbox, RadioButton, Switch } from 'react-native-paper';
+import {
+  responsiveFontSize,
+  responsiveHeight,
+  responsiveWidth,
+} from 'react-native-responsive-dimensions';
+import {Checkbox, RadioButton, Switch} from 'react-native-paper';
 
 const Notifications = () => {
-    const [checked, setChecked] = React.useState(false);
-    const [checked1, setChecked1] = React.useState('first');
+  const [checked, setChecked] = React.useState(false);
+  const [checked1, setChecked1] = React.useState('first');
   return (
     <View style={styles.container}>
       <View style={styles.myAccountView}>
@@ -188,22 +192,20 @@ const styles = StyleSheet.create({
   },
   radioButtonView: {
     flexDirection: 'row',
-    width:responsiveWidth(40),
-    justifyContent:'space-between',
-    left:responsiveWidth(4),
-    marginTop:responsiveHeight(2)
+    width: responsiveWidth(40),
+    justifyContent: 'space-between',
+    left: responsiveWidth(4),
+    marginTop: responsiveHeight(2),
   },
   onText: {
     color: '#000929',
     fontSize: responsiveFontSize(1.8),
     fontFamily: 'PlusJakartaSans j',
   },
-  radioButtonDirectionView:{
-    flexDirection:'row',
-    alignItems:'center',
-    width:responsiveWidth(16),
-    justifyContent:'space-between',
-
-
-  }
+  radioButtonDirectionView: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    width: responsiveWidth(16),
+    justifyContent: 'space-between',
+  },
 });

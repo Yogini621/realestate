@@ -1,7 +1,11 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
-import {responsiveFontSize, responsiveHeight, responsiveWidth} from 'react-native-responsive-dimensions';
-import { ProgressBar } from 'react-native-paper';
+import {
+  responsiveFontSize,
+  responsiveHeight,
+  responsiveWidth,
+} from 'react-native-responsive-dimensions';
+import {ProgressBar} from 'react-native-paper';
 
 interface Props {
   productlabel: string;
@@ -46,6 +50,6 @@ const styles = StyleSheet.create({
     marginTop: responsiveHeight(4),
     height: responsiveHeight(3.2),
     borderRadius: 20,
-    alignSelf:'center',
+    alignSelf: 'center',
   },
 });

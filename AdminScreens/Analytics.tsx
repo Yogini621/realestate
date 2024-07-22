@@ -557,6 +557,6 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     width: responsiveWidth(92),
     alignSelf: 'center',
-    marginTop:responsiveHeight(2),
+    marginTop: responsiveHeight(2),
   },
 });

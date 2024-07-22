@@ -1,27 +1,31 @@
 import {Image, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import { responsiveFontSize, responsiveHeight, responsiveWidth } from 'react-native-responsive-dimensions';
+import {
+  responsiveFontSize,
+  responsiveHeight,
+  responsiveWidth,
+} from 'react-native-responsive-dimensions';
 
 interface Props {
- iconName:string;
- iconColor:string;
- percentage:number;
- text:string;
- image:any
+  iconName: string;
+  iconColor: string;
+  percentage: number;
+  text: string;
+  image: any;
 }
 
 const PropertyGraphComponent = (props: Props) => {
   return (
     <View style={styles.propertyView}>
-      <View style = {styles.percentageAndMonthTextView}>
-        <View style = {styles.iconView}>
-          <Text style = {styles.percentageText}>{props.percentage}% </Text>
+      <View style={styles.percentageAndMonthTextView}>
+        <View style={styles.iconView}>
+          <Text style={styles.percentageText}>{props.percentage}% </Text>
           <AntDesign name={props.iconName} color={props.iconColor} size={9} />
         </View>
-        <Text style = {styles.targetText}>{props.text} </Text>
+        <Text style={styles.targetText}>{props.text} </Text>
       </View>
-      <Image source={props.image} style = {styles.image} />
+      <Image source={props.image} style={styles.image} />
     </View>
   );
 };
@@ -61,10 +65,9 @@ const styles = StyleSheet.create({
     fontFamily: 'PlusJakartaSans a',
     fontSize: responsiveFontSize(2),
   },
-  image:{
-   width:responsiveWidth(36),
-   resizeMode:'cover',
-   marginTop:responsiveHeight(2)
-
-  }
+  image: {
+    width: responsiveWidth(36),
+    resizeMode: 'cover',
+    marginTop: responsiveHeight(2),
+  },
 });

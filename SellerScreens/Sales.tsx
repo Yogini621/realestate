@@ -27,20 +27,14 @@ import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '../redux/reducers';
 import {SelectList} from 'react-native-dropdown-select-list';
 import {addProperty, deleteProperty} from '../redux/actions/actionTypes';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 interface Props {
   navigation: any;
 }
 
 const Sales: React.FC<Props> = ({navigation}) => {
-  const address = useSelector((state: RootState) => state.address.address);
   const [modalVisible, setModalVisible] = useState(false);
-  const [streetNo, setStreetNo] = useState('');
-  const [flatNo, setFlatNo] = useState('');
-  const [city, setCity] = useState('');
-  const [state, setState] = useState('');
-  const [pincode, setPincode] = useState('');
-  const [selectAddress, setSelectAddress] = useState(0);
   const [editModalVisible, setEditModalVisible] = useState(false);
   const [property, setProperty] = useState('');
   const [amount, setAmount] = useState('');
@@ -101,10 +95,6 @@ const Sales: React.FC<Props> = ({navigation}) => {
     dispatch(deleteProperty(id));
   };
 
-  const handleEditProperty = () => {
-
-  }
-
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar hidden={true} />
@@ -115,9 +105,14 @@ const Sales: React.FC<Props> = ({navigation}) => {
               onPress={() => navigation.navigate('MenuPageSeller')}>
               <FontAwesome5 name="grip-lines" size={20} color="#073762" />
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigation.navigate('MenuPage')}>
-              <FontAwesome5 name="grip-lines" size={20} color="#073762" />
-            </TouchableOpacity>
+            <View style={styles.iconView}>
+              <TouchableOpacity>
+                <Ionicons name="notifications-outline" size={20} />
+              </TouchableOpacity>
+              <TouchableOpacity>
+                <Image source={require('../Images/user.png')} />
+              </TouchableOpacity>
+            </View>
           </View>
         </View>
         <Text style={styles.salesText}>Sales</Text>
@@ -221,7 +216,6 @@ const Sales: React.FC<Props> = ({navigation}) => {
           />
         </View>
         <View style={styles.seperator} />
-
         {properties.map(item => (
           <View key={item.id}>
             <View style={styles.propertyDataView}>
@@ -230,7 +224,7 @@ const Sales: React.FC<Props> = ({navigation}) => {
                 <TouchableOpacity
                   style={styles.buldingDataView}
                   onPress={() => setViewModal(true)}>
-                  <Text style={styles.bhkText}>{item.property} </Text>
+                  <Text style={styles.bhkText}>{item.property}</Text>
                   <Text style={styles.prestigeText}>
                     in Prestige High Fields,Gachibowli
                   </Text>
@@ -287,7 +281,6 @@ const Sales: React.FC<Props> = ({navigation}) => {
                       placeholder="Select Property"
                       fontFamily="PlusJakartaSans j"
                       save="value"
-                      // defaultOption={item.property}
                     />
                     <Text style={styles.labelText}>Date</Text>
                     <TextInput
@@ -374,6 +367,7 @@ const Sales: React.FC<Props> = ({navigation}) => {
                 </View>
               </View>
             </Modal>
+
             <Modal
               visible={editModalVisible}
               animationType="slide"
@@ -382,7 +376,7 @@ const Sales: React.FC<Props> = ({navigation}) => {
                 <View style={styles.modalView}>
                   <View style={styles.centerdModal}>
                     <Text style={styles.addNewAddressText}>
-                     {item.property}
+                      {item.property}
                     </Text>
                     <View style={styles.seperator1} />
                     <Text style={styles.labelText}>Property</Text>
@@ -453,6 +447,7 @@ const Sales: React.FC<Props> = ({navigation}) => {
           </View>
         ))}
       </ScrollView>
+
       <Modal visible={modalVisible} animationType="slide" transparent={true}>
         <ScrollView>
           <View style={styles.modalView}>
@@ -633,8 +628,9 @@ const styles = StyleSheet.create({
   },
   iconView: {
     flexDirection: 'row',
-    width: responsiveWidth(16),
+    width: responsiveWidth(20),
     justifyContent: 'space-between',
+    alignItems: 'center',
   },
   propertyDetailsView: {},
   seperator: {

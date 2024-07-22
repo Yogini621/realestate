@@ -51,7 +51,7 @@ const HomePage: React.FC<Props> = ({navigation}) => {
     handleFetchProperties();
   });
 
-const [datePicker,setDatePicker] = useState(false)
+  const [datePicker, setDatePicker] = useState(false);
   const handleFetchProperties = () => {
     const response = data;
     dispatch(fetchProperties(response));
@@ -123,11 +123,11 @@ const [datePicker,setDatePicker] = useState(false)
           return (
             <View style={styles.itemView} key={item.id}>
               <TouchableOpacity
-                onPress={() => navigation.navigate('PropertyDetails',{item})}>
+                onPress={() => navigation.navigate('PropertyDetails', {item})}>
                 <Image source={item.image} style={styles.image} />
               </TouchableOpacity>
               <View style={styles.descriptionView}>
-                <View style = {styles.triangle} />
+                <View style={styles.triangle} />
                 <View style={styles.popularTextView}>
                   <View style={styles.popularTextDirectionView}>
                     <Ionicons name="sparkles" color="white" size={16} />
@@ -178,8 +178,8 @@ const [datePicker,setDatePicker] = useState(false)
                     <Text style={styles.bedText}>3</Text>
                   </View>
                   <View style={styles.roomView}>
-                 <FontAwesome5 name="bath" size={18} color="#073762" />                    
-                 <Text style={styles.bedText}>2</Text>
+                    <FontAwesome5 name="bath" size={18} color="#073762" />
+                    <Text style={styles.bedText}>2</Text>
                   </View>
                   <View style={styles.roomView}>
                     {/* <Ionicons name="bed-outline" size={20} color="#073762" /> */}

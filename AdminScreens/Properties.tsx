@@ -344,7 +344,7 @@ const styles = StyleSheet.create({
     width: responsiveWidth(90),
     alignSelf: 'center',
     backgroundColor: '#9fc5e9',
-    marginTop:responsiveHeight(2),
-    marginBottom:responsiveHeight(2)
+    marginTop: responsiveHeight(2),
+    marginBottom: responsiveHeight(2),
   },
 });

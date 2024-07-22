@@ -10,7 +10,7 @@ import {
 import React, {useEffect, useState} from 'react';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import Profile from './Profile';
-import {Divider, RadioButton} from 'react-native-paper';
+import {Divider} from 'react-native-paper';
 import {
   responsiveFontSize,
   responsiveHeight,
@@ -35,12 +35,7 @@ const MenuPage: React.FC<Props> = ({navigation}) => {
   const [name, setName] = useState('');
   const [contact, setContact] = useState('');
   const [email, setEmail] = useState('');
-  const [customer, setCustomer] = useState(false);
-  const [seller, setSeller] = useState(false);
-  const [user, setUser] = useState('customer');
-  const [sselectId, setSelectId] = useState(1);
-  const [modalVisible, setModalVisible] = useState(false);
-  const [pendingUserType, setPendingUserType] = useState<string | null>(null);
+  const [selectId, setSelectId] = useState(1);
 
   const CustomerComponentData = [
     {
@@ -94,24 +89,11 @@ const MenuPage: React.FC<Props> = ({navigation}) => {
     navigation.navigate(navigatePage);
   };
 
-  // const switchUserType = () => {
-  //   if (pendingUserType) {
-  //     setUser(pendingUserType);
-  //     setModalVisible(false)
-  //     setPendingUserType(null)
-  //   }
-  // };
-
-  // const handleUserTypeChange = (newUserType:string) => {
-  //   setPendingUserType(newUserType)
-  //   setModalVisible(true)
-  // }
-
   return (
     <Drawer.Navigator
-      // defaultStatus="open"
+      defaultStatus="open"
       initialRouteName="HomePage"
-      drawerContent={(focused) => (
+      drawerContent={focused => (
         <View style={styles.drawerContent}>
           <View style={styles.header}>
             <View style={styles.userDirectionView}>
@@ -133,7 +115,7 @@ const MenuPage: React.FC<Props> = ({navigation}) => {
                 <TouchableOpacity
                   key={item.id}
                   style={
-                    sselectId === item.id
+                    selectId === item.id
                       ? styles.activeComponentButton
                       : styles.componentButton
                   }
@@ -141,14 +123,14 @@ const MenuPage: React.FC<Props> = ({navigation}) => {
                   <Image source={item.icon} />
                   <Text
                     style={
-                      sselectId === item.id
+                      selectId === item.id
                         ? styles.activeComponentText
                         : styles.componentText
                     }>
                     {item.option}
                   </Text>
                 </TouchableOpacity>
-               ))} 
+              ))}
             </View>
           </View>
         </View>
@@ -162,7 +144,7 @@ const MenuPage: React.FC<Props> = ({navigation}) => {
         name="Buy"
         component={Buy}
         options={{headerShown: false}}
-      />  
+      />
       <Drawer.Screen
         name="Sell"
         component={Sell}
@@ -181,9 +163,7 @@ const MenuPage: React.FC<Props> = ({navigation}) => {
     </Drawer.Navigator>
   );
 };
-
 export default MenuPage;
-
 const styles = StyleSheet.create({
   drawerContent: {},
   header: {

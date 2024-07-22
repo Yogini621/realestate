@@ -18,7 +18,7 @@ import {
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import FontAwesome from 'react-native-vector-icons/FontAwesome'
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 interface Props {
   navigation: any;
@@ -60,7 +60,7 @@ const MessageDetailsAdmin: React.FC<Props> = ({navigation}) => {
             <Text style={styles.userEmail}>Josephexample@gmail.com</Text>
           </View>
         </View>
-        <View style = {styles.questionView}>
+        <View style={styles.questionView}>
           <View style={styles.questionTextView}>
             <Text style={styles.questionText}>
               1.What all documents are necessary while we are posting a new
@@ -147,7 +147,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     left: responsiveWidth(6),
     justifyContent: 'center',
-    marginBottom:responsiveHeight(4)
+    marginBottom: responsiveHeight(4),
   },
   sendText: {
     color: 'white',
@@ -199,13 +199,13 @@ const styles = StyleSheet.create({
   detailsView: {
     left: responsiveWidth(4),
   },
-  questionView:{
-    backgroundColor:'#ffffff',
-    elevation:3,
-    padding:10,
-    marginTop:responsiveHeight(4),
-    width:responsiveWidth(90),
-    alignSelf:'center',
-    paddingVertical:20
-  }
+  questionView: {
+    backgroundColor: '#ffffff',
+    elevation: 3,
+    padding: 10,
+    marginTop: responsiveHeight(4),
+    width: responsiveWidth(90),
+    alignSelf: 'center',
+    paddingVertical: 20,
+  },
 });

@@ -18,6 +18,7 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 interface Props {
   navigation: any;
@@ -30,12 +31,22 @@ const TenancyApplicationDetails: React.FC<Props> = ({navigation}) => {
       <ScrollView>
         <View style={styles.headerView}>
           <View style={styles.logoView}>
-            <TouchableOpacity onPress={() => navigation.navigate('MenuPageSeller')}>
+            <TouchableOpacity
+              onPress={() => navigation.navigate('MenuPageSeller')}>
               <FontAwesome5 name="grip-lines" size={20} color="#073762" />
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigation.navigate('MenuPage')}>
-              <FontAwesome5 name="grip-lines" size={20} color="#073762" />
-            </TouchableOpacity>
+            <View style={styles.iconView}>
+              <TouchableOpacity>
+                <Ionicons
+                  name="notifications-outline"
+                  size={20}
+                  color="#073762"
+                />
+              </TouchableOpacity>
+              <TouchableOpacity>
+                <Image source={require('../Images/user.png')} />
+              </TouchableOpacity>
+            </View>
           </View>
         </View>
         <Text style={styles.applicationText}>Application Summary</Text>
@@ -169,6 +180,12 @@ const styles = StyleSheet.create({
     elevation: 1,
     justifyContent: 'center',
   },
+  iconView: {
+    width: responsiveWidth(20),
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
   logoView: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -186,7 +203,6 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#e0def7',
     borderRadius: 10,
-    //     padding: 10,
     width: responsiveWidth(90),
     alignSelf: 'center',
     marginTop: responsiveHeight(2),

@@ -142,6 +142,11 @@ const TenantApplicationForm: React.FC<Props> = ({navigation, route}) => {
     {key: 'Finland', value: 'Finland'},
   ];
 
+  const gotoBackPage = () => {
+    setModalVisible(false);
+    navigation.navigate('PropertyDetails');
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar hidden={true} />
@@ -669,7 +674,7 @@ const TenantApplicationForm: React.FC<Props> = ({navigation, route}) => {
                 <Text style={styles.applyText}>Applied Successfully </Text>
                 <TouchableOpacity
                   style={styles.okButton}
-                  onPress={() => setModalVisible(false)}>
+                  onPress={gotoBackPage}>
                   <Text style={styles.okText}>Ok</Text>
                 </TouchableOpacity>
               </View>

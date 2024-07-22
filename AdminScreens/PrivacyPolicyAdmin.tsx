@@ -47,14 +47,14 @@ const PrivacyPolicyAdmin: React.FC<Props> = ({navigation}) => {
   };
 
   const handleAddDraft = () => {
-     if (title === '') {
-       Alert.alert('Enter Title');
-     } else if (description === '') {
-       Alert.alert('Enter Description');
-     } else {
-       dispatch(addTermsDraft({id: Date.now(), title, description}));
-     }
-  }
+    if (title === '') {
+      Alert.alert('Enter Title');
+    } else if (description === '') {
+      Alert.alert('Enter Description');
+    } else {
+      dispatch(addTermsDraft({id: Date.now(), title, description}));
+    }
+  };
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar hidden={true} />
@@ -156,8 +156,7 @@ const PrivacyPolicyAdmin: React.FC<Props> = ({navigation}) => {
                 : styles.publishButtonFooterActive
             }
             disabled={title === '' ? true : false}
-            onPress={handleAddDraft}
-            >
+            onPress={handleAddDraft}>
             <MaterialComminityIcons
               name="file-edit-outline"
               size={22}

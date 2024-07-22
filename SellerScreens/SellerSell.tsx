@@ -22,6 +22,7 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import Fontisto from 'react-native-vector-icons/Fontisto';
 import {RadioButton} from 'react-native-paper';
 import OptionSelect from './OptionSelect';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 interface Props {
   navigation: any;
@@ -41,12 +42,18 @@ const Sell: React.FC<Props> = ({navigation}) => {
       <ScrollView>
         <View style={styles.headerView}>
           <View style={styles.logoView}>
-            <TouchableOpacity onPress={() => navigation.navigate('MenuPageSeller')}>
+            <TouchableOpacity
+              onPress={() => navigation.navigate('MenuPageSeller')}>
               <FontAwesome5 name="grip-lines" size={20} color="#073762" />
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigation.navigate('MenuPageSeller')}>
-              <FontAwesome5 name="grip-lines" size={20} color="#073762" />
-            </TouchableOpacity>
+            <View style={styles.iconView}>
+              <TouchableOpacity>
+                <Ionicons name="notifications-outline" size={20} />
+              </TouchableOpacity>
+              <TouchableOpacity>
+                <Image source={require('../Images/user.png')} />
+              </TouchableOpacity>
+            </View>
           </View>
         </View>
         <View style={styles.stepView}>
@@ -130,7 +137,11 @@ const Sell: React.FC<Props> = ({navigation}) => {
               </TouchableOpacity>
               <TouchableOpacity
                 style={styles.nextStepButton}
-                onPress={() => navigation.navigate("SellerStackScreen",{screen:'RentProperty'})}>
+                onPress={() =>
+                  navigation.navigate('SellerStackScreen', {
+                    screen: 'RentProperty',
+                  })
+                }>
                 <Text style={styles.nextStepText}>Next step</Text>
                 <MaterialIcons name="arrow-right-alt" size={26} color="white" />
               </TouchableOpacity>
@@ -201,6 +212,12 @@ const styles = StyleSheet.create({
     backgroundColor: '#ffffff',
     elevation: 1,
     justifyContent: 'center',
+  },
+  iconView: {
+    width: responsiveWidth(20),
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
   logoView: {
     flexDirection: 'row',

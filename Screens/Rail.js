@@ -12,6 +12,5 @@ const styles = StyleSheet.create({
     height: 3,
     borderRadius: 2,
     backgroundColor: '#9b9b9b',
-    // width:responsiveWidth(60)
   },
 });

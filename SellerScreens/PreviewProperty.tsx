@@ -1,4 +1,5 @@
 import {
+  Alert,
   Image,
   SafeAreaView,
   ScrollView,
@@ -8,7 +9,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {
@@ -17,37 +18,25 @@ import {
   responsiveWidth,
 } from 'react-native-responsive-dimensions';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
-import Entypo from 'react-native-vector-icons/Entypo';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import {Property} from '../redux/actions/actions';
-import {addToFavorites} from '../redux/actions/actionTypes';
-import {useDispatch, useSelector} from 'react-redux';
-import {RootState} from '../redux/reducers';
-import Octicons from 'react-native-vector-icons/Octicons';
 import ListComponent from '../Screens/ListComponent';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import TermsComponents from '../Screens/TermsComponents';
+import EvilIcons from 'react-native-vector-icons/EvilIcons';
+import MapView, {Marker} from 'react-native-maps';
 
 interface Props {
   navigation: any;
   route: any;
 }
 
-const PreviewProperty: React.FC<Props> = ({navigation, route}) => {
-  const favorites = useSelector(
-    (state: RootState) => state.favorites.favorites,
-  );
-  const dispatch = useDispatch();
-  const {item} = route.params;
-
-  const handleAddToFavorites = (item: Property) => {
-    dispatch(addToFavorites(item));
-  };
+const PreviewProperty: React.FC<Props> = ({navigation}) => {
+  const [visible, setIsVisible] = useState(false);
 
   return (
     <SafeAreaView style={styles.container}>
+      <StatusBar hidden={true} />
       <ScrollView>
-        <StatusBar hidden={true} />
         <View style={styles.headerView}>
           <View style={styles.logoView}>
             <Image source={require('../Images/Vector1.png')} />
@@ -62,40 +51,23 @@ const PreviewProperty: React.FC<Props> = ({navigation, route}) => {
           </View>
         </View>
         <View>
-          <TouchableOpacity style={styles.mapToMapButton}>
+          <TouchableOpacity
+            style={styles.mapToMapButton}
+            onPress={() => navigation.goBack()}>
             <AntDesign name="left" color="#073762" size={18} />
             <Text style={styles.backtoMapText}>Back to map</Text>
           </TouchableOpacity>
         </View>
-        <Text style={styles.stCrystalText}>{item.rooms} </Text>
-        <Text style={styles.addressText}>{item.location} </Text>
-        <View style={styles.buttonView}>
-          <TouchableOpacity style={styles.shareButton}>
-            <EvilIcons name="share-google" size={24} color="#073762" />
-            <Text style={styles.shareText}>Share</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.shareButton}
-            onPress={() => handleAddToFavorites(item)}>
-            <AntDesign
-              name={
-                favorites.find(favoriteItem => item.id === favoriteItem.id)
-                  ? 'heart'
-                  : 'hearto'
-              }
-              color={
-                favorites.find(favoriteItem => item.id === favoriteItem.id)
-                  ? 'red'
-                  : '#073762'
-              }
-              size={22}
-            />
-            <Text style={styles.shareText}>Favorite</Text>
-          </TouchableOpacity>
-        </View>
-        <Image source={item.image} style={styles.image} />
-        <TouchableOpacity style={styles.viewAllPhotosButton}>
-          <Text>View all photos</Text>
+        <Text style={styles.stCrystalText}>2Bedrooms 2Baths </Text>
+        <Text style={styles.addressText}>
+          in Sounthend Park Apartment, LB Nagar,Hyderabad,India
+        </Text>
+        <Image source={require('../Images/home1.png')} style={styles.image} />
+        <TouchableOpacity
+          style={styles.viewAllPhotosButton}
+          onPress={() => setIsVisible(true)}>
+          <MaterialIcons name="photo" color="#000000" size={20} />
+          <Text style={styles.viewAllPhotosText}>View all photos</Text>
         </TouchableOpacity>
         <View style={styles.imageView}>
           <Image source={require('../Images/home2.png')} />
@@ -157,78 +129,9 @@ const PreviewProperty: React.FC<Props> = ({navigation, route}) => {
             </Text>
           </View>
         </View>
-        <View style={styles.priceView}>
-          <Text style={styles.rentedPriceText}>Rented price</Text>
-          <Text style={styles.priceText}>{item.rent}</Text>
-          <View style={styles.userAndAddressView}>
-            <Image source={require('../Images/user.png')} />
-            <View>
-              <Text style={styles.userNameText}>Joseph Kishore</Text>
-              <Text style={styles.propertyName}>
-                Rich Capital Properties LLC
-              </Text>
-              <View style={styles.locationView}>
-                <Entypo name="location-pin" size={18} color="#000000" />
-                <Text style={styles.locationText}>Miyapur,Hyderabad</Text>
-              </View>
-            </View>
-          </View>
-          <TouchableOpacity style={styles.contactButton}>
-            <FontAwesome name="question-circle-o" color="#073762" size={20} />
-            <Text style={styles.callText}>Call or Message</Text>
-          </TouchableOpacity>
-        </View>
-        <View style={styles.applyView}>
-          <View style={styles.directionView}>
-            <View>
-              <Text style={styles.rentedPrice}>Rent price</Text>
-              <Text style={styles.rentPrice}>
-                $2,400<Text style={styles.monthText}>/month</Text>
-              </Text>
-            </View>
-            <TouchableOpacity
-              style={styles.applyButton}
-              onPress={() =>
-                navigation.navigate('TenentApplicationForm', {item})
-              }>
-              <Ionicons name="document-text-outline" color="white" size={22} />
-              <Text style={styles.applyText}>Apply now</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-        <View style={styles.homeTourView}>
-          <View style={styles.textView}>
-            <Text style={styles.homeTourText}>Request a home tour</Text>
-            <View style={styles.buttonDirectionView}>
-              <TouchableOpacity style={styles.personButton}>
-                <Entypo name="arrow-up" size={24} color="#666666" />
-                <Text style={styles.selectText}>In Person</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.personButton}>
-                <Octicons name="video" size={24} color="#666666" />
-                <Text style={styles.selectText}>Virtual</Text>
-              </TouchableOpacity>
-            </View>
-            <View style={styles.inputView}>
-              <View style={styles.inputDirectionView}>
-                <View style={styles.calenderView}>
-                  <AntDesign name="calendar" size={18} color="#666666" />
-                  <Text style={styles.selectText}>Select tour date</Text>
-                </View>
-                <AntDesign name="circledown" color="#9fc5e9" size={20} />
-              </View>
-            </View>
-            <TouchableOpacity style={styles.requestButton}>
-              <Text style={styles.requestText}>Request a tour</Text>
-            </TouchableOpacity>
-            <Text style={styles.cancelText}>
-              It’s free, with no obligation － cancel anytime.
-            </Text>
-          </View>
-        </View>
         <View style={styles.line} />
         <View>
-          <Text style={styles.featuresText}>Rental features</Text>
+          <Text style={styles.featuresText}>features</Text>
           <ListComponent
             featureText="Listed on E-Properties"
             details="1 week"
@@ -247,14 +150,28 @@ const PreviewProperty: React.FC<Props> = ({navigation, route}) => {
         <View style={styles.line} />
         <View>
           <Text style={styles.featuresText}>Map</Text>
-          <View style={styles.backIconView}>
-            <Text style={styles.seemoreText}>See more listings in Houston</Text>
-            <Ionicons
-              name="chevron-forward"
-              size={18}
-              color="#073762"
-              style={styles.icon1}
-            />
+          <View style={styles.map}>
+            <MapView
+              style={styles.map}
+              initialRegion={{
+                latitude: 37.78825,
+                longitude: -122.4324,
+                latitudeDelta: 0.0922,
+                longitudeDelta: 0.0421,
+              }}>
+              <Marker
+                draggable
+                coordinate={{
+                  latitude: 37.78825,
+                  longitude: -122.4324,
+                }}
+                onDragEnd={e =>
+                  Alert.alert(JSON.stringify(e.nativeEvent.coordinate))
+                }
+                title={'Test Marker'}
+                description={'This is a description of the marker'}
+              />
+            </MapView>
           </View>
           <View style={styles.line} />
           <View style={styles.policyView}>
@@ -269,13 +186,68 @@ const PreviewProperty: React.FC<Props> = ({navigation, route}) => {
             </Text>
           </View>
         </View>
+        <Image
+          source={require('../Images/Vector1.png')}
+          style={styles.image1}
+        />
+        <View style={styles.footerView}>
+          <View>
+            <TermsComponents
+              headerText="SELL A HOME"
+              feature1="Request an offer"
+              feature2="Pricing"
+              feature3="Reviews"
+            />
+            <TermsComponents
+              headerText="BUY A HOME"
+              feature1="Buy"
+              feature2="Finance"
+            />
+            <TermsComponents
+              headerText="BUY,RENT AND SELL"
+              feature1="Buy & sell properties"
+              feature2="Rent home"
+            />
+          </View>
+          <View>
+            <TermsComponents
+              headerText="TERMS & PRIVACY"
+              feature1="Trust & Safety"
+              feature2="Terms of Service"
+              feature3="Privacy Policy"
+            />
+            <TermsComponents
+              headerText="ABOUT"
+              feature1="About Us"
+              feature2="How it works"
+              feature3="Contact"
+              feature4="Investors"
+            />
+            <TermsComponents
+              headerText="RESOURCES"
+              feature1="FAQ"
+              feature2="Help Center"
+            />
+          </View>
+        </View>
+        <View style={styles.line1} />
+        <View style={styles.copyRightVew}>
+          <AntDesign name="copyright" color="#07376299" size={16} />
+          <Text style={styles.copyRightText}>
+            2021 Estatery. All rights reserved
+          </Text>
+        </View>
+        <View style={styles.socialMediaIconView}>
+          <EvilIcons name="sc-facebook" color="#07376299" size={36} />
+          <AntDesign name="instagram" color="#07376299" size={24} />
+          <AntDesign name="twitter" color="#07376299" size={24} />
+          <AntDesign name="linkedin-square" color="#07376299" size={24} />
+        </View>
       </ScrollView>
     </SafeAreaView>
   );
 };
-
 export default PreviewProperty;
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -295,9 +267,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   iconView: {
-    width: responsiveWidth(14),
+    width: responsiveWidth(20),
     flexDirection: 'row',
     justifyContent: 'space-between',
+    alignItems: 'center',
   },
   mapToMapButton: {
     flexDirection: 'row',
@@ -325,6 +298,7 @@ const styles = StyleSheet.create({
     fontFamily: 'PlusJakartaSans j',
     fontSize: responsiveFontSize(1.7),
     marginTop: responsiveHeight(0.6),
+    width: responsiveWidth(56),
   },
   buttonView: {
     flexDirection: 'row',
@@ -671,7 +645,62 @@ const styles = StyleSheet.create({
     left: responsiveWidth(2),
   },
   viewAllPhotosButton: {
-    backgroundColor: 'green',
+    backgroundColor: 'white',
+    borderRadius: 10,
     padding: 10,
+    position: 'absolute',
+    marginTop: responsiveHeight(56),
+    alignSelf: 'flex-end',
+    right: responsiveWidth(6),
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  viewAllPhotosText: {},
+  image1: {
+    marginTop: responsiveHeight(6),
+    left: responsiveWidth(14),
+    marginBottom: responsiveHeight(4),
+  },
+  footerView: {
+    flexDirection: 'row',
+    width: responsiveWidth(80),
+    left: responsiveWidth(8.8),
+    justifyContent: 'space-between',
+  },
+  line1: {
+    height: responsiveHeight(0.2),
+    width: responsiveWidth(90),
+    alignSelf: 'center',
+    marginTop: responsiveHeight(8),
+    backgroundColor: '#e8e6f9',
+    marginBottom: responsiveHeight(4),
+  },
+  copyRightText: {
+    color: '#07376299',
+    fontSize: responsiveFontSize(2.2),
+  },
+  copyRightVew: {
+    flexDirection: 'row',
+    alignSelf: 'center',
+    justifyContent: 'center',
+    fontFamily: 'PlusJakartaSans m',
+    alignItems: 'center',
+  },
+  socialMediaIconView: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignSelf: 'center',
+    width: responsiveWidth(54),
+    alignItems: 'center',
+    marginTop: responsiveHeight(2.8),
+    marginBottom: responsiveHeight(2),
+  },
+  map: {
+    height: responsiveHeight(44),
+    width: responsiveWidth(90),
+    borderRadius: 8,
+    alignSelf: 'center',
+    marginTop: responsiveHeight(2.8),
+    marginBottom: responsiveHeight(6),
   },
 });

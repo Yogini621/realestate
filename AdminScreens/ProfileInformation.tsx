@@ -1,7 +1,18 @@
-import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
-import React from 'react'
-import { responsiveFontSize, responsiveHeight, responsiveWidth } from 'react-native-responsive-dimensions';
-import Feather from 'react-native-vector-icons/Feather'
+import {
+  Image,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from 'react-native';
+import React from 'react';
+import {
+  responsiveFontSize,
+  responsiveHeight,
+  responsiveWidth,
+} from 'react-native-responsive-dimensions';
+import Feather from 'react-native-vector-icons/Feather';
 
 const ProfileInformation = () => {
   return (
@@ -37,9 +48,9 @@ const ProfileInformation = () => {
       </TouchableOpacity>
     </View>
   );
-}
+};
 
-export default ProfileInformation
+export default ProfileInformation;
 
 const styles = StyleSheet.create({
   container: {
@@ -134,5 +145,4 @@ const styles = StyleSheet.create({
     fontSize: responsiveFontSize(1.8),
     fontFamily: 'PlusJakartaSans j',
   },
-
 });
