@@ -15,7 +15,7 @@ import {
 import {RadioButton} from 'react-native-paper';
 
 const AccountSeller = () => {
- const [user, setUser] = useState('seller');
+  const [user, setUser] = useState('seller');
   return (
     <View style={styles.container}>
       <View style={styles.settingsView}>

@@ -15,6 +15,7 @@ export const LogedIn = "LogedIn"
 export const LogedOut = 'LogedOut';
 export const AddProperty = "AddProperty"
 export const DeleteProperty = 'DeleteProperty';
+export const AddMessage = 'AddMessage';
 
 export interface Property {
   id: number;
@@ -62,6 +63,10 @@ export interface login{
 
 export interface logout{
   isLogedout:boolean
+}
+
+export interface Message{
+  
 }
 export interface FetchPropertiesAction {
   type: typeof FetchProperties;

@@ -19,7 +19,6 @@ import {
 } from 'react-native-responsive-dimensions';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-import AntDesign from 'react-native-vector-icons/AntDesign';
 import Feather from 'react-native-vector-icons/Feather';
 import ButtonComponent from './ButtonComponent';
 import Geolocation from '@react-native-community/geolocation';
@@ -33,9 +32,9 @@ const DiscoverMore: React.FC<Props> = ({navigation}) => {
   const [currentLocation, setCurrentLocation] = useState<LatLng | null>(null);
   const [locationError, setLocationError] = useState<string | null>(null);
 
-  useEffect(() => {
-    requestLocationPermission();
-  }, []);
+  // useEffect(() => {
+  //   requestLocationPermission();
+  // }, []);
 
   const requestLocationPermission = async () => {
     if (Platform.OS === 'android') {

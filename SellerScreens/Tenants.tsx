@@ -158,7 +158,7 @@ const Tenants: React.FC<Props> = ({navigation}) => {
           <View style={styles.logoView}>
             <TouchableOpacity
               onPress={() =>
-                navigation.navigate('CustomerStackScreen', {
+                navigation.navigate('SellerStackScreen', {
                   screen: 'MenuPageSeller',
                 })
               }>

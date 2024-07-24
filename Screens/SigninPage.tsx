@@ -82,7 +82,7 @@ const SigninPage: React.FC<Props> = ({navigation}) => {
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar hidden={true} />
-      <KeyboardAwareScrollView>
+      {/* <KeyboardAwareScrollView> */}
         <ScrollView>
           <View style={styles.imageView}>
             <Image source={require('../Images/Vector1.png')} />
@@ -178,7 +178,7 @@ const SigninPage: React.FC<Props> = ({navigation}) => {
             <Image source={require('../Images/house1.png')} />
           </View>
         </ScrollView>
-      </KeyboardAwareScrollView>
+      {/* </KeyboardAwareScrollView> */}
     </SafeAreaView>
   );
 };

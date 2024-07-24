@@ -93,8 +93,8 @@ const SignupPage: React.FC<Props> = ({navigation}) => {
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar hidden={true} />
-      <KeyboardAwareScrollView>
-        <ScrollView>
+      <ScrollView>
+        {/* <KeyboardAwareScrollView> */}
           <View style={styles.imageView}>
             <Image source={require('../Images/Vector1.png')} />
           </View>
@@ -207,12 +207,14 @@ const SignupPage: React.FC<Props> = ({navigation}) => {
           <View style={styles.alreadyHaveAccount}>
             <Text style={styles.alreadyText}>Already have an account?</Text>
             <TouchableOpacity onPress={() => navigation.navigate('SigninPage')}>
-              <Text style={styles.loginText}> Login</Text>
+              <Text style={styles.loginText} testID="login">
+                Login
+              </Text>
             </TouchableOpacity>
           </View>
           <Image source={require('../Images/house1.png')} />
-        </ScrollView>
-      </KeyboardAwareScrollView>
+        {/* </KeyboardAwareScrollView> */}
+      </ScrollView>
     </SafeAreaView>
   );
 };

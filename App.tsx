@@ -1,5 +1,5 @@
 import 'react-native-gesture-handler';
-import React, {useState} from 'react';
+import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import HomePage from './Screens/HomePage';
@@ -42,28 +42,11 @@ import MessageDetails from './SellerScreens/MessageDetails';
 import ProfileSeller from './SellerScreens/ProfiieSeller';
 import GetHelp from './SellerScreens/GetHelp';
 import SettingsSeller from './SellerScreens/SettingsSeller';
-import SettingsAccount from './AdminScreens/SettingsAccount';
-import ProfileAdimin from './AdminScreens/ProfileAdimin';
-import AdminMenu from './AdminScreens/AdminMenu';
-import DashBoard from './AdminScreens/DashBoard';
-import Properties from './AdminScreens/Properties';
-import Customer from './AdminScreens/Customer';
-import Analytics from './AdminScreens/Analytics';
 import Messages from './AdminScreens/Messages';
-import TremsAndConditions from './AdminScreens/TremsAndConditionsAdmin';
-import PrivacyPolicyAdmin from './AdminScreens/PrivacyPolicyAdmin';
-import MessageDetailsAdmin from './AdminScreens/MessageDetailsAdmin';
-import PropertyFullView from './AdminScreens/PropertyFullView';
-import TermsDrafts from './AdminScreens/TermsDrafts';
-import PolicyDraft from './AdminScreens/PolicyDraft';
 import Tenants from './SellerScreens/Tenants';
-import {View} from 'react-native';
 import {RootState} from './redux/reducers';
 import MenuPageSeller from './SellerScreens/MenuPageSeller';
 import SellerSell from './SellerScreens/SellerSell';
-interface Props {
-  navigation: any;
-}
 
 const Stack = createNativeStackNavigator();
 
@@ -214,6 +197,11 @@ function SellerStackScreen() {
         options={{headerShown: false}}
       />
       <Stack.Screen
+        name="MessageDetails"
+        component={MessageDetails}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
         name="TenancyApplicationDetails"
         component={TenancyApplicationDetails}
         options={{headerShown: false}}
@@ -311,3 +299,22 @@ const App = () => {
   );
 };
 export default App;
+
+
+
+// import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+// import React from 'react'
+// import { userNameValidation } from './Validations'
+
+// const App = () => {
+//   return (
+//     <View>
+//       <Text>App</Text>
+//       <TouchableOpacity onPress={() => userNameValidation("Lucky")}>
+//         <Text>Valiadte</Text>
+//       </TouchableOpacity>
+//     </View>
+//   )
+// }
+// export default App
+// const styles = StyleSheet.create({})

@@ -164,6 +164,7 @@ const MyLocations = () => {
           </View>
         </View>
       </Modal>
+      
       <Modal
         visible={editModalVisible}
         animationType="slide"

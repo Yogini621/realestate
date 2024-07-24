@@ -38,14 +38,7 @@ const SettingsSeller: React.FC<Props> = ({navigation}) => {
               onPress={() => navigation.navigate('MenuPageSeller')}>
               <FontAwesome5 name="grip-lines" size={20} color="#073762" />
             </TouchableOpacity>
-            <View style={styles.iconView}>
-              <TouchableOpacity>
-                <Ionicons
-                  name="notifications-outline"
-                  size={20}
-                  color="#073762"
-                />
-              </TouchableOpacity>
+       
               <View style={styles.iconView}>
                 <TouchableOpacity>
                   <Ionicons
@@ -60,7 +53,6 @@ const SettingsSeller: React.FC<Props> = ({navigation}) => {
               </View>
             </View>
           </View>
-        </View>
         <Text style={styles.searchText}>Settings</Text>
         <Tab.Navigator
           screenOptions={{

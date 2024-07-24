@@ -53,7 +53,7 @@ const SellerDashBoard: React.FC<Props> = ({navigation}) => {
                 />
               </TouchableOpacity>
               <TouchableOpacity>
-                <FontAwesome5 name="grip-lines" size={20} color="#073762" />
+                <Image source={require('../Images/user.png')} />
               </TouchableOpacity>
             </View>
           </View>
@@ -246,9 +246,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   iconView: {
-    width: responsiveWidth(14),
+    width: responsiveWidth(20),
     flexDirection: 'row',
     justifyContent: 'space-between',
+    alignItems:'center'
   },
   inputDirectionView: {
     flexDirection: 'row',

@@ -29,8 +29,8 @@ interface Props {
 const Messages: React.FC<Props> = ({navigation}) => {
   return (
     <SafeAreaView style={styles.container}>
+      <StatusBar hidden={true} />
       <ScrollView>
-        <StatusBar hidden={true} />
         <View style={styles.headerView}>
           <View style={styles.logoView}>
             <TouchableOpacity onPress={() => navigation.navigate('MenuPage')}>
@@ -77,7 +77,7 @@ const Messages: React.FC<Props> = ({navigation}) => {
           <View style={styles.imageView}>
             <Image source={require('../Images/LetterA.png')} />
             <View style={styles.buldingDataView}>
-              <Text style={styles.bhkText}>valentino parker</Text>
+              <Text style={styles.bhkText}>Valentino Parker</Text>
             </View>
           </View>
           <TouchableOpacity>
@@ -99,7 +99,7 @@ const Messages: React.FC<Props> = ({navigation}) => {
           <View style={styles.imageView}>
             <Image source={require('../Images/LetterA.png')} />
             <View style={styles.buldingDataView}>
-              <Text style={styles.bhkText}>valentino parker</Text>
+              <Text style={styles.bhkText}>Valentino Parker</Text>
             </View>
           </View>
           <TouchableOpacity>
@@ -121,7 +121,7 @@ const Messages: React.FC<Props> = ({navigation}) => {
           <View style={styles.imageView}>
             <Image source={require('../Images/LetterA.png')} />
             <View style={styles.buldingDataView}>
-              <Text style={styles.bhkText}>valentino parker</Text>
+              <Text style={styles.bhkText}>Valentino Parker</Text>
             </View>
           </View>
           <TouchableOpacity>
@@ -143,7 +143,7 @@ const Messages: React.FC<Props> = ({navigation}) => {
           <View style={styles.imageView}>
             <Image source={require('../Images/LetterA.png')} />
             <View style={styles.buldingDataView}>
-              <Text style={styles.bhkText}>valentino parker</Text>
+              <Text style={styles.bhkText}>Valentino Parker</Text>
             </View>
           </View>
           <TouchableOpacity>
@@ -165,7 +165,7 @@ const Messages: React.FC<Props> = ({navigation}) => {
           <View style={styles.imageView}>
             <Image source={require('../Images/LetterA.png')} />
             <View style={styles.buldingDataView}>
-              <Text style={styles.bhkText}>valentino parker</Text>
+              <Text style={styles.bhkText}>Valentino Parker</Text>
             </View>
           </View>
           <TouchableOpacity>
@@ -187,7 +187,7 @@ const Messages: React.FC<Props> = ({navigation}) => {
           <View style={styles.imageView}>
             <Image source={require('../Images/LetterA.png')} />
             <View style={styles.buldingDataView}>
-              <Text style={styles.bhkText}>valentino parker</Text>
+              <Text style={styles.bhkText}>Valentino Parker</Text>
             </View>
           </View>
           <TouchableOpacity>
@@ -209,9 +209,7 @@ const Messages: React.FC<Props> = ({navigation}) => {
     </SafeAreaView>
   );
 };
-
 export default Messages;
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,

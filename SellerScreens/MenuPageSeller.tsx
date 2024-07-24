@@ -1,11 +1,5 @@
 import 'react-native-gesture-handler';
-import {
-  Image,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import {Divider} from 'react-native-paper';
@@ -29,25 +23,15 @@ const MenuPageSeller: React.FC<Props> = ({navigation}) => {
   const [name, setName] = useState('');
   const [contact, setContact] = useState('');
   const [email, setEmail] = useState('');
-  const [customer, setCustomer] = useState(false);
-  const [seller, setSeller] = useState(false);
-  const [user, setUser] = useState('customer');
-  const [sselectId, setSelectId] = useState(1);
-  const [modalVisible, setModalVisible] = useState(false);
-  const [pendingUserType, setPendingUserType] = useState<string | null>(null);
+  const [selectId, setSelectId] = useState(1);
 
   const SellerComponentData = [
     {id: 1, option: 'Property', icon: 'compass', navigatePage: 'Property'},
     {id: 2, option: 'Tenants', icon: 'users', navigatePage: 'Tenants'},
     {id: 3, option: 'Sales', icon: 'bar-graph', navigatePage: 'Sales'},
-    {id: 4, option: 'Messages', icon: 'message', navigatePage: 'Messages'},
+    {id: 4, option: 'Messages', icon: 'message', navigatePage: 'Message'},
     {id: 5, option: 'Profile', icon: 'user', navigatePage: 'ProfileSeller'},
-    {
-      id: 6,
-      option: 'Get Help',
-      icon: 'help-with-circle',
-      navigatePage: 'GetHelp',
-    },
+    {id: 6, option: 'Get Help', icon: 'help-with-circle', navigatePage: 'GetHelp'},
     {id: 7, option: 'Settings', icon: 'cog', navigatePage: 'SettingsSeller'},
   ];
 
@@ -96,7 +80,7 @@ const MenuPageSeller: React.FC<Props> = ({navigation}) => {
                 <TouchableOpacity
                   key={item.id}
                   style={
-                    sselectId === item.id
+                    selectId === item.id
                       ? styles.activeComponentButton
                       : styles.componentButton
                   }
@@ -104,11 +88,11 @@ const MenuPageSeller: React.FC<Props> = ({navigation}) => {
                   <Entypo
                     name={item.icon}
                     size={20}
-                    color={sselectId === item.id ? 'white' : '#718096'}
+                    color={selectId === item.id ? 'white' : '#718096'}
                   />
                   <Text
                     style={
-                      sselectId === item.id
+                      selectId === item.id
                         ? styles.activeComponentText
                         : styles.componentText
                     }>
@@ -120,7 +104,11 @@ const MenuPageSeller: React.FC<Props> = ({navigation}) => {
           </View>
         </View>
       )}>
-      <Drawer.Screen name="Profile" component={Profile} />
+      <Drawer.Screen
+        name="Profile"
+        component={Profile}
+        options={{headerShown: false}}
+      />
     </Drawer.Navigator>
   );
 };

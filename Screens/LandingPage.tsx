@@ -116,7 +116,7 @@ const LandingPage: React.FC<Props> = ({navigation}) => {
                 <Text
                   style={
                     selectButton ? styles.activeButtonText : styles.buttonText
-                  }>
+                  } testID='signup'>
                   Sign up
                 </Text>
               </TouchableOpacity>
@@ -126,7 +126,7 @@ const LandingPage: React.FC<Props> = ({navigation}) => {
                 <Text
                   style={
                     selectButton1 ? styles.activeButtonText : styles.buttonText
-                  }>
+                  } testID='login'>
                   Login
                 </Text>
               </TouchableOpacity>
@@ -346,12 +346,12 @@ const LandingPage: React.FC<Props> = ({navigation}) => {
             estatery community.
           </Text>
         </View>
-        <Modal visible={modalVisible} animationType="slide" transparent={true}>
+        <Modal visible={modalVisible} animationType="slide" transparent={true} testID='modal'>
           <View style={styles.modalView}>
             <View style={styles.crossIconView}>
               <Text style={styles.verifyText}>Signup</Text>
               <TouchableOpacity onPress={() => setModalVisible(false)}>
-                <Entypo name="cross" color="black" size={20} />
+                <Entypo name="cross" color="black" size={20}  testID='close'/>
               </TouchableOpacity>
             </View>
             <View style={styles.line} />
@@ -363,7 +363,7 @@ const LandingPage: React.FC<Props> = ({navigation}) => {
             <TouchableOpacity
               style={styles.verifyButton}
               onPress={() => navigation.navigate('SignupPage')}>
-              <Text style={styles.buttonText2}>Signup</Text>
+              <Text style={styles.buttonText2} testID='signup1'>Signup</Text>
             </TouchableOpacity>
           </View>
         </Modal>

@@ -40,7 +40,7 @@ const AboutUs: React.FC<Props> = ({navigation}) => {
                 />
               </TouchableOpacity>
               <TouchableOpacity onPress={() => navigation.navigate('MenuPage')}>
-                <FontAwesome5 name="grip-lines" size={20} color="#073762" />
+                <FontAwesome5 name="grip-lines" size={20} color="#073762" testID='menuPage' />
               </TouchableOpacity>
             </View>
           </View>

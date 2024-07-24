@@ -8,23 +8,29 @@ import {
 import {Switch} from 'react-native-paper';
 
 const NotificationsSeller = () => {
-  const [checked, setChecked] = useState(false);
-  return (
-    <View style={styles.container}>
-      <View style={styles.notificationView}>
-        <Text style={styles.notificationsText}>Notifications</Text>
-        <Text style={styles.generalText}>General</Text>
-        <View style={styles.switchIconView}>
-          <View style={styles.swichIconTextView}>
-            <Text style={styles.switchIconText}>
-              Get notifications from E-Property to stay up-to-date.
-            </Text>
-          </View>
-          <Switch />
-        </View>
-      </View>
-    </View>
-  );
+const [isSwitchOn, setIsSwitchOn] = React.useState(false);
+
+const onToggleSwitch = () => setIsSwitchOn(!isSwitchOn); 
+ return (
+   <View style={styles.container}>
+     <View style={styles.notificationView}>
+       <Text style={styles.notificationsText}>Notifications</Text>
+       <Text style={styles.generalText}>General</Text>
+       <View style={styles.switchIconView}>
+         <View style={styles.swichIconTextView}>
+           <Text style={styles.switchIconText}>
+             Get notifications from E-Property to stay up-to-date.
+           </Text>
+         </View>
+         <Switch
+           value={isSwitchOn}
+           onValueChange={onToggleSwitch}
+           color="#073762"
+         />
+       </View>
+     </View>
+   </View>
+ );
 };
 export default NotificationsSeller;
 

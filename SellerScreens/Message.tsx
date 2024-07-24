@@ -34,32 +34,32 @@ export const messageData = [
   },
   {
     id: 2,
-    messagername: 'Mark Vetrovs',
-    subject: 'Request for Home Tour',
+    messagername: 'Wilson Septimus',
+    subject: 'General Inquiry',
     message:
       'Hi Francis! I’m  in love with one of your properties and wanted to know wh...',
     image: require('../Images/users.png'),
   },
   {
     id: 3,
-    messagername: 'Mark Vetrovs',
-    subject: 'Request for Home Tour',
+    messagername: 'Philip Schleifer',
+    subject: 'General Inquiry',
     message:
       'Hi Francis! I’m  in love with one of your properties and wanted to know wh...',
     image: require('../Images/users.png'),
   },
   {
     id: 4,
-    messagername: 'Mark Vetrovs',
-    subject: 'Request for Home Tour',
+    messagername: 'Desirae Gouse',
+    subject: 'Lease Maintenance',
     message:
       'Hi Francis! I’m  in love with one of your properties and wanted to know wh...',
     image: require('../Images/users.png'),
   },
   {
     id: 5,
-    messagername: 'Mark Vetrovs',
-    subject: 'Request for Home Tour',
+    messagername: 'Emery Siphrom',
+    subject: 'Lease Maintenance',
     message:
       'Hi Francis! I’m  in love with one of your properties and wanted to know wh...',
     image: require('../Images/users.png'),
@@ -105,7 +105,7 @@ const Message: React.FC<Props> = ({navigation}) => {
           </TouchableOpacity>
         </View>
         {messageData.map(item => (
-          <View style={styles.messageView}>
+          <View style={styles.messageView} key={item.id}>
             <View style={styles.profileDirection}>
               <Image source={item.image} style={styles.image} />
               <View style={styles.detailsView}>

@@ -1,4 +1,5 @@
 import {
+  Image,
   SafeAreaView,
   ScrollView,
   StatusBar,
@@ -7,7 +8,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React from 'react';
+import React, { useState } from 'react';
 import {
   responsiveHeight,
   responsiveWidth,
@@ -20,6 +21,8 @@ interface Props {
 }
 
 const MessageDetails: React.FC<Props> = ({navigation}) => {
+  const [message,setMessage] = useState('')
+
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar hidden={true} />
@@ -30,13 +33,29 @@ const MessageDetails: React.FC<Props> = ({navigation}) => {
               onPress={() => navigation.navigate('MenuPageSeller')}>
               <FontAwesome5 name="grip-lines" size={20} color="#073762" />
             </TouchableOpacity>
-            <TouchableOpacity>
-              <Ionicons
-                name="notifications-outline"
-                size={20}
-                color="#073762"
-              />
-            </TouchableOpacity>
+            <View style={styles.iconView}>
+              <TouchableOpacity>
+                <Ionicons
+                  name="notifications-outline"
+                  size={20}
+                  color="#073762"
+                />
+              </TouchableOpacity>
+              <TouchableOpacity>
+                <Image source={require('../Images/user.png')} />
+              </TouchableOpacity>
+            </View>
+          </View>
+        </View>
+
+        <View style={styles.messageDirectionView}>
+          <Image source={require('../Images/users.png')} style={styles.image} />
+          <View style={styles.messageView}>
+            <Text> Hi Francis,</Text>
+            <Text>
+              I’m in love with one of your properties, Beverly Springfield and I
+              would like to ask is it on the market?
+            </Text>
           </View>
         </View>
       </ScrollView>
@@ -58,10 +77,36 @@ const styles = StyleSheet.create({
     elevation: 1,
     justifyContent: 'center',
   },
+  iconView: {
+    width: responsiveWidth(20),
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
   logoView: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginHorizontal: responsiveWidth(4),
     alignItems: 'center',
   },
+  image: {
+    height: responsiveHeight(6),
+    width: responsiveWidth(12),
+    borderRadius: 30,
+  },
+  messageView: {
+    borderWidth: 1,
+    borderColor: '#9fc5e9',
+    borderTopRightRadius: 10,
+    borderBottomLeftRadius: 10,
+    borderBottomRightRadius: 10,
+    padding: 10,
+    width:responsiveWidth(60)
+  },
+  messageDirectionView:{
+    flexDirection:'row',
+    justifyContent:'space-between',
+    width:responsiveWidth(90),
+    alignSelf:'center'
+  }
 });

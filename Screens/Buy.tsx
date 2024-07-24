@@ -36,7 +36,7 @@ const Buy: React.FC<Props> = ({navigation}) => {
           <View style={styles.logoView}>
             <Image source={require('../Images/Vector1.png')} />
             <TouchableOpacity onPress={() => navigation.navigate('MenuPage')}>
-              <FontAwesome5 name="grip-lines" size={20} color="#073762" />
+              <FontAwesome5 name="grip-lines" size={20} color="#073762" testID='menu' />
             </TouchableOpacity>
           </View>
         </View>
@@ -73,7 +73,7 @@ const Buy: React.FC<Props> = ({navigation}) => {
           <TouchableOpacity
             style={styles.moreButton}
             onPress={() => navigation.navigate('PropertyListings1')}>
-            <Text style={styles.moreText}>More</Text>
+            <Text style={styles.moreText} testID='list1'>More</Text>
           </TouchableOpacity>
         </View>
 
@@ -133,7 +133,7 @@ const Buy: React.FC<Props> = ({navigation}) => {
           <TouchableOpacity
             style={styles.moreButton}
             onPress={() => navigation.navigate('PropertyListings2')}>
-            <Text style={styles.moreText}>More</Text>
+            <Text style={styles.moreText} testID='list2'>More</Text>
           </TouchableOpacity>
         </View>
         {data3.map(item => (
@@ -179,7 +179,7 @@ const Buy: React.FC<Props> = ({navigation}) => {
           <TouchableOpacity
             style={styles.moreButton}
             onPress={() => navigation.navigate('PropertyListings3')}>
-            <Text style={styles.moreText}>More</Text>
+            <Text style={styles.moreText} testID='list3'>More</Text>
           </TouchableOpacity>
         </View>
         {data4.map(item => (
