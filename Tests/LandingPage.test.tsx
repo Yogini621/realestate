@@ -20,9 +20,7 @@ jest.mock('react-native-vector-icons/Ionicons', () => 'Ionicons');
 
 describe('LandingPage', () => {
   it('renders Correctly', () => {
-    const {getByText, getByTestId} = render(
-      <LandingPage navigation={mockNavigation} />,
-    );
+    const {getByTestId} = render(<LandingPage navigation={mockNavigation} />);
 
     const signupButton = getByTestId('signup');
     expect(signupButton).toBeTruthy();
@@ -38,9 +36,7 @@ describe('LandingPage', () => {
     expect(mockNavigation.navigate('SigninPage'));
   });
   it('tests modal Opens correctly or not', () => {
-    const {getByTestId, getByText} = render(
-      <LandingPage navigation={mockNavigation} />,
-    );
+    const {getByTestId, getByText} = render(<LandingPage navigation={mockNavigation} />);
 
     const cmpText = getByText('Virtual home tour');
     expect(cmpText).toBeTruthy();
@@ -52,9 +48,7 @@ describe('LandingPage', () => {
     expect(mockNavigation.navigate('SignupPage'));
   });
   it('tests modal Opens correctly or not', () => {
-    const {getByTestId, getByText} = render(
-      <LandingPage navigation={mockNavigation} />,
-    );
+    const {getByTestId, getByText} = render(<LandingPage navigation={mockNavigation} />);
 
     const cmpText = getByText('Find the best deal');
     expect(cmpText).toBeTruthy();
@@ -66,9 +60,7 @@ describe('LandingPage', () => {
     expect(mockNavigation.navigate('SignupPage'));
   });
   it('tests modal Opens correctly or not', () => {
-    const {getByTestId, getByText} = render(
-      <LandingPage navigation={mockNavigation} />,
-    );
+    const {getByTestId, getByText} = render(<LandingPage navigation={mockNavigation} />);
 
     const cmpText = getByText('Getready to apply');
     expect(cmpText).toBeTruthy();

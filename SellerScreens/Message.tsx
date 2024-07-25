@@ -75,7 +75,7 @@ const Message: React.FC<Props> = ({navigation}) => {
           <View style={styles.logoView}>
             <TouchableOpacity
               onPress={() => navigation.navigate('MenuPageSeller')}>
-              <FontAwesome5 name="grip-lines" size={20} color="#073762" />
+              <FontAwesome5 name="grip-lines" size={20} color="#073762" testID='menu'/>
             </TouchableOpacity>
             <View style={styles.iconView}>
               <TouchableOpacity>
@@ -111,7 +111,7 @@ const Message: React.FC<Props> = ({navigation}) => {
               <View style={styles.detailsView}>
                 <TouchableOpacity
                   onPress={() => navigation.navigate('MessageDetails')}>
-                  <Text style={styles.messagerName}>{item.messagername}</Text>
+                  <Text style={styles.messagerName} testID='message'>{item.messagername}</Text>
                   <Text style={styles.subjectText}>{item.subject}</Text>
                   <View style={styles.messageTextView}>
                     <Text style={styles.messageText}>{item.message}</Text>

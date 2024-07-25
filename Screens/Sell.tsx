@@ -43,7 +43,7 @@ const Sell: React.FC<Props> = ({navigation}) => {
         <View style={styles.headerView}>
           <View style={styles.logoView}>
             <TouchableOpacity onPress={() => navigation.navigate('MenuPage')}>
-              <FontAwesome5 name="grip-lines" size={20} color="#073762" />
+              <FontAwesome5 name="grip-lines" size={20} color="#073762" testID='menu' />
             </TouchableOpacity>
             <View style={styles.iconView}>
               <TouchableOpacity>
@@ -136,8 +136,12 @@ const Sell: React.FC<Props> = ({navigation}) => {
           </View>
         </View>
       </ScrollView>
-      {modalVisible && (
-        <Modal visible={modalVisible} animationType="slide" transparent={true}>
+      {/* {modalVisible && (
+        <Modal visible={modalVisible} 
+        animationType="slide" 
+        transparent={true}
+        testID='modal'
+        >
           <View style={styles.centeredModal}>
             <View style={styles.modalView}>
               <View style={styles.userModeView}>
@@ -165,7 +169,7 @@ const Sell: React.FC<Props> = ({navigation}) => {
             </View>
           </View>
         </Modal>
-      )}
+      )} */}
     </SafeAreaView>
   );
 };

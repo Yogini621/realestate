@@ -76,9 +76,7 @@ const AccountSeller = () => {
     </View>
   );
 };
-
 export default AccountSeller;
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,

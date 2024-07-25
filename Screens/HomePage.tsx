@@ -84,7 +84,7 @@ const HomePage: React.FC<Props> = ({navigation}) => {
                 />
               </TouchableOpacity>
               <TouchableOpacity onPress={() => navigation.navigate('MenuPage')}>
-                <FontAwesome5 name="grip-lines" size={20} color="#073762" />
+                <FontAwesome5 name="grip-lines" size={20} color="#073762" testID='menu' />
               </TouchableOpacity>
             </View>
           </View>
@@ -93,7 +93,7 @@ const HomePage: React.FC<Props> = ({navigation}) => {
         <TouchableOpacity
           style={styles.discoverButton}
           onPress={() => navigation.navigate('DiscoverMore')}>
-          <Feather name="globe" color="white" size={20} />
+          <Feather name="globe" color="white" size={20} testID='discover' />
           <Text style={styles.buttonText}>Discover More</Text>
         </TouchableOpacity>
         <View style={styles.searchBarView}>
