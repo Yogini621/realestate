@@ -47,10 +47,10 @@ const Rent: React.FC<Props> = ({navigation}) => {
                 <Ionicons name="notifications-outline" size={20} />
               </TouchableOpacity>
               <TouchableOpacity onPress={() => navigation.navigate('MenuPage')}>
-                <FontAwesome5 name="grip-lines" size={20} />
+                <FontAwesome5 name="grip-lines" size={20} testID='menu'/>
               </TouchableOpacity>
             </View>
-          </View>
+          </View> 
         </View>
         <View>
           <TouchableOpacity style={styles.mapToMapButton}>

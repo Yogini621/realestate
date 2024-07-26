@@ -64,7 +64,7 @@ describe('Property Details', () => {
 
   it('renders correctly in Property Details', () => {
     const {getByText} = render(
-      <PropertyDetails navigation={mockNavigation} route={jest.fn()} />,
+      <PropertyDetails navigation={mockNavigation} route={{params:{item:{}}}} />,
     );
   });
 });

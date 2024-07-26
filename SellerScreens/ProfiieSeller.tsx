@@ -17,7 +17,6 @@ import {
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import CircularProgress from 'react-native-circular-progress-indicator';
-import Feather from 'react-native-vector-icons/Feather';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import ProfileInformation from './ProfileInformation';
 import ChangePassword from './ChangePassword';

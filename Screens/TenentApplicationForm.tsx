@@ -161,17 +161,18 @@ const TenantApplicationForm: React.FC<Props> = ({navigation, route}) => {
                   name="notifications-outline"
                   size={20}
                   color="#073762"
+                  testID='notification'
                 />
               </TouchableOpacity>
               <TouchableOpacity onPress={() => navigation.navigate('MenuPage')}>
-                <FontAwesome5 name="grip-lines" size={20} color="#073762" />
+                <FontAwesome5 name="grip-lines" size={20} color="#073762" testID='menu'/>
               </TouchableOpacity>
             </View>
           </View>
         </View>
         <View style={styles.backToView}>
           <TouchableOpacity onPress={() => navigation.goBack()}>
-            <Ionicons name="chevron-back-outline" size={24} color="#073762" />
+            <Ionicons name="chevron-back-outline" size={24} color="#073762" testID='back'/>
           </TouchableOpacity>
           <TouchableOpacity>
             <Text style={styles.backText}>Back to 2Bedrooms 2Baths</Text>

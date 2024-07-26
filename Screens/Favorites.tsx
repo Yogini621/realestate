@@ -50,7 +50,6 @@ const Favorites: React.FC<Props> = ({navigation}) => {
 
   const openMenu = () => setVisible(true);
   const closeMenu = () => setVisible(false);
-  const [menuItem, setMenuItem] = useState('');
 
   const renderItems = ({item}: {item: Property}) => {
     return (
@@ -129,10 +128,19 @@ const Favorites: React.FC<Props> = ({navigation}) => {
           <Image source={require('../Images/Vector1.png')} />
           <View style={styles.iconView1}>
             <TouchableOpacity>
-              <Ionicons name="notifications-outline" size={20} />
+              <Ionicons
+                name="notifications-outline"
+                size={20}
+                color="#073762"
+              />
             </TouchableOpacity>
             <TouchableOpacity onPress={() => navigation.navigate('MenuPage')}>
-              <FontAwesome5 name="grip-lines" size={20} />
+              <FontAwesome5
+                name="grip-lines"
+                size={20}
+                color="#073762"
+                testID="menu"
+              />
             </TouchableOpacity>
           </View>
         </View>
@@ -165,9 +173,9 @@ const Favorites: React.FC<Props> = ({navigation}) => {
                     <Entypo name="chevron-down" size={18} color="#000000" />
                   </TouchableOpacity>
                 }>
-                <Menu.Item onPress={() => console.log('hello')} title="Rent" />
-                <Menu.Item onPress={() => {}} title="Buy" />
-                <Menu.Item onPress={() => {}} title="Showing all" />
+                <Menu.Item  title="Rent" />
+                <Menu.Item  title="Buy" />
+                <Menu.Item  title="Showing all" />
               </Menu>
             </View>
           </PaperProvider>

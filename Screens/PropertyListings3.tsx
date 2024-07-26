@@ -46,7 +46,7 @@ const PropertyListings3: React.FC<Props> = ({navigation}) => {
           <View style={styles.logoView}>
             <Image source={require('../Images/Vector1.png')} />
             <TouchableOpacity onPress={() => navigation.navigate('MenuPage')}>
-              <FontAwesome5 name="grip-lines" size={20} />
+              <FontAwesome5 name="grip-lines" size={20} testID='menu'/>
             </TouchableOpacity>
           </View>
         </View>
