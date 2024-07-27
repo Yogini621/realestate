@@ -41,7 +41,7 @@ const Property: React.FC<Props> = ({navigation}) => {
                   screen: 'MenuPageSeller',
                 })
               }>
-              <FontAwesome5 name="grip-lines" size={20} color="#073762" />
+              <FontAwesome5 name="grip-lines" size={20} color="#073762" testID='menu'/>
             </TouchableOpacity>
             <View style={styles.iconView}>
               <TouchableOpacity>
@@ -70,7 +70,7 @@ const Property: React.FC<Props> = ({navigation}) => {
           <View style={styles.draftButtonView}>
             <TouchableOpacity
               style={styles.draftButton}
-              onPress={() => setOpenDrafts(true)}>
+             >
               <Text style={styles.draftsText}>Drafts</Text>
             </TouchableOpacity>
             <TouchableOpacity
@@ -78,7 +78,7 @@ const Property: React.FC<Props> = ({navigation}) => {
               onPress={() =>
                 navigation.navigate('SellerStackScreen', {screen: 'SellerSell'})
               }>
-              <Entypo name="plus" color="white" size={16} />
+              <Entypo name="plus" color="white" size={16} testID='seller'/>
             </TouchableOpacity>
             <TouchableOpacity style={styles.sortIconButton}>
               <MaterialCommunityIcons

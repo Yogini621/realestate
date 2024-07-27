@@ -27,7 +27,6 @@ import MapView, {Marker} from 'react-native-maps';
 
 interface Props {
   navigation: any;
-  route: any;
 }
 
 const PreviewProperty: React.FC<Props> = ({navigation}) => {
@@ -54,7 +53,7 @@ const PreviewProperty: React.FC<Props> = ({navigation}) => {
           <TouchableOpacity
             style={styles.mapToMapButton}
             onPress={() => navigation.goBack()}>
-            <AntDesign name="left" color="#073762" size={18} />
+            <AntDesign name="left" color="#073762" size={18} testID='back'/>
             <Text style={styles.backtoMapText}>Back to map</Text>
           </TouchableOpacity>
         </View>
