@@ -7,12 +7,12 @@ import {
   responsiveWidth,
 } from 'react-native-responsive-dimensions';
 
-interface Props{
-  question:string;
-  answer:string
+interface Props {
+  question: string;
+  answer: string;
 }
 
-const QuestionComponent = (props:Props) => {
+const QuestionComponent = (props: Props) => {
   const [selectQuestion, setSelectQuestion] = useState(false);
 
   const toogleQuestionIcon = () => {
@@ -21,8 +21,7 @@ const QuestionComponent = (props:Props) => {
   return (
     <View>
       <View style={styles.questionView}>
-        <Text style={styles.questionText}>{props.question}
-        </Text>
+        <Text style={styles.questionText}>{props.question}</Text>
 
         <TouchableOpacity onPress={toogleQuestionIcon}>
           <AntDesign
@@ -34,9 +33,7 @@ const QuestionComponent = (props:Props) => {
       </View>
       {selectQuestion && (
         <View style={styles.answerView}>
-          <Text style={styles.answerText}>
-            {props.answer}
-          </Text>
+          <Text style={styles.answerText}>{props.answer}</Text>
         </View>
       )}
     </View>
@@ -51,8 +48,8 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     marginTop: responsiveHeight(2),
-    width:responsiveWidth(82),
-    marginLeft:responsiveWidth(6)
+    width: responsiveWidth(82),
+    marginLeft: responsiveWidth(6),
   },
   questionText: {
     fontSize: responsiveFontSize(1.8),

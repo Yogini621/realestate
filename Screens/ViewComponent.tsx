@@ -1,24 +1,29 @@
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React from 'react'
-import { responsiveFontSize, responsiveHeight, responsiveWidth } from 'react-native-responsive-dimensions';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import React from 'react';
+import {
+  responsiveFontSize,
+  responsiveHeight,
+  responsiveWidth,
+} from 'react-native-responsive-dimensions';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
-interface Props{
-  backgroundColor:string;
-  headerText:string;
-  descriptionText:string;
-  icon:any
-  textColor:string
-  iconColor:string
-  headerTextColor:string
-  onPress:() => void
+interface Props {
+  backgroundColor: string;
+  headerText: string;
+  descriptionText: string;
+  icon: any;
+  textColor: string;
+  iconColor: string;
+  headerTextColor: string;
+  onPress: () => void;
+}
 
- }
-
-const ViewComponent = (props:Props) => {
+const ViewComponent = (props: Props) => {
   return (
     <View>
-      <TouchableOpacity style={[styles.homeTourView,{backgroundColor:props.backgroundColor}]} onPress={props.onPress}>
+      <TouchableOpacity
+        style={[styles.homeTourView, {backgroundColor: props.backgroundColor}]}
+        onPress={props.onPress}>
         <View style={styles.directionView}>
           <View style={styles.circleView}>
             <TouchableOpacity>
@@ -30,10 +35,12 @@ const ViewComponent = (props:Props) => {
             </TouchableOpacity>
           </View>
           <View>
-            <Text style={[styles.homeTourText,{color:props.headerTextColor}]}>{props.headerText} </Text>
+            <Text style={[styles.homeTourText, {color: props.headerTextColor}]}>
+              {props.headerText}{' '}
+            </Text>
             <View style={styles.detailsView}>
-              <Text style={[styles.detailsText,{color:props.textColor}]}>
-               {props.descriptionText}
+              <Text style={[styles.detailsText, {color: props.textColor}]}>
+                {props.descriptionText}
               </Text>
             </View>
           </View>
@@ -41,9 +48,9 @@ const ViewComponent = (props:Props) => {
       </TouchableOpacity>
     </View>
   );
-}
+};
 
-export default ViewComponent
+export default ViewComponent;
 
 const styles = StyleSheet.create({
   homeTourView: {

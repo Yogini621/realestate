@@ -16,7 +16,6 @@ import {
   responsiveHeight,
   responsiveWidth,
 } from 'react-native-responsive-dimensions';
-import Feather from 'react-native-vector-icons/Feather';
 import * as Yup from 'yup';
 import {Formik} from 'formik';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -32,10 +31,9 @@ interface Props {
 }
 const ForgotPasswordPage: React.FC<Props> = ({navigation}) => {
   const [modalVisible, setModalVisible] = useState(false);
-  const [otp,setOtp] = useState('')
+  const [otp, setOtp] = useState('');
 
-
- const ValidationSchema = Yup.object().shape({
+  const ValidationSchema = Yup.object().shape({
     email: Yup.string()
       .email('Invalid email address format')
       .matches(
@@ -44,24 +42,21 @@ const ForgotPasswordPage: React.FC<Props> = ({navigation}) => {
       )
       .required('Email is required'),
   });
- 
 
-  const handleFormSubmit = async (values: UserDetails) => {
-
-  };
+  const handleFormSubmit = async (values: UserDetails) => {};
 
   const generateOTP = () => {
     const otp = Math.floor(Math.random() * 999999 + 100000).toString();
     console.log(otp);
-    setOtp(otp)
+    setOtp(otp);
     setModalVisible(true);
   };
 
-     const ValidateOtp = (enteredOtp: string) => {
-       if (otp === enteredOtp) {
-         navigation.navigate('ForgotPassword2');
-       }
-     };
+  const ValidateOtp = (enteredOtp: string) => {
+    if (otp === enteredOtp) {
+      navigation.navigate('ForgotPassword2');
+    }
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -127,7 +122,6 @@ const ForgotPasswordPage: React.FC<Props> = ({navigation}) => {
           <View style={styles.image}>
             <Image source={require('../Images/house1.png')} />
           </View>
-          
         </ScrollView>
       </KeyboardAwareScrollView>
     </SafeAreaView>
@@ -251,8 +245,8 @@ const styles = StyleSheet.create({
     position: 'relative',
     marginTop: 188,
   },
-  locationText:{
-    textAlign:'center',
-    fontSize:responsiveFontSize(2)
-  }
+  locationText: {
+    textAlign: 'center',
+    fontSize: responsiveFontSize(2),
+  },
 });

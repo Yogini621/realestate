@@ -24,11 +24,11 @@ import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
 import Entypo from 'react-native-vector-icons/Entypo';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import ListComponent from './ListComponent';
-import { Property } from '../redux/actions/actions';
-import { data } from './data';
-import { fetchProperties } from '../redux/actions/actionTypes';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../redux/reducers';
+import {Property} from '../redux/actions/actions';
+import {data} from './data';
+import {fetchProperties} from '../redux/actions/actionTypes';
+import {useDispatch, useSelector} from 'react-redux';
+import {RootState} from '../redux/reducers';
 
 interface Props {
   navigation: any;
@@ -41,7 +41,7 @@ const Rent: React.FC<Props> = ({navigation}) => {
         <StatusBar hidden={true} />
         <View style={styles.headerView}>
           <View style={styles.logoView}>
-            <Image source={require('../Images/Vector.png')} />
+            <Image source={require('../Images/Vector1.png')} />
             <View style={styles.iconView}>
               <TouchableOpacity>
                 <Ionicons name="notifications-outline" size={20} />
@@ -218,8 +218,8 @@ const Rent: React.FC<Props> = ({navigation}) => {
             />
           </View>
           <View style={styles.line} />
-          <View style = {styles.policyView}>
-            <Text style = {styles.policyText}>
+          <View style={styles.policyView}>
+            <Text style={styles.policyText}>
               You agree to Estatery's Terms of Use & Privacy Policy. By choosing
               to contact a property, you also agree that Estatery Group,
               landlords, and property managers may call or text you about any
@@ -243,7 +243,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   headerView: {
-    height: responsiveHeight(8),
+    height: responsiveHeight(10),
     width: responsiveWidth(100),
     backgroundColor: '#ffffff',
     elevation: 1,
@@ -253,6 +253,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginHorizontal: responsiveWidth(4),
+    alignItems: 'center',
   },
   iconView: {
     width: responsiveWidth(14),
@@ -617,6 +618,6 @@ const styles = StyleSheet.create({
   policyText: {
     fontSize: responsiveFontSize(1.6),
     fontFamily: 'PlusJakartaSans j',
-    lineHeight:20
+    lineHeight: 20,
   },
 });

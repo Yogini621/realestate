@@ -1,5 +1,5 @@
 import 'react-native-gesture-handler';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet} from 'react-native';
 import React from 'react';
 import LandingPage from './Screens/LandingPage';
 import SignupPage from './Screens/SignupPage';
@@ -16,6 +16,15 @@ import FiltersScreen from './Screens/FiltersScreen';
 import Faqs from './Screens/Faqs';
 import Rent from './Screens/Rent';
 import Buy from './Screens/Buy';
+import TenentApplicationForm from './Screens/TenentApplicationForm';
+import PropertyListings1 from './Screens/PropertyListings1';
+import PropertyListings2 from './Screens/PropertyListings2';
+import PropertyListings3 from './Screens/PropertyListings3';
+import Sell from './Screens/Sell';
+import Favorites from './Screens/Favorites';
+import DiscoverMore from './Screens/DiscoverMore';
+import SwipeUp from './Screens/SwipeUp';
+import Filterscreen from './Screens/Filterscreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -24,7 +33,7 @@ const App = () => {
     <Provider store={store}>
       <NavigationContainer>
         <Stack.Navigator>
-           <Stack.Screen
+          {/* <Stack.Screen
             name="LandingPage"
             component={LandingPage}
             options={{headerShown: false}}
@@ -48,7 +57,12 @@ const App = () => {
             name="ForgotPassword2"
             component={ForgotPassword2}
             options={{headerShown: false}}
-          /> 
+          />  */}
+          <Stack.Screen
+            name="Filterscreen"
+            component={Filterscreen}
+            options={{headerShown: false}}
+          />
           <Stack.Screen
             name="HomePage"
             component={HomePage}
@@ -65,18 +79,58 @@ const App = () => {
             options={{headerShown: false}}
           />
           <Stack.Screen
+            name="DiscoverMore"
+            component={DiscoverMore}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
             name="Faqs"
             component={Faqs}
             options={{headerShown: false}}
-          /> 
+          />
           <Stack.Screen
             name="Rent"
             component={Rent}
             options={{headerShown: false}}
-          /> 
+          />
           <Stack.Screen
             name="Buy"
             component={Buy}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="PropertyListings1"
+            component={PropertyListings1}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="PropertyListings2"
+            component={PropertyListings2}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="PropertyListings3"
+            component={PropertyListings3}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="Sell"
+            component={Sell}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="TenentApplicationForm"
+            component={TenentApplicationForm}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="Favorites"
+            component={Favorites}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="SwipeUp"
+            component={SwipeUp}
             options={{headerShown: false}}
           />
         </Stack.Navigator>
@@ -84,7 +138,5 @@ const App = () => {
     </Provider>
   );
 };
-
 export default App;
-
 const styles = StyleSheet.create({});

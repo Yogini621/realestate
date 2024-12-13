@@ -29,14 +29,13 @@ interface Props {
 }
 
 const Faqs: React.FC<Props> = ({navigation}) => {
-
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar hidden={true} />
       <ScrollView>
         <View style={styles.headerView}>
           <View style={styles.logoView}>
-            <Image source={require('../Images/Vector.png')} />
+            <Image source={require('../Images/Vector1.png')} />
             <View style={styles.iconView}>
               <TouchableOpacity>
                 <Ionicons name="notifications-outline" size={20} />
@@ -174,7 +173,7 @@ const Faqs: React.FC<Props> = ({navigation}) => {
             Upgrade kitchen and bathrooms with modern fixtures.Fresh
             paint,decluttering,and proffessional staging can make a big impact."
         />
-        <View style= {styles.bottomView} />
+        <View style={styles.bottomView} />
       </ScrollView>
     </SafeAreaView>
   );
@@ -188,7 +187,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   headerView: {
-    height: responsiveHeight(8),
+    height: responsiveHeight(10),
     width: responsiveWidth(100),
     backgroundColor: '#ffffff',
     elevation: 1,
@@ -198,6 +197,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginHorizontal: responsiveWidth(4),
+    alignItems: 'center',
   },
   iconView: {
     width: responsiveWidth(14),
@@ -304,7 +304,7 @@ const styles = StyleSheet.create({
     marginTop: responsiveHeight(1),
     marginLeft: responsiveWidth(7.2),
   },
-  bottomView:{
-    marginBottom:responsiveHeight(10)
-  }
+  bottomView: {
+    marginBottom: responsiveHeight(10),
+  },
 });

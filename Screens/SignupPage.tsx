@@ -1,4 +1,5 @@
 import {
+  Alert,
   Image,
   SafeAreaView,
   ScrollView,
@@ -32,10 +33,11 @@ interface UserDetails {
 interface Props {
   navigation: any;
 }
+
 const SignupPage: React.FC<Props> = ({navigation}) => {
   const [isconfirmPasswordsecure, setIsConfirmPasswordSecure] =
     useState<boolean>(false);
-  const [otp,setOtp] = useState('')
+  const [otp, setOtp] = useState('');
 
   const handleConfirmPAssword = () => {
     setIsConfirmPasswordSecure(!isconfirmPasswordsecure);
@@ -64,11 +66,14 @@ const SignupPage: React.FC<Props> = ({navigation}) => {
       .required('Password required'),
   });
 
-   const ValidateOtp = (enteredOtp:string) => {
-    if(otp === enteredOtp){
-      navigation.navigate("HomePage")
+  const ValidateOtp = (enteredOtp: string) => {
+    if (otp === enteredOtp) {
+      navigation.navigate('HomePage');
+      setModalVisible(false);
+    } else {
+      Alert.alert('InValid otp');
     }
-   };
+  };
 
   const handleFormSubmit = (values: UserDetails) => {
     console.log('values', values);
@@ -79,11 +84,11 @@ const SignupPage: React.FC<Props> = ({navigation}) => {
       contact: values.contact,
     };
     const user = AsyncStorage.setItem('userData', JSON.stringify(values));
-  const otp = Math.floor(Math.random() * 999999 + 100000).toString();
-  console.log(otp);
-  setOtp(otp);
-  setModalVisible(true);  
-1098};
+    const otp = Math.floor(Math.random() * 999999 + 100000).toString();
+    console.log(otp);
+    setOtp(otp);
+    setModalVisible(true);
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -141,6 +146,7 @@ const SignupPage: React.FC<Props> = ({navigation}) => {
                   onChangeText={handleChange('contact')}
                   onBlur={handleBlur('contact')}
                   placeholderTextColor="#9b9b9b"
+                  keyboardType="numeric"
                 />
                 {touched.name && errors.contact && (
                   <Text style={styles.errorText}>{errors.contact} </Text>
@@ -307,6 +313,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#f4faff',
     alignSelf: 'center',
     fontFamily: 'PlusJakartaSans j',
+    color: '#9b9b9b',
   },
   errorText: {
     fontFamily: 'PlusJakartaSans j',
